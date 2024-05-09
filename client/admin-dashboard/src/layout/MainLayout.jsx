@@ -1,75 +1,64 @@
+import { Button, Layout, theme } from "antd";
+import Logo from "./Logo";
+import MenuList from "./MenuList";
 import { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import ToggleTheme from "./ToggleTheme";
+import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Content, Footer } from "antd/es/layout/layout";
 import { Outlet } from "react-router-dom";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider } = Layout;
+function MainLayout() {
+  const [darkTheme, setDarkTheme] = useState(true);
+  const [collapsed, setCollapsed] = useState(true);
 
-const MainLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+  };
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
-
   return (
-    <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
-        />
-      </Sider>
+    <>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
+        <Sider
+          collapsed={collapsed}
+          theme={darkTheme ? "dark" : "light "}
+          className=" text-white"
+          onCollapse={(value) => setCollapsed(value)}
         >
-          {Outlet}
-        </Content>
+          <Logo />
+          <MenuList darktheme={darkTheme} />
+          <ToggleTheme darkTheme={darkTheme} toggleTheme={toggleTheme} />
+        </Sider>
+        <Layout>
+          <Header
+            style={{
+              padding: 0,
+              background: colorBgContainer,
+            }}
+          >
+            <Button
+              type="text"
+              className="toggle"
+              onClick={() => setCollapsed(!collapsed)}
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuOutlined />}
+            />
+          </Header>
+          <Content>
+            <Outlet />
+          </Content>
+          <Footer
+            style={{
+              textAlign: "center",
+            }}
+          >
+            Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          </Footer>
+        </Layout>
       </Layout>
-    </Layout>
+    </>
   );
-};
+}
 
 export default MainLayout;
