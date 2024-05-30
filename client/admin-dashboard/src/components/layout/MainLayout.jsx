@@ -4,8 +4,9 @@ import MenuList from "./MenuList";
 import { useState } from "react";
 import ToggleTheme from "./ToggleTheme";
 import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Content, Footer } from "antd/es/layout/layout";
+import { Content } from "antd/es/layout/layout";
 import { Outlet } from "react-router-dom";
+import FooterPage from "./Footer";
 
 const { Header, Sider } = Layout;
 function MainLayout() {
@@ -31,6 +32,7 @@ function MainLayout() {
           <MenuList darktheme={darkTheme} />
           <ToggleTheme darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
+
         <Layout>
           <Header
             style={{
@@ -48,13 +50,7 @@ function MainLayout() {
           <Content>
             <Outlet />
           </Content>
-          <Footer
-            style={{
-              textAlign: "center",
-            }}
-          >
-            Ant Design ©{new Date().getFullYear()} Created by Ant UED
-          </Footer>
+          <FooterPage />
         </Layout>
       </Layout>
     </>

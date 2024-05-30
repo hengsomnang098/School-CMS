@@ -1,10 +1,10 @@
 import {
   AppstoreAddOutlined,
   DesktopOutlined,
-  ProductOutlined,
+  // ProductOutlined,
   ShopOutlined,
   TeamOutlined,
-  UserOutlined,
+  // UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -22,18 +22,19 @@ const items = [
   getItem("Dashboard", "/", <AppstoreAddOutlined />),
   getItem("Content", "content", <TeamOutlined />),
   getItem("Artcle", "article", <TeamOutlined />),
+  getItem("Category", "category", <TeamOutlined />),
   getItem("About us", "about", <ShopOutlined />),
   getItem("Contact Us", "contact", <ShopOutlined />),
-  getItem("Product", "Product", <ProductOutlined />, [
-    getItem("Product", "product", <ProductOutlined />),
-    getItem("Product-stock", "product-stock"),
-    getItem("Category", "category"),
-  ]),
-  getItem("System", "system", <UserOutlined />, [
-    getItem("Order Status", "order-status"),
-    getItem("Payment method", "payment-method"),
-    getItem("Role", "role"),
-  ]),
+  // getItem("Product", "Product", <ProductOutlined />, [
+  //   getItem("Product", "product", <ProductOutlined />),
+  //   getItem("Product-stock", "product-stock"),
+  //   getItem("Category", "category"),
+  // ]),
+  // getItem("System", "system", <UserOutlined />, [
+  //   getItem("Order Status", "order-status"),
+  //   getItem("Payment method", "payment-method"),
+  //   getItem("Role", "role"),
+  // ]),
   getItem("Logout", "logout", <DesktopOutlined />),
 ];
 
