@@ -7,6 +7,7 @@ import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
 import { Outlet } from "react-router-dom";
 import FooterPage from "./Footer";
+// import { getUser } from "../../config/helper";
 
 const { Header, Sider } = Layout;
 function MainLayout() {
@@ -19,6 +20,9 @@ function MainLayout() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  // const user = getUser();
+  // alert(JSON.stringify(user));
   return (
     <>
       <Layout>
