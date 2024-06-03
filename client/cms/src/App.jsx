@@ -6,17 +6,30 @@ import NotFoundPage from "./admin-dashboard/page/NotFoundPage";
 import MainLayout from "./admin-dashboard/components/layout/MainLayout";
 import CategoryPage from "./admin-dashboard/page/CategoryPage";
 import LoginPage from "./admin-dashboard/page/LoginPage";
+import Home from "./homepage/pages/Home";
+import About from "./homepage/pages/About";
+import Contact from "./homepage/pages/Contact";
+import OurPrograms from "./homepage/pages/OurPrograms";
+import Layout from "./homepage/Layout";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          {/* dashboard route */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/category" element={<CategoryPage />} />
+            <Route path="/dashboard" element={<HomePage />} />
+            <Route path="/aboutpage" element={<AboutPage />} />
+            <Route path="/contactpage" element={<ContactPage />} />
+            <Route path="/categorypage" element={<CategoryPage />} />
+          </Route>
+          {/*   homepage route */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/ourprograms" element={<OurPrograms />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
