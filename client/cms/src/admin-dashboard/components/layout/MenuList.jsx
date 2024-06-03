@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../../config/helper";
 
 function getItem(label, key, icon, children) {
   return {
@@ -42,6 +43,10 @@ const items = [
 function MenuList({ darktheme }) {
   const navigate = useNavigate();
   const onClickMenu = (event) => {
+    if (event.key == "logout") {
+      logout();
+      return;
+    }
     navigate(event.key);
   };
   return (

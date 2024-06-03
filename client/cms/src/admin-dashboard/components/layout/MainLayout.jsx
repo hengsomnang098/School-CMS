@@ -1,12 +1,13 @@
 import { Button, Layout, theme } from "antd";
 import Logo from "./Logo";
 import MenuList from "./MenuList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToggleTheme from "./ToggleTheme";
 import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import FooterPage from "./Footer";
+import { getUser, isLogin } from "../../../config/helper";
 // import { getUser } from "../../config/helper";
 
 const { Header, Sider } = Layout;
@@ -21,8 +22,17 @@ function MainLayout() {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  // const user = getUser();
-  // alert(JSON.stringify(user));
+  const user = getUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLogin()) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  if (!user) {
+    return null;
+  }
   return (
     <>
       <Layout>
@@ -32,8 +42,13 @@ function MainLayout() {
           className=" text-white"
           onCollapse={(value) => setCollapsed(value)}
         >
+          {/* Logo Dashboard */}
           <Logo />
+
+          {/* Menu list */}
           <MenuList darktheme={darkTheme} />
+
+          {/* Toogle Darktheme */}
           <ToggleTheme darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
 
