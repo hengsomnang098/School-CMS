@@ -11,6 +11,7 @@ import About from "./homepage/pages/About";
 import Contact from "./homepage/pages/Contact";
 import OurPrograms from "./homepage/pages/OurPrograms";
 import Layout from "./homepage/Layout";
+import CategoryList from "./homepage/components/CategoryList";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
+            <Route path="/categorieslist" element={<CategoryList />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

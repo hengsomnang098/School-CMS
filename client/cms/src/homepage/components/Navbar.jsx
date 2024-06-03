@@ -9,6 +9,7 @@ const menuItems = [
   { key: "2", label: "About", path: "/about" },
   { key: "3", label: "Our Program", path: "/ourprograms" },
   { key: "4", label: "Contact", path: "/contact" },
+  { key: "5", label: "Categories", path: "/categorieslist" },
 ];
 
 const Navbar = () => {
