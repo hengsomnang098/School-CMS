@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./admin-dashboard/page/HomePage";
 import AboutPage from "./admin-dashboard/page/AboutPage";
 import ContactPage from "./admin-dashboard/page/ContactPage";
@@ -12,6 +12,8 @@ import Contact from "./homepage/pages/Contact";
 import OurPrograms from "./homepage/pages/OurPrograms";
 import Layout from "./homepage/Layout";
 import CategoryList from "./homepage/components/CategoryList";
+import ArticlePage from "./admin-dashboard/page/ArticlePage";
+import ContentPage from "./admin-dashboard/page/ContentPage";
 
 function App() {
   return (
@@ -21,9 +23,12 @@ function App() {
           {/* dashboard route */}
           <Route element={<MainLayout />}>
             <Route path="/dashboard" element={<HomePage />} />
-            <Route path="/aboutpage" element={<AboutPage />} />
-            <Route path="/contactpage" element={<ContactPage />} />
-            <Route path="/categorypage" element={<CategoryPage />} />
+            <Route path="/dashboard/about" element={<AboutPage />} />
+            <Route path="/dashboard/contact" element={<ContactPage />} />
+            <Route path="/dashboard/category" element={<CategoryPage />} />
+            <Route path="/dashboard/article" element={<ArticlePage />} />
+            <Route path="/dashboard/content" element={<ContentPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
           {/*   homepage route */}
           <Route element={<Layout />}>

@@ -54,7 +54,7 @@ export const logout = () => {
   localStorage.setItem("profile", "");
   localStorage.setItem("isLogin", "0");
   localStorage.setItem("token", "");
-  localStorage.setItem("refresh_token", "");
+  // localStorage.setItem("refresh_token", "");
   window.location.href = "login";
 };
 

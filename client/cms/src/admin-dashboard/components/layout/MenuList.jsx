@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../../config/helper";
 
 function getItem(label, key, icon, children) {
   return {
@@ -19,12 +20,12 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Dashboard", "/", <AppstoreAddOutlined />),
-  getItem("Content", "content", <TeamOutlined />),
-  getItem("Artcle", "article", <TeamOutlined />),
-  getItem("Category", "category", <TeamOutlined />),
-  getItem("About us", "about", <ShopOutlined />),
-  getItem("Contact Us", "contact", <ShopOutlined />),
+  getItem("Dashboard", "/dashboard", <AppstoreAddOutlined />),
+  getItem("Category", "/dashboard/category", <TeamOutlined />),
+  getItem("Artcle", "/dashboard/article", <TeamOutlined />),
+  getItem("Content", "/dashboard/content", <TeamOutlined />),
+  getItem("About us", "/dashboard/about", <ShopOutlined />),
+  getItem("Contact Us", "/dashboard/contact", <ShopOutlined />),
   // getItem("Product", "Product", <ProductOutlined />, [
   //   getItem("Product", "product", <ProductOutlined />),
   //   getItem("Product-stock", "product-stock"),
@@ -42,6 +43,10 @@ const items = [
 function MenuList({ darktheme }) {
   const navigate = useNavigate();
   const onClickMenu = (event) => {
+    if (event.key == "logout") {
+      logout();
+      return;
+    }
     navigate(event.key);
   };
   return (

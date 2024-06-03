@@ -69,7 +69,7 @@ const CategoryPage = () => {
         };
         const res = await request(`categories/${data.id}`, "delete", data);
         if (res) {
-          message.success("Delete Sucessful", res.message);
+          message.success("Delete Sucessful");
           getList();
         }
       },
@@ -85,9 +85,10 @@ const CategoryPage = () => {
     };
     var method = id == null ? "post" : "put";
     var url = id == null ? "categories" : `categories/${data.id}`;
+    var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
     if (res) {
-      message.success(id ? "update" : "create" + " sucessfull", res.message);
+      message.success(messages);
       getList();
       onCloseModal();
     }
@@ -104,9 +105,9 @@ const CategoryPage = () => {
 
   const onCloseModal = () => {
     formCat.resetFields();
-    formCat.setFieldsValue({
-      Status: "1",
-    });
+    // formCat.setFieldsValue({
+    //   Status: "1",
+    // });
     setOpen(false);
   };
 
@@ -162,12 +163,12 @@ const CategoryPage = () => {
           },
           {
             key: "nameKh",
-            title: "nameKh",
+            title: "Name Khmer",
             dataIndex: "nameKh",
           },
           {
             key: "nameEn",
-            title: "nameEn",
+            title: "Name English",
             dataIndex: "nameEn",
             responsive: ["sm"],
           },
