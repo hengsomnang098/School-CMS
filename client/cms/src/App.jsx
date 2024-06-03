@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
 import HomePage from "./admin-dashboard/page/HomePage";
 import AboutPage from "./admin-dashboard/page/AboutPage";
 import ContactPage from "./admin-dashboard/page/ContactPage";
@@ -23,6 +23,7 @@ function App() {
             <Route path="/aboutpage" element={<AboutPage />} />
             <Route path="/contactpage" element={<ContactPage />} />
             <Route path="/categorypage" element={<CategoryPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
           {/*   homepage route */}
           <Route element={<Layout />}>
@@ -33,7 +34,6 @@ function App() {
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </>
