@@ -32,7 +32,7 @@ const LoginPage = () => {
 
         setAccessToken(res.token);
         // setRefreshToken(request.refresh_token);
-        navigate("/dashboard");
+        navigate("/");
         // console.log(res.user);
       }
     }
