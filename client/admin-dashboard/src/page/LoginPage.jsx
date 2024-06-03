@@ -12,15 +12,15 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    var username = values.username;
+    var email = values.email;
     var password = values.password;
-    if (username == "" || password == "") {
-      alert("Please fill in username or password!");
+    if (email == "" || password == "") {
+      alert("Please fill in email or password!");
       return false;
     }
     var data = {
-      Username: username, //099998888
-      Password: password, //"123456"
+      email: email, //099998888
+      password: password, //"123456"
     };
     const res = await request("auth/login", "post", data);
     if (res) {
@@ -28,11 +28,12 @@ const LoginPage = () => {
         alert(res.message);
       } else {
         // Login success
-        setUser(res.user);
-        setAccessToken(res.access_token);
+        setUser(res.email);
+
+        setAccessToken(res.token);
         // setRefreshToken(request.refresh_token);
         navigate("/");
-        console.log(res.user);
+        // console.log(res.user);
       }
     }
   };
@@ -51,7 +52,7 @@ const LoginPage = () => {
       <Form name="normal_login" onFinish={onFinish}>
         <h1>Login</h1>
         <Form.Item
-          name="username"
+          name="email"
           rules={[
             {
               required: true,

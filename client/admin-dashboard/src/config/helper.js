@@ -34,12 +34,12 @@ export const setUser = (user = {}) => {
   localStorage.setItem("isLogin", "1");
 };
 
-export const setAccessToken = (access_token) => {
-  localStorage.setItem("access_token", access_token);
+export const setAccessToken = (token) => {
+  localStorage.setItem("token", token);
 };
 
-export const getAccessToken = (access_token) => {
-  return localStorage.getItem("access_token", access_token);
+export const getAccessToken = (token) => {
+  return localStorage.getItem("token", token);
 };
 
 export const setRefreshToken = (refresh_token) => {
@@ -53,7 +53,7 @@ export const getRefreshToken = (refresh_token) => {
 export const logout = () => {
   localStorage.setItem("profile", "");
   localStorage.setItem("isLogin", "0");
-  localStorage.setItem("access_token", "");
+  localStorage.setItem("token", "");
   localStorage.setItem("refresh_token", "");
   window.location.href = "login";
 };

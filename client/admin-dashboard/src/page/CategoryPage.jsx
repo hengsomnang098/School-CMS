@@ -1,4 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import {
+  useEffect,
+  useState,
+  //  useRef
+} from "react";
 import { request } from "../config/request";
 import {
   Table,
@@ -7,12 +11,12 @@ import {
   Modal,
   Input,
   Form,
-  Select,
+  // Select,
   message,
-  Tag,
+  // Tag,
   Typography,
 } from "antd";
-import { formartDateClient } from "../config/helper";
+// import { formartDateClient } from "../config/helper";
 import MainPage from "../components/page/MainPage";
 
 const { Title } = Typography;
@@ -23,36 +27,31 @@ const CategoryPage = () => {
   const [formCat] = Form.useForm();
 
   useEffect(() => {
-    formCat.setFieldsValue({
-      Status: "1",
-    });
     getList();
   }, [formCat]);
 
-  const filterRef = useRef({
-    txt_search: "",
-    status: "",
-  });
+  // const filterRef = useRef({
+  //   txt_search: "",
+  //   status: "",
+  // });
 
   const getList = async () => {
     setLoading(true);
-    var param = {
-      txt_search: filterRef.current.txt_search,
-      status: filterRef.current.status,
-    };
-    const res = await request("category", "get", param);
+    // var param = {
+    //   txt_search: filterRef.current.txt_search,
+    //   status: filterRef.current.status,
+    // };
+    const res = await request("categories", "get");
     setLoading(false);
     if (res) {
-      setList(res.list);
+      setList(res);
     }
   };
   const onClickBtnEdit = (item) => {
-    // console.log(item)
     formCat.setFieldsValue({
-      Id: item.Id, //
-      Name: item.Name,
-      Description: item.Description,
-      Status: item.Status + "",
+      id: item.id, //
+      nameKh: item.nameKh,
+      nameEn: item.nameEn,
     });
     setOpen(true);
   };
@@ -66,41 +65,43 @@ const CategoryPage = () => {
       centered: true,
       onOk: async () => {
         var data = {
-          Id: item.Id,
+          id: item.id,
         };
-        const res = await request("category", "delete", data);
+        const res = await request(`categories/${data.id}`, "delete", data);
         if (res) {
-          message.success(res.message);
+          message.success("Delete Sucessful", res.message);
           getList();
         }
       },
     });
   };
+
   const onFinish = async (item) => {
-    var Id = formCat.getFieldValue("Id");
+    var id = formCat.getFieldValue("id");
     var data = {
-      Id: Id,
-      Name: item.Name,
-      Description: item.Description,
-      Status: item.Status,
+      id: id,
+      nameKh: item.nameKh,
+      nameEn: item.nameEn,
     };
-    var method = Id == null ? "post" : "put";
-    const res = await request("category", method, data);
+    var method = id == null ? "post" : "put";
+    var url = id == null ? "categories" : `categories/${data.id}`;
+    const res = await request(url, method, data);
     if (res) {
-      message.success(res.message);
+      message.success(id ? "update" : "create" + " sucessfull", res.message);
       getList();
       onCloseModal();
     }
   };
 
-  const onChangeSearch = (e) => {
-    filterRef.current.txt_search = e.target.value;
-    getList();
-  };
-  const onChangeStatus = (value) => {
-    filterRef.current.status = value;
-    getList();
-  };
+  // const onChangeSearch = (e) => {
+  //   filterRef.current.txt_search = e.target.value;
+  //   getList();
+  // };
+  // const onChangeStatus = (value) => {
+  //   filterRef.current.status = value;
+  //   getList();
+  // };
+
   const onCloseModal = () => {
     formCat.resetFields();
     formCat.setFieldsValue({
@@ -114,8 +115,8 @@ const CategoryPage = () => {
       <Typography>
         <Title level={3}>Manage Category</Title>
       </Typography>
-      <div className="flex 2xl:flex-row flex-col gap-2 justify-start">
-        <Input.Search
+      <div className="flex 2xl:flex-row flex-col gap-2 justify-center size-16">
+        {/* <Input.Search
           allowClear
           onChange={onChangeSearch}
           placeholder="Name or Code"
@@ -131,7 +132,7 @@ const CategoryPage = () => {
         >
           <Select.Option value={"1"}>Active</Select.Option>
           <Select.Option value={"0"}>InActive</Select.Option>
-        </Select>
+        </Select> */}
         <Button
           onClick={() => {
             setOpen(true);
@@ -144,7 +145,7 @@ const CategoryPage = () => {
       </div>
 
       <Table
-        rowKey="Id"
+        rowKey="id"
         dataSource={list}
         pagination={{
           pageSize: 5,
@@ -153,42 +154,24 @@ const CategoryPage = () => {
         // onChange={}
         columns={[
           {
-            key: "No",
-            title: "No",
-            dataIndex: "Name",
-            render: (value, item, index) => index + 1,
+            key: "id",
+            title: "id",
+            dataIndex: "id",
+            // render: (value, item, index) => index + 1,
             responsive: ["sm"],
           },
           {
-            key: "Name",
-            title: "Name",
-            dataIndex: "Name",
+            key: "nameKh",
+            title: "nameKh",
+            dataIndex: "nameKh",
           },
           {
-            key: "Description",
-            title: "Description",
-            dataIndex: "Description",
+            key: "nameEn",
+            title: "nameEn",
+            dataIndex: "nameEn",
             responsive: ["sm"],
           },
-          {
-            key: "Status",
-            title: "Status",
-            dataIndex: "Status",
-            responsive: ["md"],
-            render: (value) =>
-              value == 1 ? (
-                <Tag color="green">Actived</Tag>
-              ) : (
-                <Tag color="red">InActived</Tag>
-              ),
-          },
-          {
-            key: "CreateAt",
-            title: "CreateAt",
-            dataIndex: "CreateAt",
-            render: (value) => formartDateClient(value),
-            responsive: ["md"],
-          },
+
           {
             key: "Action",
             title: "Action",
@@ -218,7 +201,7 @@ const CategoryPage = () => {
       <Modal
         forceRender
         title={
-          formCat.getFieldValue("Id") == null
+          formCat.getFieldValue("id") == null
             ? "New Catetory"
             : "Update Category"
         }
@@ -228,33 +211,35 @@ const CategoryPage = () => {
       >
         <Form form={formCat} layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label="Name"
-            name={"Name"}
+            label="nameKh"
+            name={"nameKh"}
             rules={[
               {
                 required: true,
-                message: "Please input category name!",
+                message: "Please input nameKh!",
               },
             ]}
           >
-            <Input placeholder="Category name" />
+            <Input placeholder="Name KH" />
+          </Form.Item>
+          <Form.Item
+            label="nameEn"
+            name={"nameEn"}
+            rules={[
+              {
+                required: true,
+                message: "Please input nameEn!",
+              },
+            ]}
+          >
+            <Input placeholder="nameEn" />
           </Form.Item>
 
-          <Form.Item label="Description" name={"Description"}>
-            <Input placeholder="Description" />
-          </Form.Item>
-
-          <Form.Item label="Status" name={"Status"}>
-            <Select onChange={onChangeStatus}>
-              <Select.Option value="1">Actived</Select.Option>
-              <Select.Option value="0">InActived</Select.Option>
-            </Select>
-          </Form.Item>
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
               <Button onClick={onCloseModal}>Cancel</Button>
               <Button type="primary" htmlType="submit">
-                {formCat.getFieldValue("Id") == null ? "Save" : "Update"}
+                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
               </Button>
             </Space>
           </Form.Item>

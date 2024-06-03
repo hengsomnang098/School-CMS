@@ -20,9 +20,9 @@ export const request = async (
     // check if param data is FormData
     headers = { "Content-Type": "multipart/form-data" };
   }
-  var access_token = localStorage.getItem("access_token");
+  var token = localStorage.getItem("token");
   if (new_token) {
-    access_token = new_token;
+    token = new_token;
   }
   return axios({
     url: Config.base_url + url + param_get,
@@ -30,16 +30,18 @@ export const request = async (
     data: data,
     headers: {
       ...headers,
-      Authorization: "Bearer " + access_token,
+      Authorization: "JWT " + token,
     },
   })
     .then((res) => {
-      return res.data;
+      return res.data.object;
     })
     .catch((error) => {
       console.log("Unexpected Error:", error);
       var status = error.response?.status;
-      if (status == 404) {
+      if (status === 403) {
+        message.error(error.message + "");
+      } else if (status == 404) {
         message.error(error.message + "");
       } else if (status == 500) {
         message.error(error.message + "");
