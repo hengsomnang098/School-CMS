@@ -23,7 +23,6 @@ function App() {
             <Route path="/aboutpage" element={<AboutPage />} />
             <Route path="/contactpage" element={<ContactPage />} />
             <Route path="/categorypage" element={<CategoryPage />} />
-            <Route path="/login" element={<LoginPage />} />
           </Route>
           {/*   homepage route */}
           <Route element={<Layout />}>
@@ -34,6 +33,7 @@ function App() {
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </>
