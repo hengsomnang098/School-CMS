@@ -1,11 +1,11 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
-import { request } from "../config/request";
+import { request } from "../../config/request";
 import {
   setAccessToken,
   //  setRefreshToken,
   setUser,
-} from "../config/helper";
+} from "../../config/helper";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {

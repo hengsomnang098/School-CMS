@@ -3,7 +3,7 @@ import {
   useState,
   //  useRef
 } from "react";
-import { request } from "../config/request";
+import { request } from "../../config/request";
 import {
   Table,
   Button,
