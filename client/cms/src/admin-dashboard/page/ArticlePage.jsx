@@ -1,70 +1,217 @@
 import {
-  Table,
-  //  Form
-} from "antd";
-import { useState, useEffect } from "react";
+  useEffect,
+  useState,
+  //  useRef
+} from "react";
 import { request } from "../../config/request";
+import {
+  Table,
+  Button,
+  Space,
+  Modal,
+  Input,
+  Form,
+  // Select,
+  message,
+  // Tag,
+  Typography,
+} from "antd";
+// import { formartDateClient } from "../config/helper";
+import MainPage from "../components/page/MainPage";
 
-const ArticlePage = () => {
-  const [dataSource, setDataSource] = useState([]);
-  // const [formCat] = Form.useForm();
-  const [columns, setColumns] = useState([]);
+const { Title } = Typography;
+const CategoryPage = () => {
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [formCat] = Form.useForm();
 
   useEffect(() => {
     getList();
-  }, []);
+  }, [formCat]);
 
   const getList = async () => {
+    setLoading(true);
     const res = await request("articles", "get");
+    setLoading(false);
     if (res) {
-      const firstObject = res[0] || {};
-      const cols = [];
-      for (const key in firstObject) {
-        var render = (value) => {
-          return <span>{String(value)}</span>;
-        };
-        if (typeof firstObject[key] === "object") {
-          render = (value) => {
-            return (
-              <span>
-                {Object.keys(value).map((key) => {
-                  return (
-                    <div key={key}>
-                      {key} : {value[key]}
-                    </div>
-                  );
-                })}
-              </span>
-            );
-          };
-        }
-
-        const col = {
-          title: String(key).charAt(0).toUpperCase() + String(key).slice(1),
-          dataIndex: key,
-          render: render,
-          // width: 150,
-          // fixed: "left",
-          ellipsis: true,
-          // responsive: ["sm"],
-        };
-        cols.push(col);
-      }
-      setColumns(cols);
-      setDataSource(res);
+      setList(res);
     }
   };
 
+  const onClickBtnEdit = (item) => {
+    formCat.setFieldsValue({
+      id: item.id, //
+      nameKh: item.nameKh,
+      nameEn: item.nameEn,
+    });
+    setOpen(true);
+  };
+  const onClickBtnDelete = async (item) => {
+    Modal.confirm({
+      title: "Delete",
+      content: "Are you sure you want to delete ?",
+      okText: "Yes",
+      cancelText: "No",
+      okType: "danger",
+      centered: true,
+      onOk: async () => {
+        var data = {
+          id: item.id,
+        };
+        const res = await request(`categories/${data.id}`, "delete", data);
+        if (res) {
+          message.success("Delete Sucessful");
+          getList();
+        }
+      },
+    });
+  };
+
+  const onFinish = async (item) => {
+    var id = formCat.getFieldValue("id");
+    var data = {
+      id: id,
+      nameKh: item.nameKh,
+      nameEn: item.nameEn,
+    };
+    var method = id == null ? "post" : "put";
+    var url = id == null ? "categories" : `categories/${data.id}`;
+    var messages = id ? "update  sucessfull" : "create  sucessfull";
+    const res = await request(url, method, data);
+    if (res) {
+      message.success(messages);
+      getList();
+      onCloseModal();
+    }
+  };
+
+  const onCloseModal = () => {
+    formCat.resetFields();
+    setOpen(false);
+  };
+
   return (
-    <div>
+    <MainPage loading={loading}>
+      <Typography>
+        <Title level={3}>Manage Article</Title>
+      </Typography>
+      <div className="flex 2xl:flex-row flex-col gap-2 justify-center size-16">
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+          type="primary"
+          size="large"
+        >
+          New
+        </Button>
+      </div>
+
       <Table
-        rowKey={"id"}
-        columns={columns}
-        dataSource={dataSource}
-        scroll={{ y: 500 }}
+        rowKey="id"
+        dataSource={list}
+        pagination={{
+          pageSize: 5,
+          // total: 100,
+        }}
+        // onChange={}
+        columns={[
+          {
+            key: "id",
+            title: "id",
+            dataIndex: "id",
+            // render: (value, item, index) => index + 1,
+            responsive: ["sm"],
+          },
+          {
+            key: "name",
+            title: "Name Article",
+            dataIndex: "name",
+          },
+          {
+            key: "category",
+            title: "category Name",
+            dataIndex: "category",
+            responsive: ["sm"],
+            // render: (value, item) => {},
+          },
+
+          {
+            key: "Action",
+            title: "Action",
+            dataIndex: "Status",
+            render: (value, item) => (
+              <Space>
+                <Button
+                  size="large"
+                  onClick={() => onClickBtnEdit(item)}
+                  type="primary"
+                >
+                  Edit
+                </Button>
+                <Button
+                  size="large"
+                  onClick={() => onClickBtnDelete(item)}
+                  type="primary"
+                  danger
+                >
+                  Delete
+                </Button>
+              </Space>
+            ),
+          },
+        ]}
       />
-    </div>
+      <Modal
+        forceRender
+        title={
+          formCat.getFieldValue("id") == null
+            ? "New Catetory"
+            : "Update Category"
+        }
+        open={open}
+        onCancel={onCloseModal}
+        footer={null}
+      >
+        <Form form={formCat} layout="vertical" onFinish={onFinish}>
+          <Form.Item
+            label="nameKh"
+            name={"nameKh"}
+            rules={[
+              {
+                required: true,
+                message: "Please input nameKh!",
+              },
+            ]}
+          >
+            <Input placeholder="Name KH" />
+          </Form.Item>
+          <Form.Item
+            label="nameEn"
+            name={"nameEn"}
+            rules={[
+              {
+                required: true,
+                message: "Please input nameEn!",
+              },
+            ]}
+          >
+            <Input placeholder="nameEn" />
+          </Form.Item>
+
+          <Form.Item style={{ textAlign: "right" }}>
+            <Space>
+              <Button onClick={onCloseModal}>Cancel</Button>
+              <Button type="primary" htmlType="submit">
+                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+              </Button>
+            </Space>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </MainPage>
   );
 };
 
-export default ArticlePage;
+export default CategoryPage;

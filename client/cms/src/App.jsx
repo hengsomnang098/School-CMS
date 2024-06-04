@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./admin-dashboard/page/HomePage";
 import AboutPage from "./admin-dashboard/page/AboutPage";
 import ContactPage from "./admin-dashboard/page/ContactPage";

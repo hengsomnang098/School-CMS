@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavCate = () => {
@@ -25,8 +25,8 @@ const NavCate = () => {
     setIsHovered(false);
   };
 
-  const handleCategorySelect = (categoryId) => {
-    setSelectedCategoryId(categoryId);
+  const handleCategorySelect = (e) => {
+    setSelectedCategoryId(e.key);
   };
 
   return (
@@ -44,8 +44,9 @@ const NavCate = () => {
         }`}
       >
         {categories.map((cat) => (
-          <li key={cat.id}>
+          <li key={cat.id} className="hover:bg-green-500">
             <Link
+              key={cat.id}
               to={`/category/${cat.id}`}
               className={`block text-gray-800 border border-b-amber-400 p-3 ${
                 selectedCategoryId === cat.id

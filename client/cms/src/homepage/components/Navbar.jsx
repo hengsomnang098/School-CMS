@@ -1,32 +1,59 @@
-import React from "react";
 import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
-import NavCategory from "./NavCateDroplink";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { request } from "../../config/request";
 
 const { Header } = Layout;
 
-const menuItems = [
-  { key: "1", label: "Home", path: "/" },
-  { key: "2", label: "About", path: "/about" },
-  { key: "3", label: "Our Program", path: "/ourprograms" },
-  { key: "4", label: "Contact", path: "/contact" },
-  { key: "5", label: "Categories", path: "/categorieslist" },
-];
-
 const Navbar = () => {
+  const [current, setCurrent] = useState("home");
+  const [children, setChildren] = useState([]);
+  const menuItems = [
+    { key: "home", label: "Home", path: "/" },
+    { key: "about", label: "About", path: "/about" },
+    { key: "ourprograms", label: "Our Program", path: "/ourprograms" },
+    { key: "contact", label: "Contact", path: "/contact" },
+    {
+      key: "categorieslist",
+      label: "Categories",
+      path: "/categorieslist",
+      children: children,
+    },
+  ];
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  const getList = async () => {
+    const res = await request("categories", "get");
+    if (res) {
+      const child = res.map(function (category) {
+        return {
+          key: String(category.nameEn).trim(),
+          label: category.nameEn,
+          path: "/categorieslist/" + category.nameEn,
+        };
+      });
+      setChildren(child);
+    }
+  };
+
+  const onClick = (e) => {
+    navigate(e.key);
+    setCurrent(e.key);
+  };
   return (
     <Header>
       <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-        {menuItems.map((item) => (
-          <Menu.Item key={item.key}>
-            <Link to={item.path}>{item.label}</Link>
-          </Menu.Item>
-        ))}
-        <Menu.Item key={6}>
-          <NavCategory />
-        </Menu.Item>
-      </Menu>
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        theme="dark"
+        items={menuItems}
+      />
     </Header>
   );
 };
