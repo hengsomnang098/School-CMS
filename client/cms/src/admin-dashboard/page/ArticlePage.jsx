@@ -11,10 +11,10 @@ import {
   Modal,
   Input,
   Form,
-  // Select,
   message,
   // Tag,
   Typography,
+  Select,
 } from "antd";
 // import { formartDateClient } from "../config/helper";
 import MainPage from "../components/page/MainPage";
@@ -22,6 +22,7 @@ import MainPage from "../components/page/MainPage";
 const { Title } = Typography;
 const CategoryPage = () => {
   const [list, setList] = useState([]);
+  const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [formCat] = Form.useForm();
@@ -33,17 +34,20 @@ const CategoryPage = () => {
   const getList = async () => {
     setLoading(true);
     const res = await request("articles", "get");
+    const category = await request("categories", "get");
     setLoading(false);
     if (res) {
       setList(res);
+      setCategory(category);
     }
   };
 
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
+      ...item,
       id: item.id, //
-      nameKh: item.nameKh,
-      nameEn: item.nameEn,
+      name: item.name,
+      category: item.category.nameEn,
     });
     setOpen(true);
   };
@@ -59,7 +63,7 @@ const CategoryPage = () => {
         var data = {
           id: item.id,
         };
-        const res = await request(`categories/${data.id}`, "delete", data);
+        const res = await request(`articles/${data.id}`, "delete", data);
         if (res) {
           message.success("Delete Sucessful");
           getList();
@@ -72,11 +76,11 @@ const CategoryPage = () => {
     var id = formCat.getFieldValue("id");
     var data = {
       id: id,
-      nameKh: item.nameKh,
-      nameEn: item.nameEn,
+      name: item.name,
+      categoryId: item.category,
     };
     var method = id == null ? "post" : "put";
-    var url = id == null ? "categories" : `categories/${data.id}`;
+    var url = id == null ? "articles" : `articles/${data.id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
     if (res) {
@@ -133,10 +137,11 @@ const CategoryPage = () => {
             key: "category",
             title: "category Name",
             dataIndex: "category",
-            responsive: ["sm"],
-            // render: (value, item) => {},
+            // responsive: ["sm"],
+            render: (value, item) => {
+              return <div>{JSON.stringify(item.category.nameEn)} </div>;
+            },
           },
-
           {
             key: "Action",
             title: "Action",
@@ -166,9 +171,7 @@ const CategoryPage = () => {
       <Modal
         forceRender
         title={
-          formCat.getFieldValue("id") == null
-            ? "New Catetory"
-            : "Update Category"
+          formCat.getFieldValue("id") == null ? "New Article" : "Update Article"
         }
         open={open}
         onCancel={onCloseModal}
@@ -176,8 +179,8 @@ const CategoryPage = () => {
       >
         <Form form={formCat} layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label="nameKh"
-            name={"nameKh"}
+            label="Name"
+            name={"name"}
             rules={[
               {
                 required: true,
@@ -185,19 +188,29 @@ const CategoryPage = () => {
               },
             ]}
           >
-            <Input placeholder="Name KH" />
+            <Input placeholder="Article Name" />
           </Form.Item>
           <Form.Item
-            label="nameEn"
-            name={"nameEn"}
+            label="Category Name"
+            name={"category"}
             rules={[
               {
                 required: true,
-                message: "Please input nameEn!",
+                message: "Please Select Category!",
               },
             ]}
           >
-            <Input placeholder="nameEn" />
+            <Select
+              placeholder="Select Role"
+              showSearch
+              optionFilterProp="label"
+            >
+              {category.map((item, index) => (
+                <Select.Option label={item.nameEn} key={index} value={item.id}>
+                  {item.nameEn}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
 
           <Form.Item style={{ textAlign: "right" }}>
