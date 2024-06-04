@@ -47,6 +47,8 @@ const CategoryPage = () => {
       setList(res);
     }
   };
+
+  
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
       id: item.id, //
