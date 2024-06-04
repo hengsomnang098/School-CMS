@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
+import NavCategory from "./NavCateDroplink";
 
 const { Header } = Layout;
 
@@ -22,6 +23,9 @@ const Navbar = () => {
             <Link to={item.path}>{item.label}</Link>
           </Menu.Item>
         ))}
+        <Menu.Item key={6}>
+          <NavCategory />
+        </Menu.Item>
       </Menu>
     </Header>
   );

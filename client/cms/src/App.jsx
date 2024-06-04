@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import HomePage from "./admin-dashboard/page/HomePage";
 import AboutPage from "./admin-dashboard/page/AboutPage";
 import ContactPage from "./admin-dashboard/page/ContactPage";
@@ -14,6 +14,7 @@ import Layout from "./homepage/Layout";
 import CategoryList from "./homepage/components/CategoryList";
 import ArticlePage from "./admin-dashboard/page/ArticlePage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
+import SingleCategory from "./homepage/components/SingleCategory";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
             <Route path="/categorieslist" element={<CategoryList />} />
+            <Route path="/category/:id" element={<SingleCategory />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
