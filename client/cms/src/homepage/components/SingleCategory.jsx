@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom";
 
 const SingleCategory = () => {
   const { id, nameEn, nameKh } = useParams();
-  //   const data = useLoaderData();
-  //   const { id, nameKh, nameEn } = data[0];
 
   return (
     <div>

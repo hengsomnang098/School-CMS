@@ -37,7 +37,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
-            <Route path="/categorieslist" element={<CategoryList />} />
+            <Route path="/category/" element={<CategoryList />} />
             <Route path="/category/:id" element={<SingleCategory />} />
           </Route>
 

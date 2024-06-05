@@ -31,9 +31,9 @@ const Navbar = () => {
     if (res) {
       const child = res.map(function (category) {
         return {
-          key: String(category.nameEn).trim(),
+          key: String(`/category/${category.id}`).trim(),
           label: category.nameEn,
-          path: "/categorieslist/" + category.nameEn,
+          path: "/categorieslist/" + category.id,
         };
       });
       setChildren(child);

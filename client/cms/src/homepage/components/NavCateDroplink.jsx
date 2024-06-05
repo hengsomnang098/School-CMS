@@ -25,8 +25,8 @@ const NavCate = () => {
     setIsHovered(false);
   };
 
-  const handleCategorySelect = (e) => {
-    setSelectedCategoryId(e.key);
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategoryId(categoryId);
   };
 
   return (

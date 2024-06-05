@@ -48,7 +48,6 @@ const CategoryPage = () => {
     }
   };
 
-  
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
       id: item.id, //
