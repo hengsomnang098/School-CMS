@@ -12,9 +12,10 @@ import Contact from "./homepage/pages/Contact";
 import OurPrograms from "./homepage/pages/OurPrograms";
 import Layout from "./homepage/Layout";
 import CategoryList from "./homepage/components/CategoryList";
-import ArticlePage from "./admin-dashboard/page/ArticlePage";
+import ArticlePage from "./homepage/pages/ArticlesPage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
 import ListByCategory from "./homepage/components/ListByCategory";
+import ArticleList from "./homepage/components/ArticleList";
 
 function App() {
   return (
@@ -37,7 +38,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
-            <Route path="/category/" element={<CategoryList />} />
+            <Route path="/category" element={<CategoryList />} />
+            <Route path="/article" element={<ArticleList />} />
+            {/* <Route path="/articlepage" element={<ArticlePage />} /> */}
             <Route path="/category/:id" element={<ListByCategory />} />
           </Route>
 

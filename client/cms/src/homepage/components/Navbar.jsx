@@ -7,36 +7,59 @@ const { Header } = Layout;
 
 const Navbar = () => {
   const [current, setCurrent] = useState("home");
-  const [children, setChildren] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [articles, setArticles] = useState([]);
   const menuItems = [
-    { key: "home", label: "Home", path: "/" },
+    { key: "", label: "Home", path: "/" },
     { key: "about", label: "About", path: "/about" },
     { key: "ourprograms", label: "Our Program", path: "/" },
     { key: "contact", label: "Contact", path: "/contact" },
+    { key: "article", label: "Article", path: "/article" },
+    { key: "articlepage", label: "ArticlePage", path: "/articlepage" },
     {
       key: "categorieslist",
       label: "Categories",
-      path: "/categorieslist",
-      children: children,
+      path: "/category",
+      children: categories,
+    },
+    {
+      key: "articleslist",
+      label: "Articles",
+      path: "/article",
+      children: articles,
     },
   ];
   const navigate = useNavigate();
 
   useEffect(() => {
-    getList();
+    getListCategory();
+    getListArticles();
   }, []);
 
-  const getList = async () => {
+  const getListArticles = async () => {
+    const res = await request("articles", "get");
+    if (res) {
+      const data = res.map(function (article) {
+        return {
+          key: String(`/article/${article.id}`).trim(),
+          label: article.name,
+          path: "/articleslist/" + article.id,
+        };
+      });
+      setArticles(data);
+    }
+  };
+  const getListCategory = async () => {
     const res = await request("categories", "get");
     if (res) {
-      const child = res.map(function (category) {
+      const data = res.map(function (category) {
         return {
           key: String(`/category/${category.id}`).trim(),
           label: category.nameEn,
           path: "/categorieslist/" + category.id,
         };
       });
-      setChildren(child);
+      setCategories(data);
     }
   };
 

@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavCate = () => {
-  const [categories, setCategories] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedArticleId, setSelectedArticleId] = useState(null);
 
   useEffect(() => {
-    async function fetchCategories() {
+    async function fetchArticles() {
       const url = `http://localhost:8080/api/articles`;
       const res = await fetch(url);
       const data = await res.json();
-      setCategories(data.object);
+      setArticles(data.object);
     }
 
-    fetchCategories();
+    fetchArticles();
   }, []);
 
   const handleMouseEnter = () => {
@@ -25,8 +25,8 @@ const NavCate = () => {
     setIsHovered(false);
   };
 
-  const handleCategorySelect = (categoryId) => {
-    setSelectedCategoryId(categoryId);
+  const handleArticleSelect = (articleId) => {
+    setSelectedArticleId(articleId);
   };
 
   return (
@@ -43,19 +43,19 @@ const NavCate = () => {
           isHovered ? "block" : "hidden"
         }`}
       >
-        {categories.map((cat) => (
-          <li key={cat.id} className="hover:bg-green-500">
+        {articles.map((article) => (
+          <li key={article.id} className="hover:bg-green-500">
             <Link
-              key={cat.id}
-              to={`/category/${cat.id}`}
+              key={article.id}
+              to={`/category/${article.id}`}
               className={`block text-gray-800 border border-b-amber-400 p-3 ${
-                selectedCategoryId === cat.id
+                selectedArticleId === article.id
                   ? "bg-slate-500 text-blue-500 cursor-pointer"
                   : "hover:bg-slate-500 hover:text-blue-500 cursor-pointer"
               }`}
-              onClick={() => handleCategorySelect(cat.id)}
+              onClick={() => handleArticleSelect(article.id)}
             >
-              {cat.nameEn}
+              {article.name}
             </Link>
           </li>
         ))}
