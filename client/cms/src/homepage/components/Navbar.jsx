@@ -11,7 +11,7 @@ const Navbar = () => {
   const menuItems = [
     { key: "home", label: "Home", path: "/" },
     { key: "about", label: "About", path: "/about" },
-    { key: "ourprograms", label: "Our Program", path: "/ourprograms" },
+    { key: "ourprograms", label: "Our Program", path: "/" },
     { key: "contact", label: "Contact", path: "/contact" },
     {
       key: "categorieslist",

@@ -14,7 +14,7 @@ import Layout from "./homepage/Layout";
 import CategoryList from "./homepage/components/CategoryList";
 import ArticlePage from "./admin-dashboard/page/ArticlePage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
-import SingleCategory from "./homepage/components/SingleCategory";
+import ListByCategory from "./homepage/components/ListByCategory";
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
             <Route path="/category/" element={<CategoryList />} />
-            <Route path="/category/:id" element={<SingleCategory />} />
+            <Route path="/category/:id" element={<ListByCategory />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
