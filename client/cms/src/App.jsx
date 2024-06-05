@@ -13,9 +13,11 @@ import OurPrograms from "./homepage/pages/OurPrograms";
 import Layout from "./homepage/Layout";
 import CategoryList from "./homepage/components/CategoryList";
 import ArticlePage from "./homepage/pages/ArticlesPage";
+import ArticlesPage from "./admin-dashboard/page/ArticlePage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
 import ListByCategory from "./homepage/components/ListByCategory";
 import ArticleList from "./homepage/components/ArticleList";
+import ListByArticle from "./homepage/components/ListByArticle";
 
 function App() {
   return (
@@ -28,7 +30,7 @@ function App() {
             <Route path="/dashboard/about" element={<AboutPage />} />
             <Route path="/dashboard/contact" element={<ContactPage />} />
             <Route path="/dashboard/category" element={<CategoryPage />} />
-            <Route path="/dashboard/article" element={<ArticlePage />} />
+            <Route path="/dashboard/article" element={<ArticlesPage />} />
             <Route path="/dashboard/content" element={<ContentPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
@@ -42,6 +44,7 @@ function App() {
             <Route path="/article" element={<ArticleList />} />
             {/* <Route path="/articlepage" element={<ArticlePage />} /> */}
             <Route path="/category/:id" element={<ListByCategory />} />
+            <Route path="/article/:id" element={<ListByArticle />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
