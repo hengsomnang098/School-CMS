@@ -138,8 +138,8 @@ const CategoryPage = () => {
             title: "category Name",
             dataIndex: "category",
             // responsive: ["sm"],
-            render: (value, item) => {
-              return <div>{JSON.stringify(item.category.nameEn)} </div>;
+            render: (value) => {
+              return value.nameEn;
             },
           },
           {
