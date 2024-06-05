@@ -16,12 +16,14 @@ import {
   // Tag,
   Typography,
 } from "antd";
-// import { formartDateClient } from "../config/helper";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import MainPage from "../components/page/MainPage";
 
 const { Title } = Typography;
 const ContentPage = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState();
+  const [description, setDescription] = useState(list?.description || "");
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -47,7 +49,7 @@ const ContentPage = () => {
       ...item,
       // id: item.id, //
       // title: item.title,
-      // description: item.description,
+      description: item.description,
       article: item.article.name,
     });
     setOpen(true);
@@ -75,6 +77,7 @@ const ContentPage = () => {
 
   const onFinish = async (item) => {
     var id = formCat.getFieldValue("id");
+    id ? (item.description = description) : item.description;
     var data = {
       id: id,
       title: item.title,
@@ -84,7 +87,6 @@ const ContentPage = () => {
     var method = id == null ? "post" : "put";
     var url = id == null ? "contents" : `contents/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
-    console.log(method);
     const res = await request(url, method, data);
     if (res) {
       message.success(messages);
@@ -226,7 +228,13 @@ const ContentPage = () => {
               },
             ]}
           >
-            <Input placeholder="description" />
+            {/* <Input placeholder="description" /> */}
+
+            <ReactQuill
+              theme="snow"
+              value={description}
+              onChange={setDescription}
+            />
           </Form.Item>
           <Form.Item
             label="ArticleName"
