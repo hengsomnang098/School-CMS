@@ -1,5 +1,267 @@
+import {
+  useEffect,
+  useState,
+  //  useRef
+} from "react";
+import { request } from "../../config/request";
+import {
+  Table,
+  Button,
+  Space,
+  Modal,
+  Input,
+  Form,
+  Select,
+  message,
+  // Tag,
+  Typography,
+} from "antd";
+// import { formartDateClient } from "../config/helper";
+import MainPage from "../components/page/MainPage";
+
+const { Title } = Typography;
 const ContentPage = () => {
-  return <div>ContentPage</div>;
+  const [list, setList] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [formCat] = Form.useForm();
+
+  useEffect(() => {
+    getList();
+  }, [formCat]);
+
+  const getList = async () => {
+    setLoading(true);
+    const res = await request("contents", "get");
+    const article = await request("articles", "get");
+    setLoading(false);
+    if (res) {
+      setList(res);
+      setArticles(article);
+    }
+  };
+
+  const onClickBtnEdit = (item) => {
+    formCat.setFieldsValue({
+      ...item,
+      // id: item.id, //
+      // title: item.title,
+      // description: item.description,
+      article: item.article.name,
+    });
+    setOpen(true);
+  };
+  const onClickBtnDelete = async (item) => {
+    Modal.confirm({
+      title: "Delete",
+      content: "Are you sure you want to delete ?",
+      okText: "Yes",
+      cancelText: "No",
+      okType: "danger",
+      centered: true,
+      onOk: async () => {
+        var data = {
+          id: item.id,
+        };
+        const res = await request(`categories/${data.id}`, "delete", data);
+        if (res) {
+          message.success("Delete Sucessful");
+          getList();
+        }
+      },
+    });
+  };
+
+  const onFinish = async (item) => {
+    var id = formCat.getFieldValue("id");
+    var data = {
+      id: id,
+      title: item.title,
+      description: item.description,
+      articleId: item.article,
+    };
+    var method = id == null ? "post" : "put";
+    var url = id == null ? "contents" : `contents/${id}`;
+    var messages = id ? "update  sucessfull" : "create  sucessfull";
+    console.log(method);
+    const res = await request(url, method, data);
+    if (res) {
+      message.success(messages);
+      getList();
+      onCloseModal();
+    }
+  };
+
+  const onCloseModal = () => {
+    formCat.resetFields();
+    setOpen(false);
+  };
+
+  return (
+    <MainPage loading={loading}>
+      <Typography>
+        <Title level={3}>Manage Content</Title>
+      </Typography>
+      <div className="flex 2xl:flex-row flex-col gap-2 justify-center size-16">
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+          type="primary"
+          size="large"
+        >
+          New
+        </Button>
+      </div>
+
+      <Table
+        rowKey="id"
+        dataSource={list}
+        pagination={{
+          pageSize: 5,
+          // total: 100,
+        }}
+        // onChange={}
+        columns={[
+          {
+            key: "id",
+            title: "id",
+            dataIndex: "id",
+            // render: (value, item, index) => index + 1,
+            responsive: ["sm"],
+          },
+          {
+            key: "title",
+            title: "Name title",
+            dataIndex: "title",
+          },
+          {
+            key: "description",
+            title: "description",
+            dataIndex: "description",
+            responsive: ["sm"],
+          },
+          {
+            key: "article",
+            title: "article Name",
+            dataIndex: "article",
+            responsive: ["sm"],
+            render: (value) => {
+              return value.name;
+            },
+          },
+          {
+            key: "mediaList",
+            title: "Manage Images ",
+            dataIndex: "mediaList",
+            responsive: ["sm"],
+            render: () => (
+              <Space>
+                <Button
+                  size="large"
+                  // onClick={() => onClickBtnEdit(item)}
+                  type="primary"
+                >
+                  Manage Images
+                </Button>
+              </Space>
+            ),
+          },
+          {
+            key: "Action",
+            title: "Action",
+            dataIndex: "Status",
+            render: (value, item) => (
+              <Space>
+                <Button
+                  size="large"
+                  onClick={() => onClickBtnEdit(item)}
+                  type="primary"
+                >
+                  Edit
+                </Button>
+                <Button
+                  size="large"
+                  onClick={() => onClickBtnDelete(item)}
+                  type="primary"
+                  danger
+                >
+                  Delete
+                </Button>
+              </Space>
+            ),
+          },
+        ]}
+      />
+      <Modal
+        forceRender
+        title={
+          formCat.getFieldValue("id") == null ? "New Content" : "Update Content"
+        }
+        open={open}
+        onCancel={onCloseModal}
+        footer={null}
+      >
+        <Form form={formCat} layout="vertical" onFinish={onFinish}>
+          <Form.Item
+            label="Title"
+            name={"title"}
+            rules={[
+              {
+                required: true,
+                message: "Please input title!",
+              },
+            ]}
+          >
+            <Input placeholder="title" />
+          </Form.Item>
+          <Form.Item
+            label="Description"
+            name={"description"}
+            rules={[
+              {
+                required: true,
+                message: "Please input description!",
+              },
+            ]}
+          >
+            <Input placeholder="description" />
+          </Form.Item>
+          <Form.Item
+            label="ArticleName"
+            name={"article"}
+            rules={[
+              {
+                required: true,
+                message: "Please Select Article!",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select Article"
+              showSearch
+              optionFilterProp="label"
+            >
+              {articles.map((item, index) => (
+                <Select.Option label={item.name} key={index} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item style={{ textAlign: "right" }}>
+            <Space>
+              <Button onClick={onCloseModal}>Cancel</Button>
+              <Button type="primary" htmlType="submit">
+                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+              </Button>
+            </Space>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </MainPage>
+  );
 };
 
 export default ContentPage;

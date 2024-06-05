@@ -201,7 +201,7 @@ const CategoryPage = () => {
             ]}
           >
             <Select
-              placeholder="Select Role"
+              placeholder="Select Category"
               showSearch
               optionFilterProp="label"
             >
