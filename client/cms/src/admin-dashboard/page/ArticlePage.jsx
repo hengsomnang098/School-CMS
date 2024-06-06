@@ -22,7 +22,7 @@ import MainPage from "../components/page/MainPage";
 const { Title } = Typography;
 const CategoryPage = () => {
   const [list, setList] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState([] || undefined);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [formCat] = Form.useForm();
@@ -135,9 +135,9 @@ const CategoryPage = () => {
           },
           {
             key: "category",
-            title: "category Name",
+            title: "Category Name",
             dataIndex: "category",
-            // responsive: ["sm"],
+            responsive: ["sm"],
             render: (value) => {
               return value.nameEn;
             },
@@ -205,11 +205,19 @@ const CategoryPage = () => {
               showSearch
               optionFilterProp="label"
             >
-              {category.map((item, index) => (
-                <Select.Option label={item.nameEn} key={index} value={item.id}>
-                  {item.nameEn}
-                </Select.Option>
-              ))}
+              {category ? (
+                category.map((item, index) => (
+                  <Select.Option
+                    label={item.nameEn}
+                    key={index}
+                    value={item.id}
+                  >
+                    {item.nameEn}
+                  </Select.Option>
+                ))
+              ) : (
+                <></>
+              )}
             </Select>
           </Form.Item>
 

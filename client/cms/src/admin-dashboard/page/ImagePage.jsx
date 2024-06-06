@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { request } from "../../config/request";
 import {
@@ -93,7 +93,8 @@ const ImagePage = () => {
       <Typography>
         <Title level={3}>Manage Image</Title>
       </Typography>
-      <div className="flex 2xl:flex-row flex-col gap-2 justify-center size-16">
+
+      <Space>
         <Button
           onClick={() => {
             setOpen(true);
@@ -103,7 +104,13 @@ const ImagePage = () => {
         >
           New
         </Button>
-      </div>
+
+        <Link to="../dashboard/content/">
+          <Button type="primary" size="large">
+            Back to Content
+          </Button>
+        </Link>
+      </Space>
 
       <Table
         rowKey="id"
@@ -142,6 +149,7 @@ const ImagePage = () => {
             key: "mediaUrl",
             title: "Image",
             dataIndex: "mediaUrl",
+            responsive: ["sm"],
             render: (value, item) => {
               if (value != null && value != "") {
                 return (

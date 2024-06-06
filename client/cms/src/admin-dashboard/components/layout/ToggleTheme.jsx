@@ -4,7 +4,7 @@ import { Button } from "antd";
 // eslint-disable-next-line react/prop-types
 const ToggleTheme = ({ darkTheme, toggleTheme }) => {
   return (
-    <div className=" absolute bottom-[30px] left-[20px] flex items-center justify-center text-base">
+    <div className="item-center justify-center w-full h-full pl-5 pb-4">
       <Button onClick={toggleTheme}>
         {darkTheme ? <HiOutlineSun /> : <HiOutlineMoon />}
       </Button>
