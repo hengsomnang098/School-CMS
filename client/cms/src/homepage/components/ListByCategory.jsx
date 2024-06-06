@@ -11,6 +11,7 @@ const ListByCategory = () => {
     async function fetchCategoryDetails() {
       try {
         const data = await fetchData(`categories/${id}`);
+
         setCategoryDetails(data.object);
       } catch (error) {
         console.error("Error fetching category details:", error);

@@ -11,16 +11,13 @@ const Home = () => {
       <div>
         <Banner />
       </div>
-
       <div>
         <About />
       </div>
-
       <div>
         <OurPrograms />
       </div>
 
-      {/* Admissions section */}
       <div>
         <Admission />
       </div>

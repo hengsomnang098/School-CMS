@@ -2,6 +2,7 @@ import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { request } from "../../config/request";
+import { fetchData } from "../../config/api";
 
 const { Header } = Layout;
 
@@ -36,9 +37,9 @@ const Navbar = () => {
   }, []);
 
   const getListArticles = async () => {
-    const res = await request("articles", "get");
+    const res = await fetchData("articles");
     if (res) {
-      const data = res.map(function (article) {
+      const data = res.object.map(function (article) {
         return {
           key: String(`/article/${article.id}`).trim(),
           label: article.name,
@@ -49,9 +50,9 @@ const Navbar = () => {
     }
   };
   const getListCategory = async () => {
-    const res = await request("categories", "get");
+    const res = await fetchData("categories");
     if (res) {
-      const data = res.map(function (category) {
+      const data = res.object.map(function (category) {
         return {
           key: String(`/category/${category.id}`).trim(),
           label: category.nameEn,
