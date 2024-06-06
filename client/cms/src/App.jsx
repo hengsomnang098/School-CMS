@@ -19,6 +19,7 @@ import ListByArticle from "./homepage/components/ListByArticle";
 import ArticlesPageHome from "./homepage/pages/ArticlesPage";
 import ImagePage from "./admin-dashboard/page/ImagePage";
 import UserPage from "./admin-dashboard/page/UserPage";
+import RolePage from "./admin-dashboard/page/RolePage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/dashboard/article" element={<ArticlesPage />} />
             <Route path="/dashboard/content" element={<ContentPage />} />
             <Route path="/dashboard/users" element={<UserPage />} />
+            <Route path="/dashboard/roles" element={<RolePage />} />
             <Route
               path="/dashboard/content/medias/:id"
               element={<ImagePage />}

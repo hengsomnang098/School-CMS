@@ -55,6 +55,8 @@ export const request = async (
         } else {
           message.error("You don't have permission access this method");
         }
+      } else if (status == 400) {
+        message.error(error.response.data.detail + "");
       }
       return false;
     });

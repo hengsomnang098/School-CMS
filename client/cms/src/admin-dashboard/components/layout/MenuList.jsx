@@ -26,7 +26,7 @@ const items = [
   getItem("Manage Content", "/dashboard/content", <TeamOutlined />),
   getItem("Manage Employee", "employee", <TeamOutlined />, [
     getItem("Manage Users", "/dashboard/users", <TeamOutlined />),
-    getItem("Manage Role", "/role"),
+    getItem("Manage Role", "/dashboard/roles", <TeamOutlined />),
   ]),
   getItem("About us", "/dashboard/about", <ShopOutlined />),
   getItem("Contact Us", "/dashboard/contact", <ShopOutlined />),
