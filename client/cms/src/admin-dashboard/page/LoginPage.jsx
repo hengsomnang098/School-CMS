@@ -28,7 +28,7 @@ const LoginPage = () => {
         alert(res.message);
       } else {
         // Login success
-        setUser(res.email);
+        setUser(res.object.email);
 
         setAccessToken(res.token);
         // setRefreshToken(request.refresh_token);

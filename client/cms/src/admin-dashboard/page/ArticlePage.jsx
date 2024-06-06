@@ -37,8 +37,8 @@ const CategoryPage = () => {
     const category = await request("categories", "get");
     setLoading(false);
     if (res) {
-      setList(res);
-      setCategory(category);
+      setList(res.object);
+      setCategory(category.object);
     }
   };
 
