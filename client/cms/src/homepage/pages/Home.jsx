@@ -1,4 +1,3 @@
-import React from "react";
 import Banner from "../layout/Banner";
 import About from "./About";
 import OurPrograms from "./OurPrograms";

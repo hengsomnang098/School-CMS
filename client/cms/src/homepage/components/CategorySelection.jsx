@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 
 const CategorySelection = ({ onSelectCategory, activeCategory }) => {
   const categories = ["Startups", "Security", "AI", "Apps", "Tech"];

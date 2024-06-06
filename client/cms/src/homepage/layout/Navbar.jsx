@@ -38,7 +38,7 @@ const Navbar = () => {
   const getListArticles = async () => {
     const res = await request("articles", "get");
     if (res) {
-      const data = res.map(function (article) {
+      const data = res.object.map(function (article) {
         return {
           key: String(`/article/${article.id}`).trim(),
           label: article.name,
@@ -51,7 +51,7 @@ const Navbar = () => {
   const getListCategory = async () => {
     const res = await request("categories", "get");
     if (res) {
-      const data = res.map(function (category) {
+      const data = res.object.map(function (category) {
         return {
           key: String(`/category/${category.id}`).trim(),
           label: category.nameEn,
