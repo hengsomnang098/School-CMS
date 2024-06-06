@@ -30,21 +30,13 @@ const CategoryPage = () => {
     getList();
   }, [formCat]);
 
-  // const filterRef = useRef({
-  //   txt_search: "",
-  //   status: "",
-  // });
-
   const getList = async () => {
     setLoading(true);
-    // var param = {
-    //   txt_search: filterRef.current.txt_search,
-    //   status: filterRef.current.status,
-    // };
+
     const res = await request("categories", "get");
     setLoading(false);
     if (res) {
-      setList(res);
+      setList(res.object);
     }
   };
 

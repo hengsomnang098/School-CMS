@@ -1,6 +1,5 @@
 import {
   useEffect,
-  // useRef,
   useState,
   //  useRef
 } from "react";
@@ -20,6 +19,7 @@ import {
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import MainPage from "../components/page/MainPage";
+import { Link } from "react-router-dom";
 
 const { Title } = Typography;
 const ContentPage = () => {
@@ -43,8 +43,8 @@ const ContentPage = () => {
     const article = await request("articles", "get");
     setLoading(false);
     if (res) {
-      setList(res);
-      setArticles(article);
+      setList(res.object);
+      setArticles(article.object);
     }
   };
 
@@ -81,19 +81,18 @@ const ContentPage = () => {
 
   const onFinish = async (item) => {
     var id = formCat.getFieldValue("id");
-    item.description = description;
+    // item.description = description;
     var data = {
       ...item,
       id: id,
       title: item.title,
-      description: item.description,
+      description: description,
       articleId: item.article,
     };
     var method = id == null ? "post" : "put";
     var url = id == null ? "contents" : `contents/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
-    console.log(item);
     if (res) {
       message.success(messages);
       getList();
@@ -171,15 +170,18 @@ const ContentPage = () => {
             title: "Manage Images ",
             dataIndex: "mediaList",
             responsive: ["sm"],
-            render: () => (
+            render: (value, item) => (
               <Space>
-                <Button
+                {/* <Button
                   size="large"
                   // onClick={}
                   type="primary"
                 >
                   Manage Images
-                </Button>
+                </Button> */}
+                <Link to={`../dashboard/content/medias/${item.id}`}>
+                  Manage Images
+                </Link>
               </Space>
             ),
           },

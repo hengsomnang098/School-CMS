@@ -34,7 +34,7 @@ export const request = async (
     },
   })
     .then((res) => {
-      return res.data.object;
+      return res.data;
     })
     .catch((error) => {
       console.log("Unexpected Error:", error);
