@@ -17,6 +17,8 @@ import ContentPage from "./admin-dashboard/page/ContentPage";
 import ListByCategory from "./homepage/components/ListByCategory";
 import ListByArticle from "./homepage/components/ListByArticle";
 import ArticlesPageHome from "./homepage/pages/ArticlesPage";
+import ImagePage from "./admin-dashboard/page/ImagePage";
+import UserPage from "./admin-dashboard/page/UserPage";
 
 function App() {
   return (
@@ -31,10 +33,11 @@ function App() {
             <Route path="/dashboard/category" element={<CategoryPage />} />
             <Route path="/dashboard/article" element={<ArticlesPage />} />
             <Route path="/dashboard/content" element={<ContentPage />} />
-            {/* <Route
+            <Route path="/dashboard/users" element={<UserPage />} />
+            <Route
               path="/dashboard/content/medias/:id"
               element={<ImagePage />}
-            /> */}
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
 

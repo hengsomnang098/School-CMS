@@ -35,7 +35,7 @@ function MainLayout() {
   }
   return (
     <>
-      <Layout>
+      <Layout className="w-full max-h-max overflow-hidden justify-center">
         <Sider
           collapsed={collapsed}
           theme={darkTheme ? "dark" : "light "}
@@ -51,13 +51,13 @@ function MainLayout() {
           {/* Toogle Darktheme */}
           <ToggleTheme darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
-
         <Layout>
           <Header
             style={{
               padding: 0,
               background: colorBgContainer,
             }}
+            className="justify-between"
           >
             <Button
               type="text"

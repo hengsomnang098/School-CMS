@@ -21,16 +21,15 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem("Dashboard", "/dashboard", <AppstoreAddOutlined />),
-  getItem("Category", "/dashboard/category", <TeamOutlined />),
-  getItem("Artcle", "/dashboard/article", <TeamOutlined />),
-  getItem("Content", "/dashboard/content", <TeamOutlined />),
+  getItem("Manage Category", "/dashboard/category", <TeamOutlined />),
+  getItem("Manage Artcle", "/dashboard/article", <TeamOutlined />),
+  getItem("Manage Content", "/dashboard/content", <TeamOutlined />),
+  getItem("Manage Employee", "employee", <TeamOutlined />, [
+    getItem("Manage Users", "/dashboard/users", <TeamOutlined />),
+    getItem("Manage Role", "/role"),
+  ]),
   getItem("About us", "/dashboard/about", <ShopOutlined />),
   getItem("Contact Us", "/dashboard/contact", <ShopOutlined />),
-  // getItem("Product", "Product", <ProductOutlined />, [
-  //   getItem("Product", "product", <ProductOutlined />),
-  //   getItem("Product-stock", "product-stock"),
-  //   getItem("Category", "category"),
-  // ]),
   // getItem("System", "system", <UserOutlined />, [
   //   getItem("Order Status", "order-status"),
   //   getItem("Payment method", "payment-method"),
@@ -50,14 +49,16 @@ function MenuList({ darktheme }) {
     navigate(event.key);
   };
   return (
-    <Menu
-      theme={darktheme ? "dark" : "light"}
-      className=" h-[88vh] mt-8 flex flex-col gap-[15px] text-base relative-to"
-      mode="inline"
-      defaultSelectedKeys={["1"]}
-      items={items}
-      onClick={onClickMenu}
-    />
+    <>
+      <Menu
+        theme={darktheme ? "dark" : "light"}
+        className="mt-8 flex flex-col gap-[15px] text-base"
+        mode="inline"
+        defaultSelectedKeys={["1"]}
+        items={items}
+        onClick={onClickMenu}
+      />
+    </>
   );
 }
 

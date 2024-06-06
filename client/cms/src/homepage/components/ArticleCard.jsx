@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 const ArticleCard = ({ article }) => {
   return (
     <div className="border p-4 mb-4">

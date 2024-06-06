@@ -267,11 +267,15 @@ const ContentPage = () => {
               showSearch
               optionFilterProp="label"
             >
-              {articles.map((item, index) => (
-                <Select.Option label={item.name} key={index} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
+              {articles ? (
+                articles.map((item, index) => (
+                  <Select.Option label={item.name} key={index} value={item.id}>
+                    {item.name}
+                  </Select.Option>
+                ))
+              ) : (
+                <></>
+              )}
             </Select>
           </Form.Item>
           <Form.Item style={{ textAlign: "right" }}>
