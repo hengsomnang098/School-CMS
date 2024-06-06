@@ -44,6 +44,7 @@ function App() {
             {/* <Route path="/articlepage" element={<ArticlePage />} /> */}
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/article/:id" element={<ListByArticle />} />
+            <Route path="/article/:nameEn" element={<ListByArticle />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

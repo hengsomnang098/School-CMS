@@ -1,5 +1,6 @@
 import {
   useEffect,
+  // useRef,
   useState,
   //  useRef
 } from "react";
@@ -23,11 +24,14 @@ import MainPage from "../components/page/MainPage";
 const { Title } = Typography;
 const ContentPage = () => {
   const [list, setList] = useState();
-  const [description, setDescription] = useState(list?.description || "");
   const [articles, setArticles] = useState([]);
+
+  const [description, setDescription] = useState(list?.description || "");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [formCat] = Form.useForm();
+
+  // const quillRef = useRef(null);
 
   useEffect(() => {
     getList();
@@ -47,10 +51,10 @@ const ContentPage = () => {
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
       ...item,
-      // id: item.id, //
-      // title: item.title,
+      id: item.id, //
+      title: item.title,
       description: item.description,
-      article: item.article.name,
+      article: item.article.id,
     });
     setOpen(true);
   };
@@ -77,8 +81,9 @@ const ContentPage = () => {
 
   const onFinish = async (item) => {
     var id = formCat.getFieldValue("id");
-    id ? (item.description = description) : item.description;
+    item.description = description;
     var data = {
+      ...item,
       id: id,
       title: item.title,
       description: item.description,
@@ -88,6 +93,7 @@ const ContentPage = () => {
     var url = id == null ? "contents" : `contents/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
+    console.log(item);
     if (res) {
       message.success(messages);
       getList();
@@ -99,7 +105,11 @@ const ContentPage = () => {
     formCat.resetFields();
     setOpen(false);
   };
-
+  function truncate(str) {
+    if (str) {
+      return str.length > 40 ? str.substring(0, 37) + "..." : str;
+    }
+  }
   return (
     <MainPage loading={loading}>
       <Typography>
@@ -140,13 +150,16 @@ const ContentPage = () => {
           },
           {
             key: "description",
-            title: "description",
+            title: "Description",
             dataIndex: "description",
             responsive: ["sm"],
+            render: (value) => {
+              return truncate(value);
+            },
           },
           {
             key: "article",
-            title: "article Name",
+            title: "Article Name",
             dataIndex: "article",
             responsive: ["sm"],
             render: (value) => {
@@ -162,7 +175,7 @@ const ContentPage = () => {
               <Space>
                 <Button
                   size="large"
-                  // onClick={() => onClickBtnEdit(item)}
+                  // onClick={}
                   type="primary"
                 >
                   Manage Images
@@ -196,6 +209,7 @@ const ContentPage = () => {
           },
         ]}
       />
+      {/* Model for Content */}
       <Modal
         forceRender
         title={

@@ -54,9 +54,9 @@ const Navbar = () => {
     if (res) {
       const data = res.map(function (category) {
         return {
-          key: String(`/category/${category.id}`).trim(),
+          key: String(`/category/${category.nameEn}`).trim(),
           label: category.nameEn,
-          path: "/categorieslist/" + category.id,
+          path: "/categorieslist/" + category.nameEn,
         };
       });
       setCategories(data);
