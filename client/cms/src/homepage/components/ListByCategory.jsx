@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CategoryLists from "./CategoryList";
+import ArticlesByCategory from "./ArticlesByCategory";
+import CategoriesByArticle from "./CategoriesByArticle";
 
 const ListByCategory = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const ListByCategory = () => {
           `http://localhost:8080/api/categories/${id}`
         );
         const data = await response.json();
-        setCategoryDetails(data.object);
+        setCategoryDetails(data.object); // Assuming 'object' contains category details including 'article' information
       } catch (error) {
         console.error("Error fetching category details:", error);
       }
@@ -32,17 +33,24 @@ const ListByCategory = () => {
       <div className="max-w-7xl mx-auto my-12 flex flex-col md:flex-row gap-12">
         <div className="lg:w-3/4 mx-auto">
           <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {id} {/* Display category ID */}
+            {id}
           </h2>
           <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {categoryDetails.nameKh} {/* Display category name in Khmer */}
+            {categoryDetails.nameKh}
           </h2>
           <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {categoryDetails.nameEn} {/* Display category name in English */}
+            {categoryDetails.nameEn}
           </h2>
           <div className="text-base text-gray-500">
-            {/* Placeholder for additional category information */}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
+            accusamus porro? Quod, quidem, enim laborum repellendus iure nihil
+            nobis error dolorem recusandae reprehenderit ab commodi adipisci
+            temporibus officia, et tempora!
           </div>
+          <ArticlesByCategory categoryId={id} />
+          {categoryDetails.article && (
+            <CategoriesByArticle articleId={categoryDetails.article.id} />
+          )}
         </div>
         <div className="lg:w1/2">{/* Sidebar content */}</div>
       </div>

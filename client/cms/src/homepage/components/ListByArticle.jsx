@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ArticleList from "../components/ArticleList";
+import ArticlesByCategory from "./ArticlesByCategory";
+import CategoriesByArticle from "./CategoriesByArticle";
 
-const ListByArticle = () => {
+const ListByCategory = () => {
   const { id } = useParams();
-  const [article, setArticles] = useState({});
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    async function fetchArticleDetails() {
+    async function fetchArticle() {
       try {
-        const response = await fetch(`http://localhost:8080/api/article/${id}`);
+        const response = await fetch(
+          `http://localhost:8080/api/articles/${id}`
+        );
         const data = await response.json();
-        setArticles(data.object);
+        setArticles(data.object); // Set articles for the category
       } catch (error) {
         console.error("Error fetching article details:", error);
       }
     }
 
-    fetchArticleDetails();
+    fetchArticle();
   }, [id]);
 
   return (
@@ -30,24 +33,27 @@ const ListByArticle = () => {
       <div className="max-w-7xl mx-auto my-12 flex flex-col md:flex-row gap-12">
         <div className="lg:w-3/4 mx-auto">
           <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {id} {/* Display category ID */}
-          </h2>
-
-          <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {article.name}
-          </h2>
-          {/* <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {article.category.id}
+            {id}
           </h2>
           <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {article.category.nameKh}
+            {articles.name}
           </h2>
-          <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            {article.category.nameEn}
-          </h2> */}
+          <h2 className="text-3xl mt-8 font-bold mb-4">
+            Category ID: {articles.category.id}
+          </h2>
+          <h2 className="text-3xl mt-8 font-bold mb-4">
+            English Name: {articles.category.nameEn}
+          </h2>
+          <h2 className="text-3xl mt-8 font-bold mb-4">
+            Category Khmer Name: {articles.category.nameKh}
+          </h2>
           <div className="text-base text-gray-500">
-            {/* Placeholder for additional category information */}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
+            accusamus porro? Quod, quidem, enim laborum repellendus iure nihil
+            nobis error dolorem recusandae reprehenderit ab commodi adipisci
+            temporibus officia, et tempora!
           </div>
+          <ArticlesByCategory articles={articles} />
         </div>
         <div className="lg:w1/2">{/* Sidebar content */}</div>
       </div>
@@ -55,4 +61,4 @@ const ListByArticle = () => {
   );
 };
 
-export default ListByArticle;
+export default ListByCategory;
