@@ -35,7 +35,7 @@ function MainLayout() {
   }
   return (
     <>
-      <Layout className="w-full max-h-max overflow-hidden justify-center">
+      <Layout className="w-full max-h-max overflow-hidden justify-center ">
         <Sider
           collapsed={collapsed}
           theme={darkTheme ? "dark" : "light "}
