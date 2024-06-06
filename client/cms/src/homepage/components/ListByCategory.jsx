@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ArticlesByCategory from "./ArticlesByCategory";
-import CategoriesByArticle from "./CategoriesByArticle";
+
+import { fetchData } from "../../config/api";
 
 const ListByCategory = () => {
   const { id } = useParams();
@@ -10,11 +10,8 @@ const ListByCategory = () => {
   useEffect(() => {
     async function fetchCategoryDetails() {
       try {
-        const response = await fetch(
-          `http://localhost:8080/api/categories/${id}`
-        );
-        const data = await response.json();
-        setCategoryDetails(data.object); // Assuming 'object' contains category details including 'article' information
+        const data = await fetchData(`categories/${id}`);
+        setCategoryDetails(data.object);
       } catch (error) {
         console.error("Error fetching category details:", error);
       }
@@ -47,12 +44,7 @@ const ListByCategory = () => {
             nobis error dolorem recusandae reprehenderit ab commodi adipisci
             temporibus officia, et tempora!
           </div>
-          <ArticlesByCategory categoryId={id} />
-          {categoryDetails.article && (
-            <CategoriesByArticle articleId={categoryDetails.article.id} />
-          )}
         </div>
-        <div className="lg:w1/2">{/* Sidebar content */}</div>
       </div>
     </div>
   );

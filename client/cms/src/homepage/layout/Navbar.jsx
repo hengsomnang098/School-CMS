@@ -14,7 +14,6 @@ const Navbar = () => {
     { key: "about", label: "About", path: "/about" },
     { key: "ourprograms", label: "Our Program", path: "/" },
     { key: "contact", label: "Contact", path: "/contact" },
-    { key: "article", label: "Article", path: "/article" },
     { key: "articlepage", label: "ArticlePage", path: "/articlepage" },
     {
       key: "categorieslist",
@@ -54,9 +53,9 @@ const Navbar = () => {
     if (res) {
       const data = res.map(function (category) {
         return {
-          key: String(`/category/${category.nameEn}`).trim(),
+          key: String(`/category/${category.id}`).trim(),
           label: category.nameEn,
-          path: "/categorieslist/" + category.nameEn,
+          path: "/categorieslist/" + category.id,
         };
       });
       setCategories(data);

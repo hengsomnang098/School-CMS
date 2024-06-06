@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { fetchData } from "../../config/api";
 
 const CategoryLists = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     async function fetchCategories() {
-      const url = `http://localhost:8080/api/categories`;
+      const url = `categories`;
 
-      const res = await fetch(url);
-      const data = await res.json();
-      setCategories(data.object);
+      const res = await fetchData(url);
+
+      setCategories(res.object);
     }
 
     fetchCategories();

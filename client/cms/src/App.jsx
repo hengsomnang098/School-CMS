@@ -10,14 +10,13 @@ import Home from "./homepage/pages/Home";
 import About from "./homepage/pages/About";
 import Contact from "./homepage/pages/Contact";
 import OurPrograms from "./homepage/pages/OurPrograms";
-import Layout from "./homepage/Layout";
+import Layout from "./homepage/layout/Layout";
 import CategoryList from "./homepage/components/CategoryList";
 import ArticlesPage from "./admin-dashboard/page/ArticlePage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
 import ListByCategory from "./homepage/components/ListByCategory";
-import ArticleList from "./homepage/components/ArticleList";
 import ListByArticle from "./homepage/components/ListByArticle";
-
+import ArticlesPageHome from "./homepage/pages/ArticlesPage";
 function App() {
   return (
     <>
@@ -33,6 +32,7 @@ function App() {
             <Route path="/dashboard/content" element={<ContentPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
+
           {/*   homepage route */}
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -40,11 +40,9 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
             <Route path="/category" element={<CategoryList />} />
-            <Route path="/article" element={<ArticleList />} />
-            {/* <Route path="/articlepage" element={<ArticlePage />} /> */}
+            <Route path="/articlepage" element={<ArticlesPageHome />} />
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/article/:id" element={<ListByArticle />} />
-            <Route path="/article/:nameEn" element={<ListByArticle />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import fetchData from "../../config/api";
 const NavCate = () => {
   const [categories, setCategories] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -8,8 +8,8 @@ const NavCate = () => {
 
   useEffect(() => {
     async function fetchCategories() {
-      const url = `http://localhost:8080/api/articles`;
-      const res = await fetch(url);
+      const url = `articles`;
+      const res = await fetchData(url);
       const data = await res.json();
       setCategories(data.object);
     }

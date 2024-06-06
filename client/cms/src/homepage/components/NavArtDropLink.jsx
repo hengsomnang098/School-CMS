@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchData } from "../../config/api";
 
 const NavCate = () => {
   const [articles, setArticles] = useState([]);
@@ -8,8 +9,8 @@ const NavCate = () => {
 
   useEffect(() => {
     async function fetchArticles() {
-      const url = `http://localhost:8080/api/articles`;
-      const res = await fetch(url);
+      const url = `articles`;
+      const res = await fetchData(url);
       const data = await res.json();
       setArticles(data.object);
     }
