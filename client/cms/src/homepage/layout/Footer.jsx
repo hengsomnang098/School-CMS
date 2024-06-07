@@ -1,168 +1,161 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa6";
-
+import { FaLink } from "react-icons/fa";
+import { FaLocationCrosshairs } from "react-icons/fa6";
+import GoogleMapComponent from "../components/GoogleMap/GoogleMapComponent";
 const Footer = () => {
   return (
     <div className="bg-green-300">
       <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4">
         <div className="grid mb-8 lg:grid-cols-5">
-          <div className="grid grid-cols-2 gap-5 lg:col-span-3 md:grid-cols-3">
-            <div>
-              <p className="font-medium tracking-wide text-gray-700">
-                Category
+          <div className="grid grid-cols-2 gap-5  lg:col-span-3 md:grid-cols-3">
+            <div className="border-r border-gray-800">
+              <p className="font-medium text-2xl mb-5 tracking-wide  text-gray-700">
+                Quick Link
               </p>
-              <ul className=" mt-2 space-y-2">
+              <ul className="mt-2 space-y-2">
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    News
+                    <FaLink className="mr-2 h-7" />
+                    Home
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
+                    <FaLink className="mr-2 h-7" />
+                    Admission
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                  >
+                    <FaLink className="mr-2 h-7" />
+                    Programs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                  >
+                    <FaLink className="mr-2 h-7" />
                     World
                   </a>
                 </li>
+              </ul>
+            </div>
+            <div className="border-r border-gray-800">
+              <p className="font-medium text-2xl mb-5 tracking-wide  text-gray-700">
+                Recent Post
+              </p>
+              <ul className="mt-2 space-y-2">
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    Class
+                    <FaLink className="mr-2 h-7" />
+                    Home
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    Reference
+                    <FaLink className="mr-2 h-7" />
+                    Admission
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                  >
+                    <FaLink className="mr-2 h-7" />
+                    Programs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                  >
+                    <FaLink className="mr-2 h-7" />
+                    World
                   </a>
                 </li>
               </ul>
             </div>
-            <div>
-              <p className="font-medium tracking-wide text-gray-700">Apples</p>
-              <ul className=" mt-2 space-y-2">
+            <div className="border-r border-gray-800">
+              <p className="font-medium text-2xl mb-5 tracking-wide  text-gray-700">
+                Find Me!
+              </p>
+              <ul className="mt-2 space-y-2">
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    Web
+                    <FaLink className="mr-2 h-7" />
+                    Home
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    Ecommerce
+                    <FaLink className="mr-2 h-7" />
+                    Admission
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    Business
+                    <FaLink className="mr-2 h-7" />
+                    Programs
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
                   >
-                    Entertainment
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
-                  >
-                    Porfolio
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium tracking-wide text-gray-700">Cherry</p>
-              <ul className=" mt-2 space-y-2">
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
-                  >
-                    Media
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
-                  >
-                    Brochure
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
-                  >
-                    Nonprofit
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
-                  >
-                    Education
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-700 transition-colors duration-300 hover:text-yellow-300"
-                  >
-                    Projects
+                    <FaLink className="mr-2 h-7" />
+                    World
                   </a>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="md:max-w-md lg:col-span-2 lg:mt-0 mt-5">
-            <p className="font-medium tracking-wide text-gray-700">
-              Subcribe for updates
+          <div className="md:max-w-md text-2xl mb-5 ml-5 lg:col-span-2 lg:mt-0 mt-5">
+            <p className="font-medium tracking-wide flex text-gray-700">
+              <FaLocationCrosshairs className="mr-2 h-9" />
+              South West International School
             </p>
-            <form className="mt-4 flex flex-col md:flex-row">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm aspect-auto md:mr-2 md:m-0 focus:border-purple-400 focus:outline-none "
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-gray-700 bg-green-500 transition duration-200 rounded shadown-md hover:bg-yellow-500 focus:outline-none border"
-              >
-                Subcribe
-              </button>
-            </form>
-            <p className="mt-4 text-sm text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-              cum incidunt, harum quos saepe odit ullam libero consequuntur,
-              reiciendis explicabo nesciunt doloribus. Autem quaerat nostrum
-              repudiandae a similique voluptates, nisi aliquid, dolorum animi
-              eius, ipsa rem! Cupiditate necessitatibus quam nobis? Laudantium
-              quam illum repellat et id quas voluptatum quasi explicabo.
-            </p>
+
+            <div className="mt-4 flex flex-col md:flex-row">
+              {/* <GoogleMapComponent /> */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d980.3808316854787!2d103.53486499919738!3d10.616392200000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3107e1f28dd34fc5%3A0xb03c596df9e1a956!2sSouthwest%20International%20School!5e0!3m2!1skm!2skh!4v1717726521139!5m2!1skm!2skh"
+                width="100%"
+                height="250"
+                allowFullScreen=""
+                loading="lazy"
+                className="border-0 rounded-lg"
+              ></iframe>
+            </div>
           </div>
         </div>
         <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
