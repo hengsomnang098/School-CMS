@@ -1,8 +1,7 @@
 import React from "react";
 import { LoadScript, Marker } from "@react-google-maps/api";
-import GoogleMap from "./GoogleMap";
+
 const GoogleMapComponent = () => {
-  // Replace with the actual coordinates of South West International School
   // const center = {
   //   lat: 10.616634728734757,
   //   lng: 103.53601298038821,
@@ -24,7 +23,6 @@ const GoogleMapComponent = () => {
           <Marker position={center} />
         </GoogleMap>
       </LoadScript> */}
-      <GoogleMap />
     </div>
   );
 };
