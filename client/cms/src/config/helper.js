@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 export const Config = {
   base_url: "http://194.233.87.193:8080/api/",
   // base_url: import.meta.env.BACK_END_API_URL,
-  image_path: "http://localhost:8080/fullstack/image_g7/",
+  image_path: "http://194.233.87.193:8080/api/medias/photo/",
   version: "",
   token: "",
 };
@@ -60,7 +60,15 @@ export const logout = () => {
 };
 
 export const isLogin = () => {
-  if (localStorage.getItem("isLogin") == "1") {
+  // if (localStorage.getItem("isLogin") == "1") {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  if (
+    localStorage.getItem("token") != undefined &&
+    localStorage.getItem("isLogin") == "1"
+  ) {
     return true;
   } else {
     return false;

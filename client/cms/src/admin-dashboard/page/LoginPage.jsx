@@ -30,7 +30,7 @@ const LoginPage = () => {
         // Login success
         setUser(res.object.email);
 
-        setAccessToken(res.token);
+        setAccessToken(res.object.token);
         // setRefreshToken(request.refresh_token);
         navigate("/dashboard");
         // console.log(res.user);
