@@ -1,8 +1,6 @@
-// src/components/Navbar/Navbar.js
-
 import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import useFetch from "../hook/useFetch";
+import useFetch from "../hooks/useFetch";
 
 const { Header } = Layout;
 
