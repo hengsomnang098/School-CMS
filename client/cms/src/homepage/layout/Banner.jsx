@@ -1,13 +1,12 @@
-const Banner = () => {
+import React from "react";
+import BannerCarousel from "../components/BannerCard"; // Adjust the path accordingly
+
+const App = () => {
   return (
-    <>
-      <div className="py-56 bg-blue-300 text-gray-700">
-        <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
-          Banner
-        </h1>
-      </div>
-    </>
+    <div className="App">
+      <BannerCarousel />
+    </div>
   );
 };
 
-export default Banner;
+export default App;
