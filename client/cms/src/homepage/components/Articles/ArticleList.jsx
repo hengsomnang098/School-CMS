@@ -4,7 +4,7 @@ import { fetchData } from "../../../config/api";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchArticle() {
