@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 const CategoryCard = ({ category }) => {
   return (
     <div className="border p-4 mb-4">

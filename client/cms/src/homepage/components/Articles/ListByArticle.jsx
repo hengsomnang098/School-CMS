@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchData } from "../../config/api";
+import { fetchData } from "../../../config/api";
 
 const ListByArticle = () => {
   const { id } = useParams();

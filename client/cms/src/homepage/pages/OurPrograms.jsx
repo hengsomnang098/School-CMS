@@ -1,5 +1,4 @@
-import CategoryLists from "../components/CategoryList";
-import ListByCategory from "../components/ListByCategory";
+import CategoryLists from "../components/Categories/CategoryList";
 
 const OurPrograms = () => {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
-import { fetchData } from "../../config/api";
+import { fetchData } from "../../../config/api";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);

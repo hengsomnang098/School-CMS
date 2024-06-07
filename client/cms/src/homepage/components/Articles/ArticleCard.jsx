@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 const ArticleCard = ({ article }) => {
   return (
     <div className="border p-4 mb-4">
@@ -9,7 +8,6 @@ const ArticleCard = ({ article }) => {
       <p>Category ID: {article.category.id}</p>
       <p>Category NameKH: {article.category.nameKh}</p>
       <p>Category NameEN: {article.category.nameEn}</p>
-      {/* Display other article details as needed */}
     </div>
   );
 };

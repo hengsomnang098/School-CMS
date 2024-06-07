@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchData } from "../../config/api";
+import { fetchData } from "../../../config/api";
 import CategoryCard from "./CategoryCard";
 
 const CategoryLists = () => {

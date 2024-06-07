@@ -1,4 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// dashboard import-------------
+import ImagePage from "./admin-dashboard/page/ImagePage";
+import UserPage from "./admin-dashboard/page/UserPage";
+import RolePage from "./admin-dashboard/page/RolePage";
+import ArticlesPage from "./admin-dashboard/page/ArticlePage";
+import ContentPage from "./admin-dashboard/page/ContentPage";
 import HomePage from "./admin-dashboard/page/HomePage";
 import AboutPage from "./admin-dashboard/page/AboutPage";
 import ContactPage from "./admin-dashboard/page/ContactPage";
@@ -6,20 +13,18 @@ import NotFoundPage from "./admin-dashboard/page/NotFoundPage";
 import MainLayout from "./admin-dashboard/components/layout/MainLayout";
 import CategoryPage from "./admin-dashboard/page/CategoryPage";
 import LoginPage from "./admin-dashboard/page/LoginPage";
+
+// homepage import --------------
+
 import Home from "./homepage/pages/Home";
 import About from "./homepage/pages/About";
 import Contact from "./homepage/pages/Contact";
 import OurPrograms from "./homepage/pages/OurPrograms";
 import Layout from "./homepage/layout/Layout";
-import CategoryList from "./homepage/components/CategoryList";
-import ArticlesPage from "./admin-dashboard/page/ArticlePage";
-import ContentPage from "./admin-dashboard/page/ContentPage";
-import ListByCategory from "./homepage/components/ListByCategory";
-import ListByArticle from "./homepage/components/ListByArticle";
+import CategoryList from "./homepage/components/Categories/CategoryList";
+import ListByCategory from "./homepage/components/Categories/ListByCategory";
+import ListByArticle from "./homepage/components/Articles/ListByArticle";
 import ArticlesPageHome from "./homepage/pages/ArticlesPage";
-import ImagePage from "./admin-dashboard/page/ImagePage";
-import UserPage from "./admin-dashboard/page/UserPage";
-import RolePage from "./admin-dashboard/page/RolePage";
 
 function App() {
   return (

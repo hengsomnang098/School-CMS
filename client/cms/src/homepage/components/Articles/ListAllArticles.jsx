@@ -2,25 +2,24 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ArticlesByCategory = () => {
-  const { id } = useParams(); // Get category ID from URL params
-  const [articles, setArticles] = useState([]); // State to hold articles
+  const { id } = useParams();
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    // Fetch articles based on category ID
     async function fetchArticlesByCategory() {
       try {
         const response = await fetch(
           `http://localhost:8080/api/articles?category=${id}`
         );
         const data = await response.json();
-        setArticles(data.object); // Set fetched articles into state
+        setArticles(data.object);
       } catch (error) {
         console.error("Error fetching articles by category:", error);
       }
     }
 
-    fetchArticlesByCategory(); // Call fetch function when component mounts or ID changes
-  }, [id]); // Dependency array to re-run effect when ID changes
+    fetchArticlesByCategory();
+  }, [id]);
 
   return (
     <div className="container mx-auto mt-8">

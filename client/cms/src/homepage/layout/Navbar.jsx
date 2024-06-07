@@ -1,15 +1,16 @@
+// src/components/Navbar/Navbar.js
+
 import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { request } from "../../config/request";
-import { fetchData } from "../../config/api";
+import useFetch from "../hook/useFetch";
 
 const { Header } = Layout;
 
 const Navbar = () => {
-  const [current, setCurrent] = useState("home");
-  const [categories, setCategories] = useState([]);
-  const [articles, setArticles] = useState([]);
+  const navigate = useNavigate();
+  const categories = useFetch("categories");
+  const articles = useFetch("articles");
+
   const menuItems = [
     { key: "", label: "Home", path: "/" },
     { key: "about", label: "About", path: "/about" },
@@ -19,60 +20,32 @@ const Navbar = () => {
     {
       key: "categorieslist",
       label: "Categories",
-      path: "/category",
-      children: categories,
+      children: categories.map((category) => ({
+        key: String(`/category/${category.id}`).trim(),
+        label: category.nameEn,
+        path: `/categorieslist/${category.id}`,
+      })),
     },
     {
       key: "articleslist",
       label: "Articles",
-      path: "/article",
-      children: articles,
+      children: articles.map((article) => ({
+        key: String(`/article/${article.id}`).trim(),
+        label: article.name,
+        path: `/articleslist/${article.id}`,
+      })),
     },
   ];
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    getListCategory();
-    getListArticles();
-  }, []);
-
-  const getListArticles = async () => {
-    const res = await fetchData("articles");
-    if (res) {
-      const data = res.object.map(function (article) {
-        return {
-          key: String(`/article/${article.id}`).trim(),
-          label: article.name,
-          path: "/articleslist/" + article.id,
-        };
-      });
-      setArticles(data);
-    }
-  };
-  const getListCategory = async () => {
-    const res = await fetchData("categories");
-    if (res) {
-      const data = res.object.map(function (category) {
-        return {
-          key: String(`/category/${category.id}`).trim(),
-          label: category.nameEn,
-          path: "/categorieslist/" + category.id,
-        };
-      });
-      setCategories(data);
-    }
-  };
 
   const onClick = (e) => {
     navigate(e.key);
-    setCurrent(e.key);
   };
+
   return (
     <Header>
       <div className="logo" />
       <Menu
         onClick={onClick}
-        selectedKeys={[current]}
         mode="horizontal"
         theme="dark"
         items={menuItems}
