@@ -26,7 +26,7 @@ const CategoryLists = () => {
     <>
       <div className="flex justify-center">
         <div>
-          <h2 className="text-2xl text-blue-500">Category</h2>
+          {/* <h2 className="text-2xl text-blue-500">Category</h2> */}
           {/* <div>
             {categories.map((cat) => (
               <ul key={cat.id}>
@@ -37,7 +37,7 @@ const CategoryLists = () => {
               </ul>
             ))}
             <div className="max-w-7xl mx-auto my-12"> */}
-          <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
+          <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-10 text-center">
             Category List
           </h1>
           {loading ? (

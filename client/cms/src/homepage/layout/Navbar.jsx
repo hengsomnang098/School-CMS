@@ -15,7 +15,7 @@ const Navbar = () => {
     { key: "", label: "Home", path: "/" },
     { key: "about", label: "About", path: "/about" },
     { key: "ourprograms", label: "Our Program", path: "/" },
-    { key: "contact", label: "Contact", path: "/contact" },
+    { key: "admission", label: "Admission", path: "/admission" },
     { key: "articlepage", label: "ArticlePage", path: "/articlepage" },
     {
       key: "categorieslist",

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 
 // dashboard import-------------
 import ImagePage from "./admin-dashboard/page/ImagePage";
@@ -25,6 +25,7 @@ import CategoryList from "./homepage/components/Categories/CategoryList";
 import ListByCategory from "./homepage/components/Categories/ListByCategory";
 import ListByArticle from "./homepage/components/Articles/ListByArticle";
 import ArticlesPageHome from "./homepage/pages/ArticlesPage";
+import Admission from "./homepage/pages/Admission";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
             <Route path="/category" element={<CategoryList />} />
+            <Route path="/admission" element={<Admission />} />
             <Route path="/articlepage" element={<ArticlesPageHome />} />
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/article/:id" element={<ListByArticle />} />
