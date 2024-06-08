@@ -146,6 +146,9 @@ const ContentPage = () => {
             key: "title",
             title: "Name title",
             dataIndex: "title",
+            render: (value) => {
+              return truncate(value);
+            },
           },
           {
             key: "description",

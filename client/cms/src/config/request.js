@@ -43,6 +43,8 @@ export const request = async (
         message.error(error.message + "");
       } else if (status == 404) {
         message.error(error.message + "");
+      } else if (status === 405) {
+        message.error(error.message + "");
       } else if (status == 500) {
         message.error(error.message + "");
       } else if (status == 401) {
