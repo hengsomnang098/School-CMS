@@ -2,12 +2,9 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-// Sample images
-import img from "../Images/Galleria.jpg";
-import img1 from "../Images/Galleria1.jpg";
-import img2 from "../Images/Galleria2.jpg";
-import img3 from "../Images/Galleria3.jpg";
-import img4 from "../Images/Galleria4.jpg";
+import img1 from "../images/Gallaria1.png";
+import img2 from "../images/Galleria2.png";
+import img3 from "../images/Galleria3.png";
 
 const BannerCard = () => {
   return (
@@ -19,19 +16,13 @@ const BannerCard = () => {
       interval={2000}
     >
       <div>
-        <img src={img} className="h-[400px] w-auto" alt="First slide" />
+        <img src={img1} className="h-[500px] w-auto" alt="First slide" />
       </div>
       <div>
-        <img src={img1} className="h-[400px] w-auto" alt="First slide" />
-      </div>
-      <div>
-        <img src={img2} className="h-[400px] w-auto" alt="Second slide" />
+        <img src={img2} className="h-[500px] w-auto" alt="Second slide" />
       </div>
       <div>
         <img src={img3} className="h-[400px] w-auto" alt="Third slide" />
-      </div>
-      <div>
-        <img src={img4} className="h-[400px] w-auto" alt="Fourth slide" />
       </div>
     </Carousel>
   );

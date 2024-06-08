@@ -26,6 +26,7 @@ import ListByCategory from "./homepage/components/Categories/ListByCategory";
 import ListByArticle from "./homepage/components/Articles/ListByArticle";
 import ArticlesPageHome from "./homepage/pages/ArticlesPage";
 import Admission from "./homepage/pages/Admission";
+import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
             <Route path="/admission" element={<Admission />} />
             <Route path="/articlepage" element={<ArticlesPageHome />} />
             <Route path="/category/:id" element={<ListByCategory />} />
+            <Route path="/category/:id/articles" component={<AllArtByCat />} />
             <Route path="/article/:id" element={<ListByArticle />} />
           </Route>
 

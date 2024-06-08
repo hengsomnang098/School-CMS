@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArticleCard from "../Articles/ArticleCard";
 import { fetchData } from "../../../config/api";
+import AllArtByCat from "./AllArtByCat";
 
 const ListByCategory = () => {
   const { id } = useParams();
@@ -13,16 +14,13 @@ const ListByCategory = () => {
   useEffect(() => {
     const fetchCategoryAndArticles = async () => {
       try {
-        // Fetch category details
         const categoryResponse = await fetchData(`categories/${id}`);
         setCategory(categoryResponse.object);
 
-        // Fetch articles related to the category ID
         const articlesResponse = await fetchData(`articles?categoryId=${id}`);
-        const filteredArticles = articlesResponse.filter(
-          (article) => article.category.id === id
-        );
-        setArticles(filteredArticles.object);
+        if (articlesResponse && articlesResponse.object) {
+          setArticles(articlesResponse.object);
+        }
 
         setLoading(false);
       } catch (error) {
@@ -52,22 +50,17 @@ const ListByCategory = () => {
           <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
             English Name: {category.nameEn}
           </h2>
-          <div className="text-base text-gray-500">
-            {/* Add description or other details about the category */}
-            {category.description}
-          </div>
+
           <div className="max-w-7xl mx-auto my-12">
             <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
-              Article List
+              Articles for Category
             </h1>
             {loading ? (
-              <p className="text-center text-gray-600">Loading articles...</p>
+              <p className="text-center text-gray-600">
+                Loading category details...
+              </p>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {articles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
-                ))}
-              </div>
+              <AllArtByCat categoryId={id} />
             )}
           </div>
         </div>
