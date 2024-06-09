@@ -28,7 +28,34 @@ const ContentPage = () => {
   const [formCat] = Form.useForm();
 
   const quillRef = useRef(null);
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
 
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
   useEffect(() => {
     getList();
   }, [formCat]);
@@ -252,6 +279,8 @@ const ContentPage = () => {
               theme="snow"
               value={description}
               onChange={setDescription}
+              modules={modules}
+              formats={formats}
             />
           </Form.Item>
           <Form.Item
