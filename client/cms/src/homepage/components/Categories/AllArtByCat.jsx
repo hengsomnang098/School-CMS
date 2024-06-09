@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { fetchArticlesByCategoryId } from "../../../config/api"; // Adjust the path accordingly
 import ArticleCard from "../Articles/ArticleCard";
 
+const BASE_URL = "http://localhost:8080/api/";
+
 const AllArtByCat = () => {
   const { id } = useParams();
   const [articles, setArticles] = useState([]);
