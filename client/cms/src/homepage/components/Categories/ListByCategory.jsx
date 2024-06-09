@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ArticleCard from "../Articles/ArticleCard";
 import { fetchData } from "../../../config/api";
 import AllArtByCat from "./AllArtByCat";
 
