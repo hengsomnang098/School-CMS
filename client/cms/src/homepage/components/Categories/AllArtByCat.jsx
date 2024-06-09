@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticlesByCategoryId } from "../../../config/api"; // Adjust the path accordingly
+import { fetchData } from "../../../config/api";
 import ArticleCard from "../Articles/ArticleCard";
-
-const BASE_URL = "http://localhost:8080/api/";
 
 const AllArtByCat = () => {
   const { id } = useParams();
@@ -14,14 +12,19 @@ const AllArtByCat = () => {
   useEffect(() => {
     const fetchCategoryAndArticles = async () => {
       try {
-        const categoryResponse = await axios.get(
-          `${BASE_URL}/categories/${id}`
+        // Fetch category details
+        const categoryResponse = await fetchData(`categories/${id}`);
+        setCategory(categoryResponse.object);
+
+        // Fetch all articles
+        const articlesResponse = await fetchData("articles");
+
+        // Filter articles by category ID
+        const filteredArticles = articlesResponse.object.filter(
+          (article) => article.category.id.toString() === id
         );
-        setCategory(categoryResponse.data.object);
 
-        const filteredArticles = await fetchArticlesByCategoryId(id);
         setArticles(filteredArticles);
-
         setLoading(false);
       } catch (error) {
         console.error("Error fetching category and articles:", error);
