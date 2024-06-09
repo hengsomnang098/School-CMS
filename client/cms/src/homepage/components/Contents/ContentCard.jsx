@@ -11,9 +11,6 @@ const ContentCard = ({ content }) => {
       </p>
       <p>Article Id: {content.article.id}</p>
       <p>Article Name: {content.article.name}</p>
-      {/* <span dangerouslySetInnerHTML={{ __html: {content.description} }}>
-        {content.description}
-      </span> */}
 
       <p>Category ID: {content.article.category.id}</p>
       <p>Category Name: {content.article.category.nameEn}</p>
