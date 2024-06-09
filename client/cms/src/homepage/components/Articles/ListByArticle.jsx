@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../../../config/api";
+import AllConByArt from "./AllConByArt";
 
 const ListByArticle = () => {
   const { id } = useParams();
   const [article, setArticle] = useState({});
+  const [content, setContent] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchArticle() {
+    async function fetchArticleByContents() {
       try {
         const data = await fetchData(`articles/${id}`);
         setArticle(data.object);
+
+        const contentsResponse = await fetchData(`contents?articleId=${id}`);
+        if (contentsResponse && contentsResponse.object) {
+          setContent(contentsResponse.object);
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching article details:", error);
+        setLoading(false);
       }
     }
 
-    if (id) {
-      fetchArticle();
-    }
+    fetchArticleByContents();
   }, [id]);
 
   return (
@@ -50,6 +58,18 @@ const ListByArticle = () => {
             accusamus porro? Quod, quidem, enim laborum repellendus iure nihil
             nobis error dolorem recusandae reprehenderit ab commodi adipisci
             temporibus officia, et tempora!
+          </div>
+          <div className="max-w-7xl mx-auto my-12">
+            <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
+              Content for Article
+            </h1>
+            {loading ? (
+              <p className="text-center text-gray-600">
+                Loading articles details...
+              </p>
+            ) : (
+              <AllConByArt articleId={id} />
+            )}
           </div>
         </div>
       </div>

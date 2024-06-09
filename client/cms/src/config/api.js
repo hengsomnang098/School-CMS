@@ -22,3 +22,12 @@ export const fetchArticlesByCategoryId = async(id) => {
         throw error; // Propagate the error so it can be handled further up the chain
     }
 };
+export const fetchContentsByArticlesId = async(id) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/articles/${id}/contents`);
+        return response.data.object; // Assuming the response contains JSON data with an 'object' property
+    } catch (error) {
+        console.error(`Error fetching contents for article ID ${id}:`, error);
+        throw error; // Propagate the error so it can be handled further up the chain
+    }
+};

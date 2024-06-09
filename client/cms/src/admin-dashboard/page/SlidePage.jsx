@@ -60,7 +60,7 @@ const SlidePage = () => {
       ...item,
     });
     setOpen(true);
-    setFilePreview(item.mediaUrl);
+    setFilePreview(item.imageUrl);
   };
 
   const onClickBtnDelete = async (item) => {

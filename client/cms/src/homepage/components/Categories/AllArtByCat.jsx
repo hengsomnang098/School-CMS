@@ -12,14 +12,11 @@ const AllArtByCat = () => {
   useEffect(() => {
     const fetchCategoryAndArticles = async () => {
       try {
-        // Fetch category details
         const categoryResponse = await fetchData(`categories/${id}`);
         setCategory(categoryResponse.object);
 
-        // Fetch all articles
         const articlesResponse = await fetchData("articles");
 
-        // Filter articles by category ID
         const filteredArticles = articlesResponse.object.filter(
           (article) => article.category.id.toString() === id
         );

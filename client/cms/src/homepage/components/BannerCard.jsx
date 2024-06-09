@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import { fetchData } from "../../../config/api";
 
 import img1 from "../images/Gallaria1.png";
 import img2 from "../images/Galleria2.png";
