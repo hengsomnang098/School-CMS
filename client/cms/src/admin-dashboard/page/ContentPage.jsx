@@ -53,7 +53,6 @@ const ContentPage = () => {
       article: item.article.id,
     });
     setOpen(true);
-    console.log(quillRef);
   };
   const onClickBtnDelete = async (item) => {
     Modal.confirm({
@@ -153,7 +152,9 @@ const ContentPage = () => {
             dataIndex: "description",
             responsive: ["sm"],
             render: (value) => {
-              return truncate(value);
+              return (
+                <span dangerouslySetInnerHTML={{ __html: truncate(value) }} />
+              );
             },
           },
           {
