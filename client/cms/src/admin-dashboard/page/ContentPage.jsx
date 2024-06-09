@@ -1,8 +1,4 @@
-import {
-  useEffect,
-  useState,
-  //  useRef
-} from "react";
+import { useEffect, useState, useRef } from "react";
 import { request } from "../../config/request";
 import {
   Table,
@@ -31,7 +27,7 @@ const ContentPage = () => {
   const [open, setOpen] = useState(false);
   const [formCat] = Form.useForm();
 
-  // const quillRef = useRef(null);
+  const quillRef = useRef(null);
 
   useEffect(() => {
     getList();
@@ -57,6 +53,7 @@ const ContentPage = () => {
       article: item.article.id,
     });
     setOpen(true);
+    console.log(quillRef);
   };
   const onClickBtnDelete = async (item) => {
     Modal.confirm({
@@ -250,6 +247,7 @@ const ContentPage = () => {
             {/* <Input placeholder="description" /> */}
 
             <ReactQuill
+              ref={quillRef}
               theme="snow"
               value={description}
               onChange={setDescription}

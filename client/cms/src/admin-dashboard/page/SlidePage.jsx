@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { request } from "../../config/request";
 import {
@@ -9,7 +8,6 @@ import {
   Modal,
   Input,
   Form,
-  Select,
   message,
   Image,
   Typography,
@@ -18,14 +16,12 @@ import MainPage from "../components/page/MainPage";
 
 const { Title } = Typography;
 
-const ImagePage = () => {
+const SlidePage = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
   const [formCat] = Form.useForm();
-  const { id } = useParams();
-  const contentId = id;
 
   const [fileSelected, setFileSelected] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
@@ -36,7 +32,7 @@ const ImagePage = () => {
     var filePreView = URL.createObjectURL(file);
     setFileSelected(file);
     setFilePreview(filePreView);
-    console.log(file);
+    // console.log(file);
     // console.log(filePreView);
   };
 
@@ -52,9 +48,9 @@ const ImagePage = () => {
 
   const getList = async () => {
     setLoading(true);
-    const res = await request(`medias/content/${contentId}`, "get");
+    const res = await request(`slides`, "get");
     if (res) {
-      setList(res);
+      setList(res.object);
       setLoading(false);
     }
   };
@@ -62,7 +58,6 @@ const ImagePage = () => {
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
       ...item,
-      contentId: contentId,
     });
     setOpen(true);
     setFilePreview(item.mediaUrl);
@@ -80,7 +75,7 @@ const ImagePage = () => {
         var data = {
           id: item.id,
         };
-        const res = await request(`medias/${data.id}`, "delete", data);
+        const res = await request(`slides/${data.id}`, "delete", data);
         if (res) {
           message.success("Delete Sucessful");
           getList();
@@ -94,19 +89,18 @@ const ImagePage = () => {
     var form = new FormData();
 
     if (id != null) {
-      form.append("mediaId", id);
+      form.append("slideId", id);
       form.append("file", fileSelected);
     } else {
       var data = {
         ...item,
         mediaUrl: filePreview,
-        contentId: contentId,
       };
     }
     var req = id == null ? data : form;
     // form.append("mediaType", item.mediaType);
     var method = id == null ? "post" : "put";
-    var url = id == null ? "medias" : `medias/photo`;
+    var url = id == null ? "slides" : `slides/upload/photo`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, req);
     console.log(method);
@@ -126,7 +120,7 @@ const ImagePage = () => {
   return (
     <MainPage loading={loading}>
       <Typography>
-        <Title level={3}>Manage Image</Title>
+        <Title level={3}>Manage Banner</Title>
       </Typography>
 
       <Space>
@@ -139,12 +133,6 @@ const ImagePage = () => {
         >
           New
         </Button>
-
-        <Link to="../dashboard/content/">
-          <Button type="primary" size="large">
-            Back to Content
-          </Button>
-        </Link>
       </Space>
 
       <Table
@@ -169,15 +157,15 @@ const ImagePage = () => {
             dataIndex: "name",
           },
           {
-            key: "mediaType",
-            title: "MediaType",
-            dataIndex: "mediaType",
+            key: "description",
+            title: "Description",
+            dataIndex: "description",
             responsive: ["sm"],
           },
           {
-            key: "mediaUrl",
-            title: "Image",
-            dataIndex: "mediaUrl",
+            key: "imageUrl",
+            title: "ImageUrl",
+            dataIndex: "imageUrl",
             responsive: ["sm"],
             render: (value) => {
               if (value != null && value != "") {
@@ -230,7 +218,7 @@ const ImagePage = () => {
       <Modal
         forceRender
         title={
-          formCat.getFieldValue("id") == null ? "New Image" : "Update Image"
+          formCat.getFieldValue("id") == null ? "New Banner" : "Update Banner"
         }
         open={open}
         onCancel={onCloseModal}
@@ -253,21 +241,16 @@ const ImagePage = () => {
               </Form.Item>
 
               <Form.Item
-                label="MediaType"
-                name={"mediaType"}
+                label="description"
+                name={"description"}
                 rules={[
                   {
                     required: true,
-                    message: "Please Select MediaType!",
+                    message: "Please Select description!",
                   },
                 ]}
               >
-                {/* <Input placeholder="nameEn" /> */}
-                <Select>
-                  <Select.Option value="image">Image</Select.Option>
-                  <Select.Option value="files">Files</Select.Option>
-                  <Select.Option value="video">Video</Select.Option>
-                </Select>
+                <Input placeholder="Name Image" />
               </Form.Item>
             </>
           ) : (
@@ -307,4 +290,4 @@ const ImagePage = () => {
   );
 };
 
-export default ImagePage;
+export default SlidePage;

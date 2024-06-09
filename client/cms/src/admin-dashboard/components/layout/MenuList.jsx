@@ -1,5 +1,6 @@
 import {
   AppstoreAddOutlined,
+  AppstoreOutlined,
   DesktopOutlined,
   // ProductOutlined,
   ShopOutlined,
@@ -21,6 +22,7 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem("Dashboard", "/dashboard", <AppstoreAddOutlined />),
+  getItem("Manage Banners", "/dashboard/manage-banners", <AppstoreOutlined />),
   getItem("Manage Category", "/dashboard/category", <TeamOutlined />),
   getItem("Manage Artcle", "/dashboard/article", <TeamOutlined />),
   getItem("Manage Content", "/dashboard/content", <TeamOutlined />),

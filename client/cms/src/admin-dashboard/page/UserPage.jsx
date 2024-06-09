@@ -7,17 +7,19 @@ import {
   Modal,
   Input,
   Form,
-  // Select,
+  Image,
   message,
-  // Tag,
+  Tag,
   Typography,
+  Select,
 } from "antd";
-// import { formartDateClient } from "../config/helper";
 import MainPage from "../components/page/MainPage";
 
 const { Title } = Typography;
 const UserPage = () => {
   const [list, setList] = useState([]);
+  const [roles, setRoles] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [formCat] = Form.useForm();
@@ -29,6 +31,7 @@ const UserPage = () => {
   useEffect(() => {
     formCat.setFieldsValue({
       firstname: "",
+      roles: "",
     });
     getList();
   }, [formCat]);
@@ -39,9 +42,11 @@ const UserPage = () => {
       firstname: filterRef.current.firstname,
     };
     const res = await request("users", "get", param);
+    const role = await request("roles", "get");
     setLoading(false);
     if (res) {
       setList(res.object);
+      setRoles(role.object);
     }
   };
 
@@ -53,8 +58,10 @@ const UserPage = () => {
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
       ...item,
+      roles: filterRef.current.roles,
     });
     setOpen(true);
+    console.log(item);
   };
   const onClickBtnDelete = async (item) => {
     Modal.confirm({
@@ -68,11 +75,12 @@ const UserPage = () => {
         var data = {
           id: item.id,
         };
-        const res = await request(`users/${data.id}`, "delete", data);
-        if (res) {
-          message.success("Delete Sucessful");
-          getList();
-        }
+        // const res = await request(`users/${data.id}`, "delete", data);
+        // if (res) {
+        //   message.success("Delete Sucessful");
+        //   getList();
+        // }
+        console.log(data);
       },
     });
   };
@@ -82,12 +90,11 @@ const UserPage = () => {
     var data = {
       ...item,
       id: id,
-      name: item.name,
     };
-    var method = id == null ? "post" : "put";
-    var url = id == null ? "users" : `users/${id}`;
+    // var method = id == null ? "post" : "put";
+    var url = id == null ? "users" : `users/update/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
-    const res = await request(url, method, data);
+    const res = await request(url, "post", data);
     if (res) {
       message.success(messages);
       getList();
@@ -103,7 +110,7 @@ const UserPage = () => {
   return (
     <MainPage loading={loading}>
       <Typography>
-        <Title level={3}>Manage Users</Title>
+        <Title level={3}>Manage Users </Title>
       </Typography>
       <Space>
         <Input.Search
@@ -159,18 +166,38 @@ const UserPage = () => {
             key: "Profile",
             title: "Profile",
             dataIndex: "profile",
+            render: (value) => {
+              if (value != null && value != "") {
+                return (
+                  <>
+                    <Image
+                      //  src={item.mediaUrl}
+                      src={value}
+                      width={40}
+                      height={30}
+                    />
+                  </>
+                );
+              } else {
+                return (
+                  <div
+                    style={{ height: 30, width: 40, backgroundColor: "#888" }}
+                  ></div>
+                );
+              }
+            },
           },
           {
             key: "status",
             title: "status",
             dataIndex: "status",
             responsive: ["md"],
-            // render: (value) =>
-            //   value == 1 ? (
-            //     <Tag color="green">Actived</Tag>
-            //   ) : (
-            //     <Tag color="red">InActived</Tag>
-            //   ),
+            render: (value) =>
+              value == "ACTIVE" ? (
+                <Tag color="green">ACTIVE</Tag>
+              ) : (
+                <Tag color="red">INACTIVIED</Tag>
+              ),
           },
           {
             key: "Action",
@@ -191,7 +218,7 @@ const UserPage = () => {
                   type="primary"
                   danger
                 >
-                  Delete
+                  Manage Status
                 </Button>
               </Space>
             ),
@@ -201,7 +228,7 @@ const UserPage = () => {
       <Modal
         forceRender
         title={
-          formCat.getFieldValue("id") == null ? "New Roles" : "Update Roles"
+          formCat.getFieldValue("id") == null ? "New Users" : "Update Users"
         }
         open={open}
         onCancel={onCloseModal}
@@ -209,16 +236,73 @@ const UserPage = () => {
       >
         <Form form={formCat} layout="vertical" onFinish={onFinish}>
           <Form.Item
-            label="Name"
-            name={"name"}
+            label="Frist Name"
+            name={"firstname"}
             rules={[
               {
                 required: true,
-                message: "Please input Name!",
+                message: "Please input Frist Name!",
               },
             ]}
           >
-            <Input placeholder="Name" />
+            <Input placeholder="Frist Name" />
+          </Form.Item>
+
+          <Form.Item
+            label="Last Name"
+            name={"lastname"}
+            rules={[
+              {
+                required: true,
+                message: "Please input Last Name!",
+              },
+            ]}
+          >
+            <Input placeholder="Last Name" />
+          </Form.Item>
+
+          <Form.Item
+            label="Email"
+            name={"email"}
+            rules={[
+              {
+                required: true,
+                message: "Please input Email!",
+              },
+            ]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
+
+          <Form.Item
+            label="Category Name"
+            name={"category"}
+            rules={[
+              {
+                required: true,
+                message: "Please Select Category!",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select Category"
+              showSearch
+              optionFilterProp="label"
+            >
+              {roles ? (
+                roles.map((item, index) => (
+                  <Select.Option
+                    label={item.name}
+                    key={index}
+                    value={item.name}
+                  >
+                    {item.name}
+                  </Select.Option>
+                ))
+              ) : (
+                <></>
+              )}
+            </Select>
           </Form.Item>
 
           <Form.Item style={{ textAlign: "right" }}>
