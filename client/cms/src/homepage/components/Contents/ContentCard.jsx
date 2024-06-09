@@ -5,9 +5,16 @@ const ContentCard = ({ content }) => {
         Content ID: {content.id}
       </h3>
       <p>Content Title: {content.title}</p>
-      <p>Content description: {content.description}</p>
+      <p>
+        Content description:{" "}
+        <span dangerouslySetInnerHTML={{ __html: content.description }} />
+      </p>
       <p>Article Id: {content.article.id}</p>
       <p>Article Name: {content.article.name}</p>
+      {/* <span dangerouslySetInnerHTML={{ __html: {content.description} }}>
+        {content.description}
+      </span> */}
+
       <p>Category ID: {content.article.category.id}</p>
       <p>Category Name: {content.article.category.nameEn}</p>
       {Array.isArray(content.mediaList) && content.mediaList.length > 0 ? (
