@@ -8,7 +8,6 @@ const Navbar = () => {
   const articles = useFetch("articles");
 
   const menuItems = [
-    { key: "/", label: "Home" },
     { key: "/about", label: "About" },
     { key: "/ourprograms", label: "Our Programs" },
     { key: "/admission", label: "Admission" },
@@ -49,7 +48,9 @@ const Navbar = () => {
     <header className="bg-green-300 text-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold">Logo</div>
+          <div className="text-2xl font-bold">
+            <Link to="/">Logo</Link>
+          </div>
           {/* Navigation menu */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6">

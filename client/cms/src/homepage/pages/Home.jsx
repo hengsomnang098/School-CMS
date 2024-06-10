@@ -11,14 +11,14 @@ const Home = () => {
         <Banner />
       </div>
       <div>
-        <About />
+        <Admission />
       </div>
       <div>
         <OurPrograms />
       </div>
 
       <div>
-        <Admission />
+        <About />
       </div>
 
       <div>

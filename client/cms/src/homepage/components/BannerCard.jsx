@@ -1,31 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { fetchData } from "../../config/api"; // Assuming fetchData is a function to fetch data
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import { fetchData } from "../../../config/api";
-
-import img1 from "../images/Gallaria1.png";
-import img2 from "../images/Galleria2.png";
-import img3 from "../images/Galleria3.png";
 
 const BannerCard = () => {
+  const [slides, setSlides] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const data = await fetchData("slides");
+        if (data && data.object && Array.isArray(data.object)) {
+          setSlides(data.object);
+        } else {
+          setError("No slides found in the response");
+        }
+      } catch (error) {
+        setError("Error fetching slides: " + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSlides();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <Carousel
-      showArrows={true}
-      infiniteLoop={true}
-      showThumbs={false}
-      autoPlay={true}
-      interval={2000}
-    >
-      <div>
-        <img src={img1} className="h-[500px] w-auto" alt="First slide" />
-      </div>
-      <div>
-        <img src={img2} className="h-[500px] w-auto" alt="Second slide" />
-      </div>
-      <div>
-        <img src={img3} className="h-[400px] w-auto" alt="Third slide" />
-      </div>
-    </Carousel>
+    <div className="relative">
+      <Carousel
+        showArrows={true}
+        showThumbs={false}
+        showStatus={false}
+        infiniteLoop={true}
+        autoPlay={true}
+        interval={5000}
+        stopOnHover={true}
+        dynamicHeight={true}
+      >
+        {slides.map((slide) => (
+          <div key={slide.id}>
+            <img
+              src={slide.imageUrl}
+              alt={slide.name}
+              className="w-full h-500px object-cover"
+            />
+          </div>
+        ))}
+      </Carousel>
+    </div>
   );
 };
 
