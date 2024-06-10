@@ -50,11 +50,20 @@ const ImagePage = () => {
     getList();
   }, [formCat]);
 
+  const filterRef = useRef({
+    contentId: contentId,
+    mediaType: "",
+  });
+
   const getList = async () => {
     setLoading(true);
-    const res = await request(`medias/content/${contentId}`, "get");
+    var param = {
+      contentId: filterRef.current.contentId,
+      mediaType: filterRef.current.mediaType,
+    };
+    const res = await request(`medias`, "get", param);
     if (res) {
-      setList(res);
+      setList(res.object);
       setLoading(false);
     }
   };
@@ -106,10 +115,9 @@ const ImagePage = () => {
     var req = id == null ? data : form;
     // form.append("mediaType", item.mediaType);
     var method = id == null ? "post" : "put";
-    var url = id == null ? "medias" : `medias/photo`;
+    var url = id == null ? "medias" : `medias/upload/photo`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, req);
-    console.log(method);
 
     if (res) {
       message.success(messages);

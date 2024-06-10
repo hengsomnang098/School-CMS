@@ -26,7 +26,7 @@ export const request = async (
   }
   return axios({
     url: Config.base_url + url + param_get,
-    method: method,
+    method: method.toLowerCase(),
     data: data,
     headers: {
       ...headers,

@@ -93,7 +93,7 @@ const ContentPage = () => {
         var data = {
           id: item.id,
         };
-        const res = await request(`categories/${data.id}`, "delete", data);
+        const res = await request(`contents/${data.id}`, "delete", data);
         if (res) {
           message.success("Delete Sucessful");
           getList();
