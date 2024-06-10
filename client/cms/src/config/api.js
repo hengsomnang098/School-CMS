@@ -31,15 +31,6 @@ export const fetchArticlesByCatName = async (categoryName) => {
   }
 };
 
-export const fetchArticlesByCategoryId = async (id) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/categories/${id}/articles`);
-    return response.data.object;
-  } catch (error) {
-    console.error(`Error fetching articles for category ID ${id}:`, error);
-    throw error;
-  }
-};
 export const fetchContentsByArticlesId = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/articles/${id}/contents`);

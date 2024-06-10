@@ -10,10 +10,10 @@ const GetArticlesOurPrograms = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        console.log(`Fetching articles for category: ${categoryName}`);
+        // console.log(`Fetching articles for category: ${categoryName}`);
         const response = await fetchArticlesByCatName(categoryName);
 
-        console.log("Response received:", response);
+        // console.log("Response received:", response);
 
         if (response && Array.isArray(response.object)) {
           setArticles(response.object);

@@ -1,5 +1,5 @@
 import CategoryLists from "../components/Categories/CategoryList";
-import AllArticlesOurPrograms from "../components/OurPrograms/AllArticlesOurPrograms";
+import AllArticlesOurPrograms from "../components/OurPrograms/GetArticlesOurPrograms";
 const OurPrograms = () => {
   return (
     <div>
