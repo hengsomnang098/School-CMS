@@ -58,10 +58,10 @@ const UserPage = () => {
   const onClickBtnEdit = (item) => {
     formCat.setFieldsValue({
       ...item,
-      roles: filterRef.current.roles,
+      roles: item.roles,
     });
-    setOpen(true);
     console.log(item);
+    setOpen(true);
   };
   const onClickBtnDelete = async (item) => {
     Modal.confirm({
@@ -75,12 +75,12 @@ const UserPage = () => {
         var data = {
           id: item.id,
         };
+        console.log(data);
         // const res = await request(`users/${data.id}`, "delete", data);
         // if (res) {
         //   message.success("Delete Sucessful");
         //   getList();
         // }
-        console.log(data);
       },
     });
   };
@@ -91,7 +91,6 @@ const UserPage = () => {
       ...item,
       id: id,
     };
-    // var method = id == null ? "post" : "put";
     var url = id == null ? "users" : `users/update/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, "post", data);
@@ -151,20 +150,30 @@ const UserPage = () => {
             key: "firstname",
             title: "Firstname",
             dataIndex: "firstname",
+            responsive: ["sm"],
           },
           {
             key: "lastname",
             title: "Lastname",
             dataIndex: "lastname",
+            responsive: ["sm"],
           },
           {
             key: "email",
             title: "Email",
             dataIndex: "email",
+            // responsive: ["sm"],
+          },
+          {
+            key: "roles",
+            title: "Roles",
+            dataIndex: "roles",
+            responsive: ["sm"],
           },
           {
             key: "Profile",
             title: "Profile",
+            responsive: ["sm"],
             dataIndex: "profile",
             render: (value) => {
               if (value != null && value != "") {
@@ -275,17 +284,17 @@ const UserPage = () => {
           </Form.Item>
 
           <Form.Item
-            label="Category Name"
-            name={"category"}
+            label="Roles Name"
+            name={"roles"}
             rules={[
               {
                 required: true,
-                message: "Please Select Category!",
+                message: "Please Select Roles!",
               },
             ]}
           >
             <Select
-              placeholder="Select Category"
+              placeholder="Select Roles"
               showSearch
               optionFilterProp="label"
             >

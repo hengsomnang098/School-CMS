@@ -28,6 +28,8 @@ import ArticlesPageHome from "./homepage/pages/ArticlesPage";
 import Admission from "./homepage/pages/Admission";
 import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
 import SlidePage from "./admin-dashboard/page/SlidePage";
+import StudentPage from "./admin-dashboard/page/StudentPage";
+import StaffPage from "./admin-dashboard/page/StaffPage";
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
             <Route path="/dashboard/users" element={<UserPage />} />
             <Route path="/dashboard/roles" element={<RolePage />} />
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
+            <Route path="/dashboard/student" element={<StudentPage />} />
+            <Route path="/dashboard/staff" element={<StaffPage />} />
             <Route
               path="/dashboard/content/medias/:id"
               element={<ImagePage />}

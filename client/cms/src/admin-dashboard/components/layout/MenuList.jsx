@@ -23,12 +23,14 @@ function getItem(label, key, icon, children) {
 const items = [
   getItem("Dashboard", "/dashboard", <AppstoreAddOutlined />),
   getItem("Manage Banners", "/dashboard/manage-banners", <AppstoreOutlined />),
+  getItem("Manage Student", "/dashboard/student", <AppstoreOutlined />),
   getItem("Manage Category", "/dashboard/category", <TeamOutlined />),
   getItem("Manage Artcle", "/dashboard/article", <TeamOutlined />),
   getItem("Manage Content", "/dashboard/content", <TeamOutlined />),
   getItem("Employee", "employee", <TeamOutlined />, [
-    getItem("Manage Users", "/dashboard/users", <TeamOutlined />),
-    getItem("Manage Role", "/dashboard/roles", <TeamOutlined />),
+    getItem("Users", "/dashboard/users", <TeamOutlined />),
+    getItem("Roles", "/dashboard/roles", <TeamOutlined />),
+    getItem("Staffs", "/dashboard/staff", <TeamOutlined />),
   ]),
   getItem("About us", "/dashboard/about", <ShopOutlined />),
   getItem("Contact Us", "/dashboard/contact", <ShopOutlined />),
@@ -54,7 +56,7 @@ function MenuList({ darktheme }) {
     <>
       <Menu
         theme={darktheme ? "dark" : "light"}
-        className="mt-8 flex flex-col gap-[15px] text-base"
+        className="mt-8 flex flex-col gap-[15px] text-base w-full"
         mode="inline"
         defaultSelectedKeys={["1"]}
         items={items}
