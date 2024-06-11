@@ -11,7 +11,7 @@ const Navbar = () => {
   const articles = useFetch("articles");
   const [ourProgramsArticles, setOurProgramsArticles] = useState([]);
   const [admissionArticles, setAdmissionArticles] = useState([]);
-  const [newsArticles, setNewArticles] = useState([]);
+  const [newsArticles, setNewsArticles] = useState([]);
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
@@ -28,7 +28,7 @@ const Navbar = () => {
     };
     const fetchAdmissionArticles = async () => {
       try {
-        const response = await fetchArticlesByCatName("Admission");
+        const response = await fetchArticlesByCatName("Admissions");
         setAdmissionArticles(response.object);
       } catch (error) {
         console.error("Error fetching 'Admission' articles:", error.message);
@@ -37,7 +37,7 @@ const Navbar = () => {
     const fetchNewsArticles = async () => {
       try {
         const response = await fetchArticlesByCatName("News");
-        setNewArticles(response.object);
+        setNewsArticles(response.object);
       } catch (error) {
         console.error("Error fetching 'News' articles:", error.message);
       }
@@ -59,7 +59,7 @@ const Navbar = () => {
     },
     {
       key: "/admission",
-      label: "Admission",
+      label: "Admissions",
       children: admissionArticles.map((article) => ({
         key: `/article/${article.id}`,
         label: article.name,

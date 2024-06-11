@@ -31,6 +31,7 @@ import SlidePage from "./admin-dashboard/page/SlidePage";
 import StudentPage from "./admin-dashboard/page/StudentPage";
 import StaffPage from "./admin-dashboard/page/StaffPage";
 import ArticleList from "./homepage/components/Articles/ArticleList";
+import NewsPage from "./homepage/pages/NewsPage";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
             <Route path="/category" element={<CategoryList />} />
             <Route path="/categories" element={<CategoryList />} />
             <Route path="/articles" element={<ArticleList />} />
+            <Route path="/news" element={<NewsPage />} />
             <Route path="/admission" element={<Admission />} />
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/category/:id/articles" component={<AllArtByCat />} />
