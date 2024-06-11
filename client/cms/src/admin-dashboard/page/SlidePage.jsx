@@ -88,22 +88,20 @@ const SlidePage = () => {
     var id = formCat.getFieldValue("id");
     var form = new FormData();
 
-    if (id != null) {
+    var data = {
+      ...item,
+      imageUrl: filePreview,
+    };
+
+    if (fileSelected != null && id != null) {
       form.append("slideId", id);
       form.append("file", fileSelected);
-    } else {
-      var data = {
-        ...item,
-        mediaUrl: filePreview,
-      };
+      await request(`slides/upload/photo`, "put", form);
     }
-    var req = id == null ? data : form;
-    // form.append("mediaType", item.mediaType);
     var method = id == null ? "post" : "put";
-    var url = id == null ? "slides" : `slides/upload/photo`;
+    var url = id == null ? "slides" : `slides/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
-    const res = await request(url, method, req);
-    console.log(method);
+    const res = await request(url, method, data);
 
     if (res) {
       message.success(messages);
@@ -225,37 +223,35 @@ const SlidePage = () => {
         footer={null}
       >
         <Form form={formCat} layout="vertical" onFinish={onFinish}>
-          {formCat.getFieldValue("id") == null ? (
-            <>
-              <Form.Item
-                label="Name"
-                name={"name"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input nameKh!",
-                  },
-                ]}
-              >
-                <Input placeholder="Name Image" />
-              </Form.Item>
+          <Form.Item
+            label="Name"
+            name={"name"}
+            rules={[
+              {
+                required: true,
+                message: "Please input nameKh!",
+              },
+            ]}
+          >
+            <Input placeholder="Name Image" />
+          </Form.Item>
 
-              <Form.Item
-                label="description"
-                name={"description"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Select description!",
-                  },
-                ]}
-              >
-                <Input placeholder="Name Image" />
-              </Form.Item>
-            </>
-          ) : (
+          <Form.Item
+            label="description"
+            name={"description"}
+            rules={[
+              {
+                required: true,
+                message: "Please Select description!",
+              },
+            ]}
+          >
+            <Input placeholder="Name Image" />
+          </Form.Item>
+          {formCat.getFieldValue("id") != null ? (
             <>
-              <Form.Item label="MediaUrl" name={"mediaUrl"}>
+              {" "}
+              <Form.Item label="imageUrl" name={"imageUrl"}>
                 <Image
                   // src={list.mediaUrl}
                   src={
@@ -274,6 +270,8 @@ const SlidePage = () => {
               />
               <button onClick={onClearImage}>Clear Image</button>
             </>
+          ) : (
+            <></>
           )}
 
           <Form.Item style={{ textAlign: "right" }}>

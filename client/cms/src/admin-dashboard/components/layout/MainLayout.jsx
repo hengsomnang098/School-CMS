@@ -35,7 +35,7 @@ function MainLayout() {
   }
   return (
     <>
-      <Layout className="w-full h-[100vh] overflow-hidden justify-center ">
+      <Layout className="w-full overflow-auto justify-center fixed h-[100vh] left-0 top-0 bottom-0">
         <Sider
           collapsed={collapsed}
           theme={darkTheme ? "dark" : "light "}
@@ -47,9 +47,6 @@ function MainLayout() {
 
           {/* Menu list */}
           <MenuList darktheme={darkTheme} />
-
-          {/* Toogle Darktheme */}
-          <ToggleTheme darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
         <Layout>
           <Header
@@ -65,11 +62,13 @@ function MainLayout() {
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuOutlined />}
             />
+            {/* Toogle Darktheme */}
+            <ToggleTheme darkTheme={darkTheme} toggleTheme={toggleTheme} />
           </Header>
           <Content>
             <Outlet />
           </Content>
-          <FooterPage />
+          {/* <FooterPage /> */}
         </Layout>
       </Layout>
     </>
