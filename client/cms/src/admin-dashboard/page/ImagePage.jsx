@@ -74,7 +74,7 @@ const ImagePage = () => {
       contentId: contentId,
     });
     setOpen(true);
-    setFilePreview(item.mediaUrl);
+    // setFilePreview(item.mediaUrl);
   };
 
   const onClickBtnDelete = async (item) => {
