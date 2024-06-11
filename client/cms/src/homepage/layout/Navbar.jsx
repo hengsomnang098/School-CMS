@@ -39,10 +39,10 @@ const Navbar = () => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setNavbarBackground("bg-transparent");
-        setNavbarShadow(false); // No shadow when at top
+        setNavbarShadow(false);
       } else {
         setNavbarBackground("bg-white");
-        setNavbarShadow(true); // Add shadow when scrolled down
+        setNavbarShadow(true);
       }
     };
 
