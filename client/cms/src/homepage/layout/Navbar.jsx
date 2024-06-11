@@ -1,34 +1,75 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import logoLarge from "../../assets/SISlogo.png"; // Large screen logo
-import logoSmall from "../../assets/SISlogo2.png"; // Small screen logo
-
+import { fetchArticlesByCatName } from "../../config/api";
+import logoLarge from "../../assets/SISlogo.png";
+import logoSmall from "../../assets/SISlogo2.png";
+import MobileMenu from "../components/MobileMenu";
 const Navbar = () => {
   const navigate = useNavigate();
   const categories = useFetch("categories");
   const articles = useFetch("articles");
+  const [ourProgramsArticles, setOurProgramsArticles] = useState([]);
+  const [admissionArticles, setAdmissionArticles] = useState([]);
+  const [newsArticles, setNewArticles] = useState([]);
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
-  const [navbarShadow, setNavbarShadow] = useState(false); // State to toggle shadow visibility
+  const [navbarShadow, setNavbarShadow] = useState(false);
+
+  useEffect(() => {
+    const fetchOurProgramsArticles = async () => {
+      try {
+        const response = await fetchArticlesByCatName("Our Programs");
+        setOurProgramsArticles(response.object);
+      } catch (error) {
+        console.error("Error fetching 'Our Programs' articles:", error.message);
+      }
+    };
+    const fetchAdmissionArticles = async () => {
+      try {
+        const response = await fetchArticlesByCatName("Admission");
+        setAdmissionArticles(response.object);
+      } catch (error) {
+        console.error("Error fetching 'Admission' articles:", error.message);
+      }
+    };
+    const fetchNewsArticles = async () => {
+      try {
+        const response = await fetchArticlesByCatName("News");
+        setNewArticles(response.object);
+      } catch (error) {
+        console.error("Error fetching 'News' articles:", error.message);
+      }
+    };
+    fetchNewsArticles();
+    fetchAdmissionArticles();
+    fetchOurProgramsArticles();
+  }, []);
 
   const menuItems = [
     { key: "/about", label: "About" },
-    { key: "/ourprograms", label: "Our Programs" },
-    { key: "/admission", label: "Admission" },
     {
-      key: "categories",
-      label: "Categories",
-      children: categories.map((category) => ({
-        key: `/category/${category.id}`,
-        label: category.nameEn,
+      key: "/ourprograms",
+      label: "Our Programs",
+      children: ourProgramsArticles.map((article) => ({
+        key: `/category/${article.id}`,
+        label: article.name,
       })),
     },
     {
-      key: "articles",
-      label: "Articles",
-      children: articles.map((article) => ({
+      key: "/admission",
+      label: "Admission",
+      children: admissionArticles.map((article) => ({
+        key: `/article/${article.id}`,
+        label: article.name,
+      })),
+    },
+
+    {
+      key: "/news",
+      label: "News",
+      children: newsArticles.map((article) => ({
         key: `/article/${article.id}`,
         label: article.name,
       })),
@@ -84,7 +125,7 @@ const Navbar = () => {
           />
         </Link>
         <nav>
-          <ul className="hidden md:flex text-md font-serif font-bold  drop-shadow-lg space-x-6">
+          <ul className="hidden md:flex text-md font-serif font-bold drop-shadow-lg space-x-6">
             {menuItems.map((item) => (
               <li
                 key={item.key}
@@ -93,7 +134,7 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className="py-2 text-md px-4 rounded-md transition-colors duration-300 relative overflow-hidden"
+                  className="py-2 text-md px-4 rounded-md transition-colors duration-300 relative overflow-hidden group-hover:text-green-500"
                   onClick={() => handleClick(item.key)}
                 >
                   {item.label}
@@ -157,35 +198,11 @@ const Navbar = () => {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-lg absolute top-[130px] left-0 w-full z-10">
-          <nav className="px-2 pt-2 pb-4 space-y-1">
-            {menuItems.map((item) => (
-              <div key={item.key}>
-                <Link
-                  to={item.key}
-                  className="block text-green-600 hover:text-green-800 px-3 py-2 rounded-md text-base font-medium"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-                {item.children && (
-                  <div className="ml-4">
-                    {item.children.map((subItem) => (
-                      <Link
-                        key={subItem.key}
-                        to={subItem.key}
-                        className="block text-green-600 hover:text-green-800 px-3 py-2 rounded-md text-base font-medium"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {subItem.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
+        <MobileMenu
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          menuItems={menuItems}
+        />
       )}
     </header>
   );

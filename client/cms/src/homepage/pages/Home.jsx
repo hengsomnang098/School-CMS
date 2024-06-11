@@ -7,9 +7,7 @@ import Contact from "./Contact";
 const Home = () => {
   return (
     <div className="bg-gray-100">
-      <div>
-        <Banner />
-      </div>
+      <div></div>
       <div>
         <Admission />
       </div>
