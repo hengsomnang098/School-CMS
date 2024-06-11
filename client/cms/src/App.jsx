@@ -30,6 +30,7 @@ import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
 import SlidePage from "./admin-dashboard/page/SlidePage";
 import StudentPage from "./admin-dashboard/page/StudentPage";
 import StaffPage from "./admin-dashboard/page/StaffPage";
+import ArticleList from "./homepage/components/Articles/ArticleList";
 
 function App() {
   return (
@@ -63,8 +64,9 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
             <Route path="/category" element={<CategoryList />} />
+            <Route path="/categories" element={<CategoryList />} />
+            <Route path="/articles" element={<ArticleList />} />
             <Route path="/admission" element={<Admission />} />
-            <Route path="/articlepage" element={<ArticlesPageHome />} />
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/category/:id/articles" component={<AllArtByCat />} />
             <Route path="/article/:id" element={<ListByArticle />} />
