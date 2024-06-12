@@ -8,10 +8,10 @@ import {
   Input,
   Form,
   Image,
-  message,
   Tag,
   Typography,
   Select,
+  message,
 } from "antd";
 import MainPage from "../components/page/MainPage";
 
@@ -88,12 +88,12 @@ const UserPage = () => {
     });
     setFilePreview(item.profile);
     setOpen(true);
-    console.log(item);
   };
   const onClickBtnDelete = async (item) => {
+    var status = item.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
     Modal.confirm({
       title: "Delete",
-      content: "Are you sure you want to delete ?",
+      content: `Are you sure you want to ${status} ?`,
       okText: "Yes",
       cancelText: "No",
       okType: "danger",
@@ -103,12 +103,13 @@ const UserPage = () => {
         var data = {
           id: item.id,
         };
-        console.log(data);
-        // const res = await request(`users/${data.id}`, "delete", data);
-        // if (res) {
-        //   message.success("Delete Sucessful");
-        //   getList();
-        // }
+        var con = item.status === "ACTIVE" ? "disable" : "enable";
+        const res = await request(`users/${con}/${data.id}`, "post", data);
+        if (res) {
+          message.success(res);
+          getList();
+        }
+        setLoading(false);
       },
     });
   };
@@ -119,6 +120,7 @@ const UserPage = () => {
     var form = new FormData();
     var data = {
       ...item,
+      roles: [item.roles],
       id: id,
     };
     if (fileSelected != null && id != null) {
@@ -134,14 +136,11 @@ const UserPage = () => {
     }
 
     var url = id == null ? "auth/register" : `users/update/${id}`;
-    var messages = id
-      ? "User update  sucessfull"
-      : "New User Has Been Create sucessfull";
     try {
       const res = await request(url, "post", data);
-      console.log("Response Data:", res); // Log the response data
+      var message = id == null ? "Register Sucessful" : "Update Sucessful";
       if (res) {
-        message.success(messages);
+        message.success(message);
         getList();
         onCloseModal();
       }
@@ -265,6 +264,7 @@ const UserPage = () => {
             key: "Action",
             title: "Action",
             dataIndex: "Action",
+            responsive: ["sm"],
             render: (value, item) => (
               <Space>
                 <Button
@@ -279,9 +279,9 @@ const UserPage = () => {
                   onClick={() => onClickBtnDelete(item)}
                   type="primary"
                   danger
-                  setLoading={loading}
+                  loading={loading}
                 >
-                  Manage Status
+                  {item.status == "ACTIVE" ? "Inactive" : "Active"}
                 </Button>
               </Space>
             ),
@@ -297,7 +297,12 @@ const UserPage = () => {
         onCancel={onCloseModal}
         footer={null}
       >
-        <Form form={formCat} layout="vertical" onFinish={onFinish}>
+        <Form
+          name="registerForm"
+          form={formCat}
+          layout="vertical"
+          onFinish={onFinish}
+        >
           <Form.Item
             label="Frist Name"
             name={"firstName"}
@@ -353,12 +358,12 @@ const UserPage = () => {
           <Form.Item
             label="Roles Name"
             name={"roles"}
-            rules={[
-              {
-                required: true,
-                message: "Please Select Roles!",
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: "Please Select Roles!",
+            //   },
+            // ]}
           >
             <Select
               placeholder="Select Roles"

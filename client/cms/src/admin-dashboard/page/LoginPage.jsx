@@ -8,14 +8,11 @@ import {
   setUser,
 } from "../../config/helper";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
-    setLoading(true);
     var email = values.email;
     var password = values.password;
     if (email == "" || password == "") {
@@ -30,19 +27,15 @@ const LoginPage = () => {
     if (res) {
       if (res.error) {
         alert(res.message);
-        setLoading(false);
       } else {
         // Login success
         setUser(res.object.email);
         setAccessToken(res.object.token);
-        // setRefreshToken(request.refresh_token);
         setRoles(res.object.roles);
 
         navigate("/dashboard");
         window.location.reload();
-        // console.log(res.user);
       }
-      setLoading(false);
     }
   };
 
@@ -87,7 +80,7 @@ const LoginPage = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" setLoading={loading}>
+          <Button type="primary" htmlType="submit">
             Log in
           </Button>
         </Form.Item>
