@@ -84,7 +84,7 @@ const UserPage = () => {
       firstName: item.firstname,
       lastName: item.lastname,
       email: item.email,
-      roles: item.roles,
+      roles: item.roles[0],
     });
     setFilePreview(item.profile);
     setOpen(true);
@@ -127,6 +127,7 @@ const UserPage = () => {
       form.append("userId", id);
       form.append("file", fileSelected);
       const img = await request(`users/update/profile`, "put", form);
+      setLoading(false);
       if (img) {
         data.profile = img;
       } else {
@@ -138,15 +139,18 @@ const UserPage = () => {
     var url = id == null ? "auth/register" : `users/update/${id}`;
     try {
       const res = await request(url, "post", data);
-      var message = id == null ? "Register Sucessful" : "Update Sucessful";
+      var messages = id == null ? "Register Sucessful" : "Update Sucessful";
       if (res) {
-        message.success(message);
+        message.success(messages);
         getList();
         onCloseModal();
       }
     } catch (error) {
       console.error("Error Response:", error.response?.data); // Log the error response
       message.error("An error occurred while processing your request.");
+      // console.log(error);
+      getList();
+      onCloseModal();
       setLoading(false);
     } finally {
       setLoading(false);
