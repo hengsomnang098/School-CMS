@@ -3,6 +3,7 @@ import { Button, Form, Input } from "antd";
 import { request } from "../../config/request";
 import {
   setAccessToken,
+  setRoles,
   //  setRefreshToken,
   setUser,
 } from "../../config/helper";
@@ -29,10 +30,12 @@ const LoginPage = () => {
       } else {
         // Login success
         setUser(res.object.email);
-
         setAccessToken(res.object.token);
         // setRefreshToken(request.refresh_token);
+        setRoles(res.object.roles);
+
         navigate("/dashboard");
+        window.location.reload();
         // console.log(res.user);
       }
     }

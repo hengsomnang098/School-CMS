@@ -24,7 +24,7 @@ import Layout from "./homepage/layout/Layout";
 import CategoryList from "./homepage/components/Categories/CategoryList";
 import ListByCategory from "./homepage/components/Categories/ListByCategory";
 import ListByArticle from "./homepage/components/Articles/ListByArticle";
-import ArticlesPageHome from "./homepage/pages/ArticlesPage";
+
 import Admission from "./homepage/pages/Admission";
 import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
 import SlidePage from "./admin-dashboard/page/SlidePage";
@@ -32,6 +32,7 @@ import StudentPage from "./admin-dashboard/page/StudentPage";
 import StaffPage from "./admin-dashboard/page/StaffPage";
 import ArticleList from "./homepage/components/Articles/ArticleList";
 import NewsPage from "./homepage/pages/NewsPage";
+import RequireAuth from "./admin-dashboard/components/page/RequireAuth";
 
 function App() {
   return (
@@ -46,15 +47,23 @@ function App() {
             <Route path="/dashboard/category" element={<CategoryPage />} />
             <Route path="/dashboard/article" element={<ArticlesPage />} />
             <Route path="/dashboard/content" element={<ContentPage />} />
-            <Route path="/dashboard/users" element={<UserPage />} />
-            <Route path="/dashboard/roles" element={<RolePage />} />
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
             <Route path="/dashboard/student" element={<StudentPage />} />
-            <Route path="/dashboard/staff" element={<StaffPage />} />
+
             <Route
               path="/dashboard/content/medias/:id"
               element={<ImagePage />}
             />
+
+            {/* Protected Route  */}
+            <Route element={<RequireAuth />}>
+              <Route path="/dashboard/staff" element={<StaffPage />} />
+              <Route path="/dashboard/users" element={<UserPage />} />
+              <Route path="/dashboard/roles" element={<RolePage />} />
+            </Route>
+
+            {/* Protected Route  */}
+
             <Route path="*" element={<NotFoundPage />} />
           </Route>
 

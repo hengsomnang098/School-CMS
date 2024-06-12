@@ -36,7 +36,9 @@ const StaffPage = () => {
   };
 
   const onClearImage = () => {
-    fileRef.current.value = null;
+    if (fileRef.current) {
+      fileRef.current.value = null;
+    }
     setFilePreview(null);
     setFileSelected(null);
   };

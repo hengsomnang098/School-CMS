@@ -6,7 +6,7 @@ import ToggleTheme from "./ToggleTheme";
 import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
-import FooterPage from "./Footer";
+// import FooterPage from "./Footer";
 import { getUser, isLogin } from "../../../config/helper";
 // import { getUser } from "../../config/helper";
 
@@ -14,7 +14,6 @@ const { Header, Sider } = Layout;
 function MainLayout() {
   const [darkTheme, setDarkTheme] = useState(true);
   const [collapsed, setCollapsed] = useState(true);
-
   const toggleTheme = () => {
     setDarkTheme(!darkTheme);
   };

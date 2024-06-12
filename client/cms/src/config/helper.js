@@ -40,6 +40,19 @@ export const setAccessToken = (token) => {
   localStorage.setItem("token", token);
 };
 
+export const setRoles = (roles) => {
+  localStorage.setItem("roles", JSON.stringify(roles));
+};
+
+export const getRoles = () => {
+  var roles = localStorage.getItem("roles");
+  if (roles != null && roles != "") {
+    roles = JSON.parse(roles);
+    return roles;
+  }
+  return "";
+};
+
 export const getAccessToken = (token) => {
   return localStorage.getItem("token", token);
 };
@@ -57,6 +70,7 @@ export const logout = () => {
   localStorage.setItem("isLogin", "0");
   localStorage.setItem("token", "");
   // localStorage.setItem("refresh_token", "");
+  localStorage.setItem("roles", "");
   window.location.href = "login";
 };
 

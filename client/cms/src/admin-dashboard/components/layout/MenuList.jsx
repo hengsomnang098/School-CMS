@@ -9,8 +9,9 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../config/helper";
+import { getRoles, logout } from "../../../config/helper";
 
+const roles = getRoles();
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -27,18 +28,21 @@ const items = [
   getItem("Manage Category", "/dashboard/category", <TeamOutlined />),
   getItem("Manage Artcle", "/dashboard/article", <TeamOutlined />),
   getItem("Manage Content", "/dashboard/content", <TeamOutlined />),
-  getItem("Employee", "employee", <TeamOutlined />, [
-    getItem("Users", "/dashboard/users", <TeamOutlined />),
-    getItem("Roles", "/dashboard/roles", <TeamOutlined />),
-    getItem("Staffs", "/dashboard/staff", <TeamOutlined />),
-  ]),
+
+  // need Permission to render
+  ...(roles.includes("SUPER-ADMIN") || roles.includes("ADMIN")
+    ? [
+        getItem("Employee", "employee", <TeamOutlined />, [
+          getItem("Users", "/dashboard/users", <TeamOutlined />),
+          getItem("Roles", "/dashboard/roles", <TeamOutlined />),
+          getItem("Staffs", "/dashboard/staff", <TeamOutlined />),
+        ]),
+      ]
+    : ""),
+  // ----------------------------
+
   getItem("About us", "/dashboard/about", <ShopOutlined />),
   getItem("Contact Us", "/dashboard/contact", <ShopOutlined />),
-  // getItem("System", "system", <UserOutlined />, [
-  //   getItem("Order Status", "order-status"),
-  //   getItem("Payment method", "payment-method"),
-  //   getItem("Role", "role"),
-  // ]),
   getItem("Logout", "logout", <DesktopOutlined />),
 ];
 
