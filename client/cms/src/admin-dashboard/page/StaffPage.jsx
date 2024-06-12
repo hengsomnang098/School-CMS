@@ -92,7 +92,7 @@ const StaffPage = () => {
     if (fileSelected != null && id != null) {
       form.append("teamId", id);
       form.append("file", fileSelected);
-      await request(`teams/upload/photo`, "put", form);
+      await request(`teams/upload/image`, "put", form);
     }
     var method = id == null ? "post" : "put";
     var url = id == null ? "teams" : `teams/${id}`;

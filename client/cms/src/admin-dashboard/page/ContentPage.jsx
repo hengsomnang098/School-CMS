@@ -103,6 +103,7 @@ const ContentPage = () => {
   };
 
   const onFinish = async (item) => {
+    setLoading(true);
     var id = formCat.getFieldValue("id");
     // item.description = description;
     var data = {
@@ -312,7 +313,7 @@ const ContentPage = () => {
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
               <Button onClick={onCloseModal}>Cancel</Button>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
                 {formCat.getFieldValue("id") == null ? "Save" : "Update"}
               </Button>
             </Space>

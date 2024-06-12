@@ -87,17 +87,20 @@ const SlidePage = () => {
   const onFinish = async (item) => {
     var id = formCat.getFieldValue("id");
     var form = new FormData();
-
     var data = {
       ...item,
-      imageUrl: filePreview,
     };
-
     if (fileSelected != null && id != null) {
       form.append("slideId", id);
       form.append("file", fileSelected);
-      await request(`slides/upload/photo`, "put", form);
+      const img = await request(`slides/upload/image`, "put", form);
+      if (img) {
+        data.imageUrl = img;
+      } else {
+        return false;
+      }
     }
+
     var method = id == null ? "post" : "put";
     var url = id == null ? "slides" : `slides/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";

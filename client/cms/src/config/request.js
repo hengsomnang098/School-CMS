@@ -30,7 +30,7 @@ export const request = async (
     data: data,
     headers: {
       ...headers,
-      Authorization: "JWT " + token,
+      Authorization: "Bearer " + token,
     },
   })
     .then((res) => {
