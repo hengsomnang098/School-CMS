@@ -2,7 +2,7 @@ import React from "react";
 
 const ArticleCardOP = ({ article }) => {
   return (
-    <div className="border p-4 mb-4">
+    <div className="border-t-4 p-4 mb-4">
       <h3 className="text-lg font-bold text-blue-500">
         Article ID: {article.id}
       </h3>

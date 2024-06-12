@@ -1,5 +1,5 @@
 import React from "react";
-import BannerCarousel from "../components/BannerCard"; // Adjust the path accordingly
+import BannerCarousel from "../components/BannerCard";
 
 const App = () => {
   return (
