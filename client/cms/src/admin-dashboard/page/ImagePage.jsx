@@ -89,6 +89,7 @@ const ImagePage = () => {
         var data = {
           id: item.id,
         };
+        setLoading(true);
         const res = await request(`medias/${data.id}`, "delete", data);
         if (res) {
           message.success("Delete Sucessful");
@@ -99,6 +100,7 @@ const ImagePage = () => {
   };
 
   const onFinish = async (item) => {
+    setLoading(true);
     var id = formCat.getFieldValue("id");
     var form = new FormData();
 
@@ -226,6 +228,7 @@ const ImagePage = () => {
                   onClick={() => onClickBtnDelete(item)}
                   type="primary"
                   danger
+                  loading={loading}
                 >
                   Delete
                 </Button>
@@ -304,7 +307,7 @@ const ImagePage = () => {
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
               <Button onClick={onCloseModal}>Cancel</Button>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
                 {formCat.getFieldValue("id") == null ? "Save" : "Update"}
               </Button>
             </Space>

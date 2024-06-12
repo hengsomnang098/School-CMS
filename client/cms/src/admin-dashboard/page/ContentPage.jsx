@@ -232,6 +232,7 @@ const ContentPage = () => {
                   onClick={() => onClickBtnDelete(item)}
                   type="primary"
                   danger
+                  loading={loading}
                 >
                   Delete
                 </Button>

@@ -72,6 +72,7 @@ const SlidePage = () => {
       okType: "danger",
       centered: true,
       onOk: async () => {
+        setLoading(false);
         var data = {
           id: item.id,
         };
@@ -85,6 +86,7 @@ const SlidePage = () => {
   };
 
   const onFinish = async (item) => {
+    setLoading(true);
     var id = formCat.getFieldValue("id");
     var form = new FormData();
     var data = {
@@ -207,6 +209,7 @@ const SlidePage = () => {
                   onClick={() => onClickBtnDelete(item)}
                   type="primary"
                   danger
+                  loading={loading}
                 >
                   Delete
                 </Button>
@@ -280,7 +283,7 @@ const SlidePage = () => {
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
               <Button onClick={onCloseModal}>Cancel</Button>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
                 {formCat.getFieldValue("id") == null ? "Save" : "Update"}
               </Button>
             </Space>

@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { getRoles } from "../../../config/helper";
+import NotFoundPage from "../../page/NotFoundPage";
 
 const RequireAuth = () => {
   const roles = getRoles();
@@ -8,7 +9,7 @@ const RequireAuth = () => {
       {roles.includes("SUPER-ADMIN") || roles.includes("ADMIN") ? (
         <Outlet />
       ) : (
-        <h1> You Not Have Permission to access it</h1>
+        <NotFoundPage />
       )}
     </>
   );

@@ -57,6 +57,7 @@ const RolePage = () => {
       okType: "danger",
       centered: true,
       onOk: async () => {
+        setLoading(true);
         var data = {
           id: item.id,
         };
@@ -70,6 +71,7 @@ const RolePage = () => {
   };
 
   const onFinish = async (item) => {
+    setLoading(true);
     var id = formCat.getFieldValue("id");
     var data = {
       ...item,
@@ -149,6 +151,7 @@ const RolePage = () => {
                   onClick={() => onClickBtnDelete(item)}
                   type="primary"
                   danger
+                  loading={loading}
                 >
                   Delete
                 </Button>
@@ -183,7 +186,7 @@ const RolePage = () => {
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
               <Button onClick={onCloseModal}>Cancel</Button>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
                 {formCat.getFieldValue("id") == null ? "Save" : "Update"}
               </Button>
             </Space>

@@ -99,6 +99,7 @@ const UserPage = () => {
       okType: "danger",
       centered: true,
       onOk: async () => {
+        setLoading(true);
         var data = {
           id: item.id,
         };
@@ -278,6 +279,7 @@ const UserPage = () => {
                   onClick={() => onClickBtnDelete(item)}
                   type="primary"
                   danger
+                  setLoading={loading}
                 >
                   Manage Status
                 </Button>
