@@ -3,18 +3,18 @@ import About from "./About";
 import Admission from "./Admission";
 import Contact from "./Contact";
 import OurProgramsPage from "./OurProgramsPage";
-
+import SchoolEvents from "./SchoolEvents";
 const Home = () => {
   return (
     <div className="bg-gray-100">
       <div className="">
         <div class="flex items-center mb-5">
           <div class="flex-grow  border-t-[6px] ml-8 border-black"></div>
-          <h2 class="text-4xl font-bold mx-8">OUR PROGRAMS</h2>
+          <h2 class="text-4xl font-bold mx-8">SCHOOL EVENTS</h2>
           <div class="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
         <div class="mb-10">
-          <OurProgramsPage />
+          <SchoolEvents />
         </div>
       </div>
 
