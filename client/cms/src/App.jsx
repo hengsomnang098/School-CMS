@@ -19,7 +19,7 @@ import LoginPage from "./admin-dashboard/page/LoginPage";
 import Home from "./homepage/pages/Home";
 import About from "./homepage/pages/About";
 import Contact from "./homepage/pages/Contact";
-import OurPrograms from "./homepage/pages/OurPrograms";
+import OurPrograms from "./homepage/pages/OurProgramsPage";
 import Layout from "./homepage/layout/Layout";
 import CategoryList from "./homepage/components/Categories/CategoryList";
 import ListByCategory from "./homepage/components/Categories/ListByCategory";

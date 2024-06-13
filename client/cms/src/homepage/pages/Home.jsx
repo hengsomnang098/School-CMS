@@ -1,8 +1,8 @@
 import Banner from "../layout/Banner";
 import About from "./About";
-import OurPrograms from "./OurPrograms";
 import Admission from "./Admission";
 import Contact from "./Contact";
+import OurProgramsPage from "./OurProgramsPage";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
           <div class="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
         <div class="mb-10">
-          <OurPrograms />
+          <OurProgramsPage />
         </div>
       </div>
 
