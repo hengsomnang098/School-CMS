@@ -1,6 +1,10 @@
 import { Table, Space, Button } from "antd";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 // eslint-disable-next-line react/prop-types
-const CategoryTable = ({ categories, handleClickEdit, onClickBtnDelete }) => {
+const CategoryTable = () => {
+  const { categoryStore } = useStore();
+  const { handleClickEdit, categories, handleDelete } = categoryStore;
   return (
     <>
       <Table
@@ -44,7 +48,7 @@ const CategoryTable = ({ categories, handleClickEdit, onClickBtnDelete }) => {
                 </Button>
                 <Button
                   size="large"
-                  onClick={() => onClickBtnDelete(item)}
+                  onClick={() => handleDelete(item)}
                   type="primary"
                   danger
                 >
@@ -59,4 +63,4 @@ const CategoryTable = ({ categories, handleClickEdit, onClickBtnDelete }) => {
   );
 };
 
-export default CategoryTable;
+export default observer(CategoryTable);

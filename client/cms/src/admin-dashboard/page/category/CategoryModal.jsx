@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
 import { Modal, Form, Input, Space, Button } from "antd";
-const CategoryModal = ({
-  formValues,
-  handleCloseModal,
-  formCat,
-  onFinish,
-  loading,
-  open,
-}) => {
+import { useStore } from "../../../app/stores/store";
+import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
+
+const CategoryModal = () => {
+  const { categoryStore } = useStore();
+  const [formCat] = Form.useForm();
+  const { formValues, handleCloseModal, handleSubMid, loading, open } =
+    categoryStore;
+
+  useEffect(() => {
+    formCat.setFieldsValue(formValues);
+  }, [formValues, formCat]);
+
   return (
     <>
       <Modal
@@ -17,7 +23,7 @@ const CategoryModal = ({
         onCancel={handleCloseModal}
         footer={null}
       >
-        <Form form={formCat} layout="vertical" onFinish={onFinish}>
+        <Form form={formCat} layout="vertical" onFinish={handleSubMid}>
           <Form.Item
             label="nameKh"
             name={"nameKh"}
@@ -57,4 +63,4 @@ const CategoryModal = ({
   );
 };
 
-export default CategoryModal;
+export default observer(CategoryModal);

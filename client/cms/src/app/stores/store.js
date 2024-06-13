@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 import CategoryStore from "./categoryStore";
-import BannerStore from "./bannerStore";
+import SlideStore from "./slideStore";
 
 export const store = {
   categoryStore: new CategoryStore(),
-  bannerSoter: new BannerStore(),
+  slideStore: new SlideStore(),
 };
 
 export const StoreContext = createContext(store);

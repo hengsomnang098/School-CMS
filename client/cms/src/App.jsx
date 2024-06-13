@@ -1,18 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { observer } from "mobx-react-lite";
 // dashboard import-------------
 import ImagePage from "./admin-dashboard/page/ImagePage";
 import UserPage from "./admin-dashboard/page/UserPage";
 import RolePage from "./admin-dashboard/page/RolePage";
-import ArticlesPage from "./admin-dashboard/page/ArticlePage";
+import ArticlesPage from "./admin-dashboard/page/article/ArticlePage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
 import HomePage from "./admin-dashboard/page/HomePage";
-import AboutPage from "./admin-dashboard/page/AboutPage";
-import ContactPage from "./admin-dashboard/page/ContactPage";
 import NotFoundPage from "./admin-dashboard/page/NotFoundPage";
 import MainLayout from "./admin-dashboard/components/layout/MainLayout";
 import LoginPage from "./admin-dashboard/page/LoginPage";
-import SlidePage from "./admin-dashboard/page/SlidePage";
+import SlidePage from "./admin-dashboard/page/slide/SlidePage";
 import StudentPage from "./admin-dashboard/page/StudentPage";
 import StaffPage from "./admin-dashboard/page/StaffPage";
 import CategoryPage from "./admin-dashboard/page/category/CategoryPage";
@@ -40,8 +38,6 @@ function App() {
           {/* dashboard route */}
           <Route element={<MainLayout />}>
             <Route path="/dashboard" element={<HomePage />} />
-            <Route path="/dashboard/about" element={<AboutPage />} />
-            <Route path="/dashboard/contact" element={<ContactPage />} />
             <Route path="/dashboard/category" element={<CategoryPage />} />
             <Route path="/dashboard/article" element={<ArticlesPage />} />
             <Route path="/dashboard/content" element={<ContentPage />} />
@@ -90,4 +86,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

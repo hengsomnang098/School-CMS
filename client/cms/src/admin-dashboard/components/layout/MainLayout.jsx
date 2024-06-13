@@ -8,6 +8,7 @@ import { Content } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
 // import FooterPage from "./Footer";
 import { getUser, isLogin } from "../../../config/helper";
+import { observer } from "mobx-react-lite";
 // import { getUser } from "../../config/helper";
 
 const { Header, Sider } = Layout;
@@ -74,4 +75,4 @@ function MainLayout() {
   );
 }
 
-export default MainLayout;
+export default observer(MainLayout);

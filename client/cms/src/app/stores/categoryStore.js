@@ -5,19 +5,20 @@ export default class CategoryStore {
   categories = [];
   open = false;
   formValues = {};
+  loading = false;
   constructor() {
     makeAutoObservable(this);
   }
   getList = async () => {
     this.loading = true;
     const res = await request("categories", "get");
+
     runInAction(() => {
       if (res) {
         this.categories = res.object;
       }
       this.loading = false;
       this.open = false;
-      return res;
     });
   };
 
@@ -54,25 +55,25 @@ export default class CategoryStore {
     });
   };
 
-  handleSubMid = async (values) => {
+  handleSubMid = async (item) => {
+    var id = this.formValues.id;
     this.loading = true;
-    const { id, nameEn, nameKh } = values;
-    const data = { id, nameEn, nameKh };
+    const data = { ...item };
     const method = id == null ? "post" : "put";
     const url = id == null ? "categories" : "categories/" + id;
     const res = await request(url, method, data);
     var messages = id ? "update  sucessfull" : "create  sucessfull";
+
     runInAction(() => {
       if (res) {
         message.success(messages);
         this.getList();
-        this.handleCloseModal();
       }
+      this.handleCloseModal();
       this.loading = false;
     });
   };
   handleDelete = async (item) => {
-    this.loading = true;
     Modal.confirm({
       title: "Delete",
       content: "Are you sure you want to delete ?",
@@ -83,6 +84,7 @@ export default class CategoryStore {
       onOk: async () => {
         const res = await request(`categories/${item.id}`, "delete");
         runInAction(() => {
+          this.loading = true;
           if (res) {
             message.success("Delete  Sucessfull");
             this.getList();

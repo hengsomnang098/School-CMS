@@ -2,10 +2,7 @@ import {
   AppstoreAddOutlined,
   AppstoreOutlined,
   DesktopOutlined,
-  // ProductOutlined,
-  ShopOutlined,
   TeamOutlined,
-  // UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -40,9 +37,6 @@ const items = [
       ]
     : ""),
   // ----------------------------
-
-  getItem("About us", "/dashboard/about", <ShopOutlined />),
-  getItem("Contact Us", "/dashboard/contact", <ShopOutlined />),
   getItem("Logout", "logout", <DesktopOutlined />),
 ];
 

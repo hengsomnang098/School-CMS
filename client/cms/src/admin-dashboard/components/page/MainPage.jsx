@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Card, Spin } from "antd";
+import { observer } from "mobx-react-lite";
 
 const MainPage = ({ children, loading = false }) => {
   return (
@@ -11,4 +12,4 @@ const MainPage = ({ children, loading = false }) => {
   );
 };
 
-export default MainPage;
+export default observer(MainPage);
