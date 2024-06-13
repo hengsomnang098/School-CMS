@@ -11,11 +11,14 @@ import AboutPage from "./admin-dashboard/page/AboutPage";
 import ContactPage from "./admin-dashboard/page/ContactPage";
 import NotFoundPage from "./admin-dashboard/page/NotFoundPage";
 import MainLayout from "./admin-dashboard/components/layout/MainLayout";
-import CategoryPage from "./admin-dashboard/page/CategoryPage";
 import LoginPage from "./admin-dashboard/page/LoginPage";
+import SlidePage from "./admin-dashboard/page/SlidePage";
+import StudentPage from "./admin-dashboard/page/StudentPage";
+import StaffPage from "./admin-dashboard/page/StaffPage";
+import CategoryPage from "./admin-dashboard/page/category/category/CategoryPage";
+import RequireAuth from "./admin-dashboard/components/page/RequireAuth";
 
 // homepage import --------------
-
 import Home from "./homepage/pages/Home";
 import About from "./homepage/pages/About";
 import Contact from "./homepage/pages/Contact";
@@ -24,15 +27,10 @@ import Layout from "./homepage/layout/Layout";
 import CategoryList from "./homepage/components/Categories/CategoryList";
 import ListByCategory from "./homepage/components/Categories/ListByCategory";
 import ListByArticle from "./homepage/components/Articles/ListByArticle";
-
 import Admission from "./homepage/pages/Admission";
 import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
-import SlidePage from "./admin-dashboard/page/SlidePage";
-import StudentPage from "./admin-dashboard/page/StudentPage";
-import StaffPage from "./admin-dashboard/page/StaffPage";
 import ArticleList from "./homepage/components/Articles/ArticleList";
 import NewsPage from "./homepage/pages/NewsPage";
-import RequireAuth from "./admin-dashboard/components/page/RequireAuth";
 
 function App() {
   return (
