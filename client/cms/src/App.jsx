@@ -79,6 +79,7 @@ function App() {
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/category/:id/articles" component={<AllArtByCat />} />
             <Route path="/article/:id" element={<ListByArticle />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
