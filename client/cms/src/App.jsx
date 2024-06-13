@@ -15,7 +15,7 @@ import LoginPage from "./admin-dashboard/page/LoginPage";
 import SlidePage from "./admin-dashboard/page/SlidePage";
 import StudentPage from "./admin-dashboard/page/StudentPage";
 import StaffPage from "./admin-dashboard/page/StaffPage";
-import CategoryPage from "./admin-dashboard/page/category/category/CategoryPage";
+import CategoryPage from "./admin-dashboard/page/category/CategoryPage";
 import RequireAuth from "./admin-dashboard/components/page/RequireAuth";
 
 // homepage import --------------

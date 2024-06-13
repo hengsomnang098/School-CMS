@@ -1,9 +1,8 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../../config/request";
-import { message } from "antd";
+import { Modal, message } from "antd";
 export default class CategoryStore {
   categories = [];
-  loading = false;
   open = false;
   formValues = {};
   constructor() {
@@ -32,9 +31,10 @@ export default class CategoryStore {
 
   handleClickEdit = (item) => {
     this.formValues = {
-      id: item.id,
-      nameKh: item.nameKh,
-      nameEn: item.nameEn,
+      ...item,
+      // id: item.id,
+      // nameKh: item.nameKh,
+      // nameEn: item.nameEn,
     };
     this.open = true;
     this.loading = false;
@@ -73,13 +73,23 @@ export default class CategoryStore {
   };
   handleDelete = async (item) => {
     this.loading = true;
-    const res = await request(`categories/${item.id}`, "delete");
-    runInAction(() => {
-      if (res) {
-        message.success("Delete  Sucessfull");
-        this.getList();
-      }
-      this.loading = false;
+    Modal.confirm({
+      title: "Delete",
+      content: "Are you sure you want to delete ?",
+      okText: "Yes",
+      cancelText: "No",
+      okType: "danger",
+      centered: true,
+      onOk: async () => {
+        const res = await request(`categories/${item.id}`, "delete");
+        runInAction(() => {
+          if (res) {
+            message.success("Delete  Sucessfull");
+            this.getList();
+          }
+          this.loading = false;
+        });
+      },
     });
   };
 }
