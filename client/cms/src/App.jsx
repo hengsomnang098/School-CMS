@@ -30,6 +30,7 @@ import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
 import ArticleList from "./homepage/components/Articles/ArticleList";
 import NewsPage from "./homepage/pages/NewsPage";
 import ManagementTeamsPage from "./homepage/pages/ManagementTeamsPage";
+import EventsPage from "./homepage/pages/EventsPages";
 
 function App() {
   return (
@@ -64,18 +65,23 @@ function App() {
 
           {/*   homepage route */}
           <Route element={<Layout />}>
+            {/* pages*/}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
             <Route path="/managementteams" element={<ManagementTeamsPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/event/:id" element={<EventsPage />} />
+            {/* <Route path="/events" element={<EventsPage />} /> */}
+            <Route path="/admission" element={<Admission />} />
+            {/* categories*/}
             <Route path="/category" element={<CategoryList />} />
             <Route path="/categories" element={<CategoryList />} />
-            <Route path="/articles" element={<ArticleList />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/admission" element={<Admission />} />
             <Route path="/category/:id" element={<ListByCategory />} />
             <Route path="/category/:id/articles" component={<AllArtByCat />} />
+            {/* articles*/}
+            <Route path="/articles" element={<ArticleList />} />
             <Route path="/article/:id" element={<ListByArticle />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>

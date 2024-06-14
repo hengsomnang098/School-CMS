@@ -3,7 +3,7 @@ import About from "./About";
 import Admission from "./Admission";
 import Contact from "./Contact";
 import OurProgramsPage from "./OurProgramsPage";
-import SchoolEvents from "./SchoolEvents";
+import Events from "./EventsPages";
 import ManagementTeams from "../components/ManagementTeams/ManagementTeams";
 import { Link } from "react-router-dom";
 const Home = () => {
@@ -16,14 +16,14 @@ const Home = () => {
           <div class="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
         <div class="mb-10">
-          <SchoolEvents />
+          <Events />
         </div>
       </div>
 
       <div>
         <div class="flex items-center mb-5">
           <div class="flex-grow  border-t-[6px] ml-8 border-black"></div>
-          <h2 class="text-4xl font-bold mx-8">NEWS & EVENT</h2>
+          <h2 class="text-4xl font-bold mx-8">NEWS</h2>
           <div class="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
         <div class="mb-10">
