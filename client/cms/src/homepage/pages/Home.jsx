@@ -40,7 +40,6 @@ const Home = () => {
         <div class="mb-10">
           <ManagementTeams />
           <div className="text-center">
-            {/* <CustomButton to="/managementteams" text="Read More" /> */}
             <Link to="/managementteams">
               <button className="bg-green-400 rounded-lg w-32 h-10 mb-5 relative overflow-hidden group">
                 <span className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
