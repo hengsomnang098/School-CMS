@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 // dashboard import-------------
 import ImagePage from "./admin-dashboard/page/ImagePage";
 import UserPage from "./admin-dashboard/page/UserPage";
-import RolePage from "./admin-dashboard/page/RolePage";
+import RolePage from "./admin-dashboard/page/role/RolePage";
 import ArticlesPage from "./admin-dashboard/page/article/ArticlePage";
 import ContentPage from "./admin-dashboard/page/ContentPage";
 import HomePage from "./admin-dashboard/page/HomePage";

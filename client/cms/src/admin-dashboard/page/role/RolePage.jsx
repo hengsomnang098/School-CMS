@@ -3,7 +3,7 @@ import {
   useState,
   //  useRef
 } from "react";
-import { request } from "../../config/request";
+import { request } from "../../../config/request";
 import {
   Table,
   Button,
@@ -17,7 +17,7 @@ import {
   Typography,
 } from "antd";
 // import { formartDateClient } from "../config/helper";
-import MainPage from "../components/page/MainPage";
+import MainPage from "../../components/page/MainPage";
 
 const { Title } = Typography;
 const RolePage = () => {

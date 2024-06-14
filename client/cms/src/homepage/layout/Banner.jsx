@@ -1,4 +1,3 @@
-import React from "react";
 import BannerCarousel from "../components/BannerCard";
 
 const App = () => {
