@@ -4,6 +4,8 @@ import Admission from "./Admission";
 import Contact from "./Contact";
 import OurProgramsPage from "./OurProgramsPage";
 import SchoolEvents from "./SchoolEvents";
+import ManagementTeams from "../components/ManagementTeams/ManagementTeams";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="bg-gray-100">
@@ -36,7 +38,16 @@ const Home = () => {
           <div class="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
         <div class="mb-10">
-          <About />
+          <ManagementTeams />
+          <div className="text-center">
+            {/* <CustomButton to="/managementteams" text="Read More" /> */}
+            <Link to="/managementteams">
+              <button className="bg-green-400 rounded-lg w-32 h-10 mb-5 relative overflow-hidden group">
+                <span className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                <span className="relative z-10 text-white">Read More</span>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
 

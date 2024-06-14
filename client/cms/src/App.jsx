@@ -29,6 +29,7 @@ import Admission from "./homepage/pages/Admission";
 import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
 import ArticleList from "./homepage/components/Articles/ArticleList";
 import NewsPage from "./homepage/pages/NewsPage";
+import ManagementTeamsPage from "./homepage/pages/ManagementTeamsPage";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/ourprograms" element={<OurPrograms />} />
+            <Route path="/managementteams" element={<ManagementTeamsPage />} />
             <Route path="/category" element={<CategoryList />} />
             <Route path="/categories" element={<CategoryList />} />
             <Route path="/articles" element={<ArticleList />} />
