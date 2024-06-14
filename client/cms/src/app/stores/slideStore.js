@@ -13,9 +13,9 @@ export default class SlideStore {
     makeAutoObservable(this);
   }
   getList = async () => {
+    this.loading = true;
     const res = await request("slides", "get");
     runInAction(() => {
-      this.loading = true;
       if (res) {
         this.slides = res.object;
       }

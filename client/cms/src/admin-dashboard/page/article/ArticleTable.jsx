@@ -1,60 +1,39 @@
-import { Table, Image, Space, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { useStore } from "../../../app/stores/store";
-
-// eslint-disable-next-line react/prop-types
-const SlideTable = () => {
-  const { slideStore } = useStore();
-  const { slides, handleEdit, handleDelete, loading } = slideStore;
+import { observer } from "mobx-react-lite";
+const ArticleTable = () => {
+  const { articleStore } = useStore();
+  const { articles, handleClickEdit, handleDelete, loading } = articleStore;
   return (
     <>
       <Table
         rowKey="id"
-        dataSource={slides}
+        dataSource={articles}
         pagination={{
           pageSize: 5,
+          // total: 100,
         }}
+        // onChange={}
         columns={[
           {
             key: "id",
             title: "id",
             dataIndex: "id",
+            // render: (value, item, index) => index + 1,
             responsive: ["sm"],
           },
           {
             key: "name",
-            title: "Name",
+            title: "Name Article",
             dataIndex: "name",
           },
           {
-            key: "description",
-            title: "Description",
-            dataIndex: "description",
-            responsive: ["sm"],
-          },
-          {
-            key: "imageUrl",
-            title: "ImageUrl",
-            dataIndex: "imageUrl",
+            key: "category",
+            title: "Category Name",
+            dataIndex: "category",
             responsive: ["sm"],
             render: (value) => {
-              if (value != null && value != "") {
-                return (
-                  <>
-                    <Image
-                      //  src={item.mediaUrl}
-                      src={value}
-                      width={40}
-                      height={30}
-                    />
-                  </>
-                );
-              } else {
-                return (
-                  <div
-                    style={{ height: 30, width: 40, backgroundColor: "#888" }}
-                  ></div>
-                );
-              }
+              return value.nameEn;
             },
           },
           {
@@ -65,7 +44,7 @@ const SlideTable = () => {
               <Space>
                 <Button
                   size="large"
-                  onClick={() => handleEdit(item)}
+                  onClick={() => handleClickEdit(item)}
                   type="primary"
                 >
                   Edit
@@ -88,4 +67,4 @@ const SlideTable = () => {
   );
 };
 
-export default SlideTable;
+export default observer(ArticleTable);

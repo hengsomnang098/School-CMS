@@ -7,7 +7,7 @@ export const request = async (
   method = "get",
   data = {},
   new_token,
-  timeoutDuration = 3000
+  timeoutDuration = 2000
 ) => {
   var param_get = "";
   if (method === "get" && Object.keys(data).length > 0) {

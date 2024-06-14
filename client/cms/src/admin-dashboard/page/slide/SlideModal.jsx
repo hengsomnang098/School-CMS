@@ -1,17 +1,27 @@
 /* eslint-disable react/prop-types */
 import { Modal, Form, Input, Image, Space, Button } from "antd";
-const SlideModal = ({
-  formValues,
-  handleCloseModal,
-  formCat,
-  handleFinish,
-  filePreview,
-  fileRef,
-  handleChangeFile,
-  handleClearFile,
-  loading,
-  open,
-}) => {
+import { useStore } from "../../../app/stores/store";
+import { useEffect, useRef } from "react";
+import { observer } from "mobx-react-lite";
+const SlideModal = () => {
+  const { slideStore } = useStore();
+  const {
+    handleClearFile,
+    formValues,
+    handleCloseModal,
+    handleFinish,
+    filePreview,
+    handleChangeFile,
+    loading,
+    open,
+  } = slideStore;
+
+  const [formCat] = Form.useForm();
+  const fileRef = useRef(null);
+
+  useEffect(() => {
+    formCat.setFieldsValue(formValues);
+  }, [formValues, formCat]);
   return (
     <>
       <Modal
@@ -87,4 +97,4 @@ const SlideModal = ({
   );
 };
 
-export default SlideModal;
+export default observer(SlideModal);
