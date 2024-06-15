@@ -59,7 +59,6 @@ const SlideModal = () => {
           </Form.Item>
           {formValues.id != null ? (
             <>
-              {" "}
               <Form.Item label="imageUrl" name={"imageUrl"}>
                 <Image
                   // src={list.mediaUrl}

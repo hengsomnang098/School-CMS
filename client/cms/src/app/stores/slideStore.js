@@ -79,11 +79,13 @@ export default class SlideStore {
           };
           const res = await request(`slides/${item.id}`, "delete", data);
           if (res) {
-            this.loading = true;
-            this.getList();
-            this.loading = false;
-            this.open = false;
-            message.success("Delete Sucessful");
+            runInAction(() => {
+              message.success("Delete Sucessful");
+              // Call the getList function to refresh the data
+              this.handleClearFile();
+              this.handleClearValue();
+              this.getList();
+            });
           }
         },
       });
@@ -96,7 +98,7 @@ export default class SlideStore {
     var data = {
       ...item,
     };
-    if (this.fileSelected != null && id != null) {
+    if (this.fileSelected !== "") {
       form.append("slideId", id);
       form.append("file", this.fileSelected);
       const img = await request(`slides/upload/image`, "put", form);
@@ -112,13 +114,11 @@ export default class SlideStore {
     const res = await request(url, method, data);
     if (res) {
       runInAction(() => {
-        this.loading = true;
         message.success(messages);
-        this.getList();
+        // Call the getList function to refresh the data
         this.handleClearFile();
         this.handleClearValue();
-        this.loading = false;
-        this.open = false;
+        this.getList();
       });
     }
   };
