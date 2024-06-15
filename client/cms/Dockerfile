@@ -1,5 +1,5 @@
 # Use Node.js 16 as the base image
-FROM node:16
+FROM node:20
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -16,8 +16,8 @@ COPY . .
 # Build the Vite application using Yarn
 RUN yarn build
 
-# Expose port 3000 for the application
-EXPOSE 3000
+# Expose port  for the application
+EXPOSE 8000
 
 # Start the Vite application
-CMD ["yarn", "serve"]
+CMD ["yarn", "run", "dev"]
