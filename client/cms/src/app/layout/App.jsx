@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 // dashboard import-------------
-import ImagePage from "../features/admin-dashboard/page/ImagePage";
+import ImagePage from "../features/admin-dashboard/page/contents/ImagePage";
 import UserPage from "../features/admin-dashboard/page/UserPage";
 import RolePage from "../features/admin-dashboard/page/role/RolePage";
 import ArticlesPage from "../features/admin-dashboard/page/article/ArticlePage";
-import ContentPage from "../features/admin-dashboard/page/ContentPage";
+import ContentPage from "../features/admin-dashboard/page/contents/ContentPage";
 import HomePage from "../features/admin-dashboard/page/HomePage";
 import NotFoundPage from "../features/admin-dashboard/page/NotFoundPage";
 import MainLayout from "../features/admin-dashboard/components/layout/MainLayout";

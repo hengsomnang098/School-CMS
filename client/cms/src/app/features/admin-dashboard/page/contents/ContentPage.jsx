@@ -14,9 +14,9 @@ import {
 } from "antd";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import MainPage from "../components/page/MainPage";
+import MainPage from "../../components/page/MainPage";
 import { Link } from "react-router-dom";
-import { request } from "../../../api/config/request";
+import { request } from "../../../../api/config/request";
 
 const { Title } = Typography;
 const ContentPage = () => {

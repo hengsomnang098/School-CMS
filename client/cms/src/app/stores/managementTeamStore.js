@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
 import { Modal, message } from "antd";
+import { isEmptyOrNull } from "../api/config/helper";
 
 export default class ManagementTeamStore {
   managementTeam = [];
@@ -104,17 +105,22 @@ export default class ManagementTeamStore {
     var form = new FormData();
     const data = {
       ...item,
+      photoUrl: this.fileSelected,
+      id: id,
+      name: item.name,
+      description: item.description,
+      bio: item.bio,
     };
-
-    // Check if the user has selected a new file
-    if (this.fileSelected !== "" && this.filePreview !== item.photoUrl) {
+    if (
+      !isEmptyOrNull(id) &&
+      !isEmptyOrNull(this.fileSelected) &&
+      !isEmptyOrNull(this.filePreview)
+    ) {
       form.append("teamId", id);
       form.append("file", this.fileSelected);
       const img = await request(`teams/upload/image`, "put", form);
       if (img) {
         data.photoUrl = img;
-      } else {
-        return false;
       }
     }
 

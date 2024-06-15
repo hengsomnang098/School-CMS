@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { request } from "../../../api/config/request";
+import { request } from "../../../../api/config/request";
 import {
   Table,
   Button,
@@ -14,7 +14,7 @@ import {
   Image,
   Typography,
 } from "antd";
-import MainPage from "../components/page/MainPage";
+import MainPage from "../../components/page/MainPage";
 
 const { Title } = Typography;
 
@@ -36,8 +36,6 @@ const ImagePage = () => {
     var filePreView = URL.createObjectURL(file);
     setFileSelected(file);
     setFilePreview(filePreView);
-    console.log(file);
-    // console.log(filePreView);
   };
 
   const onClearImage = () => {
