@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { request } from "../../config/request";
+import { request } from "../api/config/request";
 import { Modal, message } from "antd";
 export default class SlideStore {
   slides = [];

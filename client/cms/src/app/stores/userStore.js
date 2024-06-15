@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { request } from "../../config/request";
-import { setAccessToken, setRoles, setUser } from "../../config/helper";
+import { request } from "../api/config/request";
+import { setAccessToken, setRoles, setUser } from "../api/config/helper";
 
 export default class UserStore {
   user = [];
