@@ -14,6 +14,7 @@ import StudentPage from "../features/admin-dashboard/page/student/StudentPage";
 import StaffPage from "../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../features/admin-dashboard/page/category/CategoryPage";
 import RolePage from "../features/admin-dashboard/page/role/RolePage";
+import ImagePage from "../features/admin-dashboard/page/contents/ImagePage";
 import RequireAuth from "../features/admin-dashboard/components/page/RequireAuth";
 
 // homepage import --------------
@@ -56,6 +57,10 @@ function App() {
             <Route path="/dashboard/content" element={<ContentPage />} />
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
             <Route path="/dashboard/student" element={<StudentPage />} />
+            <Route
+              path="/dashboard/content/medias/:id"
+              element={<ImagePage />}
+            />
 
             {/* Protected Route  */}
             <Route element={<RequireAuth />}>
