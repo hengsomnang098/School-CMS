@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchArticlesByCatName } from "../../../../api/config/api";
-import ArticleCardOP from "./ArticleCardOP";
+import ArticleCardAD from "./ArticleCardAD";
 
-const GetArticlesOurPrograms = () => {
+const GetArticlesAdmissions = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const categoryName = "Our Programs";
+  const categoryName = "Admissions";
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -30,13 +30,13 @@ const GetArticlesOurPrograms = () => {
   }, [categoryName]);
 
   return (
-    <div className="w-[1000px] ">
+    <div className="w-[1000px]">
       {loading ? (
         <p className="text-center text-gray-600">Loading articles...</p>
       ) : articles.length > 0 ? (
-        <div className=" grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article) => (
-            <ArticleCardOP key={article.id} article={article} />
+            <ArticleCardAD key={article.id} article={article} />
           ))}
         </div>
       ) : (
@@ -46,4 +46,4 @@ const GetArticlesOurPrograms = () => {
   );
 };
 
-export default GetArticlesOurPrograms;
+export default GetArticlesAdmissions;

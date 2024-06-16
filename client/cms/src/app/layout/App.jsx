@@ -31,7 +31,7 @@ import Layout from "../features/homepage/layout/Layout";
 import CategoryList from "../features/homepage/components/Categories/CategoryList";
 import ListByCategory from "../features/homepage/components/Categories/ListByCategory";
 import ListByArticle from "../features/homepage/components/Articles/ListByArticle";
-import Admission from "../features/homepage/pages/Admission";
+import Admission from "../features/homepage/pages/AdmissionPage";
 import AllArtByCat from "../features/homepage/components/Categories/AllArtByCat";
 import ArticleList from "../features/homepage/components/Articles/ArticleList";
 import NewsPage from "../features/homepage/pages/NewsPage";
