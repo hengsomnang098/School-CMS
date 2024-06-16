@@ -79,8 +79,8 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
-        setNavbarBackground("bg-transparent");
-        setNavbarShadow(false);
+        setNavbarBackground("bg-white");
+        setNavbarShadow(true);
       } else {
         setNavbarBackground("bg-white");
         setNavbarShadow(true);
@@ -107,7 +107,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`shadow-md drop-shadow-lg h-[130px] ${navbarBackground} fixed top-0 w-full z-50 transition-all duration-500 ${
+      className={`shadow-md drop-shadow-lg h-[90px] ${navbarBackground} fixed top-0 w-full z-50 transition-all duration-500 ${
         navbarShadow ? "shadow-md" : "shadow-none"
       }`}
     >
@@ -116,7 +116,7 @@ const Navbar = () => {
           <img
             src={logoLarge}
             alt="Southwest International School"
-            className="hidden lg:block h-16"
+            className="hidden lg:block h-12"
           />
           <img
             src={logoSmall}
@@ -134,7 +134,7 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className="py-2 text-md px-4 rounded-md transition-colors duration-300 relative overflow-hidden group-hover:text-green-500"
+                  className="py-2 text-lg px-4 font-mono tracking-wider rounded-md transition-colors duration-300 relative overflow-hidden group-hover:text-green-500"
                   onClick={() => handleClick(item.key)}
                 >
                   {item.label}

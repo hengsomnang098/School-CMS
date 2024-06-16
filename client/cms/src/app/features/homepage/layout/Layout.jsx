@@ -5,7 +5,9 @@ import Banner from "./Banner";
 const Layout = () => {
   return (
     <div>
-      <Navbar />
+      <div className="mb-[90px]">
+        <Navbar />
+      </div>
       <Banner />
       <Outlet />
       <Footer />

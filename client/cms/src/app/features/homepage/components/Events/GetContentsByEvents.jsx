@@ -1,6 +1,12 @@
+<<<<<<< HEAD:client/cms/src/app/features/homepage/components/Events/GetContentsByEvents.jsx
 import { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../../../api/config/api";
 import ContentCardE from "./ContentCardE";
+=======
+import React, { useEffect, useState } from "react";
+import { fetchContentsByArtName } from "../../../config/api";
+import ContentCardE from "./ContentCardEventHome";
+>>>>>>> cd87897 (new homepage):client/cms/src/homepage/components/Events/GetContentsByEvents.jsx
 
 const GetContentsByEvents = () => {
   const [contents, setContents] = useState([]);

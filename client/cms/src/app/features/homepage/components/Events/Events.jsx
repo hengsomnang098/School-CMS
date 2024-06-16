@@ -3,7 +3,7 @@ import GetContentsByEvents from "./GetContentsByEvents";
 
 const Events = () => {
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <GetContentsByEvents />
     </div>
   );

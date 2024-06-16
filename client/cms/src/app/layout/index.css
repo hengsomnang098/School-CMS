@@ -6,7 +6,24 @@ antd;
 
 @tailwind components;
 @tailwind utilities;
-
 body {
   font-family: "Poppins", sans-serif;
+}
+
+.max-w-1000px {
+  max-width: 1100px;
+}
+
+@font-face {
+  font-family: "Khmer OS Battambang";
+  src: url("/fonts/KhmerOSbattambang-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Khmer OS Battambang";
+  src: url("/fonts/KhmerOSbattambang-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
