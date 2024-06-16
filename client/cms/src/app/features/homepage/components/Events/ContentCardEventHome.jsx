@@ -28,9 +28,7 @@ const ContentCardE = ({ content }) => {
         />
       </div>
       <p className="text-start font-bold text-lg mb-2 p-2">{truncatedTitle}</p>
-      <div className="prose text-start p-2 h-[85px]">
-        {truncatedDescription}
-      </div>
+      <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
       <div className="flex justify-end p-2">
         <button className="bg-green-400 rounded-sm px-4 py-2">See More</button>
       </div>

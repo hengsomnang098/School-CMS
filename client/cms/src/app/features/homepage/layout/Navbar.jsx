@@ -53,7 +53,7 @@ const Navbar = () => {
       key: "/ourprograms",
       label: "Our Programs",
       children: ourProgramsArticles.map((article) => ({
-        key: `/category/${article.id}`,
+        key: `/article/${article.id}`,
         label: article.name,
       })),
     },

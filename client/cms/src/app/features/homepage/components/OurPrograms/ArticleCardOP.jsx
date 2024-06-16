@@ -1,14 +1,13 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const ArticleCardOP = ({ article }) => {
   return (
-    <div className="border-t-4 p-4 mb-4">
-      <h3 className="text-lg font-bold text-blue-500">
-        Article ID: {article.id}
-      </h3>
-      <p>Article Name: {article.name}</p>
-      <p>Category ID: {article.category.id}</p>
-      <p>Category Name: {article.category.nameEn}</p>
+    <div className="border-4 p-4 mb-4 text-center">
+      <p className="font-bold text-lg">Article </p>
+      <br />
+      <Link>
+        <div className="text-md ">{article.name}</div>
+      </Link>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import React from "react";
 
 const ContentCardNewsHome = ({ content, isMain }) => {
-  const { imageUrl, title, description } = content;
+  const title = content?.title || "";
+  const description = content?.description || "";
+  const imageUrl = content?.imageUrl || "";
   const maxLengthTitle = 30;
   const maxLengthDesc = 70;
 
@@ -26,7 +28,8 @@ const ContentCardNewsHome = ({ content, isMain }) => {
       </div>
       <div className={`${isMain ? "" : "w-2/3 pl-4"} pt-4`}>
         <h3 className="text-xl font-semibold mb-2">{truncatedTitle}</h3>
-        <p className="text-gray-700 mb-2">{truncatedDescription}</p>
+        <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
+
         <div className="relative h-8 ">
           <a
             href="/"
