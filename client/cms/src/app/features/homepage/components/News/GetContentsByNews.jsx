@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { fetchContentsByArtName } from "../../../config/api";
+import { fetchContentsByArtName } from "../../../../api/config/api";
 import ContentCardNewsHome from "./ContentCardNewsHome";
 import ContentCardMainNews from "./ContentCardMainNews";
 

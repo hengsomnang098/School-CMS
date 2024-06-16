@@ -18,7 +18,7 @@ import MainLayout from "../features/admin-dashboard/components/layout/MainLayout
 import LoginPage from "../features/admin-dashboard/page/LoginPage";
 import SlidePage from "../features/admin-dashboard/page/slide/SlidePage";
 import StudentPage from "../features/admin-dashboard/page/StudentPage";
-import StaffPage from "../features/admin-dashboard/page/StaffPage";
+import StaffPage from "../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../features/admin-dashboard/page/category/CategoryPage";
 import RequireAuth from "../features/admin-dashboard/components/page/RequireAuth";
 
@@ -37,6 +37,7 @@ import ArticleList from "../features/homepage/components/Articles/ArticleList";
 import NewsPage from "../features/homepage/pages/NewsPage";
 import ManagementTeamsPage from "../features/homepage/pages/ManagementTeamsPage";
 import EventsPage from "../features/homepage/pages/EventsPages";
+import SingleMember from "../features/homepage/components/ManagementTeams/SingleMember";
 
 function App() {
   // const router = createBrowserRouter([

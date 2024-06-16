@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchData } from "../../../config/api";
+import { fetchData } from "../../../../api/config/api";
 
 const SingleMember = () => {
   const { id } = useParams();
