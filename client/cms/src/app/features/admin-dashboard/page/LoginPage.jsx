@@ -14,7 +14,7 @@ const LoginPage = () => {
     handleLogin(values)
       .then(() => {
         navigate("/dashboard");
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         // Handle login error
@@ -78,7 +78,7 @@ const LoginPage = () => {
                 type="primary"
                 htmlType="submit"
                 className="w-full bg-green-700 text-white p-2 rounded-lg  hover:bg-white hover:text-black hover:border hover:border-gray-300"
-                loading={userStore.loading}
+                // loading={userStore.loading}
               >
                 Log in
               </Button>

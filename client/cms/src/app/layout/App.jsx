@@ -1,15 +1,8 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+
 // dashboard import-------------
-import ImagePage from "../features/admin-dashboard/page/contents/ImagePage";
 import UserPage from "../features/admin-dashboard/page/UserPage";
-import RolePage from "../features/admin-dashboard/page/role/RolePage";
 import ArticlesPage from "../features/admin-dashboard/page/article/ArticlePage";
 import ContentPage from "../features/admin-dashboard/page/contents/ContentPage";
 import HomePage from "../features/admin-dashboard/page/HomePage";
@@ -20,6 +13,7 @@ import SlidePage from "../features/admin-dashboard/page/slide/SlidePage";
 import StudentPage from "../features/admin-dashboard/page/student/StudentPage";
 import StaffPage from "../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../features/admin-dashboard/page/category/CategoryPage";
+import RolePage from "../features/admin-dashboard/page/role/RolePage";
 import RequireAuth from "../features/admin-dashboard/components/page/RequireAuth";
 
 // homepage import --------------
@@ -63,16 +57,11 @@ function App() {
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
             <Route path="/dashboard/student" element={<StudentPage />} />
 
-            <Route
-              path="/dashboard/content/medias/:id"
-              element={<ImagePage />}
-            />
-
             {/* Protected Route  */}
             <Route element={<RequireAuth />}>
               <Route path="/dashboard/staff" element={<StaffPage />} />
               <Route path="/dashboard/users" element={<UserPage />} />
-              {/* <Route path="/dashboard/roles" element={<RolePage />} /> */}
+              <Route path="/dashboard/roles" element={<RolePage />} />
             </Route>
 
             {/* Protected Route  */}

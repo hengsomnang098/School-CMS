@@ -4,7 +4,6 @@ import { setAccessToken, setRoles, setUser } from "../api/config/helper";
 
 export default class UserStore {
   user = [];
-  currentUser = [];
   loading = false;
 
   constructor() {
@@ -28,10 +27,6 @@ export default class UserStore {
         alert(res.message);
         this.loading = false;
       } else {
-        this.currentUser = []; // Reset currentUser to an empty array
-        res.object.roles.map((role) => {
-          this.currentUser.push(role.name);
-        });
         setUser(res.object.email);
         setAccessToken(res.object.token);
         setRoles(res.object.roles);

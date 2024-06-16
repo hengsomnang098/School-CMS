@@ -11,11 +11,11 @@ import {
   message,
   // Tag,
   Typography,
+  Image,
 } from "antd";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import MainPage from "../../components/page/MainPage";
-import { Link } from "react-router-dom";
 import { request } from "../../../../api/config/request";
 
 const { Title } = Typography;
@@ -196,24 +196,25 @@ const ContentPage = () => {
             },
           },
           {
-            key: "mediaList",
+            key: "imageUrl",
             title: "Manage Images ",
-            dataIndex: "mediaList",
+            dataIndex: "imageUrl",
             responsive: ["sm"],
-            render: (value, item) => (
-              <Space>
-                {/* <Button
-                  size="large"
-                  // onClick={}
-                  type="primary"
-                >
-                  Manage Images
-                </Button> */}
-                <Link to={`../dashboard/content/medias/${item.id}`}>
-                  Manage Images
-                </Link>
-              </Space>
-            ),
+            render: (value) => {
+              if (value != null && value != "") {
+                return (
+                  <>
+                    <Image src={value} width={40} height={30} />
+                  </>
+                );
+              } else {
+                return (
+                  <div
+                    style={{ height: 30, width: 40, backgroundColor: "#888" }}
+                  ></div>
+                );
+              }
+            },
           },
           {
             key: "Action",
@@ -242,7 +243,7 @@ const ContentPage = () => {
           },
         ]}
       />
-      {/* Model for Content */}
+
       <Modal
         forceRender
         title={
@@ -275,8 +276,6 @@ const ContentPage = () => {
               },
             ]}
           >
-            {/* <Input placeholder="description" /> */}
-
             <ReactQuill
               ref={quillRef}
               theme="snow"
