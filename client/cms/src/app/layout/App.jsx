@@ -17,7 +17,7 @@ import NotFoundPage from "../features/admin-dashboard/page/NotFoundPage";
 import MainLayout from "../features/admin-dashboard/components/layout/MainLayout";
 import LoginPage from "../features/admin-dashboard/page/LoginPage";
 import SlidePage from "../features/admin-dashboard/page/slide/SlidePage";
-import StudentPage from "../features/admin-dashboard/page/StudentPage";
+import StudentPage from "../features/admin-dashboard/page/student/StudentPage";
 import StaffPage from "../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../features/admin-dashboard/page/category/CategoryPage";
 import RequireAuth from "../features/admin-dashboard/components/page/RequireAuth";
