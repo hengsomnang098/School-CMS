@@ -4,19 +4,17 @@ import { FaLocationCrosshairs } from "react-icons/fa6";
 import GoogleMapComponent from "../components/GoogleMap/GoogleMapComponent";
 const Footer = () => {
   return (
-    <div className="bg-green-300">
-      <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4">
+    <div className="text-white py-5 bg-[#0C3B2E]">
+      <div className="px-4 pt-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4">
         <div className="grid mb-8 lg:grid-cols-5">
           <div className="grid grid-cols-2 gap-5  lg:col-span-3 md:grid-cols-3">
-            <div className="border-r border-gray-800">
-              <p className="font-medium text-2xl mb-5 tracking-wide  text-gray-700">
-                Quick Link
-              </p>
-              <ul className="mt-2 space-y-2">
+            <div className="border-r border-gray-500 text-white">
+              <p className="font-bold text-2xl mb-5 tracking-wide ">About Us</p>
+              <ul className="mt-2 space-y-2 ">
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     Home
@@ -25,16 +23,16 @@ const Footer = () => {
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
-                    Admission
+                    Admissions
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     Programs
@@ -43,7 +41,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     World
@@ -51,15 +49,15 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="border-r border-gray-800">
-              <p className="font-medium text-2xl mb-5 tracking-wide  text-gray-700">
-                Recent Post
+            <div className="border-r border-gray-500">
+              <p className="font-bold text-2xl mb-5 tracking-wide  text-white">
+                Resource
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex   transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     Home
@@ -68,7 +66,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex   transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     Admission
@@ -77,7 +75,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex   transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     Programs
@@ -86,7 +84,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     World
@@ -94,33 +92,33 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="border-r border-gray-800">
-              <p className="font-medium text-2xl mb-5 tracking-wide  text-gray-700">
-                Find Me!
+            <div className="border-r border-gray-500">
+              <p className="font-bold text-2xl mb-5 tracking-wide text-white ">
+                Contact Us
               </p>
-              <ul className="mt-2 space-y-2">
+              <ul className="mt-2 space-y-2 text-white ">
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex   transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
-                    Home
+                    Help
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
-                    Admission
+                    Sales
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex   transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     Programs
@@ -129,7 +127,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="/"
-                    className="text-xl flex  text-gray-700 transition-colors duration-300 hover:text-yellow-300"
+                    className="text-xl flex  transition-colors duration-300 hover:text-yellow-300"
                   >
                     <FaLink className="mr-2 h-7" />
                     World
@@ -139,9 +137,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="md:max-w-md text-2xl mb-5 ml-5 lg:col-span-2 lg:mt-0 mt-5">
-            <p className="font-medium tracking-wide flex text-gray-700">
-              <FaLocationCrosshairs className="mr-2 h-9" />
+          <div className="md:max-w-md text-2xl text-white mb-5 ml-5 lg:col-span-2 lg:mt-0 mt-5">
+            <p className="font-medium tracking-wide flex ">
+              <FaLocationCrosshairs className="mr-2 h-9 text-red-500" />
               South West International School
             </p>
 
@@ -158,24 +156,24 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
+        <div className="flex flex-col justify-between pt-5  border-t border-gray-500 sm:flex-row">
           <p></p>
-          <div className="flex items-center mt-4 space-x-4 sm:mt-0">
+          <div className="flex items-center mt-4 space-x-4 sm:mt-0 text-white">
             <a
               href=""
-              className="text-gray-500 transition-all duration-300 hover:text-teal-400"
+              className=" transition-all duration-300 hover:text-teal-400"
             >
               <FaTwitter className="h-6 w-6" />
             </a>
             <a
               href=""
-              className="text-gray-500 transition-all duration-300 hover:text-blue-600"
+              className=" transition-all duration-300 hover:text-blue-600"
             >
               <FaFacebook className="h-6 w-6" />
             </a>
             <a
               href=""
-              className="text-gray-500 transition-all duration-300 hover:text-pink-400"
+              className=" transition-all duration-300 hover:text-pink-400"
             >
               <FaInstagram className="h-6 w-6" />
             </a>

@@ -4,6 +4,7 @@ const ContentCardMainNews = ({ content, isMain }) => {
   const { imageUrl, title, description } = content;
   const maxLengthTitle = 60;
   const maxLengthDesc = 100;
+  const errorimage = "Error Image";
   const truncatedDescription =
     description.length > maxLengthDesc
       ? description.substring(0, maxLengthDesc) + "..."
@@ -12,13 +13,13 @@ const ContentCardMainNews = ({ content, isMain }) => {
   const truncatedTitle =
     title.length > maxLengthTitle
       ? description.substring(0, maxLengthTitle) + "..."
-      : title;
+      : errorimage;
   return (
     <div className={`flex ${isMain ? "flex-col" : "mb-4"} border rounded-lg`}>
       <div className={`${isMain ? "w-full" : "w-1/3"}`}>
         <img
           src={imageUrl}
-          alt={title}
+          alt={errorimage}
           className="w-full h-auto object-cover rounded"
         />
       </div>

@@ -22,6 +22,9 @@ export default {
       fontFamily: {
         khmer: ['"Khmer OS Battambang"', "sans-serif"],
       },
+      backgroundImage: {
+        "custom-gradient": "linear-gradient(45deg, #2ECC71, #34495E)",
+      },
     },
   },
   plugins: [],
