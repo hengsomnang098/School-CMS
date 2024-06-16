@@ -7,36 +7,36 @@ import {
 } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 // dashboard import-------------
-import ImagePage from "../api/config";
-import UserPage from "./admin-dashboard/page/UserPage";
-import RolePage from "./admin-dashboard/page/role/RolePage";
-import ArticlesPage from "./admin-dashboard/page/article/ArticlePage";
-import ContentPage from "./admin-dashboard/page/ContentPage";
-import HomePage from "./admin-dashboard/page/HomePage";
-import NotFoundPage from "./admin-dashboard/page/NotFoundPage";
-import MainLayout from "./admin-dashboard/components/layout/MainLayout";
-import LoginPage from "./admin-dashboard/page/LoginPage";
-import SlidePage from "./admin-dashboard/page/slide/SlidePage";
-import StudentPage from "./admin-dashboard/page/StudentPage";
-import StaffPage from "./admin-dashboard/page/StaffPage";
-import CategoryPage from "./admin-dashboard/page/category/CategoryPage";
-import RequireAuth from "./admin-dashboard/components/page/RequireAuth";
+import ImagePage from "../features/admin-dashboard/page/contents/ImagePage";
+import UserPage from "../features/admin-dashboard/page/UserPage";
+import RolePage from "../features/admin-dashboard/page/role/RolePage";
+import ArticlesPage from "../features/admin-dashboard/page/article/ArticlePage";
+import ContentPage from "../features/admin-dashboard/page/contents/ContentPage";
+import HomePage from "../features/admin-dashboard/page/HomePage";
+import NotFoundPage from "../features/admin-dashboard/page/NotFoundPage";
+import MainLayout from "../features/admin-dashboard/components/layout/MainLayout";
+import LoginPage from "../features/admin-dashboard/page/LoginPage";
+import SlidePage from "../features/admin-dashboard/page/slide/SlidePage";
+import StudentPage from "../features/admin-dashboard/page/StudentPage";
+import StaffPage from "../features/admin-dashboard/page/StaffPage";
+import CategoryPage from "../features/admin-dashboard/page/category/CategoryPage";
+import RequireAuth from "../features/admin-dashboard/components/page/RequireAuth";
 
 // homepage import --------------
-import Home from "./homepage/pages/Home";
-import About from "./homepage/pages/About";
-import Contact from "./homepage/pages/Contact";
-import OurPrograms from "./homepage/pages/OurProgramsPage";
-import Layout from "./homepage/layout/Layout";
-import CategoryList from "./homepage/components/Categories/CategoryList";
-import ListByCategory from "./homepage/components/Categories/ListByCategory";
-import ListByArticle from "./homepage/components/Articles/ListByArticle";
-import Admission from "./homepage/pages/Admission";
-import AllArtByCat from "./homepage/components/Categories/AllArtByCat";
-import ArticleList from "./homepage/components/Articles/ArticleList";
-import NewsPage from "./homepage/pages/NewsPage";
-import ManagementTeamsPage from "./homepage/pages/ManagementTeamsPage";
-import EventsPage from "./homepage/pages/EventsPages";
+import Home from "../features/homepage/pages/Home";
+import About from "../features/homepage/pages/About";
+import Contact from "../features/homepage/pages/Contact";
+import OurPrograms from "../features/homepage/pages/OurProgramsPage";
+import Layout from "../features/homepage/layout/Layout";
+import CategoryList from "../features/homepage/components/Categories/CategoryList";
+import ListByCategory from "../features/homepage/components/Categories/ListByCategory";
+import ListByArticle from "../features/homepage/components/Articles/ListByArticle";
+import Admission from "../features/homepage/pages/Admission";
+import AllArtByCat from "../features/homepage/components/Categories/AllArtByCat";
+import ArticleList from "../features/homepage/components/Articles/ArticleList";
+import NewsPage from "../features/homepage/pages/NewsPage";
+import ManagementTeamsPage from "../features/homepage/pages/ManagementTeamsPage";
+import EventsPage from "../features/homepage/pages/EventsPages";
 
 function App() {
   // const router = createBrowserRouter([
