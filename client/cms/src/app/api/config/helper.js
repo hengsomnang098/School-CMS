@@ -21,6 +21,20 @@ export const isEmptyOrNull = (value) => {
   }
   return false;
 };
+export const initializeLocalStorage = () => {
+  if (localStorage.getItem("profile") === null) {
+    localStorage.setItem("profile", JSON.stringify({})); // Assuming default profile is an empty object
+  }
+  if (localStorage.getItem("isLogin") === null) {
+    localStorage.setItem("isLogin", "0"); // Assuming default is not logged in
+  }
+  if (localStorage.getItem("token") === null) {
+    localStorage.setItem("token", ""); // Assuming default token is an empty string
+  }
+  if (localStorage.getItem("roles") === null) {
+    localStorage.setItem("roles", JSON.stringify([])); // Assuming default roles is an empty array
+  }
+};
 
 export const getUser = () => {
   var user = localStorage.getItem("profile");
