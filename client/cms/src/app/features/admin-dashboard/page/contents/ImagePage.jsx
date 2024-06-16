@@ -72,7 +72,7 @@ const ImagePage = () => {
       contentId: contentId,
     });
     setOpen(true);
-    // setFilePreview(item.mediaUrl);
+    setFilePreview(item.mediaUrl);
   };
 
   const onClickBtnDelete = async (item) => {
@@ -115,7 +115,7 @@ const ImagePage = () => {
     var req = id == null ? data : form;
     // form.append("mediaType", item.mediaType);
     var method = id == null ? "post" : "put";
-    var url = id == null ? "medias" : `medias/upload/photo`;
+    var url = id == null ? "medias" : `medias/upload/image`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, req);
 

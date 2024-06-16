@@ -31,7 +31,7 @@ export const request = async (
     data: data,
     headers: {
       ...headers,
-      Authorization: "Bearer" + token,
+      Authorization: "Bearer " + token,
     },
     timeout: timeoutDuration,
   })
