@@ -62,6 +62,7 @@ export default class SlideStore {
       };
       this.filePreview = item.imageUrl;
     });
+    console.log(item);
   };
 
   handleDelete = async (item) => {

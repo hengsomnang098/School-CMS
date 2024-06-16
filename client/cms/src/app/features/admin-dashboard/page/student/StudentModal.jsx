@@ -1,32 +1,29 @@
 import { Modal, Form, Input, Space, Button } from "antd";
-import { useEffect } from "react";
 import { useStore } from "../../../../stores/store";
+import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-
-const RoleModal = () => {
+const StudentModal = () => {
   const [formCat] = Form.useForm();
-  const { roleStore } = useStore();
-  const { formValues, handleCloseModal, handleFinish, loading, open } =
-    roleStore;
+
+  const { studentStore } = useStore();
+  const { formValues, handleCloseModal, loading, open, handleFinish } =
+    studentStore;
 
   useEffect(() => {
     formCat.setFieldsValue(formValues);
   }, [formCat, formValues]);
-
   return (
     <div>
       <Modal
         forceRender
-        title={
-          formCat.getFieldValue("id") == null ? "New Roles" : "Update Roles"
-        }
+        title={formValues.id == null ? "New Student" : "Update Student"}
         open={open}
         onCancel={handleCloseModal}
         footer={null}
       >
         <Form form={formCat} layout="vertical" onFinish={handleFinish}>
           <Form.Item
-            label="Name"
+            label="name"
             name={"name"}
             rules={[
               {
@@ -37,12 +34,24 @@ const RoleModal = () => {
           >
             <Input placeholder="Name" />
           </Form.Item>
+          <Form.Item
+            label="description"
+            name={"description"}
+            rules={[
+              {
+                required: true,
+                message: "Please input description!",
+              },
+            ]}
+          >
+            <Input placeholder="Description" />
+          </Form.Item>
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
               <Button onClick={handleCloseModal}>Cancel</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+                {formValues.id == null ? "Save" : "Update"}
               </Button>
             </Space>
           </Form.Item>
@@ -52,4 +61,4 @@ const RoleModal = () => {
   );
 };
 
-export default observer(RoleModal);
+export default observer(StudentModal);
