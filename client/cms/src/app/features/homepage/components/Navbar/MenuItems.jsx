@@ -1,14 +1,17 @@
+// MenuItems.js
+
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MenuItems = ({
-  items,
+  menuItems,
   handleClick,
   handleMouseEnter,
   handleMouseLeave,
 }) => {
   return (
     <ul className="hidden md:flex text-md font-serif font-bold drop-shadow-lg space-x-6">
-      {items.map((item) => (
+      {menuItems.map((item) => (
         <li
           key={item.key}
           className="relative group"
@@ -22,7 +25,7 @@ const MenuItems = ({
             {item.label}
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-green-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
           </button>
-          {item.children && hoveredMenu === item.key && (
+          {item.children && (
             <ul className="absolute left-0 top-full w-full bg-white text-gray-800 rounded-md shadow-lg opacity-100 transition-opacity duration-300 z-10">
               {item.children.map((subItem) => (
                 <li key={subItem.key}>
