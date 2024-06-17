@@ -9,6 +9,12 @@ export const Config = {
   token: "",
 };
 
+export function truncate(str) {
+  if (str) {
+    return str.length > 40 ? str.substring(0, 37) + "..." : str;
+  }
+}
+
 export const isEmptyOrNull = (value) => {
   if (
     value === "" ||

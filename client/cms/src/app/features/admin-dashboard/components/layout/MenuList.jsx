@@ -54,7 +54,7 @@ function MenuList({ darktheme }) {
     <>
       <Menu
         theme={darktheme ? "dark" : "light"}
-        className="mt-8 flex flex-col gap-[15px] text-base w-full"
+        className="mt-8 flex flex-col gap-[15px] text-base h-full overflow-auto"
         mode="inline"
         defaultSelectedKeys={["1"]}
         items={items}

@@ -3,6 +3,8 @@ import { Button, Form, Input } from "antd";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../stores/store";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { isLogin } from "../../../api/config/helper";
 
 const LoginPage = () => {
   const { userStore } = useStore();
@@ -10,6 +12,12 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Check if user is already logged in
+    if (isLogin()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
   const onFinish = (values) => {
     handleLogin(values)
       .then(() => {

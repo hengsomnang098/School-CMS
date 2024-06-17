@@ -25,6 +25,13 @@ export default class ArticleStore {
     });
   };
 
+  getArticlesByCategoryId = (categoryId) => {
+    const filteredArticles = this.articles.filter(
+      (article) => article.category.id === categoryId
+    );
+    return filteredArticles;
+  };
+
   handleClickNew = () => {
     runInAction(() => {
       this.open = true;
