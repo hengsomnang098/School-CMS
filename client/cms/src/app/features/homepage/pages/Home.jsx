@@ -53,9 +53,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold mx-8">OUR PARTNERS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
-        <div className="mb-10">
-          <Contact />
-        </div>
+        <div className="mb-10"></div>
       </div>
     </div>
   );
