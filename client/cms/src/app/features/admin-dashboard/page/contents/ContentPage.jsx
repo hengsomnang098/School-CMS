@@ -9,13 +9,12 @@ import ContentTable from "./ContentTable";
 import ContentModal from "./ContentModal";
 
 const ContentPage = () => {
-  const { contentStore, articleStore } = useStore();
+  const { contentStore } = useStore();
   const { getList, loading } = contentStore;
 
   useEffect(() => {
     getList();
-    articleStore.articleList();
-  }, [articleStore, getList]);
+  }, [getList]);
 
   return (
     <MainPage loading={loading}>

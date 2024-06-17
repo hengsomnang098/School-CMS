@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+// import useFetch from "../hooks/useFetch";
 import { fetchArticlesByCatName } from "../../../api/config/api";
 import logoLarge from "../../../../assets/SISlogo.png";
 import logoSmall from "../../../../assets/SISlogo2.png";
@@ -9,8 +9,8 @@ import { FaSearch, FaTimes } from "react-icons/fa"; // Import the close icon
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const categories = useFetch("categories");
-  const articles = useFetch("articles");
+  // const categories = useFetch("categories");
+  // const articles = useFetch("articles");
   const [ourProgramsArticles, setOurProgramsArticles] = useState([]);
   const [admissionArticles, setAdmissionArticles] = useState([]);
   const [newsArticles, setNewsArticles] = useState([]);

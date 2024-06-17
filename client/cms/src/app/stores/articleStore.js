@@ -7,7 +7,7 @@ export default class ArticleStore {
   open = false;
   formValues = {};
   loading = false;
-
+  disable = "";
   constructor() {
     makeAutoObservable(this);
   }
@@ -19,17 +19,10 @@ export default class ArticleStore {
       if (res) {
         this.articles = res.object;
       }
-
       this.loading = false;
       this.open = false;
+      this.disable = "disable";
     });
-  };
-
-  getArticlesByCategoryId = (categoryId) => {
-    const filteredArticles = this.articles.filter(
-      (article) => article.category.id === categoryId
-    );
-    return filteredArticles;
   };
 
   handleClickNew = () => {
@@ -113,5 +106,16 @@ export default class ArticleStore {
         this.articleList();
       });
     }
+  };
+
+  getArticlesByCategoryId = async (categoryId) => {
+    this.articles = [];
+    const res = await request(`articles/category/${categoryId}`, "get");
+    runInAction(() => {
+      if (res) {
+        this.articles = res.object;
+        this.disable = res.object.length > 0 ? "" : "disable";
+      }
+    });
   };
 }

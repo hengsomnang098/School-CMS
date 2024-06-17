@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 import { useStore } from "../../../../stores/store";
 import { observer } from "mobx-react-lite";
 const ContentModal = () => {
-  const { contentStore, articleStore } = useStore();
+  const { contentStore, articleStore, categoryStore } = useStore();
   const {
     open,
     handleCloseModal,
@@ -19,8 +19,6 @@ const ContentModal = () => {
   } = contentStore;
 
   const [formCat] = Form.useForm();
-
-  const quillRef = useRef(null);
 
   const modules = {
     toolbar: [
@@ -54,6 +52,12 @@ const ContentModal = () => {
   const fileRef = useRef(null);
 
   useEffect(() => {
+    articleStore.articleList();
+    categoryStore.getList();
+  }, [articleStore, categoryStore]);
+
+  useEffect(() => {
+    formCat.resetFields();
     formCat.setFieldsValue(formValues);
   }, [formValues, formCat]);
 
@@ -79,25 +83,33 @@ const ContentModal = () => {
           >
             <Input placeholder="title" />
           </Form.Item>
-          <Form.Item
-            label="Description"
-            name={"description"}
-            rules={[
-              {
-                required: true,
-                message: "Please input description!",
-              },
-            ]}
-          >
-            <ReactQuill
-              ref={quillRef}
-              theme="snow"
-              value={description}
-              onChange={setDescription}
-              modules={modules}
-              formats={formats}
-            />
-          </Form.Item>
+
+          {/* <Form.Item name="category" id="category" label="category">
+            <Select
+              placeholder="Select CategoryName"
+              showSearch
+              optionFilterProp="label"
+              onChange={(value) => {
+                articleStore.getArticlesByCategoryId(value);
+              }}
+            >
+              {categoryStore.categories ? (
+                categoryStore.categories.map((item, index) => (
+                  <Select.Option
+                    initialValues=""
+                    label={item.nameEn}
+                    key={index}
+                    value={item.id}
+                  >
+                    {item.nameEn}
+                  </Select.Option>
+                ))
+              ) : (
+                <></>
+              )}
+            </Select>
+          </Form.Item> */}
+
           <Form.Item
             label="ArticleName"
             name={"article"}
@@ -112,11 +124,12 @@ const ContentModal = () => {
               placeholder="Select Article"
               showSearch
               optionFilterProp="label"
+              // disabled={articleStore.disable}
             >
               {articleStore.articles ? (
                 articleStore.articles.map((item, index) => (
                   <Select.Option label={item.name} key={index} value={item.id}>
-                    {item.name}
+                    Article: {item.name} || Category: {item.category.nameEn}
                   </Select.Option>
                 ))
               ) : (
@@ -124,6 +137,26 @@ const ContentModal = () => {
               )}
             </Select>
           </Form.Item>
+
+          <Form.Item
+            label="Description"
+            name={"description"}
+            rules={[
+              {
+                required: true,
+                message: "Please input description!",
+              },
+            ]}
+          >
+            <ReactQuill
+              theme="snow"
+              value={description}
+              onChange={setDescription}
+              modules={modules}
+              formats={formats}
+            />
+          </Form.Item>
+
           {formValues.id != null ? (
             <>
               <Form.Item label="Image" name={"imageUrl"}>
@@ -153,7 +186,7 @@ const ContentModal = () => {
             <Space>
               <Button onClick={handleCloseModal}>Cancel</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+                {formValues.id == null ? "Save" : "Update"}
               </Button>
             </Space>
           </Form.Item>

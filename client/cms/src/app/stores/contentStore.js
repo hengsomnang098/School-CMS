@@ -10,6 +10,7 @@ export default class ContentStore {
   description = "";
   filePreview = null;
   fileSelected = null;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -26,7 +27,7 @@ export default class ContentStore {
   };
 
   setDescription = action((description) => {
-    this.description = description;
+    this.description = description || "";
   });
 
   handleChangeFile = (e) => {
@@ -45,7 +46,8 @@ export default class ContentStore {
       description: "",
       imageUrl: "",
       id: null,
-      article: "",
+      article: undefined,
+      category: [],
     };
     this.handleClearImage();
   };
@@ -69,7 +71,9 @@ export default class ContentStore {
       description: item.description,
       image: item.imageUrl,
       id: item.id,
-      article: item.article === null ? "" : item.article.id,
+      category: item.article.category === null ? "" : item.article.category.id,
+      article:
+        item.article === null ? "" : item.article.id || item.article.name,
     };
     this.filePreview = item.imageUrl;
     runInAction(() => {
@@ -107,8 +111,8 @@ export default class ContentStore {
     var data = {
       ...item,
       id: id,
-      title: item.title,
-      description: item.description,
+      // title: item.title,
+      // description: item.description,
       articleId: item.article,
     };
     if (this.fileSelected !== null && id !== null) {
