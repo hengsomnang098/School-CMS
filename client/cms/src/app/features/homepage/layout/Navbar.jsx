@@ -74,6 +74,7 @@ const Navbar = () => {
         label: article.name,
       })),
     },
+    { key: "/contact", label: "Contact Us" },
   ];
 
   useEffect(() => {

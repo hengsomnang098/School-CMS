@@ -27,3 +27,67 @@ body {
   font-weight: bold;
   font-style: normal;
 }
+
+/* Hexagon Css at aboutpage */
+
+/* 
+.hexagon {
+  width: 100px;
+  height: 57.74px;
+  background-color: #64c7cc;
+  position: relative;
+  margin: 28.87px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 28.87px solid #64c7cc;
+}
+
+.hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 28.87px solid #64c7cc;
+} */
+
+.hexagon {
+  width: 120px;
+  height: 69.28px;
+  background-color: #ffffff;
+  position: relative;
+  margin: 34.64px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 34.64px solid #ffffff;
+}
+
+.hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 34.64px solid #ffffff;
+}
