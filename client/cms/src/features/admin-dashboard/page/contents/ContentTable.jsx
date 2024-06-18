@@ -1,6 +1,7 @@
 import { Table, Image, Space, Button } from "antd";
 import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
+import { Link } from "react-router-dom";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
@@ -47,6 +48,26 @@ const ContentTable = () => {
             render: (value) => {
               return value.name;
             },
+          },
+          {
+            key: "mediaList",
+            title: "Album",
+            dataIndex: "mediaList",
+            responsive: ["sm"],
+            render: (value, item) => (
+              <Space>
+                {/* <Button
+                  size="large"
+                  // onClick={}
+                  type="primary"
+                >
+                  Manage Images
+                </Button> */}
+                <Link to={`../dashboard/content/medias/${item.id}`}>
+                  Manage Images
+                </Link>
+              </Space>
+            ),
           },
           {
             key: "imageUrl",
