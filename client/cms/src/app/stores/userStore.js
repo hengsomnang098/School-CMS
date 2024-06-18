@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
 import { setAccessToken, setRoles, setUser } from "../api/config/helper";
+import { Modal } from "antd";
 
 export default class UserStore {
   user = [];
@@ -55,8 +56,12 @@ export default class UserStore {
         this.user = res.object;
         this.loading = false;
       });
-      console.log(res);
     }
+  };
+
+  handleClearImage = () => {
+    this.fileSelected = "";
+    this.filePreview = "";
   };
 
   handleClearValue = () => {
@@ -67,6 +72,21 @@ export default class UserStore {
       email: "",
       roles: "",
     };
+    this.handleClearImage();
+  };
+
+  handleClickNew = () => {
+    runInAction(() => {
+      this.open = true;
+      this.handleClearValue();
+    });
+  };
+
+  handleCloseModal = () => {
+    runInAction(() => {
+      this.handleClearValue();
+      this.open = false;
+    });
   };
 
   handleEdit = (item) => {
@@ -81,5 +101,27 @@ export default class UserStore {
     this.filePreview = item.profile;
     this.open = true;
     this.loading = false;
+  };
+
+  handleStatus = async (item) => {
+    Modal.confirm({
+      title: "Delete",
+      content: "Are you sure you want to delete?",
+      okText: "Yes",
+      cancelText: "No",
+      okType: "danger",
+      centered: true,
+      onOk: async () => {
+        var data = {
+          id: item.id,
+        };
+        var con = item.status === "ACTIVE" ? "disable" : "enable";
+        const res = await request(`users/${con}/${data.id}`, "post", data);
+        if (res) {
+          this.open = false;
+          this.getList();
+        }
+      },
+    });
   };
 }

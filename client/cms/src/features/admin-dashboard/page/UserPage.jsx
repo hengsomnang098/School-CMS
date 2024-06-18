@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { request } from "../../../app/api/config/request";
 import {
   Table,
@@ -30,6 +30,9 @@ const UserPage = () => {
     fileSelected,
     filePreview,
     handleEdit,
+    handleClickNew,
+    handleCloseModal,
+    handleStatus,
   } = userStore;
 
   const [formCat] = Form.useForm();
@@ -41,7 +44,7 @@ const UserPage = () => {
   const onChangeFile = (e) => {
     var file = e.target.files[0];
     var filePreView = URL.createObjectURL(file);
-
+    console.log(filePreView);
     // console.log(file);
     // console.log(filePreView);
   };
@@ -70,31 +73,7 @@ const UserPage = () => {
     getList(filterRef.current.firstname);
   };
 
-  const onClickBtnDelete = async (item) => {
-    var status = item.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
-    Modal.confirm({
-      title: "Delete",
-      content: `Are you sure you want to ${status} ?`,
-      okText: "Yes",
-      cancelText: "No",
-      okType: "danger",
-      centered: true,
-      onOk: async () => {
-        var data = {
-          id: item.id,
-        };
-        var con = item.status === "ACTIVE" ? "disable" : "enable";
-        const res = await request(`users/${con}/${data.id}`, "post", data);
-        if (res) {
-          message.success(res);
-          getList();
-        }
-      },
-    });
-  };
-
   const onFinish = async (item) => {
-    setLoading(true);
     var id = formCat.getFieldValue("id");
     var form = new FormData();
     var data = {
@@ -106,11 +85,10 @@ const UserPage = () => {
       form.append("userId", id);
       form.append("file", fileSelected);
       const img = await request(`users/update/profile`, "put", form);
-      setLoading(false);
+
       if (img) {
         data.profile = img;
       } else {
-        setLoading(false);
         return false;
       }
     }
@@ -122,22 +100,13 @@ const UserPage = () => {
       if (res) {
         message.success(messages);
         getList();
-        onCloseModal();
       }
     } catch (error) {
       console.error("Error Response:", error.response?.data); // Log the error response
       message.error("An error occurred while processing your request.");
       // console.log(error);
       getList();
-      onCloseModal();
-      setLoading(false);
-    } finally {
-      setLoading(false);
     }
-  };
-
-  const onCloseModal = () => {
-    formCat.resetFields();
   };
 
   return (
@@ -155,7 +124,7 @@ const UserPage = () => {
         />
         <Button
           onClick={() => {
-            setOpen(true);
+            handleClickNew();
           }}
           type="primary"
           size="large"
@@ -258,7 +227,7 @@ const UserPage = () => {
                 </Button>
                 <Button
                   size="large"
-                  onClick={() => onClickBtnDelete(item)}
+                  onClick={() => handleStatus(item)}
                   type="primary"
                   danger
                   loading={loading}
@@ -276,7 +245,7 @@ const UserPage = () => {
           formCat.getFieldValue("id") == null ? "New Users" : "Update Users"
         }
         open={open}
-        onCancel={onCloseModal}
+        onCancel={handleCloseModal}
         footer={null}
       >
         <Form
@@ -395,7 +364,7 @@ const UserPage = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={onCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>Cancel</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
                 {formCat.getFieldValue("id") == null ? "Save" : "Update"}
               </Button>
