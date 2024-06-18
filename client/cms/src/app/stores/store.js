@@ -7,6 +7,7 @@ import RoleStore from "./roleStore";
 import ManagementTeamStore from "./managementTeamStore";
 import StudentStore from "./studentStore";
 import ContentStore from "./contentStore";
+import MediaStore from "./mediaStore";
 
 export const store = {
   categoryStore: new CategoryStore(),
@@ -17,6 +18,7 @@ export const store = {
   managementTeamStore: new ManagementTeamStore(),
   studentStore: new StudentStore(),
   contentStore: new ContentStore(),
+  mediaStore: new MediaStore(),
 };
 
 export const StoreContext = createContext(store);
