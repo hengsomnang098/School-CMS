@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { fetchArticlesByCatName } from "../../../app/api/config/api";
 import logoLarge from "../../../assets/SISlogo.png";
 import logoSmall from "../../../assets/SISlogo2.png";
-import MobileMenu from "../components/MobileMenu";
+import MobileMenu from "../components/Navbar/MobileMenu";
 import { FaSearch, FaTimes } from "react-icons/fa"; // Import the close icon
 
 const Navbar = () => {
