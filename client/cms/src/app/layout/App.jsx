@@ -33,6 +33,7 @@ import NewsPage from "../../features/homepage/pages/NewsPage";
 import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPage";
 import EventsPage from "../../features/homepage/pages/EventsPages";
 import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
+import SingleContent from "../../features/homepage/components/Contents/SingleContent";
 
 function App() {
   // const router = createBrowserRouter([
@@ -94,6 +95,11 @@ function App() {
             {/* articles*/}
             <Route path="/articles" element={<ArticleList />} />
             <Route path="/article/:id" element={<ListByArticle />} />
+            <Route path="*" element={<NotFoundPage />} />
+            {/* contents */}
+            {/* <Route path="/contents" element={<ContentList />} /> */}
+            <Route path="/content/:id" element={<SingleContent />} />
+            {/* <Route path="/content/:title" element={<SingleContent />} /> */}
             <Route path="*" element={<NotFoundPage />} />
             {/* Teams*/}
             <Route path="/teams/:id" element={<SingleMember />} />
