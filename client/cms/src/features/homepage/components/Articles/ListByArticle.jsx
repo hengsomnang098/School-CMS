@@ -30,38 +30,20 @@ const ListByArticle = () => {
   }, [id]);
 
   return (
-    <div>
-      <div className="py-40 bg-yellow-300 text-gray-700">
-        <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
-          Article Details
-        </h1>
+    <div className="bg-yellow-200 font-mono">
+      <div className="flex items-center mb-10 pt-10 ">
+        <div className="flex-grow  border-t-[6px] ml-8 border-black"></div>
+        <h2 className="text-5xl font-bold mx-8">Program: {article.name}</h2>
+        <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
       </div>
-      <div className="max-w-7xl mx-auto my-12 flex flex-col md:flex-row gap-12">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
         <div className="lg:w-3/4 mx-auto">
-          <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            Article ID: {id}
-          </h2>
-          <h2 className="text-3xl mt-8 font-bold mb-4 text-blue-500 cursor-pointer">
-            Article Name: {article.name}
-          </h2>
-          <h2 className="text-3xl mt-8 font-bold mb-4">
-            Category ID: {article.category?.id}
-          </h2>
-          <h2 className="text-3xl mt-8 font-bold mb-4">
-            English Name: {article.category?.nameEn}
-          </h2>
-          <h2 className="text-3xl mt-8 font-bold mb-4">
-            Category Khmer Name: {article.category?.nameKh}
-          </h2>
           <div className="text-base text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
-            accusamus porro? Quod, quidem, enim laborum repellendus iure nihil
-            nobis error dolorem recusandae reprehenderit ab commodi adipisci
-            temporibus officia, et tempora!
+            {/* Description: {article.description} */}
           </div>
           <div className="max-w-7xl mx-auto my-12">
             <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
-              Content for Article
+              Contents of {article.name}
             </h1>
             {loading ? (
               <p className="text-center text-gray-600">
