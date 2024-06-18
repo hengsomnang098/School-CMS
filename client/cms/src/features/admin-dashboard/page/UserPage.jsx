@@ -14,26 +14,34 @@ import {
   message,
 } from "antd";
 import MainPage from "../components/page/MainPage";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
 const { Title } = Typography;
 const UserPage = () => {
-  const [list, setList] = useState([]);
-  const [roles, setRoles] = useState([]);
+  const { userStore, roleStore } = useStore();
 
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  const {
+    getList,
+    user,
+    formValues,
+    loading,
+    open,
+    fileSelected,
+    filePreview,
+    handleEdit,
+  } = userStore;
 
   const [formCat] = Form.useForm();
 
-  const [fileSelected, setFileSelected] = useState(null);
-  const [filePreview, setFilePreview] = useState(null);
+  // const [fileSelected, setFileSelected] = useState(null);
+  // const [filePreview, setFilePreview] = useState(null);
   const fileRef = useRef(null);
 
   const onChangeFile = (e) => {
     var file = e.target.files[0];
     var filePreView = URL.createObjectURL(file);
-    setFileSelected(file);
-    setFilePreview(filePreView);
+
     // console.log(file);
     // console.log(filePreView);
   };
@@ -42,8 +50,6 @@ const UserPage = () => {
     if (fileRef.current) {
       fileRef.current.value = null;
     }
-    setFilePreview(null);
-    setFileSelected(null);
   };
 
   const filterRef = useRef({
@@ -51,44 +57,19 @@ const UserPage = () => {
   });
 
   useEffect(() => {
-    formCat.setFieldsValue({
-      firstname: "",
-      roles: "",
-    });
-    getList();
-  }, [formCat]);
-
-  const getList = async () => {
-    setLoading(true);
-    var param = {
-      firstname: filterRef.current.firstname,
-    };
-    const res = await request("users", "get", param);
-    const role = await request("roles", "get");
-    setLoading(false);
-    if (res) {
-      setList(res.object);
-      setRoles(role.object);
-    }
-  };
+    formCat.setFieldsValue(formValues);
+    roleStore.roleList();
+    getList("");
+  }, [formCat, formValues, getList, roleStore]);
 
   const onChangeSearch = (e) => {
+    // Update the current value of filterRef to the new search term
     filterRef.current.firstname = e.target.value;
-    getList();
+
+    // Pass the current value of firstname to getList
+    getList(filterRef.current.firstname);
   };
 
-  const onClickBtnEdit = (item) => {
-    formCat.setFieldsValue({
-      ...item,
-      id: item.id,
-      firstName: item.firstname,
-      lastName: item.lastname,
-      email: item.email,
-      roles: item.roles[0],
-    });
-    setFilePreview(item.profile);
-    setOpen(true);
-  };
   const onClickBtnDelete = async (item) => {
     var status = item.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
     Modal.confirm({
@@ -99,7 +80,6 @@ const UserPage = () => {
       okType: "danger",
       centered: true,
       onOk: async () => {
-        setLoading(true);
         var data = {
           id: item.id,
         };
@@ -109,7 +89,6 @@ const UserPage = () => {
           message.success(res);
           getList();
         }
-        setLoading(false);
       },
     });
   };
@@ -159,7 +138,6 @@ const UserPage = () => {
 
   const onCloseModal = () => {
     formCat.resetFields();
-    setOpen(false);
   };
 
   return (
@@ -188,7 +166,7 @@ const UserPage = () => {
 
       <Table
         rowKey="id"
-        dataSource={list}
+        dataSource={user}
         pagination={{
           pageSize: 5,
           // total: 100,
@@ -273,7 +251,7 @@ const UserPage = () => {
               <Space>
                 <Button
                   size="large"
-                  onClick={() => onClickBtnEdit(item)}
+                  onClick={() => handleEdit(item)}
                   type="primary"
                 >
                   Edit
@@ -374,8 +352,8 @@ const UserPage = () => {
               showSearch
               optionFilterProp="label"
             >
-              {roles ? (
-                roles.map((item, index) => (
+              {roleStore.roles ? (
+                roleStore.roles.map((item, index) => (
                   <Select.Option
                     label={item.name}
                     key={index}
@@ -429,4 +407,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default observer(UserPage);
