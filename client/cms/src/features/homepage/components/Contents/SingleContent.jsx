@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../../../../app/api/config/api";
-import { Descriptions } from "antd";
 
 const SingleContent = () => {
   const { id } = useParams();

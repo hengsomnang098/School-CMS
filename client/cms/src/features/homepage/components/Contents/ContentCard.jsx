@@ -5,8 +5,8 @@ const ContentCard = ({ content }) => {
   const description = content?.description || "";
   const imageUrl = content?.imageUrl || "";
 
-  const maxLengthTitle = 43;
-  const maxLengthDesc = 90;
+  const maxLengthTitle = 34;
+  const maxLengthDesc = 60;
 
   const truncatedDescription =
     description.length > maxLengthDesc
