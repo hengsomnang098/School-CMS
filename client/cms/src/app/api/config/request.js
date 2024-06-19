@@ -6,8 +6,8 @@ export const request = async (
   url = "",
   method = "get",
   data = {},
-  new_token,
-  timeoutDuration = 10000
+  new_token
+  // timeoutDuration = 10000
 ) => {
   var param_get = "";
   if (method === "get" && Object.keys(data).length > 0) {
@@ -33,7 +33,7 @@ export const request = async (
       ...headers,
       Authorization: "Bearer " + token,
     },
-    timeout: timeoutDuration,
+    // timeout: timeoutDuration,
   })
     .then((res) => {
       return res.data;

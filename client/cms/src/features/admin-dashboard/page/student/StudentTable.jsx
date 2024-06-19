@@ -7,6 +7,11 @@ const StudentTable = () => {
   return (
     <div>
       <Table
+        style={{
+          height: "80vh",
+          overflow: "auto",
+          padding: 0,
+        }}
         rowKey="id"
         dataSource={students}
         pagination={{

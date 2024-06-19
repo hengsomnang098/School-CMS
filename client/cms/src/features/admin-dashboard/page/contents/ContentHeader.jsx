@@ -8,11 +8,10 @@ const ContentHeader = () => {
   const { handleClickNew } = contentStore;
   return (
     <div>
-      <Typography>
-        <Title level={3}>{NameTitle}</Title>
-      </Typography>
-      <div className="flex 2xl:flex-row flex-col gap-2 justify-center size-16">
+      <Title level={3}>
+        {NameTitle}
         <Button
+          className="ml-5"
           onClick={() => {
             handleClickNew();
           }}
@@ -21,7 +20,7 @@ const ContentHeader = () => {
         >
           New
         </Button>
-      </div>
+      </Title>
     </div>
   );
 };

@@ -1,18 +1,23 @@
-import { Table, Image, Space, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
   const { content, handleClickDelete, handleClickEdit, loading } = contentStore;
+
   return (
     <div>
       <Table
+        width="100%"
         rowKey="id"
         dataSource={content}
+        className=" overflow-auto"
         pagination={{
-          pageSize: 5,
+          pageSize: 7,
+          // showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
         }}
         columns={[
           {
@@ -78,7 +83,8 @@ const ContentTable = () => {
               if (value != null && value != "") {
                 return (
                   <>
-                    <Image src={value} width={40} height={30} />
+                    {/* <Image src={value} width={40} height={30} /> */}
+                    <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
               } else {

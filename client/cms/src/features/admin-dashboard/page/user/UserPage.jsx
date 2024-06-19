@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { request } from "../../../app/api/config/request";
 import {
   Table,
   Button,
@@ -11,10 +10,9 @@ import {
   Tag,
   Typography,
   Select,
-  message,
 } from "antd";
-import MainPage from "../components/page/MainPage";
-import { useStore } from "../../../app/stores/store";
+import MainPage from "../../components/page/MainPage";
+import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 
 const { Title } = Typography;
@@ -27,33 +25,18 @@ const UserPage = () => {
     formValues,
     loading,
     open,
-    fileSelected,
+    handleFinish,
     filePreview,
     handleEdit,
     handleClickNew,
     handleCloseModal,
     handleStatus,
+    handleClearImage,
+    handleChangeImage,
   } = userStore;
 
   const [formCat] = Form.useForm();
-
-  // const [fileSelected, setFileSelected] = useState(null);
-  // const [filePreview, setFilePreview] = useState(null);
   const fileRef = useRef(null);
-
-  const onChangeFile = (e) => {
-    var file = e.target.files[0];
-    var filePreView = URL.createObjectURL(file);
-    console.log(filePreView);
-    // console.log(file);
-    // console.log(filePreView);
-  };
-
-  const onClearImage = () => {
-    if (fileRef.current) {
-      fileRef.current.value = null;
-    }
-  };
 
   const filterRef = useRef({
     firstname: "",
@@ -71,42 +54,6 @@ const UserPage = () => {
 
     // Pass the current value of firstname to getList
     getList(filterRef.current.firstname);
-  };
-
-  const onFinish = async (item) => {
-    var id = formCat.getFieldValue("id");
-    var form = new FormData();
-    var data = {
-      ...item,
-      roles: [item.roles],
-      id: id,
-    };
-    if (fileSelected != null && id != null) {
-      form.append("userId", id);
-      form.append("file", fileSelected);
-      const img = await request(`users/update/profile`, "put", form);
-
-      if (img) {
-        data.profile = img;
-      } else {
-        return false;
-      }
-    }
-
-    var url = id == null ? "auth/register" : `users/update/${id}`;
-    try {
-      const res = await request(url, "post", data);
-      var messages = id == null ? "Register Sucessful" : "Update Sucessful";
-      if (res) {
-        message.success(messages);
-        getList();
-      }
-    } catch (error) {
-      console.error("Error Response:", error.response?.data); // Log the error response
-      message.error("An error occurred while processing your request.");
-      // console.log(error);
-      getList();
-    }
   };
 
   return (
@@ -137,7 +84,7 @@ const UserPage = () => {
         rowKey="id"
         dataSource={user}
         pagination={{
-          pageSize: 5,
+          pageSize: 10,
           // total: 100,
         }}
         // onChange={}
@@ -241,9 +188,7 @@ const UserPage = () => {
       />
       <Modal
         forceRender
-        title={
-          formCat.getFieldValue("id") == null ? "New Users" : "Update Users"
-        }
+        title={formValues.id == null ? "New Users" : "Update Users"}
         open={open}
         onCancel={handleCloseModal}
         footer={null}
@@ -252,7 +197,7 @@ const UserPage = () => {
           name="registerForm"
           form={formCat}
           layout="vertical"
-          onFinish={onFinish}
+          onFinish={handleFinish}
         >
           <Form.Item
             label="Frist Name"
@@ -337,7 +282,7 @@ const UserPage = () => {
             </Select>
           </Form.Item>
 
-          {formCat.getFieldValue("id") != null ? (
+          {formValues.id != null ? (
             <>
               <Form.Item label="Image" name={"profile"}>
                 <Image
@@ -353,10 +298,10 @@ const UserPage = () => {
               <input
                 ref={fileRef}
                 type="file"
-                onChange={onChangeFile}
+                onChange={handleChangeImage}
                 src={filePreview}
               />
-              <button onClick={onClearImage}>Clear Image</button>
+              <Button onClick={handleClearImage}>Clear Image</Button>
             </>
           ) : (
             <></>
@@ -366,7 +311,7 @@ const UserPage = () => {
             <Space>
               <Button onClick={handleCloseModal}>Cancel</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+                {formValues.id == null ? "Save" : "Update"}
               </Button>
             </Space>
           </Form.Item>

@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 // dashboard import-------------
-import UserPage from "../../features/admin-dashboard/page/UserPage";
+import UserPage from "../../features/admin-dashboard/page/user/UserPage";
 import ArticlesPage from "../../features/admin-dashboard/page/article/ArticlePage";
-import ContentPage from "../../features/admin-dashboard/page/contents/ContentPage";
+// import ContentPage from "../../features/admin-dashboard/page/contents/ContentPage";
 import HomePage from "../../features/admin-dashboard/page/HomePage";
 import NotFoundPage from "../../features/admin-dashboard/page/NotFoundPage";
 import MainLayout from "../../features/admin-dashboard/components/layout/MainLayout";
@@ -34,6 +34,8 @@ import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPa
 import EventsPage from "../../features/homepage/pages/EventsPages";
 import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
 import SingleContent from "../../features/homepage/components/Contents/SingleContent";
+import React from "react";
+import MainPage from "../../features/admin-dashboard/components/page/MainPage";
 
 function App() {
   // const router = createBrowserRouter([
@@ -46,6 +48,9 @@ function App() {
   // },
   //   },
   // ]);
+  const LazyLoad = React.lazy(() =>
+    import("../../features/admin-dashboard/page/contents/ContentPage")
+  );
   return (
     <>
       <BrowserRouter>
@@ -55,9 +60,17 @@ function App() {
             <Route path="/dashboard" element={<HomePage />} />
             <Route path="/dashboard/category" element={<CategoryPage />} />
             <Route path="/dashboard/article" element={<ArticlesPage />} />
-            <Route path="/dashboard/content" element={<ContentPage />} />
+            <Route
+              path="/dashboard/content"
+              element={
+                <React.Suspense fallback={<MainPage />}>
+                  <LazyLoad />
+                </React.Suspense>
+              }
+            />
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
             <Route path="/dashboard/student" element={<StudentPage />} />
+            <Route path="/dashboard/staff" element={<StaffPage />} />
             <Route
               path="/dashboard/content/medias/:id"
               element={<ImagePage />}
@@ -65,7 +78,6 @@ function App() {
 
             {/* Protected Route  */}
             <Route element={<RequireAuth />}>
-              <Route path="/dashboard/staff" element={<StaffPage />} />
               <Route path="/dashboard/users" element={<UserPage />} />
               <Route path="/dashboard/roles" element={<RolePage />} />
             </Route>

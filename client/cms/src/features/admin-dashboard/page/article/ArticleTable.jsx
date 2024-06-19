@@ -7,6 +7,11 @@ const ArticleTable = () => {
   return (
     <>
       <Table
+        style={{
+          height: "80vh",
+          overflow: "auto",
+          padding: 0,
+        }}
         rowKey="id"
         dataSource={articles}
         pagination={{

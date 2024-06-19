@@ -12,6 +12,11 @@ const ImageTable = () => {
       <Table
         rowKey="id"
         dataSource={medias}
+        style={{
+          height: "80vh",
+          overflow: "auto",
+          padding: 0,
+        }}
         pagination={{
           pageSize: 5,
         }}
