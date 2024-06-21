@@ -6,7 +6,6 @@ antd;
 
 @tailwind components;
 @tailwind utilities;
-
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -32,11 +31,20 @@ body {
 /* Hexagon Css at aboutpage */
 
 .hexagon {
-  width: 120px;
-  height: 140px;
-  background-color: #ffffff;
+  width: 100px;
+  height: 115px;
+  position: relative;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  transition: transform 0.3s ease-in-out;
+}
+
+.hexagon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .hexagon:hover {

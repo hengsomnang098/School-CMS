@@ -1,35 +1,40 @@
 import React, { useState } from "react";
+import aboutUsImage from "../../images/AboutIcon/aboutUs.png";
+import visionImage from "../../images/AboutIcon/vision.png";
+import missionImage from "../../images/AboutIcon/mission.png";
+import valuesImage from "../../images/AboutIcon/value.png";
+import objectivesImage from "../../images/AboutIcon/objectives.png";
 
 const HexagonSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const hexagons = [
     {
-      icon: "🎯",
+      image: aboutUsImage,
       title: "About Us",
       description:
         "Khmer General Education at the primary grade level in Cambodia is designed to provide students with a strong foundation in the Khmer.",
     },
     {
-      icon: "👁️",
+      image: visionImage,
       title: "Vision",
       description:
         "Our vision is to provide quality education to students in Cambodia, nurturing their growth and development.",
     },
     {
-      icon: "⚖️",
+      image: missionImage,
       title: "Mission",
       description:
         "Our mission is to empower students with knowledge and skills through a comprehensive education program.",
     },
     {
-      icon: "📈",
+      image: valuesImage,
       title: "Values",
       description:
         "We uphold values of integrity, excellence, and respect, fostering a positive learning environment.",
     },
     {
-      icon: "💡",
+      image: objectivesImage,
       title: "Objectives",
       description:
         "Our objectives include fostering creativity, critical thinking, and global awareness among our students.",
@@ -37,32 +42,45 @@ const HexagonSection = () => {
   ];
 
   const toggleActive = (index) => {
-    if (activeIndex === index) {
-      setActiveIndex(null); // Close if already open
-    } else {
-      setActiveIndex(index); // Open clicked item
-    }
+    setActiveIndex(activeIndex === index ? null : index); // Toggle active index
+  };
+
+  const closeActive = () => {
+    setActiveIndex(null); // Close active hexagon
   };
 
   return (
-    <div className="py-12 h-[600px]">
+    <div className="py-12 relative">
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold">SouthWest International School</h1>
       </div>
       <div className="flex flex-wrap justify-center gap-8 px-4">
         {hexagons.map((hexagon, index) => (
-          <div key={index} className="relative w-[full]">
+          <div key={index} className="relative">
             <div
-              className="hexagon bg-white shadow-lg flex items-center justify-center text-5xl cursor-pointer"
+              className="hexagon cursor-pointer"
               onClick={() => toggleActive(index)}
             >
-              {hexagon.icon}
+              <img src={hexagon.image} alt={hexagon.title} />
             </div>
             {activeIndex === index && (
-              <div className="absolute inset-x-0 top-[120px] text-center mt-4">
-                <h2 className="font-bold text-lg">{hexagon.title}</h2>
-                <p className="text-sm">{hexagon.description}</p>
-              </div>
+              <>
+                <div
+                  className="fixed inset-0 bg-black opacity-50 z-50 "
+                  onClick={closeActive}
+                ></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-[120px] text-center mt-4 p-4 bg-green-200 rounded-lg shadow-lg max-w-md w-[400px] z-50">
+                  <div className="flex justify-center">
+                    <img
+                      className="w-[100px] h-auto"
+                      src={hexagon.image}
+                      alt={hexagon.title}
+                    />
+                  </div>
+                  <h2 className="font-bold text-lg mb-2">{hexagon.title}</h2>
+                  <p className="text-sm">{hexagon.description}</p>
+                </div>
+              </>
             )}
           </div>
         ))}
