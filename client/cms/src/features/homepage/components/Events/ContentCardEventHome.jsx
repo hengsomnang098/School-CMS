@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ContentCardE = ({ content }) => {
   const title = content?.title || "";
@@ -27,10 +28,16 @@ const ContentCardE = ({ content }) => {
           alt={title}
         />
       </div>
-      <p className="text-start font-bold text-lg mb-2 p-2">{truncatedTitle}</p>
-      <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
-      <div className="flex justify-end p-2">
-        <button className="bg-green-400 rounded-sm px-4 py-2">See More</button>
+      <div className="p-2">
+        <p className="text-start font-bold text-lg mb-2">{truncatedTitle}</p>
+        <p className="text-sm text-gray-700 mb-4 p-2 break-words">
+          {truncatedDescription}
+        </p>
+        <Link to={`/content/${content.id}`}>
+          <button className="bg-green-400 rounded-lg w-24 h-10 text-white hover:bg-green-600 focus:outline-none">
+            Read More
+          </button>
+        </Link>
       </div>
     </div>
   );

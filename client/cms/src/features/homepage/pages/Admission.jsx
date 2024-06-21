@@ -1,10 +1,13 @@
+import GetArticles from "../components/Articles/GetArticles";
 const Admission = () => {
   return (
     <div>
-      <div className="py-40  text-gray-700">
-        <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5 text-center">
-          Admission
-        </h1>
+      <div>
+        <div className="pt-32 pb-40  bg-green-200 text-gray-700">
+          <div>
+            <GetArticles categoryName="Admissions" />
+          </div>
+        </div>
       </div>
     </div>
   );

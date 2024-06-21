@@ -1,5 +1,7 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
-import { fetchContentsByArtName } from "../../../../app/api/config/api";
+import { fetchContentsByArtName } from "../../api/Api";
 import ContentCardNewsHome from "./ContentCardNewsHome";
 import ContentCardMainNews from "./ContentCardMainNews";
 
@@ -33,7 +35,7 @@ const GetContentsByNews = () => {
   }, [fetchContents]);
 
   if (loading) {
-    return <p className="text-center text-gray-600">Loading contents...</p>;
+    return <p className="text-center text-gray-600">Loading ...</p>;
   }
 
   if (error) {
@@ -41,7 +43,7 @@ const GetContentsByNews = () => {
   }
 
   const mainContent = contents[0];
-  const otherContents = contents.slice(1);
+  const otherContents = contents.slice(1, 4); // Select only the first 3 items
 
   return (
     <div className="container mx-auto max-w-1000px p-4">
@@ -56,6 +58,13 @@ const GetContentsByNews = () => {
             <ContentCardNewsHome key={content.id} content={content} />
           ))}
         </div>
+      </div>
+      <div className="flex justify-center mt-4">
+        <Link to="/schoolnews">
+          <button className="bg-green-400 hover:bg-green-600 text-white py-2 px-4 rounded">
+            See All News
+          </button>
+        </Link>
       </div>
     </div>
   );

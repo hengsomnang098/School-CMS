@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchData } from "../../../../app/api/config/api";
+import { fetchData } from "../../api/Api";
 
 const SingleContent = () => {
   const { id } = useParams();
@@ -29,11 +29,11 @@ const SingleContent = () => {
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-12">
         <div className="bg-white shadow-xl drop-shadow-lg rounded-sm overflow-hidden"></div>
         <div className="lg:w-3/4 mx-auto font-khmer">
-          <h2 className="text-3xl mt-8 font-bold mb-4 cursor-pointer">
+          <h2 className="text-3xl mt-8 font-bold mb-4 cursor-pointer break-words">
             {content.title}
           </h2>
           <div className="text-xl font-mono, font-khmer ">
-            <p className="ml-10">
+            <p className="ml-10  break-words">
               <span dangerouslySetInnerHTML={{ __html: content.description }} />
             </p>
             <h1 className="text-2xl font-mono  pt-10 ">Album</h1>

@@ -41,6 +41,7 @@ export const fetchContentsByArtName = async (articleName) => {
       return { object: filteredContents };
     } else {
       console.error("Unexpected response format:", allContentsResponse);
+
       throw new Error("Unexpected response format");
     }
   } catch (error) {

@@ -18,10 +18,11 @@ import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
 
 // homepage import --------------
+import NotFound from "../../features/homepage/pages/NotFound";
 import Home from "../../features/homepage/pages/Home";
 import About from "../../features/homepage/pages/About";
 import Contact from "../../features/homepage/pages/Contact";
-import OurPrograms from "../../features/homepage/pages/OurProgramsPage";
+import OurProgramsPage from "../../features/homepage/pages/OurProgramsPage";
 import Layout from "../../features/homepage/layout/Layout";
 import CategoryList from "../../features/homepage/components/Categories/CategoryList";
 import ListByCategory from "../../features/homepage/components/Categories/ListByCategory";
@@ -29,11 +30,13 @@ import ListByArticle from "../../features/homepage/components/Articles/ListByArt
 import Admission from "../../features/homepage/pages/Admission";
 import AllArtByCat from "../../features/homepage/components/Categories/AllArtByCat";
 import ArticleList from "../../features/homepage/components/Articles/ArticleList";
-import NewsPage from "../../features/homepage/pages/NewsPage";
+import ActivitiesPage from "../../features/homepage/pages/ActivitiesPage";
 import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPage";
 import EventsPage from "../../features/homepage/pages/EventsPages";
 import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
 import SingleContent from "../../features/homepage/components/Contents/SingleContent";
+import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
+import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import React from "react";
 import MainPage from "../../features/admin-dashboard/components/page/MainPage";
 
@@ -93,9 +96,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/ourprograms" element={<OurPrograms />} />
+            <Route path="/ourprograms" element={<OurProgramsPage />} />
             <Route path="/managementteams" element={<ManagementTeamsPage />} />
-            <Route path="/news" element={<NewsPage />} />
+            <Route path="/activities" element={<ActivitiesPage />} />
             <Route path="/event/:id" element={<EventsPage />} />
             {/* <Route path="/events" element={<EventsPage />} /> */}
             <Route path="/admission" element={<Admission />} />
@@ -107,15 +110,21 @@ function App() {
             {/* articles*/}
             <Route path="/articles" element={<ArticleList />} />
             <Route path="/article/:id" element={<ListByArticle />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFound />} />
             {/* contents */}
+            {/* news */}
+            <Route path="/schoolnews" element={<ListAllContentNews />} />
+            <Route path="/new/:id" element={<SchoolNewsPage />} />
+            {/* <Route path="/new/:title" element={<SchoolNewsPage />} /> */}
             {/* <Route path="/contents" element={<ContentList />} /> */}
             <Route path="/content/:id" element={<SingleContent />} />
             {/* <Route path="/content/:title" element={<SingleContent />} /> */}
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFound />} />
             {/* Teams*/}
             <Route path="/teams/:id" element={<SingleMember />} />
           </Route>
+
+          <Route path="*" element={<NotFound />} />
 
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<LoginPage />} />

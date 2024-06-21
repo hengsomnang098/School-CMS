@@ -1,17 +1,24 @@
 import React from "react";
 import useFetchTeams from "../../hooks/useFetchTeams";
-import TeamCard from "./TeamsCard";
 import TeamCardHome from "./TeamsCardHome";
 
 const ManagementTeams = () => {
   const { teamMembers, loading, error } = useFetchTeams();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error loading team data.</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen text-red-600">
+        Error loading team data.
+      </div>
+    );
   }
 
   // Determine the team members to display
@@ -19,11 +26,15 @@ const ManagementTeams = () => {
     teamMembers.length > 4 ? teamMembers.slice(0, 3) : teamMembers;
 
   return (
-    <div className="container mx-auto justify-center flex px-32  py-4 w-[1200px] h-[450px]">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
-        {displayedTeamMembers.map((member) => (
-          <TeamCardHome key={member.id} member={member} />
-        ))}
+    <div className="flex items-center justify-center mt-16">
+      <div className="max-w-screen-lg w-full mx-auto px-4 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {displayedTeamMembers.map((member) => (
+            <div key={member.id} className="flex justify-center">
+              <TeamCardHome member={member} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

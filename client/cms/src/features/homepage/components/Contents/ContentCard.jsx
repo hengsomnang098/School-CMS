@@ -18,11 +18,11 @@ const ContentCard = ({ content }) => {
       ? title.substring(0, maxLengthTitle) + "..."
       : title;
   return (
-    <div className="border p-4 mb-4 h-[500px]">
-      <p className="text-start font-bold text-xl mb-2 p-2 h-[70px]">
-        {truncatedTitle}
+    <div className="border p-4 mb-4 h-[500px] ">
+      <p className="text-start font-bold text-xl mb-2 p-2 h-[70px] break-words">
+        <span dangerouslySetInnerHTML={{ __html: truncatedTitle }} />
       </p>
-      <div className="h-[80px]">
+      <div className="h-[80px] break-words">
         <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
       </div>
 

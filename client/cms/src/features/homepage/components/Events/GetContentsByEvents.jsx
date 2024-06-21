@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchContentsByArtName } from "../../../../app/api/config/api";
-// import ContentCardE from "./ContentCardE";
+import { fetchContentsByArtName } from "../../api/Api";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ContentCardE from "./ContentCardEventHome";
 
 const GetContentsByEvents = () => {
@@ -30,18 +32,48 @@ const GetContentsByEvents = () => {
     fetchContents();
   }, [articleName]);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
+  };
   return (
-    <div>
+    <div className="container mx-auto px-4 place-content-center">
       {loading ? (
-        <p className="text-center text-gray-600">Loading contents...</p>
+        <p className="text-center text-gray-600 mt-8">Loading ...</p>
       ) : contents.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Slider {...settings} className="mt-8">
           {contents.map((content) => (
-            <ContentCardE key={content.id} content={content} />
+            <div key={content.id} className="px-2">
+              <ContentCardE content={content} />
+            </div>
           ))}
-        </div>
+        </Slider>
       ) : (
-        <p className="text-center text-gray-600">No articles found.</p>
+        <p className="text-center text-gray-600 mt-8">No articles found.</p>
       )}
     </div>
   );

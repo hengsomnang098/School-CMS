@@ -1,56 +1,22 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { fetchContentsByArtName } from "../../../app/api/config/api";
-import logoLarge from "../../../assets/SISlogo.png";
-import logoSmall from "../../../assets/SISlogo2.png";
+import logoLarge from "../assets/SISlogo.png";
+import logoSmall from "../assets/SISlogo2.png";
 import MobileMenu from "../components/Navbar/MobileMenu";
 import { FaSearch, FaTimes } from "react-icons/fa";
+import useContentFetcher from "../hooks/useContentFetcher";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [ourProgramsContents, setOurProgramsContents] = useState([]);
-  const [admissionContents, setAdmissionContents] = useState([]);
-  const [newsContents, setNewsContents] = useState([]);
+  const ourProgramsContents = useContentFetcher("Our Programs");
+  const admissionContents = useContentFetcher("Admissions");
+  const activitiesContents = useContentFetcher("Activities");
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
   const [navbarShadow, setNavbarShadow] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const ourProgramsResponse = await fetchContentsByArtName(
-          "Our Programs"
-        );
-        console.log("Our Programs:", ourProgramsResponse);
-        setOurProgramsContents(
-          Array.isArray(ourProgramsResponse.object)
-            ? ourProgramsResponse.object
-            : []
-        );
-
-        const admissionResponse = await fetchContentsByArtName("Admissions");
-        console.log("Admissions:", admissionResponse);
-        setAdmissionContents(
-          Array.isArray(admissionResponse.object)
-            ? admissionResponse.object
-            : []
-        );
-
-        const newsResponse = await fetchContentsByArtName("News");
-        console.log("News:", newsResponse);
-        setNewsContents(
-          Array.isArray(newsResponse.object) ? newsResponse.object : []
-        );
-      } catch (error) {
-        console.error("Error fetching articles:", error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const menuItems = [
     { key: "/about", label: "About" },
@@ -71,9 +37,9 @@ const Navbar = () => {
       })),
     },
     {
-      key: "/news",
-      label: "News",
-      children: newsContents.map((content) => ({
+      key: "/activities",
+      label: "Activites",
+      children: activitiesContents.map((content) => ({
         key: `/content/${content.id}`,
         label: content.title,
       })),

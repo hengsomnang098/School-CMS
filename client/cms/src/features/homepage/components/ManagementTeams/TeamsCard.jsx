@@ -1,10 +1,11 @@
 import React from "react";
+
 const TeamCard = ({ member }) => {
   return (
-    <div className=" w-[250px] h-[450px] ">
-      <div className="bg-white shadow-xl drop-shadow-lg rounded-sm overflow-hidden">
+    <div className="w-full sm:w-[250px]">
+      <div className="bg-white shadow-xl rounded-sm overflow-hidden">
         <img
-          className="w-[100%] h-[300px] object-cover"
+          className="w-full h-[300px] object-cover"
           src={member.photoUrl}
           alt={member.name}
         />

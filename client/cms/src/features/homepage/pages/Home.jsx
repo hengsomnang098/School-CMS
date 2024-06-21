@@ -1,8 +1,9 @@
-import Contact from "./Contact";
 import Events from "../components/Events/Events";
 import News from "../components/News/News";
 import ManagementTeams from "../components/ManagementTeams/ManagementTeams";
 import { Link } from "react-router-dom";
+import OurPartnerImage from "../images/OurPartner.png";
+import DataInformation from "../components/DataInformation";
 const Home = () => {
   return (
     <div className="bg-gray-100">
@@ -12,7 +13,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold mx-8">SCHOOL EVENTS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
-        <div>
+        <div className="">
           <Events />
         </div>
       </div>
@@ -46,14 +47,27 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      <div
+        className="relative w-full h-[700px] bg-cover bg-center mb-5"
+        style={{
+          backgroundImage: `url(${DataInformation})`,
+        }}
+      >
+        <DataInformation />
+      </div>
       <div>
         <div className="flex items-center mb-5">
           <div className="flex-grow  border-t-[6px] ml-8 border-black"></div>
           <h2 className="text-4xl font-bold mx-8">OUR PARTNERS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
-        <div className="mb-10"></div>
+        <div className=" ">
+          <img
+            className="w-[100%] h-[130px] "
+            src={OurPartnerImage} // Use the imported image variable here
+            alt="Our Partner"
+          />
+        </div>
       </div>
     </div>
   );
