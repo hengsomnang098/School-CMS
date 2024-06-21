@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import useFetch from "../hooks/useFetch";
-import { fetchArticlesByCatName } from "../../../app/api/config/api";
+import { fetchContentsByArtName } from "../../../app/api/config/api";
 import logoLarge from "../../../assets/SISlogo.png";
 import logoSmall from "../../../assets/SISlogo2.png";
 import MobileMenu from "../components/Navbar/MobileMenu";
-import { FaSearch, FaTimes } from "react-icons/fa"; // Import the close icon
+import { FaSearch, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  // const categories = useFetch("categories");
-  // const articles = useFetch("articles");
-  const [ourProgramsArticles, setOurProgramsArticles] = useState([]);
-  const [admissionArticles, setAdmissionArticles] = useState([]);
-  const [newsArticles, setNewsArticles] = useState([]);
+  const [ourProgramsContents, setOurProgramsContents] = useState([]);
+  const [admissionContents, setAdmissionContents] = useState([]);
+  const [newsContents, setNewsContents] = useState([]);
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
@@ -22,33 +19,37 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const fetchOurProgramsArticles = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetchArticlesByCatName("Our Programs");
-        setOurProgramsArticles(response.object);
+        const ourProgramsResponse = await fetchContentsByArtName(
+          "Our Programs"
+        );
+        console.log("Our Programs:", ourProgramsResponse);
+        setOurProgramsContents(
+          Array.isArray(ourProgramsResponse.object)
+            ? ourProgramsResponse.object
+            : []
+        );
+
+        const admissionResponse = await fetchContentsByArtName("Admissions");
+        console.log("Admissions:", admissionResponse);
+        setAdmissionContents(
+          Array.isArray(admissionResponse.object)
+            ? admissionResponse.object
+            : []
+        );
+
+        const newsResponse = await fetchContentsByArtName("News");
+        console.log("News:", newsResponse);
+        setNewsContents(
+          Array.isArray(newsResponse.object) ? newsResponse.object : []
+        );
       } catch (error) {
-        console.error("Error fetching 'Our Programs' articles:", error.message);
+        console.error("Error fetching articles:", error.message);
       }
     };
-    const fetchAdmissionArticles = async () => {
-      try {
-        const response = await fetchArticlesByCatName("Admissions");
-        setAdmissionArticles(response.object);
-      } catch (error) {
-        console.error("Error fetching 'Admission' articles:", error.message);
-      }
-    };
-    const fetchNewsArticles = async () => {
-      try {
-        const response = await fetchArticlesByCatName("News");
-        setNewsArticles(response.object);
-      } catch (error) {
-        console.error("Error fetching 'News' articles:", error.message);
-      }
-    };
-    fetchNewsArticles();
-    fetchAdmissionArticles();
-    fetchOurProgramsArticles();
+
+    fetchData();
   }, []);
 
   const menuItems = [
@@ -56,25 +57,25 @@ const Navbar = () => {
     {
       key: "/ourprograms",
       label: "Our Programs",
-      children: ourProgramsArticles.map((article) => ({
-        key: `/article/${article.id}`,
-        label: article.name,
+      children: ourProgramsContents.map((content) => ({
+        key: `/content/${content.id}`,
+        label: content.title,
       })),
     },
     {
       key: "/admission",
       label: "Admissions",
-      children: admissionArticles.map((article) => ({
-        key: `/article/${article.id}`,
-        label: article.name,
+      children: admissionContents.map((content) => ({
+        key: `/content/${content.id}`,
+        label: content.title,
       })),
     },
     {
       key: "/news",
       label: "News",
-      children: newsArticles.map((article) => ({
-        key: `/article/${article.id}`,
-        label: article.name,
+      children: newsContents.map((content) => ({
+        key: `/content/${content.id}`,
+        label: content.title,
       })),
     },
     { key: "/contact", label: "Contact Us" },
@@ -119,11 +120,7 @@ const Navbar = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Perform search logic here with searchQuery
-    // console.log("Search query:", searchQuery);
-    // Reset search query
     setSearchQuery("");
-    // Close the search screen
     setSearchOpen(false);
   };
 
