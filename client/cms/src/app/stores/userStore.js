@@ -1,15 +1,15 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
 import { setAccessToken, setRoles, setUser } from "../api/config/helper";
-import { Modal } from "antd";
+import { Modal, message } from "antd";
 
 export default class UserStore {
   user = [];
   loading = false;
   open = false;
   formValues = {};
-  fileSelected = "";
-  filePreview = "";
+  fileSelected = null;
+  filePreview = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -60,8 +60,13 @@ export default class UserStore {
   };
 
   handleClearImage = () => {
-    this.fileSelected = "";
-    this.filePreview = "";
+    this.fileSelected = null;
+    this.filePreview = null;
+  };
+
+  handleChangeImage = (e) => {
+    this.filePreview = URL.createObjectURL(e.target.files[0]);
+    this.fileSelected = e.target.files[0];
   };
 
   handleClearValue = () => {
@@ -119,9 +124,46 @@ export default class UserStore {
         const res = await request(`users/${con}/${data.id}`, "post", data);
         if (res) {
           this.open = false;
-          this.getList();
+          this.getList("");
         }
       },
     });
+  };
+
+  handleFinish = async (item) => {
+    var id = this.formValues.id;
+    var form = new FormData();
+    var data = {
+      ...item,
+      roles: [item.roles],
+      id: id,
+    };
+    if (this.fileSelected != null && id != null) {
+      form.append("userId", id);
+      form.append("file", this.fileSelected);
+      const img = await request(`users/update/profile`, "put", form);
+      if (img) {
+        data.profile = img;
+      } else {
+        return false;
+      }
+    }
+    var url = id == null ? "auth/register" : `users/update/${id}`;
+    try {
+      const res = await request(url, "post", data);
+      var messages = id == null ? "Register Sucessful" : "Update Sucessful";
+      if (res) {
+        runInAction(() => {
+          this.loading = true;
+          message.success(messages);
+          this.open = false;
+          this.getList("");
+        });
+      }
+    } catch (error) {
+      this.loading = false;
+      console.error("Error Response:", error.response?.data); // Log the error response
+      message.error("An error occurred while processing your request.");
+    }
   };
 }

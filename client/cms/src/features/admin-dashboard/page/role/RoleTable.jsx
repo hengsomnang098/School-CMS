@@ -8,6 +8,11 @@ const RoleTable = () => {
   return (
     <>
       <Table
+        style={{
+          height: "80vh",
+          overflow: "auto",
+          padding: 0,
+        }}
         rowKey="id"
         dataSource={roles}
         pagination={{

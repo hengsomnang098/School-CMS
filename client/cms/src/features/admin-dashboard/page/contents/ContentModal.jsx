@@ -1,8 +1,9 @@
 import { Button, Space, Modal, Input, Form, Select, Image } from "antd";
 import { useEffect, useRef } from "react";
-import ReactQuill from "react-quill";
+
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import MyTextEditor from "../../components/form/MyTextEditor";
 const ContentModal = () => {
   const { contentStore, articleStore, categoryStore } = useStore();
   const {
@@ -20,46 +21,14 @@ const ContentModal = () => {
 
   const [formCat] = Form.useForm();
 
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
-
-  const formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
-
   const fileRef = useRef(null);
 
   useEffect(() => {
     articleStore.articleList();
     categoryStore.getList();
-  }, [articleStore, categoryStore]);
-
-  useEffect(() => {
     formCat.resetFields();
     formCat.setFieldsValue(formValues);
-  }, [formValues, formCat]);
+  }, [articleStore, categoryStore, formCat, formValues]);
 
   return (
     <div>
@@ -83,32 +52,6 @@ const ContentModal = () => {
           >
             <Input placeholder="title" />
           </Form.Item>
-
-          {/* <Form.Item name="category" id="category" label="category">
-            <Select
-              placeholder="Select CategoryName"
-              showSearch
-              optionFilterProp="label"
-              onChange={(value) => {
-                articleStore.getArticlesByCategoryId(value);
-              }}
-            >
-              {categoryStore.categories ? (
-                categoryStore.categories.map((item, index) => (
-                  <Select.Option
-                    initialValues=""
-                    label={item.nameEn}
-                    key={index}
-                    value={item.id}
-                  >
-                    {item.nameEn}
-                  </Select.Option>
-                ))
-              ) : (
-                <></>
-              )}
-            </Select>
-          </Form.Item> */}
 
           <Form.Item
             label="ArticleName"
@@ -148,13 +91,7 @@ const ContentModal = () => {
               },
             ]}
           >
-            <ReactQuill
-              theme="snow"
-              value={description}
-              onChange={setDescription}
-              modules={modules}
-              formats={formats}
-            />
+            <MyTextEditor value={description} onChange={setDescription} />
           </Form.Item>
 
           {formValues.id != null ? (
