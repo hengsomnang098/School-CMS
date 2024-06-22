@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/app/layout/index.css", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
       sm: "640px",
@@ -20,8 +20,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        khmermont: ['"Khmer OS Battambang"', "Montserrat"],
+        khmermont: ['"Roboto"', '"Khmer OS Battambang"', "serif"],
       },
+
       backgroundImage: {
         "custom-gradient": "linear-gradient(45deg, #2ECC71, #34495E)",
       },

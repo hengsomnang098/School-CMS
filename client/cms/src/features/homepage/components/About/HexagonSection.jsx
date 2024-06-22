@@ -57,11 +57,14 @@ const HexagonSection = () => {
       <div className="flex flex-wrap justify-center gap-8 px-4">
         {hexagons.map((hexagon, index) => (
           <div key={index} className="relative">
-            <div
-              className="hexagon cursor-pointer"
-              onClick={() => toggleActive(index)}
-            >
-              <img src={hexagon.image} alt={hexagon.title} />
+            <div className="flex flex-col justify-centerjustify-center items-center ">
+              <div
+                className="hexagon mx-4 cursor-pointer"
+                onClick={() => toggleActive(index)}
+              >
+                <img src={hexagon.image} alt={hexagon.title} />
+              </div>{" "}
+              <h2 className="font-bold text-md mx-4 mb-2">{hexagon.title}</h2>
             </div>
             {activeIndex === index && (
               <>
@@ -69,7 +72,7 @@ const HexagonSection = () => {
                   className="fixed inset-0 bg-black opacity-50 z-50 "
                   onClick={closeActive}
                 ></div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-[120px] text-center mt-4 p-4 bg-green-200 rounded-lg shadow-lg max-w-md w-[400px] z-50">
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-[-50px] text-center mt-4 p-4 bg-green-200 rounded-lg shadow-lg max-w-md w-[400px] z-50">
                   <div className="flex justify-center">
                     <img
                       className="w-[100px] h-auto"
@@ -77,8 +80,12 @@ const HexagonSection = () => {
                       alt={hexagon.title}
                     />
                   </div>
-                  <h2 className="font-bold text-lg mb-2">{hexagon.title}</h2>
-                  <p className="text-sm">{hexagon.description}</p>
+                  <h2 className="font-bold font-khmermont tracking-wider text-lg mb-2 ">
+                    {hexagon.title}
+                  </h2>
+                  <p className="text-md font-khmermont tracking-wider break-words">
+                    {hexagon.description}
+                  </p>
                 </div>
               </>
             )}

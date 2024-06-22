@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
 @layer tailwind-base,
 antd;
 @layer tailwind-base {
@@ -8,7 +8,7 @@ antd;
 @tailwind components;
 @tailwind utilities;
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .max-w-1000px {
