@@ -28,15 +28,15 @@ const SingleContent = () => {
     <div className="bg-yellow-200">
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-12">
         <div className="bg-white shadow-xl drop-shadow-lg rounded-sm overflow-hidden"></div>
-        <div className="lg:w-3/4 mx-auto font-khmer">
+        <div className="lg:w-3/4 mx-auto font-khmermont">
           <h2 className="text-3xl mt-8 font-bold mb-4 cursor-pointer break-words">
             {content.title}
           </h2>
-          <div className="text-xl font-mono, font-khmer ">
-            <p className="ml-10  break-words">
+          <div className="text-xl  ">
+            <p className="ml-10 font-khmermont  break-words">
               <span dangerouslySetInnerHTML={{ __html: content.description }} />
             </p>
-            <h1 className="text-2xl font-mono  pt-10 ">Album</h1>
+            <h1 className="text-2xl font-khmermont  pt-10 ">Album</h1>
             <div className="my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {Array.isArray(content.mediaList) &&
               content.mediaList.length > 0 ? (

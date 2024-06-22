@@ -115,7 +115,7 @@ const Navbar = () => {
             />
           </Link>
           <nav className="flex items-center">
-            <ul className="hidden md:flex text-md font-serif font-bold drop-shadow-lg space-x-6">
+            <ul className="hidden md:flex text-md font-khmermont font-bold drop-shadow-lg space-x-6">
               {menuItems.map((item) => (
                 <li
                   key={item.key}
@@ -124,7 +124,7 @@ const Navbar = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <button
-                    className="py-2 text-lg px-4 font-mono tracking-wider rounded-md transition-colors duration-300 relative overflow-hidden group-hover:text-green-500"
+                    className="py-2 text-lg px-4  tracking-wider rounded-md transition-colors duration-300 relative overflow-hidden group-hover:text-green-500"
                     onClick={() => handleClick(item.key)}
                   >
                     {item.label}
@@ -147,14 +147,6 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <div className="ml-4">
-              <button
-                className="text-green-600 focus:outline-none focus:text-green-800"
-                onClick={handleSearchClick}
-              >
-                <FaSearch className="text-2xl" />
-              </button>
-            </div>
           </nav>
           <div className="md:hidden">
             <button
@@ -202,37 +194,6 @@ const Navbar = () => {
           setMenuOpen={setMenuOpen}
           menuItems={menuItems}
         />
-      )}
-      {searchOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-8 rounded-md shadow-lg w-full max-w-md mx-auto">
-            <form onSubmit={handleSearchSubmit} className="space-y-4">
-              <div className="flex justify-between items-center mb-4">
-                <label className="block text-gray-700">Search</label>
-                <button
-                  type="button"
-                  onClick={handleCloseSearch}
-                  className="text-gray-500 focus:outline-none"
-                >
-                  <FaTimes className="text-xl" />
-                </button>
-              </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-200"
-                placeholder="Search..."
-              />
-              <button
-                type="submit"
-                className="w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 transition duration-300"
-              >
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
       )}
     </>
   );

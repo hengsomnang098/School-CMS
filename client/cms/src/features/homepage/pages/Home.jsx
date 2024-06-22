@@ -13,7 +13,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold mx-8">SCHOOL EVENTS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
-        <div className="">
+        <div className="font-khmermont">
           <Events />
         </div>
       </div>
@@ -24,7 +24,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold mx-8">NEWS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
-        <div className="mb-10">
+        <div className="mb-10 font-khmermont">
           <News />
         </div>
       </div>
@@ -35,7 +35,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold mx-8">MANAGEMENT TEAMS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
-        <div className="mb-10">
+        <div className="mb-10 font-khmermont">
           <ManagementTeams />
           <div className="text-center">
             <Link to="/managementteams">
@@ -48,7 +48,7 @@ const Home = () => {
         </div>
       </div>
       <div
-        className="relative w-full h-[700px] bg-cover bg-center mb-5"
+        className="relative w-full h-[700px] bg-cover bg-center  font-khmermont"
         style={{
           backgroundImage: `url(${DataInformation})`,
         }}
@@ -56,12 +56,15 @@ const Home = () => {
         <DataInformation />
       </div>
       <div>
-        <div className="flex items-center mb-5">
+        {/* <div className="flex items-center mb-5">
           <div className="flex-grow  border-t-[6px] ml-8 border-black"></div>
           <h2 className="text-4xl font-bold mx-8">OUR PARTNERS</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
-        </div>
-        <div className=" ">
+        </div> */}
+        <div className="  flex flex-col items-center ">
+          {/* <div className=" absolute overflow-hidden ">
+            <h2 className=" text-4xl font-bold mx-8 ">OUR PARTNERS</h2>
+          </div> */}
           <img
             className="w-[100%] h-[130px] "
             src={OurPartnerImage} // Use the imported image variable here

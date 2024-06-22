@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
-import ContentCardN from "./ContentCardN";
+import ContentCardN from "../News/ContentCardN";
 
 const ListAllContentNews = () => {
   const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const articleName = "School News";
+  const articleName = "School Events";
 
   useEffect(() => {
     const fetchContents = async () => {

@@ -20,7 +20,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        khmer: ['"Khmer OS Battambang"', "sans-serif"],
+        khmermont: ['"Khmer OS Battambang"', "Montserrat"],
       },
       backgroundImage: {
         "custom-gradient": "linear-gradient(45deg, #2ECC71, #34495E)",

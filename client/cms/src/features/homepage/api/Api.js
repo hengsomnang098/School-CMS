@@ -49,7 +49,20 @@ export const fetchContentsByArtName = async (articleName) => {
     throw error;
   }
 };
-
+export const fetchContentsByArticleName = async (articleName) => {
+  try {
+    const response = await axios.get(
+      `http://194.233.87.193:8080/api/contents/article/`,
+      {
+        params: { name: articleName },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching contents by article name:", error);
+    throw error;
+  }
+};
 export const fetchContentsByArticlesId = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/articles/${id}/contents`);

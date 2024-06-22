@@ -37,6 +37,7 @@ import SingleMember from "../../features/homepage/components/ManagementTeams/Sin
 import SingleContent from "../../features/homepage/components/Contents/SingleContent";
 import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
+import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
 import MainPage from "../../features/admin-dashboard/components/page/MainPage";
 
@@ -114,6 +115,7 @@ function App() {
             {/* contents */}
             {/* news */}
             <Route path="/schoolnews" element={<ListAllContentNews />} />
+            <Route path="/schoolevents" element={<ListAllContentEvents />} />
             <Route path="/new/:id" element={<SchoolNewsPage />} />
             {/* <Route path="/new/:title" element={<SchoolNewsPage />} /> */}
             {/* <Route path="/contents" element={<ContentList />} /> */}
