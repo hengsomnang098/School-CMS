@@ -17,6 +17,7 @@ import RolePage from "../../features/admin-dashboard/page/role/RolePage";
 import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
 
+import MainPage from "../../features/admin-dashboard/components/page/MainPage";
 // homepage import --------------
 import NotFound from "../../features/homepage/pages/NotFound";
 import Home from "../../features/homepage/pages/Home";
@@ -39,7 +40,6 @@ import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
-import MainPage from "../../features/admin-dashboard/components/page/MainPage";
 
 function App() {
   // const router = createBrowserRouter([
