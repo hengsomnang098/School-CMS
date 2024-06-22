@@ -6,7 +6,7 @@ import OurPartnerImage from "../images/OurPartner.png";
 import DataInformation from "../components/DataInformation";
 const Home = () => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-green-50">
       <div className="">
         <div className="flex items-center mb-10 pt-10 ">
           <div className="flex-grow  border-t-[6px] ml-8 border-black"></div>

@@ -18,7 +18,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
   const truncatedTitle =
     title.length > maxLengthTitle
       ? `${title.substring(0, maxLengthTitle)}...`
-      : errorImage;
+      : title;
 
   return (
     <div
@@ -31,16 +31,18 @@ const ContentCardNewsHome = ({ content, isMain }) => {
         <img
           src={imageUrl}
           alt={errorImage}
-          className="w-full h-full object-cover rounded"
+          className="w-full h-full object-cover rounded-l-sm bg-green-100"
         />
       </div>
       <div
-        className={`${isMain ? "" : "w-2/3 pl-4 pr-4"} pt-4 break-words pb-2`}
+        className={`${
+          isMain ? "" : "w-2/3 pl-4 pr-4"
+        } pt-4 break-words pb-2 bg-green-100`}
       >
-        <h3 className="text-xl font-semibold mb-2 break-words h-[40px]">
+        <h3 className="text-xl font-semibold mb-2 break-words h-[35px]">
           <span>{truncatedTitle}</span>
         </h3>
-        <p className="text-sm text-gray-700 mb-4 p-2 px2 break-words h-[90px]">
+        <p className="text-sm text-gray-700 mb-2 p-2 px2 break-words h-[100px]">
           <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
         </p>
         <div className="text-right">
@@ -48,7 +50,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
             to={`/content/${content.id}`}
             className="text-green-600 underline"
           >
-            See more
+            View Detail
           </Link>
         </div>
       </div>

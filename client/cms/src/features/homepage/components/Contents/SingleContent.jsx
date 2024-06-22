@@ -25,11 +25,11 @@ const SingleContent = () => {
   }, [id]);
 
   return (
-    <div className="bg-yellow-200">
-      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-12">
+    <div className="bg-green-100">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12">
         <div className="bg-white shadow-xl drop-shadow-lg rounded-sm overflow-hidden"></div>
         <div className="lg:w-3/4 mx-auto font-khmermont">
-          <h2 className="text-3xl mt-8 font-bold mb-4 cursor-pointer break-words">
+          <h2 className="text-3xl mt-10 font-bold mb-10 cursor-pointer break-words">
             {content.title}
           </h2>
           <div className="text-xl  ">

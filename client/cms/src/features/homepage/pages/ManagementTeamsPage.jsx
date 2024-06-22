@@ -20,14 +20,18 @@ const ManagementTeamsPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Management Teams</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {teamMembers.map((member) => (
-          <div key={member.id} className="flex justify-center">
-            <TeamCard member={member} />
-          </div>
-        ))}
+    <div className="w-full h-full bg-green-100">
+      <div className=" w-[1200px] container  mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-8 text-center">
+          Management Teams
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {teamMembers.map((member) => (
+            <div key={member.id} className="flex justify-center">
+              <TeamCard member={member} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

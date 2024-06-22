@@ -38,7 +38,7 @@ const DataInformation = () => {
         <p className="text-lg text-white">Loading data...</p>
       ) : (
         <React.Fragment>
-          <div className="flex">
+          <div className="flex mt-[300px]">
             {studentsData.map((student) => (
               <div key={student.id} className=" ">
                 <div className="flex items-center mx-12 mb-4">

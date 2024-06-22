@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
 import ContentCardNewsHome from "./ContentCardNewsHome";
 import ContentCardMainNews from "./ContentCardMainNews";
@@ -42,8 +41,11 @@ const GetContentsByNews = () => {
     return <p className="text-center text-red-600">{error}</p>;
   }
 
-  const mainContent = contents[0];
-  const otherContents = contents.slice(1, 4); // Select only the first 3 items
+  // Sort contents based on their order in the array (assuming latest first)
+  const sortedContents = [...contents].reverse(); // Reversing to get latest first
+
+  const mainContent = sortedContents[0];
+  const otherContents = sortedContents.slice(1, 4); // Select the next 3 items after the main content
 
   return (
     <div className="container mx-auto max-w-1000px p-4">

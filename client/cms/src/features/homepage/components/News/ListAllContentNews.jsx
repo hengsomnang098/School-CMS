@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
-import ContentCardN from "./ContentCardN";
+import ContentCardN from "../News/ContentCardN";
+import Pagination from "../Pagination"; // Adjust the path according to your file structure
 
 const ListAllContentNews = () => {
   const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
   const articleName = "School News";
 
   useEffect(() => {
@@ -29,14 +32,23 @@ const ListAllContentNews = () => {
     fetchContents();
   }, [articleName]);
 
+  const totalPages = Math.ceil(contents.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = contents.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div className="bg-green-200 min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {loading ? (
           <p className="text-center text-gray-600">Loading ...</p>
-        ) : contents.length > 0 ? (
+        ) : currentItems.length > 0 ? (
           <div className="mt-8">
-            {contents.map((content) => (
+            {currentItems.map((content) => (
               <div key={content.id} className="px-2">
                 <ContentCardN content={content} />
               </div>
@@ -45,6 +57,11 @@ const ListAllContentNews = () => {
         ) : (
           <p className="text-center text-gray-600">No articles found.</p>
         )}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

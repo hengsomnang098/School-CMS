@@ -3,7 +3,7 @@ import HexagonSection from "../components/About/HexagonSection";
 const About = () => {
   return (
     <div>
-      <div className="bg-yellow-200 p-8">
+      <div className="bg-green-200 p-8">
         <div>
           <div className="flex items-center mb-5">
             <div className="flex-grow   border-t-[6px] ml-8 border-black"></div>
@@ -81,7 +81,7 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="h-auto bg-green-100">
+      <div className="h-auto bg-green-200">
         <HexagonSection />
       </div>
     </div>
