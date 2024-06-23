@@ -6,7 +6,7 @@ const ContentCardN = ({ content }) => {
   const { id, title, description, imageUrl } = content;
 
   const maxLengthTitle = 34;
-  const maxLengthDesc = 60;
+  const maxLengthDesc = 170;
 
   const truncatedDescription =
     description.length > maxLengthDesc
@@ -18,16 +18,20 @@ const ContentCardN = ({ content }) => {
       ? title.substring(0, maxLengthTitle) + "..."
       : title;
   return (
-    <div className="border-2 flex flex-row  border-green-700 p-4 mb-4 mx-auto max-w-2xl">
-      <div className="w-[230px] h-[180px] mr-5">
-        <img className="w-[180px] h-[180px]" src={imageUrl} alt="" />
+    <div className="drop-shadow-lg flex flex-row bg-green-100  border-green-700 mb-4 mx-auto max-w-2xl">
+      <div className="w-[230px] h-[200px]">
+        <img
+          className="w-[200px] h-[200px] rounded-l-md"
+          src={imageUrl}
+          alt=""
+        />
       </div>
       <div>
-        <h3 className="text-xl font-semibold font-khmermont mb-4 h-[30px]">
+        <h3 className="text-xl font-semibold w-[420px] font-khmermont my-4 h-[30px]">
           {truncatedTitle}
         </h3>
         <div
-          className="prose mb-4 h-[80px] font-khmermont break-words "
+          className="prose mb-4 h-[80px] w-[420px] font-khmermont break-words "
           dangerouslySetInnerHTML={{ __html: truncatedDescription }}
         />
 

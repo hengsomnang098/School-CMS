@@ -49,7 +49,7 @@ const ListAllContentNews = () => {
         ) : currentItems.length > 0 ? (
           <div className="mt-8">
             {currentItems.map((content) => (
-              <div key={content.id} className="px-2">
+              <div key={content.id} className=" px-2">
                 <ContentCardN content={content} />
               </div>
             ))}
