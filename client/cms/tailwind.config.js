@@ -26,6 +26,9 @@ export default {
       backgroundImage: {
         "custom-gradient": "linear-gradient(45deg, #2ECC71, #34495E)",
       },
+      colors: {
+        "bg-main-color": "#10AC84",
+      },
     },
   },
   plugins: [],

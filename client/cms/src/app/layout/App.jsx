@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import UserPage from "../../features/admin-dashboard/page/user/UserPage";
 import ArticlesPage from "../../features/admin-dashboard/page/article/ArticlePage";
 // import ContentPage from "../../features/admin-dashboard/page/contents/ContentPage";
-import HomePage from "../../features/admin-dashboard/page/HomePage";
+import HomePage from "../../features/admin-dashboard/page/home/HomePage";
 import NotFoundPage from "../../features/admin-dashboard/page/NotFoundPage";
 import MainLayout from "../../features/admin-dashboard/components/layout/MainLayout";
 import LoginPage from "../../features/admin-dashboard/page/LoginPage";

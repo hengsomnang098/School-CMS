@@ -1,4 +1,4 @@
-import { Avatar, Button, Layout } from "antd";
+import { Avatar, Button, Layout, Typography } from "antd";
 import Logo from "./Logo";
 import MenuList from "./MenuList";
 import { useEffect, useState } from "react";
@@ -9,8 +9,9 @@ import {
 } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
-import { getUser, isLogin, logout } from "../../../../app/api/config/helper";
+import { getUser, isLogin } from "../../../../app/api/config/helper";
 import { observer } from "mobx-react-lite";
+// import FooterPage from "./Footer";
 
 const { Header, Sider } = Layout;
 function MainLayout() {
@@ -30,15 +31,15 @@ function MainLayout() {
 
   return (
     <>
-      <Layout className="w-full overflow-auto justify-center fixed  left-0 top-0 bottom-0 ">
+      <Layout className="w-full overflow-auto justify-center fixed left-0 top-0 bottom-0">
         <Sider
-          className="bg-white p-0"
+          className=" p-0 bg-main-color"
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
           collapsedWidth={0}
           style={{
-            background: "#ffffff",
             padding: 0,
+            background: "#10AC84",
           }}
         >
           {/* Logo Dashboard */}
@@ -51,7 +52,7 @@ function MainLayout() {
           <Header
             style={{
               padding: 0,
-              background: "#ffffff",
+              background: "#10AC84",
             }}
             className="justify-between flex items-center px-4"
           >
@@ -63,29 +64,15 @@ function MainLayout() {
             />
             <div className="flex items-center">
               {/* Other header elements */}
+              <Typography.Title level={5} className="text-white">
+                hengsomnang
+              </Typography.Title>
 
-              <Avatar
-                style={{
-                  backgroundColor: "#87d068",
-                }}
-                icon={<UserOutlined />}
-                className="mr-4"
-              />
-
-              {/* Logout button */}
-              <Button
-                type="link"
-                className="text-red-600 hover:text-red-800 "
-                onClick={() => {
-                  logout();
-                  navigate("/login");
-                }}
-              >
-                Logout
-              </Button>
+              <Avatar style={{}} icon={<UserOutlined />} className="mr-4" />
             </div>
           </Header>
-          <Content>
+
+          <Content className="overflow-auto m-3">
             <Outlet />
           </Content>
           {/* <FooterPage /> */}

@@ -16,7 +16,7 @@ const ContentTable = () => {
         dataSource={content}
         className=" overflow-auto"
         pagination={{
-          pageSize: 7,
+          pageSize: 5,
           // showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
         }}
         columns={[

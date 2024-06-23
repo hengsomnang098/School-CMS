@@ -1,6 +1,7 @@
 import {
   AppstoreAddOutlined,
   AppstoreOutlined,
+  DesktopOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -36,7 +37,7 @@ const items = [
       ]
     : ""),
   // // ----------------------------
-  // getItem("Logout", "logout", <DesktopOutlined />),
+  getItem("Logout", "logout", <DesktopOutlined />),
 ];
 
 // eslint-disable-next-line react/prop-types
@@ -48,14 +49,15 @@ function MenuList() {
   return (
     <>
       <Menu
-        className="flex flex-col gap-[15px] text-base h-full overflow-auto bg-white xl:h-[93vh]"
+        className="flex flex-col gap-[15px] text-base h-full overflow-auto bg-bg-main-color "
         width="100%"
         style={{
           overflow: "auto",
           padding: 0,
+          color: "#fff",
         }}
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={["/"]}
         items={items}
         responsive={"true"}
         onClick={onClickMenu}
