@@ -34,6 +34,7 @@ export default class SlideStore {
   };
 
   handleClearValue = () => {
+    this.handleClearFile();
     runInAction(() => {
       this.formValues.id = null;
       this.formValues = {
@@ -41,15 +42,13 @@ export default class SlideStore {
         description: "",
         imageUrl: "",
       };
-      this.filePreview = "";
-      this.fileSelected = "";
     });
   };
 
   handleClearFile = () => {
     runInAction(() => {
-      this.fileSelected = "";
       this.filePreview = "";
+      this.fileSelected = "";
     });
   };
 
@@ -62,7 +61,6 @@ export default class SlideStore {
       };
       this.filePreview = item.imageUrl;
     });
-    console.log(item);
   };
 
   handleDelete = async (item) => {
@@ -95,26 +93,26 @@ export default class SlideStore {
 
   handleFinish = async (item) => {
     var id = this.formValues.id;
-    var form = new FormData();
+
     var data = {
-      ...item,
+      name: item.name,
+      description: item.description,
+      imageUrl: item.imageUrl,
     };
-    if (this.fileSelected !== "") {
-      form.append("slideId", id);
-      form.append("file", this.fileSelected);
-      const img = await request(`slides/upload/image`, "put", form);
-      if (img) {
-        data.imageUrl = img;
-      } else {
-        return false;
-      }
-    }
+
     var method = id == null ? "post" : "put";
     var url = id == null ? "slides" : `slides/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
     if (res) {
-      runInAction(() => {
+      runInAction(async () => {
+        var form = new FormData();
+        if (this.fileSelected !== "") {
+          form.append("slideId", res.object.id);
+          form.append("file", this.fileSelected);
+          await request(`slides/upload/image`, "put", form);
+          this.filePreview = res.object.imageUrl;
+        }
         message.success(messages);
         // Call the getList function to refresh the data
         this.handleClearFile();

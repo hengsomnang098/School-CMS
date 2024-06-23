@@ -118,26 +118,26 @@ export default class ContentStore {
     var data = {
       ...item,
       id: id,
-      // title: item.title,
-      // description: item.description,
+
       articleId: item.article,
     };
-    if (this.fileSelected !== null && id !== null) {
-      form.append("contentId", id);
-      form.append("file", this.fileSelected);
-      const img = await request(`contents/upload/image`, "put", form);
-      if (img) {
-        data.imageUrl = img;
-      } else {
-        return false;
-      }
-    }
+
     var method = id == null ? "post" : "put";
     var url = id == null ? "contents" : `contents/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
     if (res) {
-      runInAction(() => {
+      runInAction(async () => {
+        if (this.fileSelected !== null) {
+          form.append("contentId", res.object.id);
+          form.append("file", this.fileSelected);
+          const img = await request(`contents/upload/image`, "put", form);
+          if (img) {
+            data.imageUrl = img;
+          } else {
+            return false;
+          }
+        }
         message.success(messages);
         this.getList();
         this.handleCloseModal();

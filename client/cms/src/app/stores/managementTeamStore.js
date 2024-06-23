@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
 import { Modal, message } from "antd";
-import { isEmptyOrNull } from "../api/config/helper";
 
 export default class ManagementTeamStore {
   managementTeam = [];
@@ -51,7 +50,7 @@ export default class ManagementTeamStore {
 
   handleClearFile = () => {
     runInAction(() => {
-      this.fileSelected = null;
+      this.fileSelected = "";
       this.filePreview = "";
     });
   };
@@ -105,31 +104,27 @@ export default class ManagementTeamStore {
     var form = new FormData();
     const data = {
       ...item,
-      photoUrl: this.fileSelected,
+      photoUrl: item.photoUrl,
       id: id,
       name: item.name,
       description: item.description,
       bio: item.bio,
     };
-    if (
-      !isEmptyOrNull(id) &&
-      !isEmptyOrNull(this.fileSelected) &&
-      !isEmptyOrNull(this.filePreview)
-    ) {
-      form.append("teamId", id);
-      form.append("file", this.fileSelected);
-      const img = await request(`teams/upload/image`, "put", form);
-      if (img) {
-        data.photoUrl = img;
-      }
-    }
 
     var method = id == null ? "post" : "put";
     var url = id == null ? "teams" : `teams/${id}`;
     var messages = id ? "update  sucessfull" : "create  sucessfull";
     const res = await request(url, method, data);
     if (res) {
-      runInAction(() => {
+      runInAction(async () => {
+        if (this.fileSelected !== "") {
+          form.append("teamId", res.object.id);
+          form.append("file", this.fileSelected);
+          const img = await request(`teams/upload/image`, "put", form);
+          if (img) {
+            data.photoUrl = img;
+          }
+        }
         message.success(messages);
         this.getList();
         this.open = false;

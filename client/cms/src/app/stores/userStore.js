@@ -138,22 +138,23 @@ export default class UserStore {
       roles: [item.roles],
       id: id,
     };
-    if (this.fileSelected != null && id != null) {
-      form.append("userId", id);
-      form.append("file", this.fileSelected);
-      const img = await request(`users/update/profile`, "put", form);
-      if (img) {
-        data.profile = img;
-      } else {
-        return false;
-      }
-    }
+
     var url = id == null ? "auth/register" : `users/update/${id}`;
     try {
       const res = await request(url, "post", data);
       var messages = id == null ? "Register Sucessful" : "Update Sucessful";
       if (res) {
-        runInAction(() => {
+        runInAction(async () => {
+          if (this.fileSelected != null && id != null) {
+            form.append("userId", id);
+            form.append("file", this.fileSelected);
+            const img = await request(`users/update/profile`, "put", form);
+            if (img) {
+              data.profile = img;
+            } else {
+              return false;
+            }
+          }
           this.loading = true;
           message.success(messages);
           this.open = false;
