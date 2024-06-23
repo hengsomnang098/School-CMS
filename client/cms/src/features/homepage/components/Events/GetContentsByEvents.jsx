@@ -81,7 +81,7 @@ const GetContentsByEvents = () => {
       ) : (
         <p className="text-center text-gray-600 mt-8">No Events found.</p>
       )}
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-14">
         <Link to="/schoolevents">
           <button className="bg-green-400 hover:bg-green-600 text-white py-2 px-4 rounded">
             See All Events

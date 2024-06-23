@@ -16,7 +16,6 @@ const Navbar = () => {
   const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
   const [navbarShadow, setNavbarShadow] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const menuItems = [
     { key: "/about", label: "About" },
@@ -76,24 +75,6 @@ const Navbar = () => {
     setHoveredMenu(null);
   };
 
-  const handleSearchClick = () => {
-    setSearchOpen(!searchOpen);
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    setSearchQuery("");
-    setSearchOpen(false);
-  };
-
-  const handleCloseSearch = () => {
-    setSearchOpen(false);
-  };
-
   return (
     <>
       <header
@@ -101,7 +82,7 @@ const Navbar = () => {
           navbarShadow ? "shadow-md" : "shadow-none"
         }`}
       >
-        <div className="container mx-auto flex justify-between items-center py-4 px-6 h-full">
+        <div className="container mx-auto flex bg-green-50 justify-between items-center py-4 px-6 h-full">
           <Link to="/" className="flex items-center">
             <img
               src={logoLarge}
