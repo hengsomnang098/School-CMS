@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction, action } from "mobx";
 import { request } from "../api/config/request";
 import { Modal, message } from "antd";
+import { EditorState } from "draft-js";
 
 export default class ContentStore {
   content = [];
@@ -13,6 +14,7 @@ export default class ContentStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.description = EditorState.createEmpty();
   }
 
   getList = async () => {
@@ -25,6 +27,11 @@ export default class ContentStore {
       });
     }
   };
+  get sortContentById() {
+    return this.content.sort((a, b) => {
+      return b.id - a.id;
+    });
+  }
 
   setDescription = action((description) => {
     this.description = description || "";

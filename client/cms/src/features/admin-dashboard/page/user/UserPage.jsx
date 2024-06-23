@@ -14,6 +14,7 @@ import {
 import MainPage from "../../components/page/MainPage";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const { Title } = Typography;
 const UserPage = () => {
@@ -127,14 +128,16 @@ const UserPage = () => {
             dataIndex: "profile",
             render: (value) => {
               if (value != null && value != "") {
+                console.log(value);
                 return (
                   <>
-                    <Image
+                    {/* <Image
                       //  src={item.mediaUrl}
                       src={value}
                       width={40}
                       height={30}
-                    />
+                    /> */}
+                    <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
               } else {

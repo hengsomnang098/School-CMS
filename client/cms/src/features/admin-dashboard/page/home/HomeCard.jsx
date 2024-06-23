@@ -4,7 +4,7 @@ import { Card, Layout, Space, Statistic } from "antd";
 const HomeCard = ({ title, value, icon }) => {
   return (
     <Layout>
-      <Card className="overflow-auto xl:w-80 w-96">
+      <Card className="md:w-[32vh] xl:ml-4 xl:w-[35vh] w-[40vh] justify-center items-center text-center xl:gap-6 m-2">
         <Space direction="horizontal">
           {icon}
           <Statistic title={title} value={value} />

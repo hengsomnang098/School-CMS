@@ -13,7 +13,7 @@ const HomePage = () => {
       <Typography.Title level={4}>Dashboard</Typography.Title>
       <Space
         direction="horizontal"
-        className="items-center w-full flex xl:flex-row flex-col text-center"
+        className="items-center w-full flex flex-wrap "
         size={20}
       >
         <HomeCard

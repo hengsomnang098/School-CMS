@@ -15,7 +15,7 @@ import { observer } from "mobx-react-lite";
 
 const { Header, Sider } = Layout;
 function MainLayout() {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   const user = getUser();
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ function MainLayout() {
             </div>
           </Header>
 
-          <Content className="overflow-auto m-3">
+          <Content className="overflow-auto">
             <Outlet />
           </Content>
           {/* <FooterPage /> */}

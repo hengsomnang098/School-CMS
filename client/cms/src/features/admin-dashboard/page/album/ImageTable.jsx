@@ -1,7 +1,8 @@
-import { Table, Image, Space, Button } from "antd";
+import { Table, Space, Button } from "antd";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
 import { useParams } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const ImageTable = () => {
   const { id } = useParams();
   const contentId = id;
@@ -47,7 +48,8 @@ const ImageTable = () => {
               if (value != null && value != "") {
                 return (
                   <>
-                    <Image src={value} width={40} height={30} />
+                    {/* <Image src={value} width={40} height={30} /> */}
+                    <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
               } else {

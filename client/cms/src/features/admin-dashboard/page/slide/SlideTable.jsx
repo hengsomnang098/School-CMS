@@ -1,4 +1,5 @@
-import { Table, Image, Space, Button } from "antd";
+import { Table, Space, Button } from "antd";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useStore } from "../../../../app/stores/store";
 
 // eslint-disable-next-line react/prop-types
@@ -45,12 +46,13 @@ const SlideTable = () => {
               if (value != null && value != "") {
                 return (
                   <>
-                    <Image
+                    {/* <Image
                       //  src={item.mediaUrl}
                       src={value}
                       width={40}
                       height={30}
-                    />
+                    /> */}
+                    <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
               } else {

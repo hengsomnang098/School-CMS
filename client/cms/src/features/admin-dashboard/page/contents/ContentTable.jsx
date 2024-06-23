@@ -6,14 +6,15 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
-  const { content, handleClickDelete, handleClickEdit, loading } = contentStore;
+  const { handleClickDelete, handleClickEdit, loading, sortContentById } =
+    contentStore;
 
   return (
     <div>
       <Table
         width="100%"
         rowKey="id"
-        dataSource={content}
+        dataSource={sortContentById}
         className=" overflow-auto"
         pagination={{
           pageSize: 5,

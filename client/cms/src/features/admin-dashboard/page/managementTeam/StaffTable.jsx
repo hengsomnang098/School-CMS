@@ -1,5 +1,6 @@
-import { Table, Image, Button, Space } from "antd";
+import { Table, Button, Space } from "antd";
 import { useStore } from "../../../../app/stores/store";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { observer } from "mobx-react-lite";
 const StaffTable = () => {
   const { managementTeamStore } = useStore();
@@ -51,7 +52,8 @@ const StaffTable = () => {
             responsive: ["sm"],
             render: (value) => {
               return value != null && value != "" ? (
-                <Image src={value} width={40} height={30} />
+                // <Image src={value} width={40} height={30} />
+                <LazyLoadImage src={value} width={40} height={30} />
               ) : (
                 <div
                   style={{ height: 30, width: 40, backgroundColor: "#888" }}

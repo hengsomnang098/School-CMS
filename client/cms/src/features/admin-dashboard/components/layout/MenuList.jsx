@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { getRoles } from "../../../../app/api/config/helper";
+import { getRoles, logout } from "../../../../app/api/config/helper";
 
 const roles = getRoles();
 function getItem(label, key, icon, children) {
@@ -44,6 +44,9 @@ const items = [
 function MenuList() {
   const navigate = useNavigate();
   const onClickMenu = (event) => {
+    if (event.key === "logout") {
+      logout();
+    }
     navigate(event.key);
   };
   return (
