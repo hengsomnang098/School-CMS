@@ -3,7 +3,7 @@ import GetContentsByNews from "./GetContentsByNews";
 
 const News = () => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center  items-center">
       <GetContentsByNews />
     </div>
   );

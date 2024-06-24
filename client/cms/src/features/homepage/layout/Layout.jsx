@@ -5,7 +5,7 @@ import Banner from "./Banner";
 const Layout = () => {
   return (
     <div>
-      <div className="mb-[90px]">
+      <div className="mb-[90px] bg-green-50">
         <Navbar />
       </div>
       <Banner />

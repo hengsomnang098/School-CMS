@@ -49,10 +49,10 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
-        setNavbarBackground("bg-white");
+        setNavbarBackground("bg-green-100");
         setNavbarShadow(true);
       } else {
-        setNavbarBackground("bg-white");
+        setNavbarBackground("bg-green-100");
         setNavbarShadow(true);
       }
     };
@@ -82,7 +82,7 @@ const Navbar = () => {
           navbarShadow ? "shadow-md" : "shadow-none"
         }`}
       >
-        <div className="container mx-auto flex bg-green-50 justify-between items-center py-4 px-6 h-full">
+        <div className="container mx-auto flex  justify-between items-center  py-4 px-6 h-full">
           <Link to="/" className="flex items-center">
             <img
               src={logoLarge}
