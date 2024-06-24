@@ -23,7 +23,7 @@ const ContentCardMainNews = ({ content, isMain }) => {
         <img
           src={imageUrl}
           alt={errorImage}
-          className="w-[516px] h-[516px] object-cover rounded-t-md bg-green-100"
+          className="w-full h-auto md:w-[516px] md:h-[516px] object-cover rounded-t-md bg-green-100"
         />
       </div>
       <div
@@ -32,17 +32,17 @@ const ContentCardMainNews = ({ content, isMain }) => {
         } tracking-wider pt-4 px-4 break-words bg-green-100`}
       >
         <h3
-          className="text-xl font-semibold mb-2 h-6 "
+          className="text-xl font-semibold mb-2 h-6"
           dangerouslySetInnerHTML={{ __html: truncatedTitle }}
         />
         <p
-          className="text-sm text-gray-700  h-16"
+          className="text-sm text-gray-700 h-16"
           dangerouslySetInnerHTML={{ __html: truncatedDescription }}
         />
         <div className="relative h-10">
           <Link
             to={`/content/${content.id}`}
-            className="absolute mr-5 mb-3 bottom-0 end-0 text-green-600 drop-shadow-lg underline"
+            className="absolute right-0 bottom-0 mr-5 mb-3 text-green-600 drop-shadow-lg underline"
           >
             See more
           </Link>

@@ -21,7 +21,10 @@ const DataInformation = () => {
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center"
+      className={`absolute inset-0 flex items-center justify-center ${
+        // Conditionally apply flex-row or flex-col based on screen size
+        studentsData.length > 0 ? "flex-col" : "flex-row"
+      }`}
       style={{
         backgroundImage: `url(${DataInformationimg})`, // Placeholder or actual image
         backgroundColor: "#f0f0f0", // Fallback background color
@@ -30,30 +33,26 @@ const DataInformation = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
         textAlign: "center",
+        padding: "20px", // Adding padding for better spacing
       }}
     >
       {studentsData.length === 0 ? (
         <p className="text-lg text-white">Loading data...</p>
       ) : (
-        <React.Fragment>
-          <div className="flex mt-[300px]">
-            {studentsData.map((student) => (
-              <div key={student.id} className=" ">
-                <div className="flex items-center mx-12 mb-4">
-                  <FaUser className="w-10 h-10 mr-2 text-green-500" />
-                  <span className="text-4xl font-bold text-green-500">
-                    {student.name}
-                  </span>
-                </div>
-                <span className="text-3xl font-bold text-white">
-                  {student.description}
+        <div className="max-w-screen-lg mx-auto p-4 flex flex-col items-center">
+          {studentsData.map((student) => (
+            <div key={student.id} className="mb-8">
+              <div className="flex items-center mb-4">
+                <FaUser className="w-10 h-10 mr-2 text-green-500" />
+                <span className="text-4xl font-bold text-green-500">
+                  {student.name}
                 </span>
               </div>
-            ))}
-          </div>
-        </React.Fragment>
+              <p className="text-2xl text-white">{student.description}</p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

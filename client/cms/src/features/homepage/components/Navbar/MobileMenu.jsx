@@ -5,15 +5,11 @@ const MobileMenu = ({ menuItems, onClose }) => {
   const [expandedItem, setExpandedItem] = useState(null);
 
   const handleToggle = (key) => {
-    if (expandedItem === key) {
-      setExpandedItem(null);
-    } else {
-      setExpandedItem(key);
-    }
+    setExpandedItem((prev) => (prev === key ? null : key));
   };
 
   return (
-    <div className="md:hidden bg-white shadow-lg absolute top-[130px] left-0 w-full z-10">
+    <div className="md:hidden bg-white shadow-lg fixed top-[90px] left-0 w-full z-10">
       <nav className="px-2 pt-2 pb-4 space-y-1">
         {menuItems.map((item) => (
           <div key={item.key}>

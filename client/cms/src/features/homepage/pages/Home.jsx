@@ -47,14 +47,25 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        className="relative w-full h-[700px] bg-cover bg-center  font-khmermont"
-        style={{
-          backgroundImage: `url(${DataInformation})`,
-        }}
-      >
-        <DataInformation />
+      <div className="relative w-full h-[400px] md:h-[700px] bg-cover bg-center font-khmermont">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${DataInformation})`,
+            backgroundColor: "#f0f0f0",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+        >
+          <DataInformation />
+        </div>
       </div>
+
       <div>
         {/* <div className="flex items-center mb-5">
           <div className="flex-grow  border-t-[6px] ml-8 border-black"></div>
