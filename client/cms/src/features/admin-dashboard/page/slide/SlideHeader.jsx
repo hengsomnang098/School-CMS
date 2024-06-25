@@ -17,7 +17,6 @@ const SlideHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

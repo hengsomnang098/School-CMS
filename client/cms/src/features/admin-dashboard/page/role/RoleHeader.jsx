@@ -19,7 +19,6 @@ const RoleHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

@@ -43,16 +43,10 @@ const CategoryTable = () => {
             dataIndex: "Status",
             render: (value, item) => (
               <Space>
-                <Button
-                  size="large"
-                  // onClick={() => onClickBtnEdit(item)}
-                  onClick={() => handleClickEdit(item)}
-                  type="primary"
-                >
+                <Button onClick={() => handleClickEdit(item)} type="primary">
                   Edit
                 </Button>
                 <Button
-                  size="large"
                   onClick={() => handleDelete(item)}
                   type="primary"
                   danger

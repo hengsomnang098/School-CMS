@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { Typography, Space, Button } from "antd";
-import { Link } from "react-router-dom";
+
 import { useStore } from "../../../../app/stores/store";
 const { Title } = Typography;
 
@@ -23,12 +23,6 @@ const ImageHeader = () => {
         >
           New
         </Button>
-
-        <Link to="../dashboard/content/">
-          <Button type="primary" size="large">
-            Back to Content
-          </Button>
-        </Link>
       </Space>
     </div>
   );

@@ -18,7 +18,6 @@ const StudentHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

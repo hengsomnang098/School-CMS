@@ -38,6 +38,8 @@ const ContentModal = () => {
         open={open}
         onCancel={handleCloseModal}
         footer={null}
+        width={"100%"}
+        height={"100%"}
       >
         <Form form={formCat} layout="vertical" onFinish={handleFinish}>
           <Form.Item
@@ -50,7 +52,7 @@ const ContentModal = () => {
               },
             ]}
           >
-            <Input placeholder="title" />
+            <Input.TextArea placeholder="title" />
           </Form.Item>
 
           <Form.Item
@@ -80,7 +82,17 @@ const ContentModal = () => {
               )}
             </Select>
           </Form.Item>
-          <Form.Item label="Image" name={"imageUrl"}>
+          <Form.Item label="Status" name="status">
+            <Select>
+              <Select.Option label="PENDING" value="PENDING">
+                PENDING
+              </Select.Option>
+              <Select.Option label="PUBLIC" value="PUBLIC">
+                PUBLIC
+              </Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="Image" name={"thumbnail"}>
             <Image
               // src={list.mediaUrl}
               src={

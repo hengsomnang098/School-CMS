@@ -12,8 +12,7 @@ const ArticleModal = () => {
     formCat.setFieldsValue(formValues);
   }, [formValues, formCat]);
   return (
-    <div>
-      {" "}
+    <>
       <Modal
         forceRender
         title={
@@ -77,7 +76,7 @@ const ArticleModal = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 

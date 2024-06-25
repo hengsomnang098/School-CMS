@@ -16,7 +16,6 @@ const ContentHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

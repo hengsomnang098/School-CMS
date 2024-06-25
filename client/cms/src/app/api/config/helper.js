@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 
 export const Config = {
-  // base_url: "http://localhost:8080/api/",
-  base_url: "http://194.233.87.193:8080/api/",
+  base_url: "http://localhost:8080/api/",
+  // base_url: "http://194.233.87.193:8080/api/",
   // base_url: import.meta.env.BACK_END_API_URL,
   image_path: "http://localhost:8080/api/medias/photo/",
   version: "",

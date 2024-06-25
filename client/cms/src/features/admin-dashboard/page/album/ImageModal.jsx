@@ -1,4 +1,4 @@
-import { Button, Space, Modal, Input, Form, Select, Image } from "antd";
+import { Button, Space, Modal, Form, Image } from "antd";
 import { useEffect, useRef } from "react";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -38,37 +38,7 @@ const ImageModal = () => {
             handleFinish(value);
           }}
         >
-          <Form.Item
-            label="Name"
-            name={"name"}
-            rules={[
-              {
-                required: true,
-                message: "Please input nameKh!",
-              },
-            ]}
-          >
-            <Input placeholder="Name Image" />
-          </Form.Item>
-
-          <Form.Item
-            label="MediaType"
-            name={"mediaType"}
-            rules={[
-              {
-                required: true,
-                message: "Please Select MediaType!",
-              },
-            ]}
-          >
-            {/* <Input placeholder="nameEn" /> */}
-            <Select>
-              <Select.Option value="image">Image</Select.Option>
-              <Select.Option value="files">Files</Select.Option>
-              <Select.Option value="video">Video</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="MediaUrl" name={"mediaUrl"}>
+          <Form.Item label="MediaUrl" name={"url"}>
             <Image
               src={
                 filePreview
@@ -90,7 +60,7 @@ const ImageModal = () => {
             <Space>
               <Button onClick={handleCloseModal}>Cancel</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formValues.id == null ? "Save" : "Update"}
+                {formValues.id == null ? "Upload" : "Update"}
               </Button>
             </Space>
           </Form.Item>

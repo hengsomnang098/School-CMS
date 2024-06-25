@@ -29,26 +29,19 @@ const ImageTable = () => {
             responsive: ["sm"],
           },
           {
-            key: "name",
-            title: "Name",
-            dataIndex: "name",
+            key: "contentId",
+            title: "Content",
+            dataIndex: "contentId",
           },
           {
-            key: "mediaType",
-            title: "MediaType",
-            dataIndex: "mediaType",
-            responsive: ["sm"],
-          },
-          {
-            key: "mediaUrl",
+            key: "url",
             title: "Image",
-            dataIndex: "mediaUrl",
+            dataIndex: "url",
             responsive: ["sm"],
             render: (value) => {
               if (value != null && value != "") {
                 return (
                   <>
-                    {/* <Image src={value} width={40} height={30} /> */}
                     <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
@@ -68,14 +61,12 @@ const ImageTable = () => {
             render: (value, item) => (
               <Space>
                 <Button
-                  size="large"
                   onClick={() => handleClickEdit(item, contentId)}
                   type="primary"
                 >
                   Edit
                 </Button>
                 <Button
-                  size="large"
                   onClick={() => handleClickDelete(item)}
                   type="primary"
                   danger

@@ -76,6 +76,7 @@ const MyTextEditor = ({ value, onChange }) => {
       onChange={handleChange}
       modules={modules}
       formats={formats}
+      className=" w-full h-full"
     />
   );
 };

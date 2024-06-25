@@ -40,7 +40,7 @@ import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
-import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
+// import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
   // const router = createBrowserRouter([
@@ -73,21 +73,22 @@ function App() {
                 </React.Suspense>
               }
             />
-            <Route
+            <Route path="/dashboard/album" element={<ImagePage />} />
+            {/* <Route
               path="/dashboard/content/createContent"
               element={<ContentForm />}
             />
             <Route
               path="/dashboard/content/manageContent/:id"
               element={<ContentForm />}
-            />
+            /> */}
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
             <Route path="/dashboard/student" element={<StudentPage />} />
             <Route path="/dashboard/staff" element={<StaffPage />} />
-            <Route
+            {/* <Route
               path="/dashboard/content/medias/:id"
               element={<ImagePage />}
-            />
+            /> */}
 
             {/* Protected Route  */}
             <Route element={<RequireAuth />}>

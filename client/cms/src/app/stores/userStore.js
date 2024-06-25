@@ -1,6 +1,11 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
-import { setAccessToken, setRoles, setUser } from "../api/config/helper";
+import {
+  setAccessToken,
+  setRefreshToken,
+  setRoles,
+  setUser,
+} from "../api/config/helper";
 import { Modal, message } from "antd";
 
 export default class UserStore {
@@ -34,7 +39,8 @@ export default class UserStore {
         this.loading = false;
       } else {
         setUser(res.object.email);
-        setAccessToken(res.object.token);
+        setAccessToken(res.object.access_token);
+        setRefreshToken(res.object.refresh_token);
         setRoles(res.object.roles);
         runInAction(() => {
           this.loading = false;

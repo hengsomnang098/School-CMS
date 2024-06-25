@@ -18,7 +18,6 @@ const StaffHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

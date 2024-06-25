@@ -1,7 +1,6 @@
 import { Table, Space, Button } from "antd";
 import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
-import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ContentTable = () => {
@@ -56,29 +55,9 @@ const ContentTable = () => {
             },
           },
           {
-            key: "mediaList",
-            title: "Album",
-            dataIndex: "mediaList",
-            responsive: ["sm"],
-            render: (value, item) => (
-              <Space>
-                {/* <Button
-                  size="large"
-                  // onClick={}
-                  type="primary"
-                >
-                  Manage Images
-                </Button> */}
-                <Link to={`../dashboard/content/medias/${item.id}`}>
-                  Manage Images
-                </Link>
-              </Space>
-            ),
-          },
-          {
-            key: "imageUrl",
+            key: "thumbnail",
             title: "Images ",
-            dataIndex: "imageUrl",
+            dataIndex: "thumbnail",
             responsive: ["sm"],
             render: (value) => {
               if (value != null && value != "") {
@@ -98,20 +77,20 @@ const ContentTable = () => {
             },
           },
           {
+            key: "status",
+            title: "Status",
+            dataIndex: "status",
+          },
+          {
             key: "Action",
             title: "Action",
-            dataIndex: "Status",
+            dataIndex: "action",
             render: (value, item) => (
               <Space>
-                <Button
-                  size="large"
-                  onClick={() => handleClickEdit(item)}
-                  type="primary"
-                >
+                <Button onClick={() => handleClickEdit(item)} type="primary">
                   Edit
                 </Button>
                 <Button
-                  size="large"
                   onClick={() => handleClickDelete(item)}
                   type="primary"
                   danger

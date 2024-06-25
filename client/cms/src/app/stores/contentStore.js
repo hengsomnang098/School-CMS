@@ -78,11 +78,11 @@ export default class ContentStore {
       description: item.description,
       image: item.imageUrl,
       id: item.id,
-      category: item.article.category === null ? "" : item.article.category.id,
+      status: item.status,
       article:
         item.article === null ? "" : item.article.id || item.article.name,
     };
-    this.filePreview = item.imageUrl;
+    this.filePreview = item.thumbnail;
     runInAction(() => {
       this.open = true;
     });
@@ -118,7 +118,6 @@ export default class ContentStore {
     var data = {
       ...item,
       id: id,
-
       articleId: item.article,
     };
 

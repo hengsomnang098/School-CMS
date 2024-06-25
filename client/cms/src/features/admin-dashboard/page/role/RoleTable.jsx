@@ -37,15 +37,10 @@ const RoleTable = () => {
             dataIndex: "Status",
             render: (value, item) => (
               <Space>
-                <Button
-                  size="large"
-                  onClick={() => handleEdit(item)}
-                  type="primary"
-                >
+                <Button onClick={() => handleEdit(item)} type="primary">
                   Edit
                 </Button>
                 <Button
-                  size="large"
                   onClick={() => handleDelete(item)}
                   type="primary"
                   danger

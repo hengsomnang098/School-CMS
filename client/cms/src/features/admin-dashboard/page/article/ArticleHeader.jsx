@@ -16,7 +16,6 @@ const ArticleHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

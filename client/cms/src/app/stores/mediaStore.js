@@ -16,11 +16,11 @@ export default class MediaStore {
 
   getList = async (contentId, mediaType) => {
     var param = {
-      contentId: contentId,
-      mediaType: mediaType,
+      contentId: contentId || "",
+      mediaType: mediaType || "",
     };
     this.loading = true;
-    const res = await request(`medias`, "get", param);
+    const res = await request(`albums`, "get", param);
     if (res) {
       runInAction(() => {
         this.medias = res.object;
@@ -111,7 +111,7 @@ export default class MediaStore {
     }
     var req = id == null ? data : form;
     var method = id == null ? "post" : "put";
-    var url = id == null ? "medias" : `medias/upload/image`;
+    var url = id == null ? `albums/upload/${contentId}` : `albums/upload/${id}`;
     var messages = id ? "upload Image  sucessfull" : "create  sucessfull";
     const res = await request(url, method, req);
     if (res) {

@@ -47,15 +47,10 @@ const ArticleTable = () => {
             dataIndex: "Status",
             render: (value, item) => (
               <Space>
-                <Button
-                  size="large"
-                  onClick={() => handleClickEdit(item)}
-                  type="primary"
-                >
+                <Button onClick={() => handleClickEdit(item)} type="primary">
                   Edit
                 </Button>
                 <Button
-                  size="large"
                   onClick={() => handleDelete(item)}
                   type="primary"
                   danger

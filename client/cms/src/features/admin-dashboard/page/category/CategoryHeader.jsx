@@ -17,7 +17,6 @@ const CategoryHeader = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>

@@ -67,7 +67,6 @@ const UserPage = () => {
           allowClear
           onChange={onChangeSearch}
           placeholder="Name or Code"
-          size="large"
           className="2xl:w-96"
         />
         <Button
@@ -75,7 +74,6 @@ const UserPage = () => {
             handleClickNew();
           }}
           type="primary"
-          size="large"
         >
           New
         </Button>
@@ -167,15 +165,10 @@ const UserPage = () => {
             responsive: ["sm"],
             render: (value, item) => (
               <Space>
-                <Button
-                  size="large"
-                  onClick={() => handleEdit(item)}
-                  type="primary"
-                >
+                <Button onClick={() => handleEdit(item)} type="primary">
                   Edit
                 </Button>
                 <Button
-                  size="large"
                   onClick={() => handleStatus(item)}
                   type="primary"
                   danger
