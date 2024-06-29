@@ -73,7 +73,10 @@ function App() {
                 </React.Suspense>
               }
             />
-            <Route path="/dashboard/album" element={<ImagePage />} />
+            <Route
+              path="/dashboard/content/albums/:contentId"
+              element={<ImagePage />}
+            />
             {/* <Route
               path="/dashboard/content/createContent"
               element={<ContentForm />}
@@ -85,10 +88,7 @@ function App() {
             <Route path="/dashboard/manage-banners" element={<SlidePage />} />
             <Route path="/dashboard/student" element={<StudentPage />} />
             <Route path="/dashboard/staff" element={<StaffPage />} />
-            {/* <Route
-              path="/dashboard/content/medias/:id"
-              element={<ImagePage />}
-            /> */}
+            {/* <Route path="/dashboard/content/albums/" element={<ImagePage />} /> */}
 
             {/* Protected Route  */}
             <Route element={<RequireAuth />}>

@@ -7,17 +7,16 @@ export default class MediaStore {
   loading = false;
   open = false;
   formValues = {};
-  fileSelected = "";
-  filePreview = "";
+  fileSelected = [];
+  filePreview = [];
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getList = async (contentId, mediaType) => {
+  getList = async (contentId) => {
     var param = {
-      contentId: contentId || "",
-      mediaType: mediaType || "",
+      contentId: contentId,
     };
     this.loading = true;
     const res = await request(`albums`, "get", param);
@@ -26,31 +25,35 @@ export default class MediaStore {
         this.medias = res.object;
         this.loading = false;
       });
+    } else {
+      runInAction(() => {
+        this.medias = [];
+        this.loading = false;
+      });
     }
   };
 
   handleClearValue = () => {
     this.formValues = {
-      id: null,
-      name: "",
-      contentId: null,
-      mediaType: null,
-      mediaUrl: "",
+      id: "",
+      contentId: "",
+      albumFiles: [],
     };
     this.handleClearImage();
   };
 
   handleChangeFile = (e) => {
     runInAction(() => {
-      var file = e.target.files[0];
-      var filePreView = URL.createObjectURL(file);
-      this.fileSelected = file;
-      this.filePreview = filePreView;
+      const files = Array.from(e.target.files);
+      const filePreviews = files.map((file) => URL.createObjectURL(file));
+      this.fileSelected = files;
+      this.filePreview = filePreviews;
     });
   };
+
   handleClearImage = () => {
-    this.filePreview = null;
-    this.fileSelected = null;
+    this.filePreview = [];
+    this.fileSelected = [];
   };
 
   handleClickNew = () => {
@@ -82,7 +85,7 @@ export default class MediaStore {
       okText: "Yes",
       cancelText: "No",
       onOk: async () => {
-        const res = await request(`medias/${item.id}`, "delete");
+        const res = await request(`albums/${item.id}`, "delete");
         if (res) {
           runInAction(() => {
             this.loading = true;
@@ -99,21 +102,15 @@ export default class MediaStore {
     this.loading = true;
     var id = this.formValues.id;
     var form = new FormData();
-    if (id != null && this.fileSelected !== "") {
-      form.append("mediaId", id);
-      form.append("file", this.fileSelected);
-    } else {
-      var data = {
-        ...item,
-        mediaUrl: this.filePreview,
-        contentId: contentId,
-      };
+
+    if (id != null && this.fileSelected.length > 0) {
+      this.fileSelected.forEach((file) => {
+        form.append("albumFiles", file);
+      });
+      form.append("contentId", contentId);
     }
-    var req = id == null ? data : form;
-    var method = id == null ? "post" : "put";
-    var url = id == null ? `albums/upload/${contentId}` : `albums/upload/${id}`;
-    var messages = id ? "upload Image  sucessfull" : "create  sucessfull";
-    const res = await request(url, method, req);
+    var messages = id ? "upload Images sucessfully" : "create sucessfully";
+    const res = await request(`albums/upload/${contentId}`, "post", form);
     if (res) {
       runInAction(() => {
         message.success(messages);

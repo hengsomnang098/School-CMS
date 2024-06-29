@@ -80,6 +80,11 @@ const UserPage = () => {
       </Space>
 
       <Table
+        style={{
+          width: "100%",
+          height: "100%",
+          overflow: "auto",
+        }}
         rowKey="id"
         dataSource={user}
         pagination={{

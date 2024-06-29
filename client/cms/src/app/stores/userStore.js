@@ -142,7 +142,7 @@ export default class UserStore {
     var data = {
       ...item,
       roles: [item.roles],
-      id: id,
+      userId: id,
     };
 
     var url = id == null ? "auth/register" : `users/update/${id}`;
@@ -150,8 +150,9 @@ export default class UserStore {
       const res = await request(url, "post", data);
       var messages = id == null ? "Register Sucessful" : "Update Sucessful";
       if (res) {
+        console.log(res);
         runInAction(async () => {
-          if (this.fileSelected != null && id != null) {
+          if (this.fileSelected != null) {
             form.append("userId", id);
             form.append("file", this.fileSelected);
             const img = await request(`users/update/profile`, "put", form);

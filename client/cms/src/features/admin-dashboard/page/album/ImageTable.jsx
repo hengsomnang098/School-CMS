@@ -1,13 +1,10 @@
 import { Table, Space, Button } from "antd";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
-import { useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 const ImageTable = () => {
-  const { id } = useParams();
-  const contentId = id;
   const { mediaStore } = useStore();
-  const { medias, handleClickEdit, handleClickDelete, loading } = mediaStore;
+  const { medias, handleClickDelete, loading } = mediaStore;
   return (
     <div>
       <Table
@@ -26,13 +23,8 @@ const ImageTable = () => {
             key: "id",
             title: "id",
             dataIndex: "id",
-            responsive: ["sm"],
           },
-          {
-            key: "contentId",
-            title: "Content",
-            dataIndex: "contentId",
-          },
+
           {
             key: "url",
             title: "Image",
@@ -60,12 +52,12 @@ const ImageTable = () => {
             dataIndex: "Status",
             render: (value, item) => (
               <Space>
-                <Button
+                {/* <Button
                   onClick={() => handleClickEdit(item, contentId)}
                   type="primary"
                 >
                   Edit
-                </Button>
+                </Button> */}
                 <Button
                   onClick={() => handleClickDelete(item)}
                   type="primary"

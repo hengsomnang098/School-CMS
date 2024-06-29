@@ -2,6 +2,7 @@ import { Table, Space, Button } from "antd";
 import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
@@ -75,6 +76,18 @@ const ContentTable = () => {
                 );
               }
             },
+          },
+          {
+            key: "manage-albums",
+            title: "Manage Albums",
+            dataIndex: "manage-albums",
+            render: (value, item) => (
+              <Space>
+                <Link to={`/dashboard/content/albums/${item.id}`}>
+                  Manage Albums
+                </Link>
+              </Space>
+            ),
           },
           {
             key: "status",

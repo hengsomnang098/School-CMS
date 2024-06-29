@@ -26,7 +26,6 @@ const items = [
   getItem("Manage Category", "/dashboard/category", <TeamOutlined />),
   getItem("Manage Artcle", "/dashboard/article", <TeamOutlined />),
   getItem("Manage Content", "/dashboard/content", <TeamOutlined />),
-  getItem("Manage Album", "/dashboard/album", <TeamOutlined />),
 
   // need Permission to render
   ...(roles.includes("SUPER-ADMIN") || roles.includes("ADMIN")

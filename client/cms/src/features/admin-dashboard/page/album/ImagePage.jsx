@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 import MainPage from "../../components/page/MainPage";
 import { observer } from "mobx-react-lite";
@@ -12,19 +11,11 @@ import ImageModal from "./ImageModal";
 const ImagePage = () => {
   const { mediaStore } = useStore();
   const { getList, loading } = mediaStore;
-  const { id } = useParams();
-  const contentId = id;
-
-  const filterRef = useRef({
-    contentId: contentId,
-    mediaType: "",
-  });
+  const { contentId } = useParams();
 
   useEffect(() => {
-    var contentId = filterRef.current.contentId;
-    var mediaType = filterRef.current.mediaType;
-    getList(contentId, mediaType);
-  }, [getList, contentId]);
+    getList(contentId);
+  }, [contentId, getList]);
 
   return (
     <MainPage loading={loading}>
