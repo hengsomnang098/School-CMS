@@ -1,0 +1,18 @@
+{
+  "home": {
+    "title": "homepage"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "banner": "Manage Banner",
+    "staff": "Manage Manager",
+    "student": "Manage Student",
+    "category": "Manage Category",
+    "article": "Manage Article",
+    "content": "Manage Content",
+    "employee": "Mange Employee",
+    "users": "Manage Users",
+    "roles": "Manage Roles",
+    "logout": "Logout"
+  }
+}

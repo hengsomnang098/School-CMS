@@ -102,6 +102,13 @@ export const getRefreshToken = (refresh_token) => {
   return localStorage.getItem("refresh_token", refresh_token);
 };
 
+export const setLanguage = (lang) => {
+  localStorage.setItem("lang", lang);
+};
+export const getLanguage = () => {
+  return localStorage.getItem("lang");
+};
+
 export const logout = () => {
   localStorage.setItem("email", "");
   localStorage.setItem("profile", "");

@@ -7,12 +7,14 @@ import {
   HddOutlined,
 } from "@ant-design/icons";
 import MainPage from "../../components/page/MainPage";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
+  const { t } = useTranslation("global");
   return (
     <MainPage>
       <Space size={20} direction="vertical">
-        <Typography.Title level={4}>Dashboard</Typography.Title>
+        <Typography.Title level={4}>{t("home.title")}</Typography.Title>
         <Space
           direction="horizontal"
           className="items-center w-full flex flex-wrap "

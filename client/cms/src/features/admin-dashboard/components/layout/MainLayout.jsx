@@ -2,32 +2,45 @@ import { Avatar, Button, Layout, Typography } from "antd";
 import Logo from "./Logo";
 import MenuList from "./MenuList";
 import { useEffect, useState } from "react";
-import {
-  MenuOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
-import { getUser, isLogin } from "../../../../app/api/config/helper";
+import {
+  getProfile,
+  getUser,
+  isLogin,
+} from "../../../../app/api/config/helper";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 // import FooterPage from "./Footer";
 
 const { Header, Sider } = Layout;
 function MainLayout() {
+  const [t, i18] = useTranslation("global");
   const [collapsed, setCollapsed] = useState(false);
-
+  const profile = getProfile();
   const user = getUser();
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLogin()) {
       navigate("/login");
     }
-  }, [navigate]);
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) {
+      i18.changeLanguage(storedLanguage);
+    }
+  }, [i18, navigate]);
 
   if (!user) {
     return null;
   }
+
+  const handleChangeLanguage = (event) => {
+    const languageCode = event.target.value;
+    i18.changeLanguage(languageCode);
+    localStorage.setItem("language", languageCode); // Store the selected language in localStorage
+  };
 
   return (
     <>
@@ -63,12 +76,24 @@ function MainLayout() {
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuOutlined />}
             />
             <div className="flex items-center">
+              <select
+                onChange={(e) => handleChangeLanguage(e)}
+                defaultValue={localStorage.getItem("language")}
+              >
+                <option value="en">en</option>
+                <option value="kh">kh</option>
+              </select>
               {/* Other header elements */}
               <Typography.Title level={5} className="text-white">
-                hengsomnang
+                {user}
               </Typography.Title>
 
-              <Avatar style={{}} icon={<UserOutlined />} className="mr-4" />
+              <Avatar
+                size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                src={<img src={profile} alt="avatar" />}
+                // icon={<UserOutlined />}
+                className="mr-4"
+              />
             </div>
           </Header>
 
