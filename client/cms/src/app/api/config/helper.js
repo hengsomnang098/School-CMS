@@ -28,8 +28,8 @@ export const isEmptyOrNull = (value) => {
   return false;
 };
 export const initializeLocalStorage = () => {
-  if (localStorage.getItem("profile") === null) {
-    localStorage.setItem("profile", JSON.stringify({})); // Assuming default profile is an empty object
+  if (localStorage.getItem("email") === null) {
+    localStorage.setItem("email", JSON.stringify({})); // Assuming default profile is an empty object
   }
   if (localStorage.getItem("isLogin") === null) {
     localStorage.setItem("isLogin", "0"); // Assuming default is not logged in
@@ -37,13 +37,30 @@ export const initializeLocalStorage = () => {
   if (localStorage.getItem("token") === null) {
     localStorage.setItem("token", ""); // Assuming default token is an empty string
   }
+
   if (localStorage.getItem("roles") === null) {
     localStorage.setItem("roles", JSON.stringify([])); // Assuming default roles is an empty array
   }
+  if (localStorage.getItem("profile") === null) {
+    localStorage.setItem("profile", JSON.stringify({})); // Assuming default profile is an empty object
+  }
+};
+
+export const setProfile = (profile = {}) => {
+  localStorage.setItem("profile", JSON.stringify(profile)); // Assuming default profile is an empty object
+};
+
+export const getProfile = () => {
+  var profile = localStorage.getItem("profile");
+  if (profile != null && profile != "") {
+    profile = JSON.parse(profile);
+    return profile;
+  }
+  return null;
 };
 
 export const getUser = () => {
-  var user = localStorage.getItem("profile");
+  var user = localStorage.getItem("email");
   if (user != null && user != "") {
     user = JSON.parse(user);
     return user;
@@ -52,7 +69,7 @@ export const getUser = () => {
 };
 
 export const setUser = (user = {}) => {
-  localStorage.setItem("profile", JSON.stringify(user));
+  localStorage.setItem("email", JSON.stringify(user));
   localStorage.setItem("isLogin", "1");
 };
 
@@ -86,10 +103,11 @@ export const getRefreshToken = (refresh_token) => {
 };
 
 export const logout = () => {
+  localStorage.setItem("email", "");
   localStorage.setItem("profile", "");
   localStorage.setItem("isLogin", "0");
   localStorage.setItem("token", "");
-  // localStorage.setItem("refresh_token", "");
+  localStorage.setItem("refresh_token", "");
   localStorage.setItem("roles", "");
   window.location.href = "login";
 };
@@ -102,7 +120,8 @@ export const isLogin = () => {
   // }
   if (
     localStorage.getItem("token") != undefined &&
-    localStorage.getItem("isLogin") == "1"
+    localStorage.getItem("isLogin") == "1" &&
+    localStorage.getItem("refresh_token") != undefined
   ) {
     return true;
   } else {

@@ -1,4 +1,4 @@
-import { Button, Space, Modal, Form } from "antd";
+import { Button, Space, Modal, Form, Upload } from "antd";
 import { useEffect } from "react";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -12,6 +12,8 @@ const ImageModal = () => {
     loading,
     open,
     handleChangeFile,
+    handleClearImage,
+    filePreview,
   } = mediaStore;
 
   const [formCat] = Form.useForm();
@@ -20,11 +22,6 @@ const ImageModal = () => {
   useEffect(() => {
     formCat.setFieldsValue(formValues);
   }, [formValues, formCat]);
-
-  const handleUploadChange = ({ fileList }) => {
-    handleChangeFile(fileList);
-  };
-  handleUploadChange;
 
   return (
     <>
@@ -42,16 +39,17 @@ const ImageModal = () => {
             handleFinish(value, contentId);
           }}
         >
-          <Form.Item label="Ablums" name={"albumFiles"}>
-            <input type="file" multiple onChange={(e) => handleChangeFile(e)} />
-            {/* <Upload
+          <Form.Item name={"albumFiles"}>
+            {/* <input type="file" multiple onChange={(e) => handleChangeFile(e)} /> */}
+            <Upload.Dragger
+              multiple={true}
               listType="picture-card"
               fileList={filePreview}
               onChange={handleChangeFile}
-              onRemove={handleClearImage}
+              onRemove={(removedFile) => handleClearImage(removedFile)}
             >
-              {filePreview.length >= 8 ? null : <div>Upload</div>}
-            </Upload> */}
+              {filePreview.length >= 8 ? null : <div>Drag and Drop Files</div>}
+            </Upload.Dragger>
           </Form.Item>
 
           {/* <button onClick={handleClearImage}>Clear Image</button> */}

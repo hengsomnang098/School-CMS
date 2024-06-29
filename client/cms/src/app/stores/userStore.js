@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
 import {
   setAccessToken,
+  setProfile,
   setRefreshToken,
   setRoles,
   setUser,
@@ -38,6 +39,7 @@ export default class UserStore {
         alert(res.message);
         this.loading = false;
       } else {
+        setProfile(res.object.profile);
         setUser(res.object.email);
         setAccessToken(res.object.access_token);
         setRefreshToken(res.object.refresh_token);

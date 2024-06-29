@@ -37,23 +37,48 @@ export default class MediaStore {
     this.formValues = {
       id: "",
       contentId: "",
-      albumFiles: [],
     };
     this.handleClearImage();
   };
 
-  handleChangeFile = (e) => {
+  // handleChangeFile = (e) => {
+  //   runInAction(() => {
+  //     const files = Array.from(e.target.files);
+  //     const filePreviews = files.map((file) => URL.createObjectURL(file));
+  //     this.fileSelected = files;
+  //     this.filePreview = filePreviews;
+  //   });
+  // };
+
+  handleChangeFile = (info) => {
     runInAction(() => {
-      const files = Array.from(e.target.files);
-      const filePreviews = files.map((file) => URL.createObjectURL(file));
-      this.fileSelected = files;
-      this.filePreview = filePreviews;
+      const { fileList } = info;
+      const filePreviews = fileList.map((file) => {
+        if (file.originFileObj) {
+          return URL.createObjectURL(file.originFileObj);
+        }
+        return file.url;
+      });
+      this.fileSelected = fileList.map((file) => file.originFileObj);
+      this.filePreview = filePreviews.map((preview, index) => ({
+        uid: index,
+        url: preview,
+      }));
     });
   };
 
-  handleClearImage = () => {
-    this.filePreview = [];
-    this.fileSelected = [];
+
+  handleClearImage = (removedFile) => {
+    runInAction(() => {
+      if (removedFile) {
+        this.filePreview = this.filePreview.filter(
+          (file) => file !== removedFile.url
+        );
+        this.fileSelected = this.fileSelected.filter(
+          (file) => file !== removedFile.originFileObj
+        );
+      }
+    });
   };
 
   handleClickNew = () => {
@@ -74,7 +99,8 @@ export default class MediaStore {
 
   handleCloseModal = () => {
     runInAction(() => {
-      this.handleClearValue();
+      this.filePreview = [];
+      this.fileSelected = [];
       this.open = false;
     });
   };
