@@ -9,7 +9,13 @@ const MyTextEditor = ({ value, onChange }) => {
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }, { font: [] }],
+      [
+        { header: [1, 2, false] },
+        {
+          font: [],
+        },
+      ],
+      [{ align: [] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
         { list: "ordered" },
@@ -44,12 +50,12 @@ const MyTextEditor = ({ value, onChange }) => {
 
   useEffect(() => {
     if (quillRef.current) {
+      const quill = quillRef.current.getEditor();
       observerRef.current = new MutationObserver((mutationsList) => {
         for (const mutation of mutationsList) {
           if (mutation.type === "childList") {
             const [node] = mutation.addedNodes;
             if (node && node.tagName === "DIV") {
-              const quill = quillRef.current.getEditor();
               const delta = quill.clipboard.convert(node);
               quill.updateContents(delta);
             }
@@ -57,7 +63,7 @@ const MyTextEditor = ({ value, onChange }) => {
         }
       });
 
-      observerRef.current.observe(quillRef.current.getEditor().root, {
+      observerRef.current.observe(quill.root, {
         childList: true,
       });
     }
@@ -76,7 +82,7 @@ const MyTextEditor = ({ value, onChange }) => {
       onChange={handleChange}
       modules={modules}
       formats={formats}
-      className=" w-full h-full"
+      className="w-full h-full"
     />
   );
 };

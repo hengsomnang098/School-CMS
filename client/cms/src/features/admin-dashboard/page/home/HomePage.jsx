@@ -15,11 +15,7 @@ const HomePage = () => {
     <MainPage>
       <Space size={20} direction="vertical">
         <Typography.Title level={4}>{t("home.title")}</Typography.Title>
-        <Space
-          direction="horizontal"
-          className="items-center w-full flex flex-wrap "
-          size={20}
-        >
+        <div className="w-full flex flex-wrap justify-center items-center text-center">
           <HomeCard
             title={"Total Contents"}
             value={"12345"}
@@ -80,7 +76,7 @@ const HomePage = () => {
               />
             }
           />
-        </Space>
+        </div>
       </Space>
     </MainPage>
   );

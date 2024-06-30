@@ -58,8 +58,7 @@ function MenuList() {
   return (
     <>
       <Menu
-        className="flex flex-col gap-[15px] text-base h-full overflow-auto bg-bg-main-color text-white"
-        width="100%"
+        className="flex flex-col gap-[15px] text-base h-full w-full overflow-auto bg-bg-main-color text-white"
         style={{
           overflow: "auto",
           padding: 0,

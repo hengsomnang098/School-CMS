@@ -1,15 +1,16 @@
 import { Typography, Space, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 const { Title } = Typography;
 const StaffHeader = () => {
   const { managementTeamStore } = useStore();
   const { handleClickNew } = managementTeamStore;
-  const NameTitle = "Management Team";
+  const { t } = useTranslation("global");
   return (
     <>
       <Typography>
-        <Title level={3}>{NameTitle}</Title>
+        <Title level={3}>{t("sidebar.staff")}</Title>
       </Typography>
       <Space>
         <Button

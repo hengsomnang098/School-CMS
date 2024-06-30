@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 
 const { Header, Sider } = Layout;
 function MainLayout() {
-  const [t, i18] = useTranslation("global");
+  const [, i18] = useTranslation("global");
   const [collapsed, setCollapsed] = useState(false);
   const profile = getProfile();
   const user = getUser();

@@ -15,6 +15,7 @@ import MainPage from "../../components/page/MainPage";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 const UserPage = () => {
@@ -42,6 +43,7 @@ const UserPage = () => {
   const filterRef = useRef({
     firstname: "",
   });
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     formCat.setFieldsValue(formValues);
@@ -60,7 +62,7 @@ const UserPage = () => {
   return (
     <MainPage loading={loading}>
       <Typography>
-        <Title level={3}>Manage Users </Title>
+        <Title level={3}>{t("sidebar.users")}</Title>
       </Typography>
       <Space>
         <Input.Search

@@ -13,6 +13,7 @@
     "employee": "Mange Employee",
     "users": "Manage Users",
     "roles": "Manage Roles",
+    "albums": "Manage Albums",
     "logout": "Logout"
   }
 }
