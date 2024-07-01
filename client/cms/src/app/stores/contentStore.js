@@ -143,4 +143,25 @@ export default class ContentStore {
       });
     }
   };
+
+  handleStatus = async (item) => {
+    this.loading = true;
+    var data = {
+      id: item.id,
+    };
+    var status = {
+      status: item.status === "DRAFT" ? "PUBLIC" : "DRAFT",
+    };
+    const res = await request(
+      `contents/update/status/${item.id}?status=${status.status}`,
+      "put",
+      data
+    );
+    if (res) {
+      runInAction(() => {
+        message.success("status  sucessfull");
+        this.getList();
+      });
+    }
+  };
 }

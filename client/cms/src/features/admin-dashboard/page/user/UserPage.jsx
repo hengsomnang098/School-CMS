@@ -135,12 +135,6 @@ const UserPage = () => {
               if (value != null && value != "") {
                 return (
                   <>
-                    {/* <Image
-                      //  src={item.mediaUrl}
-                      src={value}
-                      width={40}
-                      height={30}
-                    /> */}
                     <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );

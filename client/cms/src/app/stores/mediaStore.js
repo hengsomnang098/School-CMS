@@ -21,6 +21,7 @@ export default class MediaStore {
     this.loading = true;
     const res = await request(`albums`, "get", param);
     if (res) {
+      console.log(res);
       runInAction(() => {
         this.medias = res.object;
         this.loading = false;
@@ -66,7 +67,6 @@ export default class MediaStore {
       }));
     });
   };
-
 
   handleClearImage = (removedFile) => {
     runInAction(() => {

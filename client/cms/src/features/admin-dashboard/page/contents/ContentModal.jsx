@@ -82,16 +82,6 @@ const ContentModal = () => {
               )}
             </Select>
           </Form.Item>
-          <Form.Item label="Status" name="status">
-            <Select>
-              <Select.Option label="PENDING" value="PENDING">
-                PENDING
-              </Select.Option>
-              <Select.Option label="PUBLIC" value="PUBLIC">
-                PUBLIC
-              </Select.Option>
-            </Select>
-          </Form.Item>
           <Form.Item label="Image" name={"thumbnail"}>
             <Image
               // src={list.mediaUrl}

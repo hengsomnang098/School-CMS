@@ -6,8 +6,13 @@ import { Link } from "react-router-dom";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
-  const { handleClickDelete, handleClickEdit, loading, sortContentById } =
-    contentStore;
+  const {
+    handleClickDelete,
+    handleClickEdit,
+    loading,
+    sortContentById,
+    handleStatus,
+  } = contentStore;
 
   return (
     <div>
@@ -64,7 +69,6 @@ const ContentTable = () => {
               if (value != null && value != "") {
                 return (
                   <>
-                    {/* <Image src={value} width={40} height={30} /> */}
                     <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
@@ -93,6 +97,13 @@ const ContentTable = () => {
             key: "status",
             title: "Status",
             dataIndex: "status",
+            render: (value, item) => (
+              <Space>
+                <Button loading={loading} onClick={() => handleStatus(item)}>
+                  {item.status == "DRAFT" ? "DRAFT" : "PUBLIC"}
+                </Button>
+              </Space>
+            ),
           },
           {
             key: "Action",
