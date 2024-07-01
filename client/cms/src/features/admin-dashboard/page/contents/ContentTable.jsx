@@ -100,7 +100,7 @@ const ContentTable = () => {
             render: (value, item) => (
               <Space>
                 <Button loading={loading} onClick={() => handleStatus(item)}>
-                  {item.status == "DRAFT" ? "DRAFT" : "PUBLIC"}
+                  {item.status == "DRAFT" ? "DRAFT" : "PUBLISHED"}
                 </Button>
               </Space>
             ),

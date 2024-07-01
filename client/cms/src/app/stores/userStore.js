@@ -154,8 +154,9 @@ export default class UserStore {
       if (res) {
         console.log(res);
         runInAction(async () => {
+          console.log(res);
           if (this.fileSelected != null) {
-            form.append("userId", id);
+            form.append("userId", res.object.id);
             form.append("file", this.fileSelected);
             const img = await request(`users/update/profile`, "put", form);
             if (img) {
