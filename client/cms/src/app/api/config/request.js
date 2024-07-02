@@ -138,17 +138,19 @@ export const refreshToken = async (url, method, data) => {
   const refresh_token = localStorage.getItem("refresh_token");
   try {
     const res = await axios({
-      url: `${BASE_URL}refresh_token`,
+      url: Config.base_url + "refresh_token",
       method: "post",
-      data: { refresh_token },
+      data: {
+        refresh_token: refresh_token,
+      },
     });
-    // Restore new access_token and refresh_token
+    // restore new (access_token and refresh_token)
     setAccessToken(res.data.access_token);
-    setRefreshToken(res.data.refresh_token);
-    const new_token = res.data.access_token;
+    setRefreshToken(res.data.refesh_token);
+    var new_token = res.data.access_token;
     return request(url, method, data, new_token);
   } catch (error) {
-    message.error("Failed to refresh token");
+    message.error("refresh fail", error);
     logout();
     return false;
   }

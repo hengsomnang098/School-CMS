@@ -3,6 +3,7 @@ import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
@@ -14,6 +15,13 @@ const ContentTable = () => {
     handleStatus,
   } = contentStore;
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
+
+  const handleTableChange = (pagination) => {
+    setCurrentPage(pagination.current);
+    setPageSize(pagination.pageSize);
+  };
   return (
     <div>
       <Table
@@ -22,9 +30,12 @@ const ContentTable = () => {
         dataSource={sortContentById}
         className=" overflow-auto"
         pagination={{
-          pageSize: 5,
-          // showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
+          current: currentPage,
+          pageSize: pageSize,
+          showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
+          showQuickJumper: true,
         }}
+        onChange={handleTableChange}
         columns={[
           {
             key: "id",
