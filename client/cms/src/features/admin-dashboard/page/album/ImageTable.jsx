@@ -23,13 +23,14 @@ const ImageTable = () => {
             key: "id",
             title: "id",
             dataIndex: "id",
+            responsive: ["sm"],
           },
 
           {
             key: "url",
             title: "Image",
             dataIndex: "url",
-            responsive: ["sm"],
+
             render: (value) => {
               if (value != null && value != "") {
                 return (
