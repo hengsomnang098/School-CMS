@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 
 export const Config = {
   // base_url: "http://localhost:8080/api/",
-  // base_url: "http://194.233.87.193:8080/api/",
-  base_url: import.meta.env.VITE_API_URL,
+  base_url: "http://194.233.87.193:8080/api/",
+  // base_url: import.meta.env.VITE_API_URL,
   // image_path: "http://localhost:8080/api/medias/photo/",
   version: "",
   token: "",
@@ -28,7 +28,7 @@ export const isEmptyOrNull = (value) => {
 };
 export const initializeLocalStorage = () => {
   if (localStorage.getItem("email") === null) {
-    localStorage.setItem("email", JSON.stringify({})); // Assuming default profile is an empty object
+    localStorage.setItem("email", ""); // Assuming default profile is an empty object
   }
   if (localStorage.getItem("isLogin") === null) {
     localStorage.setItem("isLogin", "0"); // Assuming default is not logged in
@@ -38,10 +38,13 @@ export const initializeLocalStorage = () => {
   }
 
   if (localStorage.getItem("roles") === null) {
-    localStorage.setItem("roles", JSON.stringify([])); // Assuming default roles is an empty array
+    localStorage.setItem("roles", ""); // Assuming default roles is an empty array
   }
   if (localStorage.getItem("profile") === null) {
-    localStorage.setItem("profile", JSON.stringify({})); // Assuming default profile is an empty object
+    localStorage.setItem("profile", ""); // Assuming default profile is an empty object
+  }
+  if (localStorage.getItem("refresh_token") === null) {
+    localStorage.setItem("refresh_token", ""); // Assuming default token is an empty string
   }
 };
 

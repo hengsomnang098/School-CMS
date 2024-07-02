@@ -71,14 +71,14 @@ export default class StudentStore {
       okType: "danger",
       centered: true,
       onOk: async () => {
-        this.loading = true;
         var data = {
           id: item.id,
         };
         const res = await request(`students/${data.id}`, "delete", data);
         if (res) {
           runInAction(() => {
-            message.success("De;ete Successfully");
+            this.loading = true;
+            message.success("Delete Successfully");
             this.getList();
             this.handleClearValue();
           });

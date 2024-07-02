@@ -99,7 +99,7 @@ const ContentModal = () => {
             onChange={handleChangeFile}
             src={filePreview}
           />
-          <button onClick={handleClearImage}>Clear Image</button>
+          <Button onClick={handleClearImage}>Clear Image</Button>
           <Form.Item
             label="Description"
             name={"description"}

@@ -3,6 +3,7 @@ import { Typography, Space, Button } from "antd";
 
 import { useStore } from "../../../../app/stores/store";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 const { Title } = Typography;
 
 const ImageHeader = () => {
@@ -24,6 +25,9 @@ const ImageHeader = () => {
         >
           New
         </Button>
+        <Link to="/dashboard/content">
+          <Button>Back To Content</Button>
+        </Link>
       </Space>
     </div>
   );

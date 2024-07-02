@@ -84,6 +84,7 @@ export default class UserStore {
       lastName: "",
       email: "",
       roles: "",
+      profile: "",
     };
     this.handleClearImage();
   };
@@ -156,7 +157,7 @@ export default class UserStore {
         runInAction(async () => {
           console.log(res);
           if (this.fileSelected != null) {
-            form.append("userId", res.object.id);
+            form.append("userId", id === null ? res.object.id : id);
             form.append("file", this.fileSelected);
             const img = await request(`users/update/profile`, "put", form);
             if (img) {

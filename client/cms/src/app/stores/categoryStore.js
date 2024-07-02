@@ -18,7 +18,6 @@ export default class CategoryStore {
         this.categories = res.object;
       }
       this.loading = false;
-      this.open = false;
     });
   };
 
@@ -51,7 +50,6 @@ export default class CategoryStore {
   handleCloseModal = () => {
     runInAction(() => {
       this.handleClearValue();
-      this.open = false;
     });
   };
 
@@ -70,7 +68,7 @@ export default class CategoryStore {
         this.getList();
       }
       this.handleCloseModal();
-      this.loading = false;
+      this.open = false;
     });
   };
   handleDelete = async (item) => {
@@ -88,8 +86,8 @@ export default class CategoryStore {
           if (res) {
             message.success("Delete  Sucessfull");
             this.getList();
+            this.open = false;
           }
-          this.loading = false;
         });
       },
     });

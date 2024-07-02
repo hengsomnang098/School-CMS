@@ -42,6 +42,7 @@ export default class SlideStore {
         description: "",
         imageUrl: "",
       };
+      this.handleClearFile();
     });
   };
 
@@ -53,6 +54,7 @@ export default class SlideStore {
   };
 
   handleEdit = (item) => {
+    console.log(item);
     runInAction(() => {
       this.open = true;
       this.loading = false;
@@ -111,11 +113,10 @@ export default class SlideStore {
           form.append("slideId", res.object.id);
           form.append("file", this.fileSelected);
           await request(`slides/upload/image`, "put", form);
-          this.filePreview = res.object.imageUrl;
+          // this.filePreview = res.object.imageUrl;
         }
         message.success(messages);
         // Call the getList function to refresh the data
-        this.handleClearFile();
         this.handleClearValue();
         this.getList();
       });
@@ -125,7 +126,6 @@ export default class SlideStore {
   handleCloseModal = () => {
     runInAction(() => {
       this.open = false;
-      this.handleClearFile();
       this.handleClearValue();
     });
   };
@@ -133,7 +133,6 @@ export default class SlideStore {
   handleClickNew = () => {
     runInAction(() => {
       this.open = true;
-      this.handleClearFile();
       this.handleClearValue();
     });
   };

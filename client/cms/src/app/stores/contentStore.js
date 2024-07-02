@@ -52,7 +52,6 @@ export default class ContentStore {
       imageUrl: "",
       id: null,
       article: undefined,
-      category: [],
     };
     this.handleClearImage();
   };

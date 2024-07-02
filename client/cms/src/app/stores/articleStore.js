@@ -38,7 +38,6 @@ export default class ArticleStore {
       name: "",
       category: "",
     };
-    this.loading = false;
   };
 
   handleCloseModal = () => {
@@ -68,7 +67,6 @@ export default class ArticleStore {
       okType: "danger",
       centered: true,
       onOk: async () => {
-        this.loading = true;
         var data = {
           id: item.id,
         };
@@ -76,6 +74,7 @@ export default class ArticleStore {
         if (res) {
           message.success("De;ete Successfully");
           runInAction(() => {
+            this.loading = true;
             this.articleList();
             this.handleClearValue();
             this.open = false;

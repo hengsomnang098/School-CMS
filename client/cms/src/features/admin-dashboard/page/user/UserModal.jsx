@@ -1,6 +1,7 @@
 import { Modal, Form, Image, Input, Select, Button, Space } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useEffect, useRef } from "react";
+import { observer } from "mobx-react-lite";
 
 const UserModal = () => {
   const { userStore, roleStore } = useStore();
@@ -150,4 +151,4 @@ const UserModal = () => {
   );
 };
 
-export default UserModal;
+export default observer(UserModal);

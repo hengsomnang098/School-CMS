@@ -15,24 +15,28 @@ export default class ManagementTeamStore {
   }
 
   getList = async () => {
-    this.loading = true;
     const res = await request("teams", "get");
     runInAction(() => {
       if (res) {
+        // this.loading = true;
         this.managementTeam = res.object;
+        this.loading = false;
       }
-      this.loading = false;
     });
   };
 
   handleClickNew = () => {
-    this.open = true;
-    this.handleClearValues();
+    runInAction(() => {
+      this.open = true;
+      this.handleClearValues();
+    });
   };
 
   handleCloseModal = () => {
-    this.open = false;
-    this.handleClearValues();
+    runInAction(() => {
+      this.open = false;
+      this.handleClearValues();
+    });
   };
 
   handleClearValues = () => {
@@ -56,12 +60,14 @@ export default class ManagementTeamStore {
   };
 
   handleEdit = (item) => {
-    this.formValues = {
-      ...item,
-    };
-    this.filePreview = item.photoUrl;
-    this.open = true;
-    this.loading = false;
+    runInAction(() => {
+      this.formValues = {
+        ...item,
+      };
+      this.filePreview = item.photoUrl;
+      this.open = true;
+      this.loading = false;
+    });
   };
 
   handleChangeFile = (e) => {
@@ -125,9 +131,9 @@ export default class ManagementTeamStore {
             data.photoUrl = img;
           }
         }
+        this.open = false;
         message.success(messages);
         this.getList();
-        this.open = false;
       });
     }
   };
