@@ -23,7 +23,6 @@ const LoginPage = () => {
     handleLogin(values)
       .then(() => {
         navigate("/dashboard");
-        window.location.reload();
       })
       .catch((error) => {
         // Handle login error

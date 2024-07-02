@@ -58,7 +58,11 @@ export default class ContentStore {
 
   handleClickNew = () => {
     this.handleClearValue();
+    this.loading = true;
     this.open = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   };
 
   handleCloseModal = () => {
@@ -82,6 +86,10 @@ export default class ContentStore {
     this.filePreview = item.thumbnail;
     runInAction(() => {
       this.open = true;
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
     });
   };
 

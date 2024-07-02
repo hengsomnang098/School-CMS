@@ -1,11 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 // eslint-disable-next-line react/prop-types
 const MyTextEditor = ({ value, onChange }) => {
   const quillRef = useRef(null);
-  const observerRef = useRef(null);
 
   const modules = {
     toolbar: [
@@ -31,6 +30,7 @@ const MyTextEditor = ({ value, onChange }) => {
   const formats = [
     "header",
     "font",
+    "align",
     "bold",
     "italic",
     "underline",
@@ -47,33 +47,6 @@ const MyTextEditor = ({ value, onChange }) => {
   const handleChange = (content) => {
     onChange(content);
   };
-
-  useEffect(() => {
-    if (quillRef.current) {
-      const quill = quillRef.current.getEditor();
-      observerRef.current = new MutationObserver((mutationsList) => {
-        for (const mutation of mutationsList) {
-          if (mutation.type === "childList") {
-            const [node] = mutation.addedNodes;
-            if (node && node.tagName === "DIV") {
-              const delta = quill.clipboard.convert(node);
-              quill.updateContents(delta);
-            }
-          }
-        }
-      });
-
-      observerRef.current.observe(quill.root, {
-        childList: true,
-      });
-    }
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, []);
 
   return (
     <ReactQuill

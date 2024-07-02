@@ -109,10 +109,15 @@ export const request = async (
   } catch (error) {
     console.error("Unexpected Error:", error);
     const status = error.response?.status;
+    const data = error.response?.data;
+
+    if (data && data.email && data.password) {
+      // Handle the case where the response contains email and password
+    }
 
     switch (status) {
       case 400:
-        message.error(error.response.data.detail);
+        message.error(data.email ? data.email : data.password);
         break;
       case 401:
         if (error?.response?.data?.error?.name === "TokenExpiredError") {
@@ -123,13 +128,23 @@ export const request = async (
         }
         break;
       case 403:
+        message.error("Forbidden: " + error.message);
+        break;
       case 404:
+        message.error("Not Found: " + error.message);
+        break;
       case 405:
+        message.error("Method Not Allowed: " + error.message);
+        break;
       case 500:
-        message.error(error.message);
+        message.error("Internal Server Error: " + error.message);
         break;
       default:
-        message.error("An unexpected error occurred");
+        if (!status) {
+          message.error("Network Error or Server is not responding");
+        } else {
+          message.error("An unexpected error occurred: " + error.message);
+        }
     }
     return false;
   }

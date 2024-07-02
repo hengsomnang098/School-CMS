@@ -3,13 +3,14 @@ import { Typography, Space, Button } from "antd";
 
 import { useStore } from "../../../../app/stores/store";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 const ImageHeader = () => {
   const { mediaStore } = useStore();
   const { handleClickNew } = mediaStore;
   const { t } = useTranslation("global");
+  const navigate = useNavigate();
   return (
     <div className="mb-5">
       <Typography>
@@ -25,9 +26,9 @@ const ImageHeader = () => {
         >
           {t("button.add")}
         </Button>
-        <Link to="/dashboard/content">
-          <Button>{t("button.back_to_content")}</Button>
-        </Link>
+        <Button onClick={() => navigate(-1)}>
+          {t("button.back_to_content")}
+        </Button>
       </Space>
     </div>
   );

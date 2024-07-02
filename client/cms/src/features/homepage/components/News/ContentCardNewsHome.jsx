@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
 
 const ContentCardNewsHome = ({ content, isMain }) => {
   const title = content?.title || "";
   const description = content?.description || "";
-  const imageUrl = content?.imageUrl || "";
+  const imageUrl = content?.thumbnail || "";
   const maxLengthTitle = 22;
   const maxLengthDesc = 120;
 

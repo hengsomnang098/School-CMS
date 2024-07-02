@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 // dashboard import-------------
@@ -13,7 +13,7 @@ import SlidePage from "../../features/admin-dashboard/page/slide/SlidePage";
 import StudentPage from "../../features/admin-dashboard/page/student/StudentPage";
 import StaffPage from "../../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../../features/admin-dashboard/page/category/CategoryPage";
-// import RolePage from "../../features/admin-dashboard/page/role/RolePage";
+import RolePage from "../../features/admin-dashboard/page/role/RolePage";
 import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
 
@@ -43,106 +43,94 @@ import React from "react";
 // import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/teams/:id",
-  //     element: <SingleMember />,
-  // loader: async ({ params }) => {
-  //   const data = await fetchData(params.id);
-  //   return data;
-  // },
-  //   },
-  // ]);
   const LazyLoad = React.lazy(() =>
     import("../../features/admin-dashboard/page/contents/ContentPage")
   );
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          {/* dashboard route */}
-          <Route element={<MainLayout />}>
-            <Route path="/dashboard" element={<HomePage />} />
-            <Route path="/dashboard/category" element={<CategoryPage />} />
-            <Route path="/dashboard/article" element={<ArticlesPage />} />
-            <Route
-              path="/dashboard/content"
-              element={
-                <React.Suspense fallback={<MainPage />}>
-                  <LazyLoad />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/dashboard/content/albums/:contentId"
-              element={<ImagePage />}
-            />
-            {/* <Route
-              path="/dashboard/content/createContent"
-              element={<ContentForm />}
-            />
-            <Route
-              path="/dashboard/content/manageContent/:id"
-              element={<ContentForm />}
-            /> */}
-            <Route path="/dashboard/manage-banners" element={<SlidePage />} />
-            <Route path="/dashboard/student" element={<StudentPage />} />
-            <Route path="/dashboard/staff" element={<StaffPage />} />
-            {/* <Route path="/dashboard/content/albums/" element={<ImagePage />} /> */}
+    <Routes
+      element={
+        <RequireAuth allowedRoles={["USERS", "SUPER-ADMIN", "ADMIN", "IT"]} />
+      }
+    >
+      {/* dashboard route */}
+      <Route element={<MainLayout />}>
+        <Route path="/dashboard" element={<HomePage />} />
+        <Route path="/dashboard/category" element={<CategoryPage />} />
+        <Route path="/dashboard/article" element={<ArticlesPage />} />
+        <Route
+          path="/dashboard/content"
+          element={
+            <React.Suspense fallback={<MainPage />}>
+              <LazyLoad />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/dashboard/content/albums/:contentId"
+          element={<ImagePage />}
+        />
 
-            {/* Protected Route  */}
-            <Route element={<RequireAuth />}>
-              <Route path="/dashboard/users" element={<UserPage />} />
-              {/* <Route path="/dashboard/roles" element={<RolePage />} /> */}
-            </Route>
+        <Route path="/dashboard/manage-banners" element={<SlidePage />} />
+        <Route path="/dashboard/student" element={<StudentPage />} />
+        <Route path="/dashboard/staff" element={<StaffPage />} />
 
-            {/* Protected Route  */}
+        {/* Protected Route  */}
+        <Route
+          element={
+            <RequireAuth allowedRoles={["ADMIN", "IT", "SUPER-ADMIN"]} />
+          }
+        >
+          <Route path="/dashboard/users" element={<UserPage />} />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={["SUPER-ADMIN", "IT"]} />}>
+          <Route path="/dashboard/roles" element={<RolePage />} />
+        </Route>
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
+        {/* Protected Route  */}
 
-          {/*   homepage route */}
-          <Route element={<Layout />}>
-            {/* pages*/}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/ourprograms" element={<OurProgramsPage />} />
-            <Route path="/managementteams" element={<ManagementTeamsPage />} />
-            <Route path="/activities" element={<ActivitiesPage />} />
-            <Route path="/event/:id" element={<EventsPage />} />
-            {/* <Route path="/events" element={<EventsPage />} /> */}
-            <Route path="/admission" element={<Admission />} />
-            {/* categories*/}
-            <Route path="/category" element={<CategoryList />} />
-            <Route path="/categories" element={<CategoryList />} />
-            <Route path="/category/:id" element={<ListByCategory />} />
-            <Route path="/category/:id/articles" component={<AllArtByCat />} />
-            {/* articles*/}
-            <Route path="/articles" element={<ArticleList />} />
-            <Route path="/article/:id" element={<ListByArticle />} />
-            <Route path="*" element={<NotFound />} />
-            {/* contents */}
-            {/* news */}
-            <Route path="/schoolnews" element={<ListAllContentNews />} />
-            <Route path="/schoolevents" element={<ListAllContentEvents />} />
-            <Route path="/new/:id" element={<SchoolNewsPage />} />
-            {/* <Route path="/new/:title" element={<SchoolNewsPage />} /> */}
-            {/* <Route path="/contents" element={<ContentList />} /> */}
-            <Route path="/content/:id" element={<SingleContent />} />
-            {/* <Route path="/content/:title" element={<SingleContent />} /> */}
-            <Route path="*" element={<NotFound />} />
-            {/* Teams*/}
-            <Route path="/teams/:id" element={<SingleMember />} />
-          </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
 
-          <Route path="*" element={<NotFound />} />
+      {/*   homepage route */}
+      <Route element={<Layout />}>
+        {/* pages*/}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/ourprograms" element={<OurProgramsPage />} />
+        <Route path="/managementteams" element={<ManagementTeamsPage />} />
+        <Route path="/activities" element={<ActivitiesPage />} />
+        <Route path="/event/:id" element={<EventsPage />} />
+        {/* <Route path="/events" element={<EventsPage />} /> */}
+        <Route path="/admission" element={<Admission />} />
+        {/* categories*/}
+        <Route path="/category" element={<CategoryList />} />
+        <Route path="/categories" element={<CategoryList />} />
+        <Route path="/category/:id" element={<ListByCategory />} />
+        <Route path="/category/:id/articles" component={<AllArtByCat />} />
+        {/* articles*/}
+        <Route path="/articles" element={<ArticleList />} />
+        <Route path="/article/:id" element={<ListByArticle />} />
+        <Route path="*" element={<NotFound />} />
+        {/* contents */}
+        {/* news */}
+        <Route path="/schoolnews" element={<ListAllContentNews />} />
+        <Route path="/schoolevents" element={<ListAllContentEvents />} />
+        <Route path="/new/:id" element={<SchoolNewsPage />} />
+        {/* <Route path="/new/:title" element={<SchoolNewsPage />} /> */}
+        {/* <Route path="/contents" element={<ContentList />} /> */}
+        <Route path="/content/:id" element={<SingleContent />} />
+        {/* <Route path="/content/:title" element={<SingleContent />} /> */}
+        <Route path="*" element={<NotFound />} />
+        {/* Teams*/}
+        <Route path="/teams/:id" element={<SingleMember />} />
+      </Route>
 
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>{" "}
-      </BrowserRouter>{" "}
-    </>
+      <Route path="*" element={<NotFound />} />
+
+      <Route path="*" element={<NotFoundPage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
   );
 }
 

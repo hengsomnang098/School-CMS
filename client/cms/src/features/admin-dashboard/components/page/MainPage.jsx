@@ -5,8 +5,8 @@ import { observer } from "mobx-react-lite";
 const MainPage = ({ children, loading = false }) => {
   return (
     <>
-      <Spin spinning={loading}>
-        <Card>{children}</Card>
+      <Spin tip="Loading..." size="large" spinning={loading}>
+        <Card className={loading ? "blur-background" : ""}>{children}</Card>
       </Spin>
     </>
   );

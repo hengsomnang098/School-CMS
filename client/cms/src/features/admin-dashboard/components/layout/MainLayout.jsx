@@ -1,4 +1,4 @@
-import { Avatar, Button, Layout, Typography } from "antd";
+import { Avatar, Button, Layout, Radio, Typography } from "antd";
 import Logo from "./Logo";
 import MenuList from "./MenuList";
 import { useEffect, useState } from "react";
@@ -30,11 +30,22 @@ function MainLayout() {
     if (storedLanguage) {
       i18.changeLanguage(storedLanguage);
     }
-  }, [i18, navigate]);
 
-  if (!user) {
-    return null;
-  }
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCollapsed(true);
+      } else {
+        setCollapsed(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Call the function initially to set the state based on the initial window size
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [i18, navigate]);
 
   const handleChangeLanguage = (event) => {
     const languageCode = event.target.value;
@@ -51,7 +62,6 @@ function MainLayout() {
           onCollapse={(value) => setCollapsed(value)}
           collapsedWidth={0}
           style={{
-            padding: 0,
             background: "#10AC84",
           }}
         >
@@ -75,21 +85,43 @@ function MainLayout() {
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuOutlined />}
             />
-            <div className="flex items-center">
-              <select
+            <div className="flex items-center mx-5 flex-row">
+              <Radio.Group
                 onChange={(e) => handleChangeLanguage(e)}
                 defaultValue={localStorage.getItem("language")}
               >
-                <option value="en">en</option>
-                <option value="kh">kh</option>
-              </select>
+                <Radio value={"en"}>
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      src="../../../../../public/english.png"
+                      alt="English"
+                      style={{ width: 20, marginRight: 8 }}
+                    />
+                    English
+                  </span>
+                </Radio>
+                <Radio value={"kh"}>
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      src="../../../../../public/cambodia.png"
+                      alt="Khmer"
+                      style={{ width: 20, marginRight: 8 }}
+                    />
+                    Khmer
+                  </span>
+                </Radio>
+              </Radio.Group>
+
               {/* Other header elements */}
-              <Typography.Title level={5} className="text-white">
+              <Typography.Title
+                level={window.innerWidth < 768 ? 5 : 4}
+                className="text-white mx-5"
+              >
                 {user}
               </Typography.Title>
 
               <Avatar
-                size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                size={{ xs: 50, sm: 50, md: 50, lg: 50, xl: 50, xxl: 60 }}
                 src={<img src={profile} alt="avatar" />}
                 // icon={<UserOutlined />}
                 className="mr-4"

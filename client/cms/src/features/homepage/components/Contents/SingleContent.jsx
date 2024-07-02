@@ -6,7 +6,7 @@ const SingleContent = () => {
   const { id } = useParams();
 
   const [content, setContent] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTeams = async () => {

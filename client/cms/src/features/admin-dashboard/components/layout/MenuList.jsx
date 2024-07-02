@@ -38,13 +38,19 @@ function MenuList() {
     // need Permission to render
     ...(roles.includes("SUPER-ADMIN") || roles.includes("ADMIN")
       ? [
-          // getItem(t("sidebar.employee"), "employee", <TeamOutlined />, [
           getItem(t("sidebar.users"), "/dashboard/users", <TeamOutlined />),
-          // getItem(t("sidebar.roles"), "/dashboard/roles", <TeamOutlined />),
-          // ]),
+          ...(roles.includes("SUPER-ADMIN")
+            ? [
+                getItem(
+                  t("sidebar.roles"),
+                  "/dashboard/roles",
+                  <TeamOutlined />
+                ),
+              ]
+            : []),
         ]
-      : ""),
-    // // ----------------------------
+      : []),
+
     getItem(t("sidebar.logout"), "logout", <DesktopOutlined />),
   ];
 
@@ -58,11 +64,7 @@ function MenuList() {
   return (
     <>
       <Menu
-        className="flex flex-col gap-[15px] text-base h-full w-full overflow-auto bg-bg-main-color text-white"
-        style={{
-          overflow: "auto",
-          padding: 0,
-        }}
+        className="flex flex-col gap-[15px] text-base h-full w-full overflow-auto bg-bg-main-color text-white justify-start"
         mode="inline"
         defaultSelectedKeys={["/"]}
         items={items}

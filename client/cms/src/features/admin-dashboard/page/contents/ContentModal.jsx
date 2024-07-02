@@ -31,7 +31,7 @@ const ContentModal = () => {
   }, [articleStore, categoryStore, formCat, formValues]);
 
   return (
-    <div>
+    <>
       <Modal
         forceRender
         title={formValues.id == null ? "New Content" : "Update Content"}
@@ -40,6 +40,7 @@ const ContentModal = () => {
         footer={null}
         width={"100%"}
         height={"100%"}
+        loading={loading}
       >
         <Form form={formCat} layout="vertical" onFinish={handleFinish}>
           <Form.Item
@@ -123,7 +124,7 @@ const ContentModal = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 

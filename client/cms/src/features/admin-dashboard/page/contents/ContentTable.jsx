@@ -16,19 +16,19 @@ const ContentTable = () => {
   } = contentStore;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
 
   const handleTableChange = (pagination) => {
     setCurrentPage(pagination.current);
     setPageSize(pagination.pageSize);
   };
   return (
-    <div>
+    <>
       <Table
         width="100%"
         rowKey="id"
         dataSource={sortContentById}
-        className=" overflow-auto"
+        className=" overflow-auto justify-start"
         pagination={{
           current: currentPage,
           pageSize: pageSize,
@@ -138,7 +138,7 @@ const ContentTable = () => {
           },
         ]}
       />
-    </div>
+    </>
   );
 };
 

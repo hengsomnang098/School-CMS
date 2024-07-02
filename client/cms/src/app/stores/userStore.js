@@ -23,20 +23,19 @@ export default class UserStore {
 
   handleLogin = async (item) => {
     this.loading = true;
-    var email = item.email;
-    var password = item.password;
-    if (email == "" || password == "") {
-      alert("Please fill in email or password!");
-      return false;
+    const { email, password } = item;
+
+    if (!email || !password) {
+      message.error("Please fill in email or password!");
+      this.loading = false;
+      return;
     }
-    var data = {
-      email: email,
-      password: password,
-    };
+
+    const data = { email, password };
     const res = await request("auth/login", "post", data);
     if (res) {
       if (res.error) {
-        alert(res.message);
+        message.error(res.error.message || "Login failed. Please try again.");
         this.loading = false;
       } else {
         setProfile(res.object.profile);
@@ -153,9 +152,7 @@ export default class UserStore {
       const res = await request(url, "post", data);
       var messages = id == null ? "Register Sucessful" : "Update Sucessful";
       if (res) {
-        console.log(res);
         runInAction(async () => {
-          console.log(res);
           if (this.fileSelected != null) {
             form.append("userId", id === null ? res.object.id : id);
             form.append("file", this.fileSelected);

@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
 
 const ContentCardNav = ({ content }) => {
@@ -11,7 +12,7 @@ const ContentCardNav = ({ content }) => {
     <Link to={`/content/${content.id}`}>
       <div
         className="relative overflow-hidden border-4 w-[300px] h-[300px] text-center bg-cover bg-center flex items-center justify-center transition-transform duration-300 hover:scale-105"
-        style={{ backgroundImage: `url(${content.imageUrl})` }}
+        style={{ backgroundImage: `url(${content.thumbnail})` }}
       >
         <div className="relative z-10 w-[300px] h-[300px] break-words font-bold text-xl bg-white bg-opacity-50 p-4 rounded text-center flex items-center justify-center">
           {content.title}
