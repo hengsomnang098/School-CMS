@@ -38,10 +38,10 @@ function MenuList() {
     // need Permission to render
     ...(roles.includes("SUPER-ADMIN") || roles.includes("ADMIN")
       ? [
-          getItem(t("sidebar.employee"), "employee", <TeamOutlined />, [
-            getItem(t("sidebar.users"), "/dashboard/users", <TeamOutlined />),
-            getItem(t("sidebar.roles"), "/dashboard/roles", <TeamOutlined />),
-          ]),
+          // getItem(t("sidebar.employee"), "employee", <TeamOutlined />, [
+          getItem(t("sidebar.users"), "/dashboard/users", <TeamOutlined />),
+          // getItem(t("sidebar.roles"), "/dashboard/roles", <TeamOutlined />),
+          // ]),
         ]
       : ""),
     // // ----------------------------

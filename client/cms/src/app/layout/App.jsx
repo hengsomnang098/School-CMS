@@ -13,7 +13,7 @@ import SlidePage from "../../features/admin-dashboard/page/slide/SlidePage";
 import StudentPage from "../../features/admin-dashboard/page/student/StudentPage";
 import StaffPage from "../../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../../features/admin-dashboard/page/category/CategoryPage";
-import RolePage from "../../features/admin-dashboard/page/role/RolePage";
+// import RolePage from "../../features/admin-dashboard/page/role/RolePage";
 import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
 
@@ -93,7 +93,7 @@ function App() {
             {/* Protected Route  */}
             <Route element={<RequireAuth />}>
               <Route path="/dashboard/users" element={<UserPage />} />
-              <Route path="/dashboard/roles" element={<RolePage />} />
+              {/* <Route path="/dashboard/roles" element={<RolePage />} /> */}
             </Route>
 
             {/* Protected Route  */}
