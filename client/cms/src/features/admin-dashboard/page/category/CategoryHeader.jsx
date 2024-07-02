@@ -20,7 +20,7 @@ const CategoryHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
       </div>
     </>

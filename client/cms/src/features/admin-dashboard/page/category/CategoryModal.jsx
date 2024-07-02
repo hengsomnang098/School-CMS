@@ -3,8 +3,10 @@ import { Modal, Form, Input, Space, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
 const CategoryModal = () => {
+  const { t } = useTranslation("global");
   const { categoryStore } = useStore();
   const [formCat] = Form.useForm();
   const { formValues, handleCloseModal, handleSubMid, loading, open } =
@@ -51,9 +53,9 @@ const CategoryModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formValues.id == null ? "Save" : "Update"}
+                {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>
           </Form.Item>

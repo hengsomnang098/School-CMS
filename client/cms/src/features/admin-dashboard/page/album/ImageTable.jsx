@@ -2,9 +2,11 @@ import { Table, Space, Button } from "antd";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 const ImageTable = () => {
   const { mediaStore } = useStore();
   const { medias, handleClickDelete, loading } = mediaStore;
+  const { t } = useTranslation("global");
   return (
     <div>
       <Table
@@ -65,7 +67,7 @@ const ImageTable = () => {
                   danger
                   loading={loading}
                 >
-                  Delete
+                  {t("button.delete")}
                 </Button>
               </Space>
             ),

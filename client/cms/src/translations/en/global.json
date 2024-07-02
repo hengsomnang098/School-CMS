@@ -1,11 +1,15 @@
 {
   "home": {
-    "title": "homepage"
+    "title": "homepage",
+    "Total Class": "Total Class",
+    "Total Student": "Total Student",
+    "Total Teacher": "Total Teacher",
+    "Total Programs": "Total Programs"
   },
   "sidebar": {
     "dashboard": "Dashboard",
     "banner": "Manage Banner",
-    "staff": "Manage Manager",
+    "staff": "Management Team",
     "student": "School Info",
     "category": "Manage Category",
     "article": "Manage Article",
@@ -15,5 +19,17 @@
     "roles": "Manage Roles",
     "albums": "Manage Albums",
     "logout": "Logout"
+  },
+  "button": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "update": "Update",
+    "cancel": "Cancel",
+    "search": "Search",
+    "reset": "Reset",
+    "back_to_content": "Back to Content",
+    "upload": "Upload"
   }
 }

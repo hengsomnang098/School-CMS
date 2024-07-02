@@ -23,10 +23,10 @@ const ImageHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
         <Link to="/dashboard/content">
-          <Button>Back To Content</Button>
+          <Button>{t("button.back_to_content")}</Button>
         </Link>
       </Space>
     </div>

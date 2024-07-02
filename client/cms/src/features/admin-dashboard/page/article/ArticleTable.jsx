@@ -1,9 +1,11 @@
 import { Table, Space, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 const ArticleTable = () => {
   const { articleStore } = useStore();
   const { articles, handleClickEdit, handleDelete, loading } = articleStore;
+  const { t } = useTranslation("global");
   return (
     <>
       <Table
@@ -48,7 +50,7 @@ const ArticleTable = () => {
             render: (value, item) => (
               <Space>
                 <Button onClick={() => handleClickEdit(item)} type="primary">
-                  Edit
+                  {t("button.edit")}
                 </Button>
                 <Button
                   onClick={() => handleDelete(item)}
@@ -56,7 +58,7 @@ const ArticleTable = () => {
                   danger
                   loading={loading}
                 >
-                  Delete
+                  {t("button.delete")}
                 </Button>
               </Space>
             ),

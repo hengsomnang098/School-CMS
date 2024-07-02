@@ -50,6 +50,7 @@ export default class CategoryStore {
   handleCloseModal = () => {
     runInAction(() => {
       this.handleClearValue();
+      this.open = false;
     });
   };
 

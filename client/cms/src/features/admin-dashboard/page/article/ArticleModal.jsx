@@ -2,8 +2,10 @@ import { Button, Space, Modal, Input, Form, Select } from "antd";
 import { useEffect } from "react";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
 const ArticleModal = () => {
+  const { t } = useTranslation("global");
   const { articleStore, categoryStore } = useStore();
   const { formValues, handleCloseModal, handleFinish, loading, open } =
     articleStore;
@@ -68,9 +70,9 @@ const ArticleModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+                {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>
           </Form.Item>

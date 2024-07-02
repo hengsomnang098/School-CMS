@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const ImageModal = () => {
   const { mediaStore } = useStore();
   const {
@@ -18,6 +19,7 @@ const ImageModal = () => {
 
   const [formCat] = Form.useForm();
   const { contentId } = useParams();
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     formCat.setFieldsValue(formValues);
@@ -40,7 +42,6 @@ const ImageModal = () => {
           }}
         >
           <Form.Item name={"albumFiles"}>
-            {/* <input type="file" multiple onChange={(e) => handleChangeFile(e)} /> */}
             <Upload.Dragger
               multiple={true}
               listType="picture-card"
@@ -56,9 +57,9 @@ const ImageModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                Upload
+                {t("button.upload")}
               </Button>
             </Space>
           </Form.Item>

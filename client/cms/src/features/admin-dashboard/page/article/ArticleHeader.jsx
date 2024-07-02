@@ -19,7 +19,7 @@ const ArticleHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
       </div>
     </div>
