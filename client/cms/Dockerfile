@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies using npm
-RUN npm install
+RUN yarn install
 
 # Attempt to fix the npm issue by removing package-lock.json and node_modules, then reinstalling dependencies
 RUN rm -rf node_modules package-lock.json && npm install
@@ -17,10 +17,10 @@ RUN rm -rf node_modules package-lock.json && npm install
 COPY . .
 
 # Build the Vite application using npm
-RUN npm run build
+RUN yarn run build
 
 # Expose port 8000 for the application
 EXPOSE 8000
 
 # Start the Vite application
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "run", "dev"]
