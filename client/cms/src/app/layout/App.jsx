@@ -132,6 +132,13 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>
+=======
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+>>>>>>> 9c8a0b5 (reatc)
   );
 }
 

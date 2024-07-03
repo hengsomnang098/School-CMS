@@ -25,7 +25,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
     <div
       className={`flex ${
         isMain ? "flex-col" : ""
-      } border rounded-lg overflow-hidden`}
+      } border rounded-lg overflow-hidden slice-in-from-right`}
       style={{ maxWidth: "100%" }}
     >
       <div className={`${isMain ? "w-full" : "w-1/3"}`}>
@@ -43,7 +43,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
         <h3 className="text-xl font-semibold mb-2 break-words h-[35px]">
           <span>{truncatedTitle}</span>
         </h3>
-        <p className="text-sm text-gray-700 mb-2 p-2 px2 break-words h-[100px]">
+        <p className="text-sm text-gray-700 mb-2 p-2 px-2 break-words h-[100px]">
           <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
         </p>
         <div className="text-right">
