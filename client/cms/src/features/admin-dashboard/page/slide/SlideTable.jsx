@@ -6,9 +6,11 @@ import {
 } from "antd";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useStore } from "../../../../app/stores/store";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const SlideTable = () => {
+  const { t } = useTranslation("global");
   const { slideStore } = useStore();
   const { slides, handleEdit, handleDelete, loading } = slideStore;
   return (
@@ -76,7 +78,7 @@ const SlideTable = () => {
             render: (value, item) => (
               <Space>
                 <Button onClick={() => handleEdit(item)} type="primary">
-                  Edit
+                  {t("button.edit")}
                 </Button>
                 <Button
                   onClick={() => handleDelete(item)}
@@ -84,7 +86,7 @@ const SlideTable = () => {
                   danger
                   loading={loading}
                 >
-                  Delete
+                  {t("button.delete")}
                 </Button>
               </Space>
             ),

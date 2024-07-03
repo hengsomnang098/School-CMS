@@ -2,6 +2,7 @@ import { Modal, Form, Image, Input, Select, Button, Space } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
 const UserModal = () => {
   const { userStore, roleStore } = useStore();
@@ -17,6 +18,8 @@ const UserModal = () => {
   } = userStore;
   const [formCat] = Form.useForm();
   const fileRef = useRef(null);
+
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     formCat.setFieldsValue(formValues);
@@ -139,9 +142,9 @@ const UserModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formValues.id == null ? "Save" : "Update"}
+                {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>
           </Form.Item>

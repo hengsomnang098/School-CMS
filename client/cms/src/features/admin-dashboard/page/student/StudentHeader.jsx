@@ -20,7 +20,7 @@ const StudentHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
       </div>
     </>

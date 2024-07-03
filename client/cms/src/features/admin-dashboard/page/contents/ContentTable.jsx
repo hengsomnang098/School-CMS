@@ -4,6 +4,7 @@ import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
@@ -14,6 +15,7 @@ const ContentTable = () => {
     sortContentById,
     handleStatus,
   } = contentStore;
+  const { t } = useTranslation("global");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -123,7 +125,7 @@ const ContentTable = () => {
             render: (value, item) => (
               <Space>
                 <Button onClick={() => handleClickEdit(item)} type="primary">
-                  Edit
+                  {t("button.edit")}
                 </Button>
                 <Button
                   onClick={() => handleClickDelete(item)}
@@ -131,7 +133,7 @@ const ContentTable = () => {
                   danger
                   loading={loading}
                 >
-                  Delete
+                  {t("button.delete")}
                 </Button>
               </Space>
             ),

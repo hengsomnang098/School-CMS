@@ -2,10 +2,12 @@ import { Table, Button, Space } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 const StaffTable = () => {
   const { managementTeamStore } = useStore();
   const { managementTeam, loading, handleEdit, handleDelete } =
     managementTeamStore;
+  const { t } = useTranslation("global");
   return (
     <>
       <Table
@@ -68,7 +70,7 @@ const StaffTable = () => {
             render: (value, item) => (
               <Space>
                 <Button onClick={() => handleEdit(item)} type="primary">
-                  Edit
+                  {t("button.edit")}
                 </Button>
                 <Button
                   onClick={() => handleDelete(item)}
@@ -76,7 +78,7 @@ const StaffTable = () => {
                   danger
                   loading={loading}
                 >
-                  Delete
+                  {t("button.delete")}
                 </Button>
               </Space>
             ),

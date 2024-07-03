@@ -10,6 +10,7 @@ const UserHeader = () => {
   const { t } = useTranslation("global");
   const { userStore } = useStore();
   const { handleClickNew, getList } = userStore;
+
   const onChangeSearch = (e) => {
     // Update the current value of filterRef to the new search term
     filterRef.current.firstname = e.target.value;
@@ -17,9 +18,11 @@ const UserHeader = () => {
     // Pass the current value of firstname to getList
     getList(filterRef.current.firstname);
   };
+
   const filterRef = useRef({
     firstname: "",
   });
+
   return (
     <div>
       <Typography>
@@ -38,7 +41,7 @@ const UserHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
       </Space>
     </div>

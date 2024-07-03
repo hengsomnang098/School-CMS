@@ -2,10 +2,12 @@ import { Button, Space, Table, Tag } from "antd";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 
 const UserTable = () => {
   const { userStore } = useStore();
   const { user, handleEdit, handleStatus, loading } = userStore;
+  const { t } = useTranslation("global");
 
   return (
     <div>
@@ -46,7 +48,6 @@ const UserTable = () => {
             key: "email",
             title: "Email",
             dataIndex: "email",
-            // responsive: ["sm"],
           },
           {
             key: "roles",
@@ -95,7 +96,7 @@ const UserTable = () => {
             render: (value, item) => (
               <Space>
                 <Button onClick={() => handleEdit(item)} type="primary">
-                  Edit
+                  {t("button.edit")}
                 </Button>
                 <Button
                   onClick={() => handleStatus(item)}

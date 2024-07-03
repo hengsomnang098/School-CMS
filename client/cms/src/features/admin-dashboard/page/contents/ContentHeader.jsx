@@ -19,7 +19,7 @@ const ContentHeader = () => {
             }}
             type="primary"
           >
-            New
+            {t("button.add")}
           </Button>
         </Title>
       </Layout>

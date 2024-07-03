@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Button, Space, Modal, Input, Form, Image } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 const StaffModal = () => {
   const { managementTeamStore } = useStore();
   const {
@@ -22,6 +23,7 @@ const StaffModal = () => {
   }, [formValues, formCat]);
 
   const fileRef = useRef(null);
+  const { t } = useTranslation("global");
   return (
     <div>
       <Modal
@@ -89,9 +91,11 @@ const StaffModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formCat.getFieldValue("id") == null ? "Save" : "Update"}
+                {formCat.getFieldValue("id") == null
+                  ? t("button.save")
+                  : t("button.update")}
               </Button>
             </Space>
           </Form.Item>

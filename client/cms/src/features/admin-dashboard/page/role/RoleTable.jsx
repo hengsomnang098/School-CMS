@@ -1,10 +1,12 @@
 import { Table, Space, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
 const RoleTable = () => {
   const { roleStore } = useStore();
   const { roles, handleEdit, handleDelete, loading } = roleStore;
+  const { t } = useTranslation("global");
   return (
     <>
       <Table
@@ -38,7 +40,7 @@ const RoleTable = () => {
             render: (value, item) => (
               <Space>
                 <Button onClick={() => handleEdit(item)} type="primary">
-                  Edit
+                  {t("button.edit")}
                 </Button>
                 <Button
                   onClick={() => handleDelete(item)}
@@ -46,7 +48,7 @@ const RoleTable = () => {
                   danger
                   loading={loading}
                 >
-                  Delete
+                  {t("button.delete")}
                 </Button>
               </Space>
             ),

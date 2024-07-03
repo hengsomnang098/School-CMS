@@ -20,7 +20,7 @@ const StaffHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
       </Space>
     </>

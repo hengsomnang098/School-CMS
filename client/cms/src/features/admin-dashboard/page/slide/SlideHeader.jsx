@@ -20,7 +20,7 @@ const SlideHeader = () => {
           }}
           type="primary"
         >
-          New
+          {t("button.add")}
         </Button>
       </Space>
     </div>

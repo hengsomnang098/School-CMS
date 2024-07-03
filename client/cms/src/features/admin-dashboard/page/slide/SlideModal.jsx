@@ -3,7 +3,9 @@ import { Modal, Form, Input, Image, Space, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 const SlideModal = () => {
+  const { t } = useTranslation("global");
   const { slideStore } = useStore();
   const {
     handleClearFile,
@@ -78,9 +80,9 @@ const SlideModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formValues.id == null ? "Save" : "Update"}
+                {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>
           </Form.Item>

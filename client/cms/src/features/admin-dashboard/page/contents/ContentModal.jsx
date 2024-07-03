@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import MyTextEditor from "../../components/form/MyTextEditor";
+import { useTranslation } from "react-i18next";
 const ContentModal = () => {
   const { contentStore, articleStore, categoryStore } = useStore();
   const {
@@ -22,6 +23,8 @@ const ContentModal = () => {
   const [formCat] = Form.useForm();
 
   const fileRef = useRef(null);
+
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     articleStore.articleList();
@@ -116,9 +119,9 @@ const ContentModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>Cancel</Button>
+              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
               <Button type="primary" htmlType="submit" loading={loading}>
-                {formValues.id == null ? "Save" : "Update"}
+                {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>
           </Form.Item>
