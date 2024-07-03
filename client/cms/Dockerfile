@@ -1,26 +1,35 @@
-# Use Node.js 20 as the base image
-FROM node:20
+# Use Node.js 20 as the base image for building the application
+FROM node:20 AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files to the container
-COPY package*.json ./
+# Copy the package.json and yarn.lock files to the container
+COPY package.json yarn.lock ./
 
-# Install dependencies using npm
+# Install dependencies using yarn
 RUN yarn install
-
-# Attempt to fix the npm issue by removing package-lock.json and node_modules, then reinstalling dependencies
-RUN rm -rf node_modules package-lock.json && npm install
 
 # Copy the rest of the application files to the container
 COPY . .
 
-# Build the Vite application using npm
+# Build the Vite application
 RUN yarn run build
 
-# Expose port 8000 for the application
-EXPOSE 8000
+# Use a smaller base image for the final stage
+FROM node:20-slim
 
-# Start the Vite application
-CMD ["yarn", "run", "dev"]
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install a simple HTTP server
+RUN yarn global add serve
+
+# Copy only the build output from the builder stage
+COPY --from=builder /app/dist ./dist
+
+# Expose port 80 for the application
+EXPOSE 80
+
+# Serve the build output
+CMD ["serve", "-s", "dist", "-l", "80"]

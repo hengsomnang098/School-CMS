@@ -1,4 +1,3 @@
-import React from "react";
 import GetContentsByEvents from "./GetContentsByEvents";
 
 const Events = () => {

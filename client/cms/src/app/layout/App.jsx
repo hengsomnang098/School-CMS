@@ -43,6 +43,7 @@ import React from "react";
 // import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
+  
   const LazyLoad = React.lazy(() =>
     import("../../features/admin-dashboard/page/contents/ContentPage")
   );
