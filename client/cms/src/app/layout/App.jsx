@@ -43,7 +43,6 @@ import React from "react";
 // import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
-  
   const LazyLoad = React.lazy(() =>
     import("../../features/admin-dashboard/page/contents/ContentPage")
   );
@@ -132,13 +131,6 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>
-=======
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
-      </BrowserRouter>
-    </>
->>>>>>> 9c8a0b5 (reatc)
   );
 }
 
