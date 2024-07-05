@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../../api/Api";
 import AllConByArt from "./AllConByArt";
+import Spinner from "../Spinner";
 
 const ListByArticle = () => {
   const { id } = useParams();
@@ -47,7 +48,7 @@ const ListByArticle = () => {
             </h1>
             {loading ? (
               <p className="text-center text-gray-600">
-                Loading articles details...
+                <Spinner />
               </p>
             ) : (
               <AllConByArt articleId={id} />

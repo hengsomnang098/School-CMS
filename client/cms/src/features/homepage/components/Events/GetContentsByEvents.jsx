@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ContentCardE from "./ContentCardEventHome";
+// import ContentCardE from "./ContentCardEventHome";
 import { Link } from "react-router-dom";
+import Spinner from "../Spinner";
 
 const GetContentsByEvents = () => {
   const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const ContentCardE = lazy(() => import("./ContentCardEventHome"));
+
   const articleName = "School Events";
 
   useEffect(() => {
@@ -67,19 +70,27 @@ const GetContentsByEvents = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 place-content-center">
+    <div className="container mx-auto px-4">
       {loading ? (
-        <p className="text-center text-gray-600 mt-4">Loading ...</p>
+        <div className="text-center mt-4">
+          <Spinner />
+        </div>
       ) : contents.length > 0 ? (
-        <Slider {...settings} className="mt-8">
-          {contents.map((content) => (
-            <div key={content.id} className="px-2">
-              <ContentCardE content={content} />
-            </div>
-          ))}
-        </Slider>
+        <div className="mt-8">
+          <Suspense fallback={<Spinner />}>
+            <Slider {...settings}>
+              {contents.map((content) => (
+                <div key={content.id} className="px-2">
+                  <ContentCardE content={content} />
+                </div>
+              ))}
+            </Slider>
+          </Suspense>
+        </div>
       ) : (
-        <p className="text-center text-gray-600 mt-8">No Events found.</p>
+        <p className="text-center text-red-600 font-bold font-mono mt-8">
+          No Events found.
+        </p>
       )}
       <div className="flex justify-center mt-14">
         <Link to="/schoolevents">

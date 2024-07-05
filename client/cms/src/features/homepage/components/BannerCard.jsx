@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchData } from "../api/Api"; // Assuming fetchData is a function to fetch data
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Spinner from "./Spinner";
 
 const BannerCard = () => {
   const [slides, setSlides] = useState([]);
@@ -15,10 +16,10 @@ const BannerCard = () => {
         if (data && data.object && Array.isArray(data.object)) {
           setSlides(data.object);
         } else {
-          setError("No slides found in the response");
+          setError("No Banner found in the response");
         }
       } catch (error) {
-        setError("Error fetching slides: " + error.message);
+        setError("Not Banner found.");
       } finally {
         setLoading(false);
       }
@@ -28,15 +29,23 @@ const BannerCard = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-24">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="text-center h-12 mt-2 text-red-600 font-mono font-bold">
+        {error}
+      </div>
+    );
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <Carousel
         showArrows={true}
         showThumbs={false}
@@ -52,7 +61,7 @@ const BannerCard = () => {
             <img
               src={slide.imageUrl}
               alt={slide.name}
-              className="w-full h-500px object-cover"
+              className="w-full h-[200px] md:h-[300px] lg:h-[500px] object-cover"
             />
           </div>
         ))}

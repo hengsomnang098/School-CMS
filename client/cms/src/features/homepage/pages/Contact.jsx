@@ -31,7 +31,7 @@ const Contact = () => {
       <div>
         <div className="flex items-center mb-5">
           <div className="flex-grow   border-t-[6px] ml-8 border-black"></div>
-          <h2 className="text-4xl font-bold mx-8 ">ABOUT US</h2>
+          <h2 className="text-4xl font-bold mx-8 ">CONTACT US</h2>
           <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
         </div>
       </div>
@@ -39,7 +39,9 @@ const Contact = () => {
         <div className="bg-yellow-200 shadow-md rounded-lg overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-6">
-              <h2 className="text-2xl font-semibold mb-4">Any Comment</h2>
+              <h2 className="text-3xl text-center font-semibold mb-6">
+                Any Comment
+              </h2>
               <p className="text-gray-700 mb-6">
                 We'd love to hear from you! Whether you have a question about
                 our school, admission process, or anything else, our team is
@@ -88,34 +90,37 @@ const Contact = () => {
               </form>
             </div>
             <div className="p-6 bg-green-500 text-white">
-              <h2 className="text-2xl font-semibold mb-4">
+              <h2 className="text-3xl text-center font-semibold mb-6">
                 Contact Information
               </h2>
               <p className="mb-4 font-bold font-mono text-xl">
                 SouthWest International School
               </p>
               <p className="mb-4">
-                <strong>Address:</strong> Songkat 4, Sihanouk Provinces
+                <strong>Address :</strong> Songkat 4, Sihanouk Provinces
               </p>
               <p className="mb-4">
-                <strong>Phone:</strong> +855 97 7777 555
+                <strong>Phone :</strong> +855 97 7777 555
               </p>
               <p className="mb-4">
-                <strong>Email:</strong> southwestinternationalschool.com
+                <strong>Email:</strong> Southwestinternationalschool.com
               </p>
               <div className="mt-6">
                 <h3 className="text-xl font-semibold mb-2">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-white hover:text-gray-300">
+                  <a
+                    href="https://web.facebook.com/EducationSHV"
+                    className="text-white hover:text-blue-700"
+                  >
                     <FaFacebookF className="text-2xl" />
                   </a>
-                  <a href="#" className="text-white hover:text-gray-300">
+                  <a href="#" className="text-white hover:text-blue-400 ">
                     <FaTwitter className="text-2xl" />
                   </a>
-                  <a href="#" className="text-white hover:text-gray-300">
+                  <a href="#" className="text-white hover:text-pink-400">
                     <FaInstagram className="text-2xl" />
                   </a>
-                  <a href="#" className="text-white hover:text-gray-300">
+                  <a href="#" className="text-white hover:text-blue-700">
                     <FaLinkedinIn className="text-2xl" />
                   </a>
                 </div>

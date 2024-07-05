@@ -32,7 +32,7 @@ export const fetchArticlesByCatName = async (categoryName) => {
 };
 export const fetchContentsByArtName = async (articleName) => {
   try {
-    const allContentsResponse = await fetchData("contents");
+    const allContentsResponse = await fetchData("contents/status");
 
     if (allContentsResponse && Array.isArray(allContentsResponse.object)) {
       const filteredContents = allContentsResponse.object.filter(
@@ -76,7 +76,7 @@ export const fetchContentsByArticlesId = async (id) => {
 export const fetchMediaListByContentsId = async (id) => {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/medias/content/${id}`
+      `http://194.233.87.193:8080/api/album/content/${id}`
     );
 
     if (!response.ok) {

@@ -21,7 +21,7 @@ const MobileMenu = ({ menuItems, onClose }) => {
             </button>
             {item.children && expandedItem === item.key && (
               <div className="ml-4">
-                {item.children.map((subItem) => (
+                {item.children.flat().map((subItem) => (
                   <Link
                     key={subItem.key}
                     to={subItem.key}

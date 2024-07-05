@@ -47,7 +47,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="relative w-full  h-[400px] md:h-[700px] bg-cover bg-center font-khmermont">
+      <div className="w-full  h-auto  bg-cover bg-center font-khmermont">
         <div>
           <DataInformation />
         </div>

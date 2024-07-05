@@ -7,6 +7,7 @@ import {
   FaUserTie,
 } from "react-icons/fa";
 import DataInformationimg from "../images/DataInformation.png";
+import Spinner from "./Spinner";
 
 const DataInformation = () => {
   const [data, setData] = useState({
@@ -43,7 +44,7 @@ const DataInformation = () => {
 
         setData(mappedData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Bad Request Data", error);
       }
     };
 
@@ -51,15 +52,15 @@ const DataInformation = () => {
   }, []);
 
   const renderCard = (icon, name, description) => (
-    <div className="mb-8 md:w-1/2 lg:w-1/4 p-4 text-center items-center justify-center flex-col flex">
+    <div className="mb-2 md:w-1/2 lg:w-1/4 p-4 text-center items-center justify-center flex-col flex">
       <div className="mb-4 flex justify-center">{icon}</div>
       <div className="mb-4">
-        <span className="font-mono tracking-wider text-4xl font-bold text-green-500">
+        <span className="font-mono tracking-wider text-xl font-bold text-green-500 sm:text-4xl">
           {name}
         </span>
       </div>
       <div className="mb-4">
-        <p className="text-5xl font-bold font-mono mt-5 text-gray-200">
+        <p className="text-xl font-bold font-mono text-gray-700 sm:text-4xl">
           {description}
         </p>
       </div>
@@ -67,20 +68,10 @@ const DataInformation = () => {
   );
 
   return (
-    <div
-      className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${DataInformationimg})`,
-        backgroundColor: "#f0f0f0",
-      }}
-    >
-      {!data.totalStudents &&
-      !data.totalClass &&
-      !data.totalPrograms &&
-      !data.totalTeacher ? (
-        <p className="text-lg text-white">Loading</p>
-      ) : (
-        <div className="flex flex-col md:flex-row flex-wrap max-w-screen-lg mt-72 mx-auto p-4">
+    <div className="top-0 left-0 w-full bg-yellow-400 flex flex-col items-center justify-center bg-cover bg-center">
+      <img className="w-full" src={DataInformationimg} alt="Datainformation" />
+      <div className="relative flex flex-col items-center justify-center bg-cover bg-center">
+        <div className="flex flex-col md:flex-row flex-wrap max-w-screen-lg mx-auto p-4">
           {data.totalStudents &&
             renderCard(
               <FaUserGraduate className="w-10 h-10 text-green-500" />,
@@ -106,7 +97,11 @@ const DataInformation = () => {
               data.totalTeacher.description
             )}
         </div>
-      )}
+        {!data.totalStudents &&
+          !data.totalClass &&
+          !data.totalPrograms &&
+          !data.totalTeacher && <Spinner />}
+      </div>
     </div>
   );
 };

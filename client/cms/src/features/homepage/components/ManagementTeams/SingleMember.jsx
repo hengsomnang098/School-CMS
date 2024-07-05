@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../../api/Api";
+import Spinner from "../Spinner";
 
 const SingleMember = () => {
   const { id } = useParams();
@@ -9,44 +10,49 @@ const SingleMember = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchTeams = async () => {
+    const fetchMember = async () => {
       try {
-        const teamsResponse = await fetchData(`teams/${id}`);
-        setMember(teamsResponse.object);
+        const memberResponse = await fetchData(`teams/${id}`);
+        setMember(memberResponse.object);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching category and articles:", error);
+        console.error("Error fetching team member:", error);
         setLoading(false);
       }
     };
 
-    fetchTeams();
+    fetchMember();
   }, [id]);
 
   if (loading) {
-    return <p className="text-center text-gray-600">Loading ...</p>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
-    <div className="bg-green-100 py-5">
-      <div className="w-[1000px]  rounded-md mx-auto">
-        <div className="max-w-7xl mx-auto my-12 flex flex-col md:flex-row gap-12">
-          <div className="bg-white shadow-2xl drop-shadow-2xl rounded-md transform transition duration-500 hover:scale-110 overflow-hidden">
+    <div className="bg-green-100 py-10">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row gap-12">
+          <div className="bg-white shadow-xl rounded-lg overflow-hidden w-full md:w-1/3 transform transition duration-500 hover:scale-105">
             <img
-              className="w-[350px] h-[350px] rounded-md object-cover "
+              className="w-full h-auto object-cover"
               src={member.photoUrl}
               alt={member.name}
             />
           </div>
-          <div className="lg:w-3/4 mx-auto h-[350px]">
-            <h2 className="text-5xl mt-4 font-khmermont mb-2 text-center">
-              {member.description}
+          <div className="w-full md:w-2/3">
+            <h2 className="text-4xl font-bold mt-4 mb-6 text-center md:text-left">
+              {member.name}
             </h2>
-            <div>
-              <h2 className="h-[256px] text-xl ml-5 mt-4 font-khmermont mb-4 text-gray-600 break-words">
-                {member.bio}
-              </h2>
-            </div>
+            <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+              {member.description}
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              {member.bio}
+            </p>
           </div>
         </div>
       </div>

@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
 
 const ContentCardNewsHome = ({ content, isMain }) => {
   const title = content?.title || "";
   const description = content?.description || "";
-  const imageUrl = content?.thumbnail || "";
+  const thumbnail = content?.thumbnail || "";
   const maxLengthTitle = 22;
   const maxLengthDesc = 120;
 
@@ -30,8 +29,8 @@ const ContentCardNewsHome = ({ content, isMain }) => {
     >
       <div className={`${isMain ? "w-full" : "w-1/3"}`}>
         <img
-          src={imageUrl}
-          alt={errorImage}
+          src={thumbnail}
+          alt={errorImage} // Ensure proper alt text for accessibility
           className="w-full h-full object-cover rounded-l-sm bg-green-100"
         />
       </div>
@@ -41,7 +40,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
         } pt-4 break-words pb-2 bg-green-100`}
       >
         <h3 className="text-xl font-semibold mb-2 break-words h-[35px]">
-          <span>{truncatedTitle}</span>
+          {truncatedTitle}
         </h3>
         <p className="text-sm text-gray-700 mb-2 p-2 px-2 break-words h-[100px]">
           <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />

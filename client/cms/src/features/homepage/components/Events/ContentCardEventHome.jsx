@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
-
+import React from "react";
 import { Link } from "react-router-dom";
 
 const ContentCardE = ({ content }) => {
   const title = content?.title || "";
   const description = content?.description || "";
-  const imageUrl = content?.thumbnail || "";
+  const thumbnail = content?.thumbnail || "";
 
   const maxLengthTitle = 40;
   const maxLengthDesc = 110;
@@ -25,7 +24,7 @@ const ContentCardE = ({ content }) => {
       <div>
         <img
           className="h-[250px] w-full rounded-t-sm object-cover"
-          src={imageUrl}
+          src={thumbnail}
           alt={title}
         />
       </div>

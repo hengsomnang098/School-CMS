@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ContentCard = ({ content }) => {
   const title = content?.title || "";
   const description = content?.description || "";
-  const imageUrl = content?.thumbnail || "";
+  const imageUrl = content?.imageUrl || "";
 
   const maxLengthTitle = 34;
   const maxLengthDesc = 60;

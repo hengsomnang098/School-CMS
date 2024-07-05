@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TeamCard = ({ member }) => {
-  const name = member?.title || "";
-  const description = member?.description || "";
-  const imageUrl = member?.imageUrl || "";
+  const name = member?.name || "";
+  const description = member?.bio || "";
+  const imageUrl = member?.photoUrl || "";
   const maxLengthDesc = 80;
 
   const truncatedDescription =
@@ -13,26 +13,18 @@ const TeamCard = ({ member }) => {
       : description;
 
   return (
-    <div className="w-full shadow-xl rounded-md sm:w-[250px]">
-      <div className="bg-white  rounded-sm overflow-hidden">
-        <img
-          className="w-[250px] h-[280px]  rounded-t-md object-cover"
-          src={member.photoUrl}
-          alt={member.name}
-        />
-      </div>
-      <div className="p-4 text-center">
-        <h2 className="text-xl font-bold mb-2 h-[30px]">{member.name}</h2>
-        <p className="text-gray-700 mb-2 h-[48px] break-words">
-          {truncatedDescription}
-        </p>
-        <p className="text-gray-600 h-[30px] break-words">{member.bio}</p>
-      </div>
-      <div className="flex flex-col justify-center items-center">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <img
+        className="w-full h-64 object-cover object-center"
+        src={imageUrl}
+        alt={name}
+      />
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{name}</div>
+        <p className="text-gray-700 text-base mb-2">{truncatedDescription}</p>
         <Link to={`/teams/${member.id}`}>
-          <button className="bg-green-400 rounded-sm w-32 h-10 mb-5 relative overflow-hidden group">
-            <span className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            <span className="relative z-10 text-white">Views</span>
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+            View Details
           </button>
         </Link>
       </div>

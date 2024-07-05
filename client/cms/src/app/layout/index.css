@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Arial&family=Courier&family=Times&family=Times+New+Roman&family=Verdana&family=Khmer+OS&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
 @layer tailwind-base,
 antd;
 @layer tailwind-base {
@@ -15,17 +15,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 @font-face {
   font-family: "Khmer OS Battambang";
-  src: url("../fonts/KhmerOSbattambang-Bold.ttf") format("truetype");
-  font-weight: bold;
+  src: url("/fonts/KhmerOSbattambang-Regular.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Khmer OS Battambang";
-  src: url("../fonts/KhmerOSbattambang-Regular.ttf") format("truetype");
-  font-weight: normal;
+  src: url("/fonts/KhmerOSbattambang-Bold.ttf") format("truetype");
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -100,5 +101,19 @@ body {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+.spinner {
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
