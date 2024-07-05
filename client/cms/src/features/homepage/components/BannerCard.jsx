@@ -16,10 +16,10 @@ const BannerCard = () => {
         if (data && data.object && Array.isArray(data.object)) {
           setSlides(data.object);
         } else {
-          setError("No Banner found in the response");
+          setError("No banners found in the response");
         }
       } catch (error) {
-        setError("Not Banner found.");
+        setError("Error fetching banners.");
       } finally {
         setLoading(false);
       }
@@ -61,7 +61,7 @@ const BannerCard = () => {
             <img
               src={slide.imageUrl}
               alt={slide.name}
-              className="w-full h-[200px] md:h-[300px] lg:h-[500px] object-cover"
+              className="w-full h-[200px] md:h-[300px] lg:h-[500px] "
             />
           </div>
         ))}

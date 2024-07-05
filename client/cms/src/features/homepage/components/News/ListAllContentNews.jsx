@@ -46,13 +46,13 @@ const ListAllContentNews = () => {
     <div className="bg-green-200 min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {loading ? (
-          <p className="text-center text-gray-600">
+          <div className="text-center text-gray-600">
             <Spinner />
-          </p>
+          </div>
         ) : currentItems.length > 0 ? (
           <div className="mt-8">
             {currentItems.map((content) => (
-              <div key={content.id} className="px-2">
+              <div key={content.id} className="px-2 mb-4">
                 <ContentCardN content={content} />
               </div>
             ))}

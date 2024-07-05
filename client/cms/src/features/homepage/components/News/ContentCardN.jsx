@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ContentCardN = ({ content }) => {
-  // Destructure the content object to get required fields
   const { id, title, description, thumbnail } = content;
 
   const maxLengthTitle = 34;
-  const maxLengthDesc = 170;
+  const maxLengthDesc = 320;
 
   const truncatedDescription =
     description.length > maxLengthDesc
@@ -17,28 +16,30 @@ const ContentCardN = ({ content }) => {
     title.length > maxLengthTitle
       ? title.substring(0, maxLengthTitle) + "..."
       : title;
-  return (
-    <div className="drop-shadow-lg flex flex-row bg-green-100  border-green-700 mb-4 mx-auto max-w-2xl">
-      <div className="w-[230px] h-[200px]">
-        <img
-          className="w-[200px] h-[200px] rounded-l-md"
-          src={thumbnail}
-          alt=""
-        />
-      </div>
-      <div>
-        <h3 className="text-xl font-semibold w-[420px] font-khmermont my-4 h-[30px]">
-          {truncatedTitle}
-        </h3>
-        <div
-          className="prose mb-4 h-[80px] w-[420px] font-khmermont break-words "
-          dangerouslySetInnerHTML={{ __html: truncatedDescription }}
-        />
 
-        <div className="flex justify-end mt-4">
-          <Link to={`/content/${id}`} className="text-green-700 underline">
-            View Details
-          </Link>
+  return (
+    <div className="bg-green-100  border-green-700 mb-4 mx-auto max-w-3xl rounded-lg overflow-hidden shadow-lg">
+      <div className="md:flex">
+        <div className="md:w-1/3">
+          <img
+            className="w-full h-auto md:h-full object-cover"
+            src={thumbnail}
+            alt={title}
+          />
+        </div>
+        <div className="p-4 md:w-2/3">
+          <h3 className="text-xl font-semibold font-khmermont mb-2">
+            {truncatedTitle}
+          </h3>
+          <div
+            className="text-sm font-khmermont h-[140px] text-gray-700 mb-4"
+            dangerouslySetInnerHTML={{ __html: truncatedDescription }}
+          />
+          <div className="flex font-semibold text-lg justify-end">
+            <Link to={`/content/${id}`} className="text-green-700 underline">
+              View Details
+            </Link>
+          </div>
         </div>
       </div>
     </div>
