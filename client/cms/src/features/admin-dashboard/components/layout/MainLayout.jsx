@@ -93,7 +93,7 @@ function MainLayout() {
                 <Radio value={"en"}>
                   <span style={{ display: "flex", alignItems: "center" }}>
                     <img
-                      src="../../../../../public/english.png"
+                      src="english.png"
                       alt="English"
                       style={{ width: 20, marginRight: 8 }}
                     />
@@ -103,7 +103,7 @@ function MainLayout() {
                 <Radio value={"kh"}>
                   <span style={{ display: "flex", alignItems: "center" }}>
                     <img
-                      src="../../../../../public/cambodia.png"
+                      src="cambodia.png"
                       alt="Khmer"
                       style={{ width: 20, marginRight: 8 }}
                     />
