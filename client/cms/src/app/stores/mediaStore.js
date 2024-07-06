@@ -145,4 +145,7 @@ export default class MediaStore {
       });
     }
   };
+  get countMedia() {
+    return this.medias.length;
+  }
 }

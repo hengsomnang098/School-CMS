@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    port: 80,
+    port: 8000,
     proxy: {
       "/api": {
         target: "https://194.233.87.193:8080",
@@ -17,7 +17,7 @@ export default defineConfig({
   },
   preview: {
     host: true,
-    port: 80,
+    port: 8000,
   },
   build: {
     rollupOptions: {

@@ -26,9 +26,11 @@ export default class ContentStore {
     }
   };
   get sortContentById() {
-    return this.content.sort((a, b) => {
-      return b.id - a.id;
-    });
+    return this.content
+      ? this.content.sort((a, b) => {
+          return b.id - a.id;
+        })
+      : [];
   }
 
   setDescription = action((description) => {
@@ -169,4 +171,7 @@ export default class ContentStore {
       });
     }
   };
+  get countContent() {
+    return this.content.length;
+  }
 }

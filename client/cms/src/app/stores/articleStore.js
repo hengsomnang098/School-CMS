@@ -117,4 +117,8 @@ export default class ArticleStore {
       }
     });
   };
+
+  get articleCount() {
+    return this.articles.length;
+  }
 }

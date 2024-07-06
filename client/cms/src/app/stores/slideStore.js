@@ -136,4 +136,8 @@ export default class SlideStore {
       this.handleClearValue();
     });
   };
+
+  get slideCount() {
+    return Array.isArray(this.slides) ? this.slides.length : 0;
+  }
 }
