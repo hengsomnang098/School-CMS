@@ -4,6 +4,7 @@ import { useStore } from "../../../../app/stores/store";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import { PlusOutlined, EditOutlined, StopOutlined } from "@ant-design/icons";
 
 const CategoryModal = () => {
   const { t } = useTranslation("global");
@@ -53,8 +54,23 @@ const CategoryModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+              <Button
+                iconPosition="end"
+                className="bg-yellow-500 text-white"
+                icon={<StopOutlined />}
+                onClick={handleCloseModal}
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                iconPosition="end"
+                icon={
+                  formValues.id == null ? <PlusOutlined /> : <EditOutlined />
+                }
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>

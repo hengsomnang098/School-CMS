@@ -1,7 +1,9 @@
 import {
-  AppstoreAddOutlined,
   AppstoreOutlined,
   DesktopOutlined,
+  IdcardOutlined,
+  PictureOutlined,
+  SettingOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -36,17 +38,17 @@ function MenuList() {
   }
 
   const items = [
-    getItem(t("sidebar.dashboard"), "/dashboard", <AppstoreAddOutlined />),
+    getItem(t("sidebar.dashboard"), "/dashboard", <AppstoreOutlined />),
     getItem(
       t("sidebar.banner"),
       "/dashboard/manage-banners",
-      <AppstoreOutlined />
+      <PictureOutlined />
     ),
     getItem(t("sidebar.staff"), "/dashboard/staff", <TeamOutlined />),
-    getItem(t("sidebar.student"), "/dashboard/student", <AppstoreOutlined />),
-    getItem(t("sidebar.category"), "/dashboard/category", <TeamOutlined />),
-    getItem(t("sidebar.article"), "/dashboard/article", <TeamOutlined />),
-    getItem(t("sidebar.content"), "/dashboard/content", <TeamOutlined />),
+    getItem(t("sidebar.student"), "/dashboard/student", <IdcardOutlined />),
+    getItem(t("sidebar.category"), "/dashboard/category", <SettingOutlined />),
+    getItem(t("sidebar.article"), "/dashboard/article", <SettingOutlined />),
+    getItem(t("sidebar.content"), "/dashboard/content", <SettingOutlined />),
 
     // need Permission to render
     ...(roles.includes("ADMIN")

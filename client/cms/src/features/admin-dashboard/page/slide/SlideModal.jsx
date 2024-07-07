@@ -4,6 +4,11 @@ import { useStore } from "../../../../app/stores/store";
 import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import {
+  EditOutlined,
+  PlusCircleOutlined,
+  StopOutlined,
+} from "@ant-design/icons";
 const SlideModal = () => {
   const { t } = useTranslation("global");
   const { slideStore } = useStore();
@@ -80,8 +85,27 @@ const SlideModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+              <Button
+                className="bg-yellow-500 text-white"
+                iconPosition="end"
+                icon={<StopOutlined />}
+                onClick={handleCloseModal}
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                iconPosition="end"
+                icon={
+                  formValues.id == null ? (
+                    <PlusCircleOutlined />
+                  ) : (
+                    <EditOutlined />
+                  )
+                }
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
             </Space>

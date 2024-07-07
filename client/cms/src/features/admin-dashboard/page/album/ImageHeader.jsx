@@ -4,6 +4,7 @@ import { Typography, Space, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeftOutlined, PlusOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 
 const ImageHeader = () => {
@@ -19,6 +20,8 @@ const ImageHeader = () => {
 
       <Space>
         <Button
+          icon={<PlusOutlined />}
+          iconPosition="end"
           onClick={() => {
             handleClickNew();
           }}
@@ -26,7 +29,13 @@ const ImageHeader = () => {
         >
           {t("button.add")}
         </Button>
-        <Button type="primary" danger onClick={() => navigate(-1)}>
+        <Button
+          iconPosition="end"
+          icon={<ArrowLeftOutlined />}
+          type="primary"
+          danger
+          onClick={() => navigate(-1)}
+        >
           {t("button.back_to_content")}
         </Button>
       </Space>

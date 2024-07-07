@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useTranslation } from "react-i18next";
+import { DeleteOutlined } from "@ant-design/icons";
 const ImageTable = () => {
   const { mediaStore } = useStore();
   const { medias, handleClickDelete, loading } = mediaStore;
@@ -55,13 +56,9 @@ const ImageTable = () => {
             dataIndex: "Status",
             render: (value, item) => (
               <Space>
-                {/* <Button
-                  onClick={() => handleClickEdit(item, contentId)}
-                  type="primary"
-                >
-                  Edit
-                </Button> */}
                 <Button
+                  icon={<DeleteOutlined />}
+                  iconPosition="end"
                   onClick={() => handleClickDelete(item)}
                   type="primary"
                   danger

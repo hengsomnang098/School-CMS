@@ -4,6 +4,7 @@ import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { StopOutlined, UploadOutlined } from "@ant-design/icons";
 const ImageModal = () => {
   const { mediaStore } = useStore();
   const {
@@ -57,8 +58,21 @@ const ImageModal = () => {
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+              <Button
+                icon={<StopOutlined />}
+                iconPosition="end"
+                onClick={handleCloseModal}
+                className="bg-yellow-500 text-white"
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                iconPosition="end"
+                icon={<UploadOutlined />}
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {t("button.upload")}
               </Button>
             </Space>

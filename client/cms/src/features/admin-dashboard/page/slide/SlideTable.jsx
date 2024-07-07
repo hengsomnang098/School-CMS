@@ -7,6 +7,7 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useStore } from "../../../../app/stores/store";
 import { useTranslation } from "react-i18next";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 
 // eslint-disable-next-line react/prop-types
 const SlideTable = () => {
@@ -53,12 +54,6 @@ const SlideTable = () => {
               if (value != null && value != "") {
                 return (
                   <>
-                    {/* <Image
-                      //  src={item.mediaUrl}
-                      src={value}
-                      width={40}
-                      height={30}
-                    /> */}
                     <LazyLoadImage src={value} width={40} height={30} />
                   </>
                 );
@@ -77,10 +72,17 @@ const SlideTable = () => {
             dataIndex: "Status",
             render: (value, item) => (
               <Space>
-                <Button onClick={() => handleEdit(item)} type="primary">
+                <Button
+                  iconPosition="end"
+                  icon={<PlusOutlined />}
+                  onClick={() => handleEdit(item)}
+                  type="primary"
+                >
                   {t("button.edit")}
                 </Button>
                 <Button
+                  icon={<DeleteOutlined />}
+                  iconPosition="end"
                   onClick={() => handleDelete(item)}
                   type="primary"
                   danger

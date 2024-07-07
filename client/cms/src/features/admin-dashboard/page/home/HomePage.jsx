@@ -1,10 +1,14 @@
 import { Typography } from "antd";
 import HomeCard from "./HomeCard";
 import {
-  ShoppingCartOutlined,
-  UserAddOutlined,
   UserOutlined,
-  HddOutlined,
+  PictureOutlined,
+  UsergroupAddOutlined,
+  IdcardOutlined,
+  FolderOutlined,
+  FolderOpenOutlined,
+  AppstoreOutlined,
+  PictureTwoTone,
 } from "@ant-design/icons";
 import MainPage from "../../components/page/MainPage";
 import { useTranslation } from "react-i18next";
@@ -58,7 +62,7 @@ const HomePage = () => {
           title={"Total Banner"}
           value={slideStore.slideCount || 0}
           icon={
-            <ShoppingCartOutlined
+            <PictureOutlined
               style={{
                 fontSize: "30px",
                 color: "green",
@@ -76,7 +80,7 @@ const HomePage = () => {
           title={"Total Manager"}
           value={managementTeamStore.countManagementTeam || 0}
           icon={
-            <UserOutlined
+            <UsergroupAddOutlined
               style={{
                 fontSize: "30px",
                 color: "green",
@@ -94,7 +98,7 @@ const HomePage = () => {
           title={"School Info"}
           value={studentStore.students.length || 0}
           icon={
-            <UserAddOutlined
+            <IdcardOutlined
               style={{
                 fontSize: "30px",
                 color: "green",
@@ -112,7 +116,7 @@ const HomePage = () => {
           title={"Total Category"}
           value={categoryStore.countCategory || 0}
           icon={
-            <HddOutlined
+            <FolderOutlined
               style={{
                 fontSize: "30px",
                 color: "green",
@@ -130,7 +134,7 @@ const HomePage = () => {
           title={"Total Article"}
           value={articleStore.articleCount || 0}
           icon={
-            <HddOutlined
+            <FolderOpenOutlined
               style={{
                 fontSize: "30px",
                 color: "green",
@@ -148,7 +152,7 @@ const HomePage = () => {
           title={"Total Content"}
           value={contentStore.countContent || 0}
           icon={
-            <HddOutlined
+            <AppstoreOutlined
               style={{
                 fontSize: "30px",
                 color: "green",
@@ -167,7 +171,7 @@ const HomePage = () => {
             title={"Total Users"}
             value={userStore.user.length || 0}
             icon={
-              <HddOutlined
+              <UserOutlined
                 style={{
                   fontSize: "30px",
                   color: "green",
@@ -184,7 +188,7 @@ const HomePage = () => {
           title={"Total Albums"}
           value={100}
           icon={
-            <HddOutlined
+            <PictureTwoTone
               style={{
                 fontSize: "30px",
                 color: "green",
