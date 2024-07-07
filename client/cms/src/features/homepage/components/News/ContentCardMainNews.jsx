@@ -21,14 +21,20 @@ const ContentCardMainNews = ({ content, isMain }) => {
     <div
       className={`flex ${
         isMain ? "flex-col" : "mb-4"
-      } border rounded-lg slice-in-left`}
+      } rounded-lg slice-in-left`}
     >
-      <div className={`${isMain ? "w-full" : "w-1/3"}`}>
-        <img
-          src={thumbnail}
-          alt={errorImage} // Ensure proper alt text for accessibility
-          className="w-[516px] h-[516px] object-cover rounded-t-md bg-green-100"
-        />
+      <div
+        className={`${
+          isMain ? "w-full h-[400px]" : "w-1/3"
+        } hover:scale-105 transition-transform duration-300 cursor-pointer`}
+      >
+        <Link to={`/content/${content.id}`}>
+          <img
+            src={thumbnail}
+            alt={errorImage}
+            className="w-full h-[400px] drop-shadow-lg border-2 object-cover rounded-t-md bg-green-100"
+          />
+        </Link>
       </div>
       <div
         className={`${
@@ -36,13 +42,16 @@ const ContentCardMainNews = ({ content, isMain }) => {
         } tracking-wider pt-4 px-4 break-words bg-green-100`}
       >
         <h3
-          className="text-xl font-semibold mb-2 h-6"
+          className="text-xl font-semibold mb-2 h-[50px]"
           dangerouslySetInnerHTML={{ __html: truncatedTitle }}
         />
         <p
-          className="text-sm text-gray-700 h-16"
+          className="text-sm text-gray-700 h-[100px]"
           dangerouslySetInnerHTML={{ __html: truncatedDescription }}
         />
+        <p className="text-sm text-gray-500">
+          Published Date: {content.createdAt}
+        </p>
         <div className="relative h-10">
           <Link
             to={`/content/${content.id}`}

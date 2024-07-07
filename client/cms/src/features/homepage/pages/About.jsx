@@ -1,89 +1,83 @@
 import HexagonSection from "../components/About/HexagonSection";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api/Api";
+import Spinner from "../components/Spinner";
 
 const About = () => {
+  const [content, setContent] = useState({});
+  const [loading, setLoading] = useState(true); // State to track loading status
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        // Assuming your API supports fetching content by title
+        const contentsRes = await fetchData(`contents?title=About Us`);
+        const aboutUsContent = contentsRes.objects.find(
+          (obj) => obj.title === "About Us"
+        );
+
+        if (aboutUsContent) {
+          setContent(aboutUsContent);
+        } else {
+          console.error("Content with title 'About Us' not found");
+        }
+
+        setLoading(false); // Set loading to false when data is fetched
+      } catch (error) {
+        console.error("Error fetching content:", error);
+        setLoading(false); // Set loading to false on error as well
+      }
+    };
+
+    fetchContent();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-8">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="bg-green-200 p-8">
+        <div></div>
         <div>
           <div className="flex items-center mb-5">
-            <div className="flex-grow   border-t-[6px] ml-8 border-black"></div>
-            <h2 className="text-4xl font-bold mx-8 ">ABOUT US</h2>
+            <div className="flex-grow border-t-[6px] ml-8 border-black"></div>
+            <h2 className="text-4xl font-bold mx-8">ABOUT US</h2>
             <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
           </div>
         </div>
-        <div className="max-w-[1000px] mx-auto">
-          <p className="text-gray-700 mb-6">
-            Welcome to Southwest International School, a vibrant and diverse
-            community dedicated to fostering academic excellence and holistic
-            development. Nestled in the heart of [City/Location], our school is
-            a beacon of learning that has been enlightening young minds since
-            [Year of Establishment].
-          </p>
-
-          <h2 className="text-2xl font-bold mb-2">Our Mission</h2>
-          <p className="text-gray-700 mb-6">
-            At Southwest International School, we believe in nurturing not just
-            the academic but also the creative, physical, and emotional aspects
-            of our students’ growth. Our mission is to provide a balanced
-            education that equips our students with the skills and knowledge to
-            thrive in an ever-changing world.
-          </p>
-
-          <h2 className="text-2xl font-bold mb-2">Our Vision</h2>
-          <p className="text-gray-700 mb-6">
-            To be a leading educational institution recognized for its
-            innovative teaching methods, inclusive environment, and commitment
-            to producing responsible global citizens.
-          </p>
-
-          <h2 className="text-2xl font-bold mb-2">Our Values</h2>
-          <ul className="list-disc list-inside text-gray-700 mb-6">
-            <li>
-              Excellence: We strive for the highest standards in all our
-              endeavors.
-            </li>
-            <li>Integrity: Honesty and ethical behavior guide our actions.</li>
-            <li>
-              Respect: We foster an atmosphere of mutual respect and
-              appreciation for diverse perspectives.
-            </li>
-            <li>
-              Community: Collaboration and teamwork are at the heart of our
-              community.
-            </li>
-            <li>
-              Innovation: We encourage creativity and critical thinking to solve
-              complex challenges.
-            </li>
-          </ul>
-
-          <h2 className="text-2xl font-bold mb-2">Our Facilities</h2>
-          <p className="text-gray-700 mb-6">
-            [School Name] boasts state-of-the-art facilities, including modern
-            classrooms, science and computer labs, a well-stocked library,
-            sports complexes, and performing arts spaces. These resources
-            support our dynamic curriculum and extracurricular programs,
-            providing students with ample opportunities to explore their
-            interests.
-          </p>
-
-          <h2 className="text-2xl font-bold mb-2">Our Team</h2>
-          <p className="text-gray-700 mb-6">
-            Our dedicated faculty and staff are the heart of our school. With a
-            passion for teaching and a commitment to student success, they
-            create a supportive and engaging learning environment.
-          </p>
-
-          <p className="text-gray-700 mb-6">
-            Join Us: We invite you to become a part of the [School Name] family,
-            where every day is a journey of discovery, and every student is
-            valued and empowered to reach their full potential.
+        <div className="max-w-[1200px] mx-auto">
+          <p className="text-gray-700 text-lg text-md mb-6">
+            <span dangerouslySetInnerHTML={{ __html: content.description }} />
           </p>
         </div>
       </div>
       <div className="h-auto bg-green-200">
         <HexagonSection />
       </div>
+      {Array.isArray(content.mediaList) && content.mediaList.length > 0 && (
+        <div className="bg-green-200">
+          <h1 className="text-2xl font-khmermont pt-10">Album</h1>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {content.mediaList.map((media) => (
+              <div key={media.id}>
+                <div>
+                  <img
+                    src={media.mediaUrl}
+                    alt={`Media for ${content.title}`}
+                    className="w-[250px] h-[180px]"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
 import ContentCardNav from "../Contents/ContentCardNav";
 import Spinner from "../Spinner";
-import Pagination from "../Pagination"; // Assuming you have a Pagination component
+import Pagination from "../Pagination";
 
 const GetArticles = ({ categoryName }) => {
   const [contents, setContents] = useState([]);

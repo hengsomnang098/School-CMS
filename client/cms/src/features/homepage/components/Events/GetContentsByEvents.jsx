@@ -70,13 +70,13 @@ const GetContentsByEvents = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="max-h-screen  px-4">
       {loading ? (
         <div className="text-center mt-4">
           <Spinner />
         </div>
       ) : contents.length > 0 ? (
-        <div className="mt-8">
+        <div className="mt-2">
           <Suspense fallback={<Spinner />}>
             <Slider {...settings}>
               {contents.map((content) => (
@@ -94,7 +94,7 @@ const GetContentsByEvents = () => {
       )}
       <div className="flex justify-center mt-14">
         <Link to="/schoolevents">
-          <button className="bg-green-400 hover:bg-green-600 text-white py-2 px-4 rounded">
+          <button className="bg-green-400 hover:bg-green-600 text-white py-3 px-4 rounded">
             See All Events
           </button>
         </Link>

@@ -20,10 +20,10 @@ const ContentCardE = ({ content }) => {
       : title;
 
   return (
-    <div className="border rounded-sm bg-green-100 drop-shadow-xl font-khmer shadow-green-500   w-[350px] h-[450px]">
-      <div>
+    <div className="border rounded-sm bg-green-100 drop-shadow-xl font-khmer shadow-green-500 w-[350px] h-[500px]">
+      <div className="h-[300px]">
         <img
-          className="h-[250px] w-full rounded-t-sm object-cover"
+          className="h-full w-full rounded-t-md object-cover"
           src={thumbnail}
           alt={title}
         />

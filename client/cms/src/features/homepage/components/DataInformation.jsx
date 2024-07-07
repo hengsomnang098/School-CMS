@@ -7,6 +7,7 @@ import {
   FaUserTie,
 } from "react-icons/fa";
 import DataInformationimg from "../images/DataInformation.png";
+import DataInformationimg1 from "../images/DataInformation2.png";
 import Spinner from "./Spinner";
 
 const DataInformation = () => {
@@ -70,7 +71,7 @@ const DataInformation = () => {
   return (
     <div className="top-0 left-0 w-full bg-yellow-400 flex flex-col items-center justify-center bg-cover bg-center">
       <img className="w-full" src={DataInformationimg} alt="Datainformation" />
-      <div className="relative flex flex-col items-center justify-center bg-cover bg-center">
+      <div className="relative flex flex-col  items-center justify-center bg-cover bg-center">
         <div className="flex flex-col md:flex-row flex-wrap max-w-screen-lg mx-auto p-4">
           {data.totalStudents &&
             renderCard(
@@ -102,6 +103,7 @@ const DataInformation = () => {
           !data.totalPrograms &&
           !data.totalTeacher && <Spinner />}
       </div>
+      <img className="w-full" src={DataInformationimg1} alt="Datainformation" />
     </div>
   );
 };

@@ -47,7 +47,7 @@ const GetContentsByNews = () => {
   }, [contents]);
 
   return (
-    <div className="container mx-auto max-w-[1000px] p-4">
+    <div className="container mx-auto max-w-[1200px] p-4">
       {loading && (
         <div className="text-center text-gray-600">
           <Spinner />
@@ -59,13 +59,13 @@ const GetContentsByNews = () => {
       )}
 
       {!loading && !error && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 drop-shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-2  gap-8">
           {mainContent && (
             <div className="lg:col-span-1">
               <ContentCardMainNews content={mainContent} isMain={true} />
             </div>
           )}
-          <div className="grid grid-cols-1 gap-4 lg:col-span-1 drop-shadow-lg">
+          <div className="grid grid-cols-1 gap-4 lg:col-span-1 ">
             {otherContents.map((content) => (
               <ContentCardNewsHome key={content.id} content={content} />
             ))}

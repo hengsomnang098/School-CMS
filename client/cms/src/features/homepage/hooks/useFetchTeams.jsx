@@ -9,7 +9,7 @@ const useFetchTeams = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://194.233.87.193:8080/api/teams?page=${page}&pageSize=${pageSize}`
+        `https://api.southwest-internationalschool.site/api/teams?page=${page}&pageSize=${pageSize}`
       );
       const data = await response.json();
       setTeamMembers(data.object); // Assuming data.object contains the array of team members

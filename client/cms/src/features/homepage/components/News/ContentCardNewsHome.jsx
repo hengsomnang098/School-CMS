@@ -24,27 +24,38 @@ const ContentCardNewsHome = ({ content, isMain }) => {
     <div
       className={`flex ${
         isMain ? "flex-col" : ""
-      } border rounded-lg overflow-hidden slice-in-from-right`}
+      } border rounded-sm overflow-hidden slice-in-from-right`}
       style={{ maxWidth: "100%" }}
     >
-      <div className={`${isMain ? "w-full" : "w-1/3"}`}>
-        <img
-          src={thumbnail}
-          alt={errorImage} // Ensure proper alt text for accessibility
-          className="w-full h-full object-cover rounded-l-sm bg-green-100"
-        />
+      <div
+        className={`${
+          isMain ? "w-full " : "w-2/5"
+        } hover:scale-110 transition-transform duration-300 drop-shadow-lg cursor-pointer`}
+      >
+        <Link to={`/content/${content.id}`}>
+          <img
+            src={thumbnail}
+            alt={errorImage}
+            className="w-full h-[200px] object-cover rounded-l-sm bg-green-100 drop-shadow-lg
+          "
+          />
+        </Link>
       </div>
       <div
         className={`${
-          isMain ? "" : "w-2/3 pl-4 pr-4"
+          isMain ? "" : "w-3/5 pl-4 pr-4"
         } pt-4 break-words pb-2 bg-green-100`}
       >
         <h3 className="text-xl font-semibold mb-2 break-words h-[35px]">
           {truncatedTitle}
         </h3>
-        <p className="text-sm text-gray-700 mb-2 p-2 px-2 break-words h-[100px]">
+        <p className="text-sm text-gray-700 mb-2 p-2 px-2 break-words h-[75px]">
           <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
         </p>
+        <p className="text-sm text-gray-500">
+          Published Date: {content.createdAt}
+        </p>
+
         <div className="text-right">
           <Link
             to={`/content/${content.id}`}

@@ -20,12 +20,14 @@ const ContentCardN = ({ content }) => {
   return (
     <div className="bg-green-100  border-green-700 mb-4 mx-auto max-w-3xl rounded-lg overflow-hidden shadow-lg">
       <div className="md:flex">
-        <div className="md:w-1/3">
-          <img
-            className="w-full h-auto md:h-full object-cover"
-            src={thumbnail}
-            alt={title}
-          />
+        <div className="md:w-1/3  hover:scale-110 transition-transform duration-300 drop-shadow-lg cursor-pointer">
+          <Link to={`/content/${content.id}`}>
+            <img
+              className="w-full h-auto md:h-full object-cover"
+              src={thumbnail}
+              alt={title}
+            />
+          </Link>
         </div>
         <div className="p-4 md:w-2/3">
           <h3 className="text-xl font-semibold font-khmermont mb-2">

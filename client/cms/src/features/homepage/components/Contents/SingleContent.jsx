@@ -41,19 +41,23 @@ const SingleContent = () => {
           <h2 className="text-3xl mt-10 font-bold mb-10 cursor-pointer break-words">
             {content.title}
           </h2>
+
           <div className="text-xl">
             <p className="ml-10 font-khmermont break-words">
               <span dangerouslySetInnerHTML={{ __html: content.description }} />
             </p>
+            <h2 className="text-xl mt-10 font-bold mb-10  text-gray-500 break-words">
+              Published Date: {content.createdAt}
+            </h2>
             <h1 className="text-2xl font-khmermont pt-10">Album</h1>
             <div className="my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Array.isArray(content.mediaList) &&
-              content.mediaList.length > 0 ? (
-                content.mediaList.map((media) => (
-                  <div key={media.id}>
+              {Array.isArray(content.albumList) &&
+              content.albumList.length > 0 ? (
+                content.albumList.map((media) => (
+                  <div key={album.id}>
                     <div>
                       <img
-                        src={media.mediaUrl}
+                        src={album.mediaUrl}
                         alt={`Media for ${content.title}`}
                         className="w-[250px] h-[180px]"
                       />
