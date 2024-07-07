@@ -11,9 +11,11 @@ import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import { getRoles } from "../../../../app/api/config/helper";
 
 const HomePage = () => {
   const { t } = useTranslation("global");
+  const role = getRoles();
   const {
     slideStore,
     categoryStore,
@@ -44,11 +46,14 @@ const HomePage = () => {
     studentStore,
     userStore,
   ]);
+
   return (
-    <MainPage loading={contentStore.loading}>
+    <MainPage>
       <Typography.Title level={4}>{t("home.title")}</Typography.Title>
-      <div className=" flex flex-wrap justify-start items-center text-center gap-4">
+      <div className=" flex flex-wrap xl:justify-start justify-center  items-center text-center gap-4">
         <HomeCard
+          loading={slideStore.loading}
+          menukey={"/dashboard/manage-banners"}
           to="manage-banners"
           title={"Total Banner"}
           value={slideStore.slideCount || 0}
@@ -65,6 +70,8 @@ const HomePage = () => {
           }
         />
         <HomeCard
+          loading={managementTeamStore.loading}
+          menukey={"/dashboard/staff"}
           to={"staff"}
           title={"Total Manager"}
           value={managementTeamStore.countManagementTeam || 0}
@@ -81,8 +88,10 @@ const HomePage = () => {
           }
         />
         <HomeCard
+          loading={studentStore.loading}
+          menukey={"/dashboard/student"}
           to={"student"}
-          title={"Total School Info"}
+          title={"School Info"}
           value={studentStore.students.length || 0}
           icon={
             <UserAddOutlined
@@ -97,6 +106,8 @@ const HomePage = () => {
           }
         />
         <HomeCard
+          loading={categoryStore.loading}
+          menukey={"/dashboard/category"}
           to="category"
           title={"Total Category"}
           value={categoryStore.countCategory || 0}
@@ -113,6 +124,8 @@ const HomePage = () => {
           }
         />
         <HomeCard
+          loading={articleStore.loading}
+          menukey={"/dashboard/article"}
           to="article"
           title={"Total Article"}
           value={articleStore.articleCount || 0}
@@ -129,6 +142,8 @@ const HomePage = () => {
           }
         />
         <HomeCard
+          loading={contentStore.loading}
+          menukey={"/dashboard/content"}
           to="content"
           title={"Total Content"}
           value={contentStore.countContent || 0}
@@ -144,23 +159,28 @@ const HomePage = () => {
             />
           }
         />
+        {role.includes("ADMIN") ? (
+          <HomeCard
+            loading={userStore.loading}
+            menukey={"/dashboard/users"}
+            to="users"
+            title={"Total Users"}
+            value={userStore.user.length || 0}
+            icon={
+              <HddOutlined
+                style={{
+                  fontSize: "30px",
+                  color: "green",
+                  backgroundColor: "rgba(255,0,0,0.25)",
+                  borderRadius: 20,
+                  padding: "8",
+                }}
+              />
+            }
+          />
+        ) : null}
         <HomeCard
-          to="users"
-          title={"Total Users"}
-          value={userStore.user.length || 0}
-          icon={
-            <HddOutlined
-              style={{
-                fontSize: "30px",
-                color: "green",
-                backgroundColor: "rgba(255,0,0,0.25)",
-                borderRadius: 20,
-                padding: "8",
-              }}
-            />
-          }
-        />
-        <HomeCard
+          // menukey={"/dashboard/users"}
           title={"Total Albums"}
           value={100}
           icon={

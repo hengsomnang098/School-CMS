@@ -13,11 +13,11 @@ import SlidePage from "../../features/admin-dashboard/page/slide/SlidePage";
 import StudentPage from "../../features/admin-dashboard/page/student/StudentPage";
 import StaffPage from "../../features/admin-dashboard/page/managementTeam/StaffPage";
 import CategoryPage from "../../features/admin-dashboard/page/category/CategoryPage";
-import RolePage from "../../features/admin-dashboard/page/role/RolePage";
+// import RolePage from "../../features/admin-dashboard/page/role/RolePage";
 import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
+import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage";
 
-import MainPage from "../../features/admin-dashboard/components/page/MainPage";
 // homepage import --------------
 import NotFound from "../../features/homepage/pages/NotFound";
 import Home from "../../features/homepage/pages/Home";
@@ -40,7 +40,7 @@ import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
-import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage";
+
 // import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
         <Route
           path="/dashboard/content"
           element={
-            <React.Suspense fallback={<MainPage />}>
+            <React.Suspense>
               <LazyLoad />
             </React.Suspense>
           }
@@ -83,9 +83,9 @@ function App() {
         >
           <Route path="/dashboard/users" element={<UserPage />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={["SUPER-ADMIN", "IT"]} />}>
+        {/* <Route element={<RequireAuth allowedRoles={["SUPER-ADMIN", "IT"]} />}>
           <Route path="/dashboard/roles" element={<RolePage />} />
-        </Route>
+        </Route> */}
 
         {/* Protected Route  */}
 

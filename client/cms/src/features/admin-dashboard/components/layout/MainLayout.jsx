@@ -54,7 +54,7 @@ function MainLayout() {
 
   return (
     <>
-      <Layout className="w-full overflow-auto justify-center fixed left-0 top-0 bottom-0 bg-white">
+      <Layout className="w-full overflow-auto justify-center fixed left-0 top-0 bottom-0 bg-white ">
         <Sider
           className=" p-0 bg-main-color"
           collapsed={collapsed}
@@ -128,7 +128,7 @@ function MainLayout() {
             </div>
           </Header>
 
-          <Layout className="overflow-auto bg-white">
+          <Layout className="overflow-auto bg-white ">
             <Outlet />
           </Layout>
           {/* <FooterPage /> */}

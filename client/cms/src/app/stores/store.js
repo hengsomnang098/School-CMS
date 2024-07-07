@@ -8,6 +8,7 @@ import ManagementTeamStore from "./managementTeamStore";
 import StudentStore from "./studentStore";
 import ContentStore from "./contentStore";
 import MediaStore from "./mediaStore";
+import CardStore from "./cardStore";
 
 export const store = {
   categoryStore: new CategoryStore(),
@@ -19,6 +20,7 @@ export const store = {
   studentStore: new StudentStore(),
   contentStore: new ContentStore(),
   mediaStore: new MediaStore(),
+  cardStore: new CardStore(),
 };
 
 export const StoreContext = createContext(store);

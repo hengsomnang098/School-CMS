@@ -6,7 +6,7 @@ const MainPage = ({ children, loading = false }) => {
   return (
     <>
       <Spin tip="Loading..." size="large" spinning={loading}>
-        <Card className={loading ? "blur-background" : ""}>{children}</Card>
+        <Card className={loading ? "blur-background" : ""  }>{children}</Card>
       </Spin>
     </>
   );

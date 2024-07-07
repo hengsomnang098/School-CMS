@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 
 export const Config = {
   // base_url: "http://localhost:8080/api/",
-  // base_url: "https://api.southwest-internationalschool.site/api/",
-  base_url: import.meta.env.VITE_API_URL,
+  base_url: "https://api.southwest-internationalschool.site/api/",
+  // base_url: import.meta.env.VITE_API_URL,
   // image_path: "http://localhost:8080/api/medias/photo/",
   version: "",
   token: "",
@@ -109,14 +109,6 @@ export const setLanguage = (lang) => {
 };
 export const getLanguage = () => {
   return localStorage.getItem("lang");
-};
-
-export const setMenuKey = (key) => {
-  localStorage.setItem("menuKey", "");
-  localStorage.setItem("menuKey", key);
-};
-export const getMenuKey = () => {
-  return localStorage.getItem("menuKey");
 };
 
 export const logout = () => {

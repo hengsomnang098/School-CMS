@@ -1,10 +1,14 @@
 {
   "home": {
     "title": "ទំព៍រដើម",
-    "Total Class": "ចំនួនថ្នាក់",
-    "Total Student": "សិស្សសរុប",
-    "Total Teacher": "គ្រូសរុប",
-    "Total Programs": "កម្មវិធីសរុប"
+    "total_banner": "Total Banner",
+    "total_manager": "Total Manager",
+    "school_info": "School Info",
+    "total_category": "Total Category",
+    "total_article": "Total Article",
+    "total_content": "Total Content",
+    "total_users": "Total Users",
+    "total_albums": "Total Albums"
   },
 
   "sidebar": {

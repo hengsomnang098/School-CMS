@@ -1,10 +1,14 @@
 {
   "home": {
-    "title": "homepage",
-    "Total Class": "Total Class",
-    "Total Student": "Total Student",
-    "Total Teacher": "Total Teacher",
-    "Total Programs": "Total Programs"
+    "title": "HomePage",
+    "total_banner": "Total Banner",
+    "total_manager": "Total Manager",
+    "school_info": "School Info",
+    "total_category": "Total Category",
+    "total_article": "Total Article",
+    "total_content": "Total Content",
+    "total_users": "Total Users",
+    "total_albums": "Total Albums"
   },
   "sidebar": {
     "dashboard": "Dashboard",

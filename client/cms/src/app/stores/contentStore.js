@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction, action } from "mobx";
 import { request } from "../api/config/request";
 import { Modal, message } from "antd";
-
+import { debounce } from "lodash";
 export default class ContentStore {
   content = [];
   loading = false;
@@ -13,6 +13,7 @@ export default class ContentStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.getList = debounce(this.getList, 300);
   }
 
   getList = async () => {
