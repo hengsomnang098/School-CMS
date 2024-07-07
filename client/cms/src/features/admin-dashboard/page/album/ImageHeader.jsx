@@ -26,7 +26,7 @@ const ImageHeader = () => {
         >
           {t("button.add")}
         </Button>
-        <Button onClick={() => navigate(-1)}>
+        <Button type="primary" danger onClick={() => navigate(-1)}>
           {t("button.back_to_content")}
         </Button>
       </Space>

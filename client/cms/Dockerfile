@@ -29,7 +29,7 @@ RUN yarn global add serve
 COPY --from=builder /app/dist ./dist
 
 # Expose port 80 for the application
-EXPOSE 80
+EXPOSE 8000
 
 # Serve the build output
-CMD ["serve", "-s", "dist", "-l", "80"]
+CMD ["serve", "-s", "dist", "-l", "8000"]

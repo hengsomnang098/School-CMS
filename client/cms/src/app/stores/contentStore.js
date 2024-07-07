@@ -174,4 +174,14 @@ export default class ContentStore {
   get countContent() {
     return this.content.length;
   }
+
+  get searchContent() {
+    return this.content
+      ? this.content.filter((item) => {
+          return item.title
+            .toLowerCase()
+            .includes(this.description.toLowerCase());
+        })
+      : [];
+  }
 }

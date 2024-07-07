@@ -45,7 +45,7 @@ const HomePage = () => {
     userStore,
   ]);
   return (
-    <MainPage loading={slideStore.loading}>
+    <MainPage loading={contentStore.loading}>
       <Space size={5} direction="vertical">
         <Typography.Title level={4}>{t("home.title")}</Typography.Title>
         <div className="w-full flex flex-wrap justify-center items-center text-center gap-6">
