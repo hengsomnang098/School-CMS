@@ -40,6 +40,7 @@ import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
+import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage";
 // import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
@@ -90,7 +91,7 @@ function App() {
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-
+      <Route path="/server-error" element={<ServerErrorPage />} />
       {/*   homepage route */}
       <Route element={<Layout />}>
         {/* pages*/}

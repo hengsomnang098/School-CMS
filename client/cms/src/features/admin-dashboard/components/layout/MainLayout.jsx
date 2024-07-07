@@ -3,7 +3,6 @@ import Logo from "./Logo";
 import MenuList from "./MenuList";
 import { useEffect, useState } from "react";
 import { MenuOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Content } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
   getProfile,
@@ -55,7 +54,7 @@ function MainLayout() {
 
   return (
     <>
-      <Layout className="w-full overflow-auto justify-center fixed left-0 top-0 bottom-0">
+      <Layout className="w-full overflow-auto justify-center fixed left-0 top-0 bottom-0 bg-white">
         <Sider
           className=" p-0 bg-main-color"
           collapsed={collapsed}
@@ -71,7 +70,7 @@ function MainLayout() {
           {/* Menu list */}
           <MenuList />
         </Sider>
-        <Layout>
+        <Layout className="bg-white">
           <Header
             style={{
               padding: 0,
@@ -129,9 +128,9 @@ function MainLayout() {
             </div>
           </Header>
 
-          <Content className="overflow-auto">
+          <Layout className="overflow-auto bg-white">
             <Outlet />
-          </Content>
+          </Layout>
           {/* <FooterPage /> */}
         </Layout>
       </Layout>

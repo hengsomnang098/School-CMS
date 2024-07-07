@@ -6,13 +6,19 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { getRoles, logout } from "../../../../app/api/config/helper";
+import {
+  getMenuKey,
+  getRoles,
+  logout,
+  setMenuKey,
+} from "../../../../app/api/config/helper";
 import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 function MenuList() {
   const { t } = useTranslation("global");
   const roles = getRoles();
+
   function getItem(label, key, icon, children) {
     return {
       key,
@@ -59,14 +65,15 @@ function MenuList() {
     if (event.key === "logout") {
       logout();
     }
-    navigate(event.key);
+    setMenuKey(event.key);
+    navigate(getMenuKey());
   };
   return (
     <>
       <Menu
         className="flex flex-col gap-[15px] text-base h-full w-full overflow-auto bg-bg-main-color text-white justify-start"
         mode="inline"
-        defaultSelectedKeys={["/"]}
+        defaultSelectedKeys={getMenuKey()}
         items={items}
         responsive={"true"}
         onClick={onClickMenu}

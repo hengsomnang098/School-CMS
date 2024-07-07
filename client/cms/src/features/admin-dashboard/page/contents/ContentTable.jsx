@@ -1,4 +1,4 @@
-import { Table, Space, Button } from "antd";
+import { Table, Space, Button, Input } from "antd";
 import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -19,6 +19,7 @@ const ContentTable = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [searchText, setSearchText] = useState("");
 
   const handleTableChange = (pagination) => {
     setCurrentPage(pagination.current);
@@ -26,6 +27,16 @@ const ContentTable = () => {
   };
   return (
     <>
+      <Input.Search
+        placeholder="Search Content..."
+        className="xl:w-96 my-5"
+        onSearch={(value) => {
+          setSearchText(value);
+        }}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+        }}
+      />
       <Table
         width="100%"
         rowKey="id"
@@ -49,6 +60,10 @@ const ContentTable = () => {
             key: "title",
             title: "Name title",
             dataIndex: "title",
+            filteredValue: [searchText],
+            onFilter: (value, record) => {
+              return record.title.toLowerCase().includes(value.toLowerCase());
+            },
             render: (value) => {
               return truncate(value);
             },

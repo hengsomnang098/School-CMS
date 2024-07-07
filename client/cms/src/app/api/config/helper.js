@@ -111,6 +111,14 @@ export const getLanguage = () => {
   return localStorage.getItem("lang");
 };
 
+export const setMenuKey = (key) => {
+  localStorage.setItem("menuKey", "");
+  localStorage.setItem("menuKey", key);
+};
+export const getMenuKey = () => {
+  return localStorage.getItem("menuKey");
+};
+
 export const logout = () => {
   localStorage.setItem("email", "");
   localStorage.setItem("profile", "");
