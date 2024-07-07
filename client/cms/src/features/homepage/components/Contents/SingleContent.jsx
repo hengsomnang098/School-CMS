@@ -7,7 +7,7 @@ const SingleContent = () => {
   const { id } = useParams();
 
   const [content, setContent] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -15,10 +15,10 @@ const SingleContent = () => {
         const contentsRes = await fetchData(`contents/${id}`);
         setContent(contentsRes.object);
 
-        setLoading(false);
+        setLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         console.error("Error fetching content:", error);
-        setLoading(false);
+        setLoading(false); // Set loading to false on error as well
       }
     };
 
