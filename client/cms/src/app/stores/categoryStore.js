@@ -93,4 +93,8 @@ export default class CategoryStore {
       },
     });
   };
+
+  get countCategory() {
+    return this.categories.length;
+  }
 }

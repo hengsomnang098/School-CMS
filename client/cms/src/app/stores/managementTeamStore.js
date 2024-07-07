@@ -137,4 +137,7 @@ export default class ManagementTeamStore {
       });
     }
   };
+  get countManagementTeam() {
+    return this.managementTeam.length;
+  }
 }
