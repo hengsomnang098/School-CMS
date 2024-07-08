@@ -86,10 +86,24 @@ export const fetchMediaListByContentsId = async (id) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const mediaList = await response.json();
-    return mediaList;
+    const albumList = await response.json();
+    return albumList;
   } catch (error) {
     console.error("Error fetching media list:", error.message);
     return [];
+  }
+};
+//get latest event on pop up screen
+export const fetchLatestEvent = async () => {
+  try {
+    const response = await fetch("your_api_endpoint_here");
+    if (!response.ok) {
+      throw new Error("Failed to fetch latest event");
+    }
+    const eventData = await response.json();
+    return eventData;
+  } catch (error) {
+    console.error("Error fetching latest event:", error);
+    throw error;
   }
 };

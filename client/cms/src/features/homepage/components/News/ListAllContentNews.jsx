@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
-import ContentCardN from "../News/ContentCardN";
+import ContentCardN from "./ContentCardN&E";
 import Pagination from "../Pagination";
 import Spinner from "../Spinner";
 
