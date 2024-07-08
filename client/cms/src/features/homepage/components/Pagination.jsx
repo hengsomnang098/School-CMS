@@ -1,4 +1,5 @@
 import React from "react";
+import { GrNext, GrFormPrevious } from "react-icons/gr";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const maxPagesToShow = 5;
@@ -164,7 +165,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === 1}
         className="mx-1 px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100"
       >
-        Previous
+        <GrFormPrevious />
       </button>
       {renderPageNumbers()}
       <button
@@ -172,7 +173,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === totalPages}
         className="mx-1 px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100"
       >
-        Next
+        <GrNext />
       </button>
     </div>
   );

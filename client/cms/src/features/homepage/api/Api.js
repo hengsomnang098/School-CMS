@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const BASE_URL = "http://localhost:8080/api/";
-const BASE_URL = "https://api.southwest-internationalschool.site/api/";
-// const BASE_URL = "http://194.233.87.193:8080/api/";
+// const BASE_URL = "https://api.southwest-internationalschool.site/api/";
+const BASE_URL = "http://194.233.87.193:8080/api/";
 export const fetchData = async (endpoint) => {
   try {
     const response = await axios.get(`${BASE_URL}${endpoint}`);
@@ -31,6 +31,7 @@ export const fetchArticlesByCatName = async (categoryName) => {
     throw error;
   }
 };
+
 export const fetchContentsByArtName = async (articleName) => {
   try {
     const allContentsResponse = await fetchData("contents/status");
@@ -42,32 +43,34 @@ export const fetchContentsByArtName = async (articleName) => {
       return { object: filteredContents };
     } else {
       console.error("Unexpected response format:", allContentsResponse);
-
       throw new Error("Unexpected response format");
     }
   } catch (error) {
-    console.error("Error fetching articles by category name:", error.message);
+    console.error("Error fetching contents by article name:", error.message);
     throw error;
   }
 };
+
+export const fetchTeams = async (page, pageSize) => {
+  const endpoint = `teams?page=${page}&pageSize=${pageSize}`;
+  return fetchData(endpoint);
+};
+
 export const fetchContentsByArticleName = async (articleName) => {
   try {
-    const response = await axios.get(
-      // `http://194.233.87.193:8080/api/contents/article/`,
-      `${BASE_URL}/contents/article/`,
-      {
-        params: { name: articleName },
-      }
-    );
+    const response = await axios.get(`${BASE_URL}contents/article/`, {
+      params: { name: articleName },
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching contents by article name:", error);
     throw error;
   }
 };
+
 export const fetchContentsByArticlesId = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/articles/${id}/contents`);
+    const response = await axios.get(`${BASE_URL}articles/${id}/contents`);
     return response.data.object;
   } catch (error) {
     console.error(`Error fetching contents for article ID ${id}:`, error);
@@ -77,10 +80,7 @@ export const fetchContentsByArticlesId = async (id) => {
 
 export const fetchMediaListByContentsId = async (id) => {
   try {
-    const response = await fetch(
-      `${BASE_URL}/album/content/${id}`
-      // `http://194.233.87.193:8080/api/album/content/${id}`
-    );
+    const response = await fetch(`${BASE_URL}album/content/${id}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

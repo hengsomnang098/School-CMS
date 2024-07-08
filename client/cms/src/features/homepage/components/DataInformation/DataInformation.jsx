@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { fetchData } from "../api/Api";
+import { fetchData } from "../../api/Api";
 import {
   FaUserGraduate,
   FaChalkboardTeacher,
   FaBookOpen,
   FaUserTie,
 } from "react-icons/fa";
-import DataInformationimg from "../images/DataInformation.png";
-import DataInformationimg1 from "../images/DataInformation2.png";
-import Spinner from "./Spinner";
+import DataInformationimg from "../../images/DataInformation.png";
+import DataInformationimg1 from "../../images/DataInformation2.png";
+import Spinner from "../Spinner";
 
 const DataInformation = () => {
   const [data, setData] = useState({

@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 const ContentCard = ({ content }) => {
   const title = content?.title || "";
   const description = content?.description || "";
-  const imageUrl = content?.imageUrl || "";
+  const thumbnail = content?.thumbnail || "";
 
   const maxLengthTitle = 34;
   const maxLengthDesc = 60;
@@ -27,7 +27,11 @@ const ContentCard = ({ content }) => {
       </div>
 
       <div>
-        <img className="h-[250px] w-[250px] mb-5" src={imageUrl} alt="No no " />
+        <img
+          className="h-[250px] w-[250px] mb-5"
+          src={thumbnail}
+          alt="No no "
+        />
       </div>
       <Link to={`/content/${content.id}`}>
         <button className="bg-green-400 rounded-lg w-32 h-10 mb-5 relative overflow-hidden group">

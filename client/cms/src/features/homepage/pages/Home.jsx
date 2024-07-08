@@ -3,7 +3,7 @@ import News from "../components/News/News";
 import ManagementTeams from "../components/ManagementTeams/ManagementTeams";
 import { Link } from "react-router-dom";
 import OurPartnerImage from "../images/OurPartner.png";
-import DataInformation from "../components/DataInformation";
+import DataInformation from "../components/DataInformation/DataInformation";
 const Home = () => {
   return (
     <div className="bg-green-50">

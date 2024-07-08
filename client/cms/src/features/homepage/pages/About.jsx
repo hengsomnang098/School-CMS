@@ -2,6 +2,7 @@ import HexagonSection from "../components/About/HexagonSection";
 import { useEffect, useState } from "react";
 import { fetchData } from "../api/Api";
 import Spinner from "../components/Spinner";
+import GetContentsByAbout from "../components/About/GetContentsByAbout";
 
 const About = () => {
   const [content, setContent] = useState({});
@@ -22,10 +23,10 @@ const About = () => {
           console.error("Content with title 'About Us' not found");
         }
 
-        setLoading(false); // Set loading to false when data is fetched
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching content:", error);
-        setLoading(false); // Set loading to false on error as well
+        setLoading(false);
       }
     };
 
@@ -43,7 +44,9 @@ const About = () => {
   return (
     <div>
       <div className="bg-green-200 p-8">
-        <div></div>
+        <div>
+          <GetContentsByAbout />
+        </div>
         <div>
           <div className="flex items-center mb-5">
             <div className="flex-grow border-t-[6px] ml-8 border-black"></div>
@@ -60,15 +63,15 @@ const About = () => {
       <div className="h-auto bg-green-200">
         <HexagonSection />
       </div>
-      {Array.isArray(content.mediaList) && content.mediaList.length > 0 && (
+      {Array.isArray(content.albumList) && content.albumList.length > 0 && (
         <div className="bg-green-200">
           <h1 className="text-2xl font-khmermont pt-10">Album</h1>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.mediaList.map((media) => (
-              <div key={media.id}>
+            {content.albumList.map((media) => (
+              <div key={album.id}>
                 <div>
                   <img
-                    src={media.mediaUrl}
+                    src={album.mediaUrl}
                     alt={`Media for ${content.title}`}
                     className="w-[250px] h-[180px]"
                   />

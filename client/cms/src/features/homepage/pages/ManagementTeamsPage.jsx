@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useFetchTeams from "../hooks/useFetchTeams";
 import TeamCard from "../components/ManagementTeams/TeamsCard";
 import Spinner from "../components/Spinner";
+import Pagination from "../components/Pagination";
 
 const ManagementTeamsPage = () => {
   const pageSize = 12; // Number of items per page
@@ -40,7 +41,7 @@ const ManagementTeamsPage = () => {
     );
   }
 
-  // Calculate total pages
+  // Calculate total pages (assumes you have a way to get total items)
   const totalPages = Math.ceil(teamMembers.length / pageSize);
 
   return (
@@ -57,23 +58,12 @@ const ManagementTeamsPage = () => {
           ))}
         </div>
         {totalPages > 1 && (
-          <div className="flex justify-center mt-8">
-            <button
-              className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 ${
-                page <= 1 ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              onClick={prevPage}
-              disabled={page <= 1}
-            >
-              Previous Page
-            </button>
-            <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-              onClick={nextPage}
-            >
-              Next Page
-            </button>
-          </div>
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onNext={nextPage}
+            onPrev={prevPage}
+          />
         )}
       </div>
     </div>
