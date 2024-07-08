@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
 import ContentCardN from "../News/ContentCardN";
-import Pagination from "../Pagination"; // Adjust the path according to your file structure
+import Pagination from "../Pagination";
 import Spinner from "../Spinner";
 
 const ListAllContentEvents = () => {
@@ -46,9 +46,9 @@ const ListAllContentEvents = () => {
     <div className="bg-green-200 min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {loading ? (
-          <p className="text-center text-gray-600">
+          <div className="text-center text-gray-600">
             <Spinner />
-          </p>
+          </div>
         ) : currentItems.length > 0 ? (
           <div className="mt-8">
             {currentItems.map((content) => (
@@ -58,14 +58,16 @@ const ListAllContentEvents = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-600">No articles found.</p>
+          <div className="text-center text-gray-600">No articles found.</div>
         )}
         {totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          <div className="mt-4">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         )}
       </div>
     </div>

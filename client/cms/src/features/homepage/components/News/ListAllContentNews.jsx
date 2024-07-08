@@ -58,14 +58,16 @@ const ListAllContentNews = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-600">No articles found.</p>
+          <div className="text-center text-gray-600">No articles found.</div>
         )}
         {totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          <div className="mt-4">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         )}
       </div>
     </div>
