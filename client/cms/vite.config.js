@@ -7,13 +7,13 @@ export default defineConfig({
   server: {
     host: true,
     port: 8000,
-    proxy: {
-      "/api": {
-        target: "https://194.233.87.193:8080",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    // proxy: {
+    //   "/api": {
+    //     target: "https://api.southwest-internationalschool.site/api/",
+    //     changeOrigin: true,
+    //     secure: false,
+    //   },
+    // },
   },
   preview: {
     host: true,
@@ -65,6 +65,7 @@ export default defineConfig({
       "react-dom",
       "mobx-react-lite",
       "lodash",
+      "react-quill",
       // Add other dependencies that need to be pre-bundled
     ],
   },

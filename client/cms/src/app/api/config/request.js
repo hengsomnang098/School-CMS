@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Config, logout, setAccessToken, setRefreshToken } from "./helper";
 const BASE_URL = Config.base_url;
-
 export const request = async (
   url = "",
   method = "get",

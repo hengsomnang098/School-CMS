@@ -93,7 +93,6 @@ const UserTable = () => {
             key: "Action",
             title: "Action",
             dataIndex: "Action",
-            responsive: ["sm"],
             align: "center",
             render: (value, item) => (
               <Space>
