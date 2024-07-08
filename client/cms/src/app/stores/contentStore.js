@@ -173,7 +173,7 @@ export default class ContentStore {
     }
   };
   get countContent() {
-    return this.content.length;
+    return this.content ? this.content.length : 0;
   }
 
   get searchContent() {

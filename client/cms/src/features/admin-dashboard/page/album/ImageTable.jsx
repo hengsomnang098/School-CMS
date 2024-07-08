@@ -27,13 +27,14 @@ const ImageTable = () => {
             title: "id",
             dataIndex: "id",
             responsive: ["sm"],
+            align: "center",
           },
 
           {
             key: "url",
             title: "Image",
             dataIndex: "url",
-
+            align: "center",
             render: (value) => {
               if (value != null && value != "") {
                 return (
@@ -54,6 +55,7 @@ const ImageTable = () => {
             key: "Action",
             title: "Action",
             dataIndex: "Status",
+            align: "center",
             render: (value, item) => (
               <Space>
                 <Button

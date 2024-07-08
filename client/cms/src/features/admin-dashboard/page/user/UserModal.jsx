@@ -1,8 +1,9 @@
-import { Modal, Form, Image, Input, Select, Button, Space } from "antd";
+import { Modal, Form, Image, Input, Select, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import { EditOutlined, SaveOutlined, StopOutlined } from "@ant-design/icons";
 
 const UserModal = () => {
   const { userStore, roleStore } = useStore();
@@ -140,13 +141,27 @@ const UserModal = () => {
           />
           <Button onClick={handleClearImage}>Clear Image</Button>
 
-          <Form.Item style={{ textAlign: "right" }}>
-            <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+          <Form.Item>
+            <div className="flex flex-row justify-end gap-2">
+              <Button
+                icon={<StopOutlined />}
+                iconPosition="end"
+                className="bg-yellow-500 text-white"
+                onClick={handleCloseModal}
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                icon={
+                  formValues.id == null ? <SaveOutlined /> : <EditOutlined />
+                }
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
-            </Space>
+            </div>
           </Form.Item>
         </Form>
       </Modal>

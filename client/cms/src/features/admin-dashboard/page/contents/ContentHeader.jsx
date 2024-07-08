@@ -1,29 +1,28 @@
-import { Typography, Button, Layout } from "antd";
+import { Typography, Button } from "antd";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
 import { useTranslation } from "react-i18next";
+import { PlusOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 const ContentHeader = () => {
   const { contentStore } = useStore();
   const { handleClickNew } = contentStore;
   const { t } = useTranslation("global");
   return (
-    <>
-      <Layout className="bg-white">
-        <Title level={3}>
-          {t("sidebar.content")}
-          <Button
-            className="ml-5"
-            onClick={() => {
-              handleClickNew();
-            }}
-            type="primary"
-          >
-            {t("button.add")}
-          </Button>
-        </Title>
-      </Layout>
-    </>
+    <div className="flex flex-wrap justify-between text-center items-center">
+      <Title level={3}>{t("sidebar.content")}</Title>
+      <Button
+        icon={<PlusOutlined />}
+        iconPosition="end"
+        className="ml-5"
+        onClick={() => {
+          handleClickNew();
+        }}
+        type="primary"
+      >
+        {t("button.add")}
+      </Button>
+    </div>
   );
 };
 

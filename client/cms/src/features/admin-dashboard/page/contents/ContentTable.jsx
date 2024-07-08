@@ -5,6 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 
 const ContentTable = () => {
   const { contentStore } = useStore();
@@ -52,14 +53,16 @@ const ContentTable = () => {
         columns={[
           {
             key: "id",
-            title: "id",
+            title: "Id",
             dataIndex: "id",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "title",
             title: "Name title",
             dataIndex: "title",
+            align: "center",
             filteredValue: [searchText],
             onFilter: (value, record) => {
               return record.title.toLowerCase().includes(value.toLowerCase());
@@ -73,6 +76,7 @@ const ContentTable = () => {
             title: "Description",
             dataIndex: "description",
             responsive: ["sm"],
+            align: "center",
             render: (value) => {
               return (
                 <span dangerouslySetInnerHTML={{ __html: truncate(value) }} />
@@ -84,6 +88,7 @@ const ContentTable = () => {
             title: "Article Name",
             dataIndex: "article",
             responsive: ["sm"],
+            align: "center",
             render: (value) => {
               return value.name;
             },
@@ -93,19 +98,16 @@ const ContentTable = () => {
             title: "Images ",
             dataIndex: "thumbnail",
             responsive: ["sm"],
+            align: "center",
             render: (value) => {
               if (value != null && value != "") {
                 return (
                   <>
-                    <LazyLoadImage src={value} width={40} height={30} />
+                    <LazyLoadImage className="w-[40px] h-[40px]" src={value} />
                   </>
                 );
               } else {
-                return (
-                  <div
-                    style={{ height: 30, width: 40, backgroundColor: "#888" }}
-                  ></div>
-                );
+                return <div className="w-[40px] h-[40px] bg-gray-600"></div>;
               }
             },
           },
@@ -113,6 +115,7 @@ const ContentTable = () => {
             key: "manage-albums",
             title: "Manage Albums",
             dataIndex: "manage-albums",
+            align: "center",
             render: (value, item) => (
               <Space>
                 <Link to={`/dashboard/content/albums/${item.id}`}>
@@ -125,9 +128,17 @@ const ContentTable = () => {
             key: "status",
             title: "Status",
             dataIndex: "status",
+            align: "center",
             render: (value, item) => (
               <Space>
-                <Button loading={loading} onClick={() => handleStatus(item)}>
+                <Button
+                  icon={
+                    item.status == "DRAFT" ? <EditOutlined /> : <EyeOutlined />
+                  }
+                  className="bg-cyan-300 text-white"
+                  loading={loading}
+                  onClick={() => handleStatus(item)}
+                >
                   {item.status == "DRAFT" ? "DRAFT" : "PUBLISHED"}
                 </Button>
               </Space>
@@ -137,12 +148,20 @@ const ContentTable = () => {
             key: "Action",
             title: "Action",
             dataIndex: "action",
+            align: "center",
             render: (value, item) => (
-              <Space>
-                <Button onClick={() => handleClickEdit(item)} type="primary">
+              <div className="flex flex-row gap-2">
+                <Button
+                  icon={<EditOutlined />}
+                  iconPosition="end"
+                  onClick={() => handleClickEdit(item)}
+                  type="primary"
+                >
                   {t("button.edit")}
                 </Button>
                 <Button
+                  icon={<DeleteOutlined />}
+                  iconPosition="end"
                   onClick={() => handleClickDelete(item)}
                   type="primary"
                   danger
@@ -150,7 +169,7 @@ const ContentTable = () => {
                 >
                   {t("button.delete")}
                 </Button>
-              </Space>
+              </div>
             ),
           },
         ]}

@@ -1,4 +1,4 @@
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, LoginOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import { observer } from "mobx-react-lite";
 
@@ -83,10 +83,10 @@ const LoginPage = () => {
             <Form.Item>
               <Button
                 size="large"
+                icon={<LoginOutlined />}
                 type="primary"
                 htmlType="submit"
-                className="w-full bg-green-700 text-white p-2 rounded-lg  hover:bg-white hover:text-black hover:border hover:border-gray-300"
-                // loading={userStore.loading}
+                className="w-full bg-cyan-500 text-white p-2 rounded-lg  hover:bg-white hover:text-black hover:border hover:border-gray-300"
               >
                 Log in
               </Button>

@@ -5,8 +5,9 @@ import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
 import {
+  ClearOutlined,
   EditOutlined,
-  PlusCircleOutlined,
+  SaveOutlined,
   StopOutlined,
 } from "@ant-design/icons";
 const SlideModal = () => {
@@ -26,6 +27,11 @@ const SlideModal = () => {
   const [formCat] = Form.useForm();
   const fileRef = useRef(null);
 
+  const handleCloseModalWithClear = () => {
+    handleCloseModal();
+    fileRef.current.value = null;
+  };
+
   useEffect(() => {
     formCat.setFieldsValue(formValues);
   }, [formValues, formCat]);
@@ -35,7 +41,7 @@ const SlideModal = () => {
         forceRender
         title={formValues.id == null ? "New Banner" : "Update Banner"}
         open={open}
-        onCancel={handleCloseModal}
+        onCancel={handleCloseModalWithClear}
         footer={null}
       >
         <Form form={formCat} layout="vertical" onFinish={handleFinish}>
@@ -53,7 +59,7 @@ const SlideModal = () => {
           </Form.Item>
 
           <Form.Item
-            label="description"
+            label="Description"
             name={"description"}
             rules={[
               {
@@ -64,9 +70,8 @@ const SlideModal = () => {
           >
             <Input placeholder="Name Image" />
           </Form.Item>
-          <Form.Item label="imageUrl" name={"imageUrl"}>
+          <Form.Item label="Image" name={"imageUrl"}>
             <Image
-              // src={list.mediaUrl}
               src={
                 filePreview
                   ? filePreview
@@ -75,32 +80,37 @@ const SlideModal = () => {
               className="w-full"
             />
           </Form.Item>
-          <input
-            ref={fileRef}
-            type="file"
-            onChange={handleChangeFile}
-            src={filePreview}
-          />
-          <Button onClick={handleClearFile}>Clear Image</Button>
-
-          <Form.Item style={{ textAlign: "right" }}>
+          <div className="flex flx-wrap gap-4">
+            <input
+              className="bg-gray-400 text-white"
+              ref={fileRef}
+              type="file"
+              onChange={handleChangeFile}
+              src={filePreview}
+            />
+            <Button
+              icon={<ClearOutlined />}
+              iconPosition="end"
+              className="bg-yellow-500 text-white"
+              onClick={handleClearFile}
+            >
+              Clear Image
+            </Button>
+          </div>
+          <Form.Item className="text-right m-4">
             <Space>
               <Button
                 className="bg-yellow-500 text-white"
                 iconPosition="end"
                 icon={<StopOutlined />}
-                onClick={handleCloseModal}
+                onClick={handleCloseModalWithClear}
               >
                 {t("button.cancel")}
               </Button>
               <Button
                 iconPosition="end"
                 icon={
-                  formValues.id == null ? (
-                    <PlusCircleOutlined />
-                  ) : (
-                    <EditOutlined />
-                  )
+                  formValues.id == null ? <SaveOutlined /> : <EditOutlined />
                 }
                 type="primary"
                 htmlType="submit"

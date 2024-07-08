@@ -96,7 +96,7 @@ const HomePage = () => {
           menukey={"/dashboard/student"}
           to={"student"}
           title={"School Info"}
-          value={studentStore.students.length || 0}
+          value={studentStore.students ? studentStore.students.length : 0}
           icon={
             <IdcardOutlined
               style={{

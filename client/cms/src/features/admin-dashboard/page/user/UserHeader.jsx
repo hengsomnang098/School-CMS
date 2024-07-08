@@ -1,9 +1,10 @@
-import { Typography, Space, Input, Button } from "antd";
+import { Typography, Input, Button } from "antd";
 import { observer } from "mobx-react-lite";
 import { useRef } from "react";
 import { useStore } from "../../../../app/stores/store";
 
 import { useTranslation } from "react-i18next";
+import { PlusOutlined } from "@ant-design/icons";
 
 const UserHeader = () => {
   const { Title } = Typography;
@@ -24,18 +25,20 @@ const UserHeader = () => {
   });
 
   return (
-    <div>
-      <Typography>
-        <Title level={3}>{t("sidebar.users")}</Title>
-      </Typography>
-      <Space>
+    <>
+      <div className="flex flex-wrap justify- text-center items-center gap-2 m-2">
+        <Typography>
+          <Title level={3}>{t("sidebar.users")}</Title>
+        </Typography>
         <Input.Search
           allowClear
           onChange={onChangeSearch}
           placeholder="Name or Code"
-          className="2xl:w-96"
+          className="w-56"
         />
         <Button
+          icon={<PlusOutlined />}
+          iconPosition="end"
           onClick={() => {
             handleClickNew();
           }}
@@ -43,8 +46,8 @@ const UserHeader = () => {
         >
           {t("button.add")}
         </Button>
-      </Space>
-    </div>
+      </div>
+    </>
   );
 };
 

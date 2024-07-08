@@ -119,6 +119,6 @@ export default class ArticleStore {
   };
 
   get articleCount() {
-    return this.articles.length;
+    return this.articles ? this.articles.length : 0;
   }
 }

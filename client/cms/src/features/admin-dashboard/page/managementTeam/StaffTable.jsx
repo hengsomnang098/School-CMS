@@ -1,8 +1,9 @@
-import { Table, Button, Space } from "antd";
+import { Table, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const StaffTable = () => {
   const { managementTeamStore } = useStore();
   const { managementTeam, loading, handleEdit, handleDelete } =
@@ -11,55 +12,51 @@ const StaffTable = () => {
   return (
     <>
       <Table
-        style={{
-          height: "80vh",
-          overflow: "auto",
-          padding: 0,
-        }}
+        sName=" h-[80vh] overflow-auto p-0 m-0"
         rowKey="id"
         dataSource={managementTeam}
         pagination={{
           pageSize: 5,
-          // total: 100,
         }}
         columns={[
           {
             key: "id",
-            title: "id",
+            title: "Id",
             dataIndex: "id",
-            // render: (value, item, index) => index + 1,
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "name",
             title: "Name",
             dataIndex: "name",
+            align: "center",
           },
           {
             key: "bio",
             title: "Bio",
             dataIndex: "bio",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "description",
             title: "description",
             dataIndex: "description",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "photoUrl",
             title: "Image",
             dataIndex: "photoUrl",
             responsive: ["sm"],
+            align: "center",
             render: (value) => {
               return value != null && value != "" ? (
-                // <Image src={value} width={40} height={30} />
-                <LazyLoadImage src={value} width={40} height={30} />
+                <LazyLoadImage className="w-[40px] h-[40px]" src={value} />
               ) : (
-                <div
-                  style={{ height: 30, width: 40, backgroundColor: "#888" }}
-                ></div>
+                <div className=" w-[40px] h-[40px] bg-gray-400 rounded"></div>
               );
             },
           },
@@ -67,12 +64,20 @@ const StaffTable = () => {
             key: "Action",
             title: "Action",
             dataIndex: "Status",
+            align: "center",
             render: (value, item) => (
-              <Space>
-                <Button onClick={() => handleEdit(item)} type="primary">
+              <div className="flex flex-row gap-2 justify-center">
+                <Button
+                  icon={<EditOutlined />}
+                  iconPosition="end"
+                  onClick={() => handleEdit(item)}
+                  type="primary"
+                >
                   {t("button.edit")}
                 </Button>
                 <Button
+                  icon={<DeleteOutlined />}
+                  iconPosition="end"
                   onClick={() => handleDelete(item)}
                   type="primary"
                   danger
@@ -80,7 +85,7 @@ const StaffTable = () => {
                 >
                   {t("button.delete")}
                 </Button>
-              </Space>
+              </div>
             ),
           },
         ]}

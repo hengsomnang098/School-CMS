@@ -95,6 +95,6 @@ export default class CategoryStore {
   };
 
   get countCategory() {
-    return this.categories.length;
+    return this.categories ? this.categories.length : 0;
   }
 }

@@ -1,7 +1,8 @@
-import { Table, Space, Button } from "antd";
+import { Table, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const ArticleTable = () => {
   const { articleStore } = useStore();
   const { articles, handleClickEdit, handleDelete, loading } = articleStore;
@@ -9,36 +10,32 @@ const ArticleTable = () => {
   return (
     <>
       <Table
-        style={{
-          height: "80vh",
-          overflow: "auto",
-          padding: 0,
-        }}
+        className="overflow-auto h-full w-full p-0 m-0"
         rowKey="id"
         dataSource={articles}
         pagination={{
           pageSize: 5,
-          // total: 100,
         }}
-        // onChange={}
         columns={[
           {
             key: "id",
-            title: "id",
+            title: "Id",
             dataIndex: "id",
-            // render: (value, item, index) => index + 1,
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "name",
             title: "Name Article",
             dataIndex: "name",
+            align: "center",
           },
           {
             key: "category",
             title: "Category Name",
             dataIndex: "category",
             responsive: ["sm"],
+            align: "center",
             render: (value) => {
               return value.nameEn;
             },
@@ -47,12 +44,20 @@ const ArticleTable = () => {
             key: "Action",
             title: "Action",
             dataIndex: "Status",
+            align: "center",
             render: (value, item) => (
-              <Space>
-                <Button onClick={() => handleClickEdit(item)} type="primary">
+              <div className="flex flex-wrap gap-2 justify-center items-center text-center">
+                <Button
+                  icon={<EditOutlined />}
+                  iconPosition="end"
+                  onClick={() => handleClickEdit(item)}
+                  type="primary"
+                >
                   {t("button.edit")}
                 </Button>
                 <Button
+                  icon={<DeleteOutlined />}
+                  iconPosition="end"
                   onClick={() => handleDelete(item)}
                   type="primary"
                   danger
@@ -60,7 +65,7 @@ const ArticleTable = () => {
                 >
                   {t("button.delete")}
                 </Button>
-              </Space>
+              </div>
             ),
           },
         ]}

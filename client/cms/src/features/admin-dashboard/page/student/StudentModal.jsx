@@ -1,8 +1,9 @@
-import { Modal, Form, Input, Space, Button } from "antd";
+import { Modal, Form, Input, Button } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import { EditOutlined, SaveOutlined, StopOutlined } from "@ant-design/icons";
 const StudentModal = () => {
   const [formCat] = Form.useForm();
 
@@ -26,7 +27,7 @@ const StudentModal = () => {
       >
         <Form form={formCat} layout="vertical" onFinish={handleFinish}>
           <Form.Item
-            label="name"
+            label="Name"
             name={"name"}
             rules={[
               {
@@ -38,25 +39,40 @@ const StudentModal = () => {
             <Input placeholder="Name" />
           </Form.Item>
           <Form.Item
-            label="description"
+            label="Description"
             name={"description"}
             rules={[
               {
                 required: true,
-                message: "Please input description!",
+                message: "Please input Description!",
               },
             ]}
           >
             <Input placeholder="Description" />
           </Form.Item>
 
-          <Form.Item style={{ textAlign: "right" }}>
-            <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+          <Form.Item>
+            <div className="flex flex-row justify-end gap-2">
+              <Button
+                className="bg-yellow-500 text-white"
+                iconPosition="end"
+                icon={<StopOutlined />}
+                onClick={handleCloseModal}
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                icon={
+                  formValues.id == null ? <SaveOutlined /> : <EditOutlined />
+                }
+                iconPosition="end"
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
-            </Space>
+            </div>
           </Form.Item>
         </Form>
       </Modal>

@@ -138,6 +138,6 @@ export default class ManagementTeamStore {
     }
   };
   get countManagementTeam() {
-    return this.managementTeam.length;
+    return this.managementTeam ? this.managementTeam.length : 0;
   }
 }

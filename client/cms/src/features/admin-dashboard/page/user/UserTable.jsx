@@ -3,6 +3,11 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useTranslation } from "react-i18next";
+import {
+  EditOutlined,
+  PlayCircleOutlined,
+  StopOutlined,
+} from "@ant-design/icons";
 
 const UserTable = () => {
   const { userStore } = useStore();
@@ -12,67 +17,62 @@ const UserTable = () => {
   return (
     <div>
       <Table
-        style={{
-          width: "100%",
-          height: "100%",
-          overflow: "auto",
-        }}
+        className="w-full h-full overflow-auto"
         rowKey="id"
         dataSource={user}
         pagination={{
           pageSize: 10,
-          // total: 100,
         }}
-        // onChange={}
         columns={[
           {
             key: "id",
             title: "id",
             dataIndex: "id",
-            // render: (value, item, index) => index + 1,
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "firstname",
             title: "Firstname",
             dataIndex: "firstname",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "lastname",
             title: "Lastname",
             dataIndex: "lastname",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "email",
             title: "Email",
             dataIndex: "email",
+            align: "center",
           },
           {
             key: "roles",
             title: "Roles",
             dataIndex: "roles",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "Profile",
             title: "Profile",
             responsive: ["sm"],
             dataIndex: "profile",
+            align: "center",
             render: (value) => {
               if (value != null && value != "") {
                 return (
                   <>
-                    <LazyLoadImage src={value} width={40} height={30} />
+                    <LazyLoadImage className="w-[40px] h-[40px]" src={value} />
                   </>
                 );
               } else {
-                return (
-                  <div
-                    style={{ height: 30, width: 40, backgroundColor: "#888" }}
-                  ></div>
-                );
+                return <div className="w-[40px] h-[40px] bg-gray-400"></div>;
               }
             },
           },
@@ -81,6 +81,7 @@ const UserTable = () => {
             title: "status",
             dataIndex: "status",
             responsive: ["md"],
+            align: "center",
             render: (value) =>
               value == "ACTIVE" ? (
                 <Tag color="green">ACTIVE</Tag>
@@ -93,12 +94,26 @@ const UserTable = () => {
             title: "Action",
             dataIndex: "Action",
             responsive: ["sm"],
+            align: "center",
             render: (value, item) => (
               <Space>
-                <Button onClick={() => handleEdit(item)} type="primary">
+                <Button
+                  icon={<EditOutlined />}
+                  iconPosition="end"
+                  onClick={() => handleEdit(item)}
+                  type="primary"
+                >
                   {t("button.edit")}
                 </Button>
                 <Button
+                  icon={
+                    item.status == "ACTIVE" ? (
+                      <StopOutlined />
+                    ) : (
+                      <PlayCircleOutlined />
+                    )
+                  }
+                  iconPosition="end"
                   onClick={() => handleStatus(item)}
                   type="primary"
                   danger

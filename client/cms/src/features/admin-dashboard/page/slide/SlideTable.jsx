@@ -1,9 +1,4 @@
-import {
-  Table,
-  Space,
-  Button,
-  //  Image
-} from "antd";
+import { Table, Button } from "antd";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useStore } from "../../../../app/stores/store";
 import { useTranslation } from "react-i18next";
@@ -17,11 +12,7 @@ const SlideTable = () => {
   return (
     <>
       <Table
-        style={{
-          height: "80vh",
-          overflow: "auto",
-          padding: 0,
-        }}
+        className="h-[80vh] overflow-auto p-0 m-0"
         rowKey="id"
         dataSource={slides}
         pagination={{
@@ -30,38 +21,43 @@ const SlideTable = () => {
         columns={[
           {
             key: "id",
-            title: "id",
+            title: "Id",
             dataIndex: "id",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "name",
             title: "Name",
             dataIndex: "name",
+            align: "center",
           },
           {
             key: "description",
             title: "Description",
             dataIndex: "description",
             responsive: ["sm"],
+            align: "center",
           },
           {
             key: "imageUrl",
             title: "ImageUrl",
             dataIndex: "imageUrl",
             responsive: ["sm"],
+            align: "center",
             render: (value) => {
               if (value != null && value != "") {
                 return (
                   <>
-                    <LazyLoadImage src={value} width={40} height={30} />
+                    <LazyLoadImage
+                      className="flex flex-wrap justify-center items-center text-center w-16 "
+                      src={value}
+                    />
                   </>
                 );
               } else {
                 return (
-                  <div
-                    style={{ height: 30, width: 40, backgroundColor: "#888" }}
-                  ></div>
+                  <div className=" w-[40px] h-[30px] bg-gray-200 rounded"></div>
                 );
               }
             },
@@ -70,8 +66,9 @@ const SlideTable = () => {
             key: "Action",
             title: "Action",
             dataIndex: "Status",
+            align: "center",
             render: (value, item) => (
-              <Space>
+              <div className="flex felx-row gap-2 justify-center">
                 <Button
                   iconPosition="end"
                   icon={<PlusOutlined />}
@@ -90,7 +87,7 @@ const SlideTable = () => {
                 >
                   {t("button.delete")}
                 </Button>
-              </Space>
+              </div>
             ),
           },
         ]}

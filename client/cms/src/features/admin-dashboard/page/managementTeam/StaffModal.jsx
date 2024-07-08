@@ -3,6 +3,12 @@ import { Button, Space, Modal, Input, Form, Image } from "antd";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import {
+  ClearOutlined,
+  EditOutlined,
+  SaveOutlined,
+  StopOutlined,
+} from "@ant-design/icons";
 const StaffModal = () => {
   const { managementTeamStore } = useStore();
   const {
@@ -81,18 +87,43 @@ const StaffModal = () => {
               }
             />
           </Form.Item>
-          <input
-            ref={fileRef}
-            type="file"
-            onChange={handleChangeFile}
-            src={filePreview}
-          />
-          <Button onClick={() => handleClearFile()}>Clear Image</Button>
+          <div className="flex flex-wrap m-2 gap-5  text-center items-center justify-start text-white">
+            <input
+              className="bg-gray-400 "
+              ref={fileRef}
+              type="file"
+              onChange={handleChangeFile}
+              src={filePreview}
+            />
+            <Button
+              icon={<ClearOutlined />}
+              iconPosition="end"
+              className="bg-yellow-500 text-white"
+              onClick={() => handleClearFile()}
+            >
+              Clear Image
+            </Button>
+          </div>
 
           <Form.Item style={{ textAlign: "right" }}>
             <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+              <Button
+                className="bg-yellow-500 text-white"
+                icon={<StopOutlined />}
+                iconPosition="end"
+                onClick={handleCloseModal}
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                icon={
+                  formValues.id == null ? <SaveOutlined /> : <EditOutlined />
+                }
+                iconPosition="end"
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {formCat.getFieldValue("id") == null
                   ? t("button.save")
                   : t("button.update")}

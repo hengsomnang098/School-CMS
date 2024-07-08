@@ -11,10 +11,10 @@ const CategoryHeader = () => {
   const { t } = useTranslation("global");
   return (
     <>
-      <Typography>
-        <Title level={3}>{t("sidebar.category")}</Title>
-      </Typography>
-      <div className="flex 2xl:flex-row flex-col gap-2 justify-center size-16">
+      <div className="flex flex-wrap justify-between text-center items-center">
+        <Typography>
+          <Title level={3}>{t("sidebar.category")}</Title>
+        </Typography>
         <Button
           icon={<PlusOutlined />}
           iconPosition="end"

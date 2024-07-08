@@ -1,10 +1,16 @@
-import { Button, Space, Modal, Input, Form, Select, Image } from "antd";
+import { Button, Modal, Input, Form, Select, Image } from "antd";
 import { useEffect, useRef } from "react";
 
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import MyTextEditor from "../../components/form/MyTextEditor";
 import { useTranslation } from "react-i18next";
+import {
+  ClearOutlined,
+  EditOutlined,
+  SaveOutlined,
+  StopOutlined,
+} from "@ant-design/icons";
 const ContentModal = () => {
   const { contentStore, articleStore, categoryStore } = useStore();
   const {
@@ -73,7 +79,6 @@ const ContentModal = () => {
               placeholder="Select Article"
               showSearch
               optionFilterProp="label"
-              // disabled={articleStore.disable}
             >
               {articleStore.articles ? (
                 articleStore.articles.map((item, index) => (
@@ -88,7 +93,6 @@ const ContentModal = () => {
           </Form.Item>
           <Form.Item label="Image" name={"thumbnail"}>
             <Image
-              // src={list.mediaUrl}
               src={
                 filePreview
                   ? filePreview
@@ -97,13 +101,23 @@ const ContentModal = () => {
               className="w-full"
             />
           </Form.Item>
-          <input
-            ref={fileRef}
-            type="file"
-            onChange={handleChangeFile}
-            src={filePreview}
-          />
-          <Button onClick={handleClearImage}>Clear Image</Button>
+          <div className="flex flex-wrap gap-2 justify-start">
+            <input
+              className="bg-gray-200"
+              ref={fileRef}
+              type="file"
+              onChange={handleChangeFile}
+              src={filePreview}
+            />
+            <Button
+              icon={<ClearOutlined />}
+              iconPosition="end"
+              className="bg-yellow-500 text-white"
+              onClick={handleClearImage}
+            >
+              Clear Image
+            </Button>
+          </div>
           <Form.Item
             label="Description"
             name={"description"}
@@ -117,13 +131,28 @@ const ContentModal = () => {
             <MyTextEditor value={description} onChange={setDescription} />
           </Form.Item>
 
-          <Form.Item style={{ textAlign: "right" }}>
-            <Space>
-              <Button onClick={handleCloseModal}>{t("button.cancel")}</Button>
-              <Button type="primary" htmlType="submit" loading={loading}>
+          <Form.Item>
+            <div className="flex flex-wrap justify-end gap-2 items-center text-center">
+              <Button
+                className="bg-yellow-500 text-white"
+                iconPosition="end"
+                icon={<StopOutlined />}
+                onClick={handleCloseModal}
+              >
+                {t("button.cancel")}
+              </Button>
+              <Button
+                icon={
+                  formValues.id == null ? <SaveOutlined /> : <EditOutlined />
+                }
+                iconPosition="end"
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
                 {formValues.id == null ? t("button.save") : t("button.update")}
               </Button>
-            </Space>
+            </div>
           </Form.Item>
         </Form>
       </Modal>
