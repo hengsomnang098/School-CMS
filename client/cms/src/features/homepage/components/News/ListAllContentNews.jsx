@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
-import ContentCardN from "./ContentCardN&E";
+import ContentCardN from "../News/ContentCardN";
 import Pagination from "../Pagination";
 import Spinner from "../Spinner";
 
@@ -58,16 +58,14 @@ const ListAllContentNews = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center text-gray-600">No articles found.</div>
+          <p className="text-center text-gray-600">No articles found.</p>
         )}
         {totalPages > 1 && (
-          <div className="mt-4">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         )}
       </div>
     </div>

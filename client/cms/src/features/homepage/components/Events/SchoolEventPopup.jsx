@@ -17,11 +17,11 @@ const SchoolEventPopup = ({ content, onClose }) => {
   useEffect(() => {
     const countdown = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
-    }, 1000); // Decrease timer every second
+    }, 1000);
 
     const autoClose = setTimeout(() => {
       onClose();
-    }, 10000); // Close popup after 10 seconds
+    }, 10000);
 
     return () => {
       clearInterval(countdown);
@@ -45,7 +45,7 @@ const SchoolEventPopup = ({ content, onClose }) => {
           <p className="text-center bg-green-500 font-bold text-2xl pt-1 items-center h-[36px] break-words">
             UPCOMING EVENT
           </p>
-          <Link to={`/content/${content.id}`}>
+          <Link to={`/event/${content.id}`}>
             <div className="relative flex flex-col h-[600px] hover:opacity-80">
               <div className="h-[600px] w-full object-cover">
                 <img

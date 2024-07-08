@@ -1,47 +1,55 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ContentCardE = ({ content }) => {
-  // Destructure the content object to get required fields
-  const { id, title, description, article, mediaList } = content;
+const ContentCardN = ({ content }) => {
+  const { id, title, description, thumbnail } = content;
+
+  const maxLengthTitle = 34;
+  const maxLengthDesc = 320;
+
+  const truncatedDescription =
+    description.length > maxLengthDesc
+      ? description.substring(0, maxLengthDesc) + "..."
+      : description;
+
+  const truncatedTitle =
+    title.length > maxLengthTitle
+      ? title.substring(0, maxLengthTitle) + "..."
+      : title;
 
   return (
-    <div className="border p-4 mb-4">
-      <h3 className="text-lg font-bold text-blue-500">Content ID: {id}</h3>
-      <p>Title: {title}</p>
-      <div
-        className="prose"
-        dangerouslySetInnerHTML={{ __html: description }}
-      ></div>
-      {article && (
-        <>
-          <p>Article Name: {article.name}</p>
-          {article.category && (
-            <p>Category Name EN: {article.category.nameEn}</p>
-          )}
-        </>
-      )}
-      {mediaList.length > 0 && (
-        <div className="mt-4">
-          <h4 className="font-semibold text-lg mb-2">Media List:</h4>
-          <ul>
-            {mediaList.map((media) => (
-              <li key={media.id} className="mb-2">
-                <p>ID: {media.id}</p>
-                <p>Name: {media.name}</p>
-                <p>Type: {media.mediaType}</p>
-                <img
-                  src={media.mediaUrl}
-                  alt={media.name}
-                  className="max-w-full h-auto rounded-lg shadow-md"
-                />
-              </li>
-            ))}
-          </ul>
+    <div className="bg-green-100  border-green-700 mb-4 mx-auto max-w-3xl rounded-lg overflow-hidden shadow-lg">
+      <div className="md:flex">
+        <div className="md:w-1/3  hover:scale-110 transition-transform duration-300 drop-shadow-lg cursor-pointer">
+          <Link to={`/event/${content.id}`}>
+            <img
+              className="w-full h-auto md:h-full object-cover"
+              src={thumbnail}
+              alt={title}
+            />
+          </Link>
         </div>
-      )}
-      {mediaList.length === 0 && <p>No media found for this content.</p>}
+        <div className="p-4 md:w-2/3">
+          <h3 className="text-xl font-semibold font-khmermont mb-2">
+            {truncatedTitle}
+          </h3>
+          <div
+            className="text-sm font-khmermont h-[120px] text-gray-700 mb-6"
+            dangerouslySetInnerHTML={{ __html: truncatedDescription }}
+          />
+          <div className="text-sm font-khmermont h-[10px] flex text-gray-700  mb-2">
+            <p className="font-mono">Published Date : </p>
+            <p> {content.createdAt}</p>
+          </div>
+          <div className="flex font-semibold text-lg justify-end">
+            <Link to={`/event/${id}`} className="text-green-700 underline">
+              View Details
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default ContentCardE;
+export default ContentCardN;

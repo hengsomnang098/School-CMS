@@ -12,8 +12,15 @@ const About = () => {
     const fetchContent = async () => {
       try {
         // Assuming your API supports fetching content by title
-        const contentsRes = await fetchData(`contents?title=About Us`);
-        const aboutUsContent = contentsRes.objects.find(
+        const response = await fetchData(`contents?title=About Us`);
+
+        if (!response || !Array.isArray(response.object)) {
+          console.error("Invalid API response:", response);
+          setLoading(false);
+          return;
+        }
+
+        const aboutUsContent = response.object.find(
           (obj) => obj.title === "About Us"
         );
 
@@ -45,18 +52,23 @@ const About = () => {
     <div>
       <div className="bg-green-200 p-8">
         <div>
-          <GetContentsByAbout />
-        </div>
-        <div>
           <div className="flex items-center mb-5">
             <div className="flex-grow border-t-[6px] ml-8 border-black"></div>
             <h2 className="text-4xl font-bold mx-8">ABOUT US</h2>
             <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
           </div>
         </div>
+
         <div className="max-w-[1200px] mx-auto">
+          <div>
+            <GetContentsByAbout />
+          </div>
           <p className="text-gray-700 text-lg text-md mb-6">
-            <span dangerouslySetInnerHTML={{ __html: content.description }} />
+            {content.description ? (
+              <span dangerouslySetInnerHTML={{ __html: content.description }} />
+            ) : (
+              <span>No description available.</span>
+            )}
           </p>
         </div>
       </div>
@@ -67,11 +79,11 @@ const About = () => {
         <div className="bg-green-200">
           <h1 className="text-2xl font-khmermont pt-10">Album</h1>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.albumList.map((media) => (
+            {content.albumList.map((album) => (
               <div key={album.id}>
                 <div>
                   <img
-                    src={album.mediaUrl}
+                    src={album.mediaUrl || ""}
                     alt={`Media for ${content.title}`}
                     className="w-[250px] h-[180px]"
                   />
