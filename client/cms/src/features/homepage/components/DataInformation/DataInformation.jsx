@@ -12,10 +12,10 @@ import Spinner from "../Spinner";
 
 const DataInformation = () => {
   const [data, setData] = useState({
-    totalStudents: null,
-    totalClass: null,
-    totalPrograms: null,
-    totalTeacher: null,
+    Students: null,
+    Class: null,
+    Programs: null,
+    Teacher: null,
   });
 
   useEffect(() => {
@@ -25,17 +25,17 @@ const DataInformation = () => {
 
         const mappedData = response.object.reduce((acc, student) => {
           switch (student.name) {
-            case "Total Students":
-              acc.totalStudents = student;
+            case "Students":
+              acc.Students = student;
               break;
-            case "Total Class":
-              acc.totalClass = student;
+            case "Class":
+              acc.Class = student;
               break;
-            case "Total Programs":
-              acc.totalPrograms = student;
+            case "Programs":
+              acc.Programs = student;
               break;
-            case "Total Teachers":
-              acc.totalTeacher = student;
+            case "Teachers":
+              acc.Teacher = student;
               break;
             default:
               break;
@@ -53,15 +53,15 @@ const DataInformation = () => {
   }, []);
 
   const renderCard = (icon, name, description) => (
-    <div className="mb-2 md:w-1/2 lg:w-1/4 p-4 text-center items-center justify-center flex-col flex">
-      <div className="mb-4 flex justify-center">{icon}</div>
-      <div className="mb-4">
-        <span className="font-mono tracking-wider text-xl font-bold text-green-500 sm:text-4xl">
+    <div className="mb-2 md:w-1/2 lg:w-1/4 p-2 text-center items-center justify-center flex-col flex">
+      <div className="mb-2 flex flex-col md:flex-row   items-center">
+        <div className="h-10 flex justify-center  md:mr-4">{icon}</div>
+        <span className="font-mono tracking-wider text-center justify-center items-center text-2xl font-bold text-white md:text-2xl lg:text-3xl">
           {name}
         </span>
       </div>
-      <div className="mb-4">
-        <p className="text-xl font-bold font-mono text-gray-700 sm:text-4xl">
+      <div className="text-center justify-center items-center">
+        <p className="text-xl font-bold font-mono  text-white sm:text-2xl  md:text-2xl lg:text-3xl">
           {description}
         </p>
       </div>
@@ -69,41 +69,48 @@ const DataInformation = () => {
   );
 
   return (
-    <div className="top-0 left-0 w-full bg-yellow-400 flex flex-col items-center justify-center bg-cover bg-center">
-      <img className="w-full" src={DataInformationimg} alt="Datainformation" />
-      <div className="relative flex flex-col  items-center justify-center bg-cover bg-center">
+    <div className="top-0 left-0 w-full bg-green-400 flex flex-col items-center justify-center bg-cover bg-center">
+      <img
+        className="w-full hidden md:block"
+        src={DataInformationimg}
+        alt="Datainformation"
+      />
+      <div className="relative flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col md:flex-row flex-wrap max-w-screen-lg mx-auto p-4">
-          {data.totalStudents &&
+          {data.Students &&
             renderCard(
-              <FaUserGraduate className="w-10 h-10 text-green-500" />,
-              data.totalStudents.name,
-              data.totalStudents.description
+              <FaUserGraduate className="w-10 h-10 text-white" />,
+              data.Students.name,
+              data.Students.description
             )}
-          {data.totalClass &&
+          {data.Class &&
             renderCard(
-              <FaChalkboardTeacher className="w-10 h-10 text-green-500" />,
-              data.totalClass.name,
-              data.totalClass.description
+              <FaChalkboardTeacher className="w-10 h-10 text-white" />,
+              data.Class.name,
+              data.Class.description
             )}
-          {data.totalPrograms &&
+          {data.Programs &&
             renderCard(
-              <FaBookOpen className="w-10 h-10 text-green-500" />,
-              data.totalPrograms.name,
-              data.totalPrograms.description
+              <FaBookOpen className="w-10 h-10 text-white" />,
+              data.Programs.name,
+              data.Programs.description
             )}
-          {data.totalTeacher &&
+          {data.Teacher &&
             renderCard(
-              <FaUserTie className="w-10 h-10 text-green-500" />,
-              data.totalTeacher.name,
-              data.totalTeacher.description
+              <FaUserTie className="w-10 h-10 text-white" />,
+              data.Teacher.name,
+              data.Teacher.description
             )}
         </div>
-        {!data.totalStudents &&
-          !data.totalClass &&
-          !data.totalPrograms &&
-          !data.totalTeacher && <Spinner />}
+        {!data.Students && !data.Class && !data.Programs && !data.Teacher && (
+          <Spinner />
+        )}
       </div>
-      <img className="w-full" src={DataInformationimg1} alt="Datainformation" />
+      <img
+        className="w-full hidden md:block"
+        src={DataInformationimg1}
+        alt="Datainformation"
+      />
     </div>
   );
 };
