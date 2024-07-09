@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const BASE_URL = "http://localhost:8080/api/";
-// const BASE_URL = "https://api.southwest-internationalschool.site/api/";
-const BASE_URL = "http://194.233.87.193:8080/api/";
+const BASE_URL = "https://api.southwest-internationalschool.site/api/";
+// const BASE_URL = "http://194.233.87.193:8080/api/";
 export const fetchData = async (endpoint) => {
   try {
     const response = await axios.get(`${BASE_URL}${endpoint}`);

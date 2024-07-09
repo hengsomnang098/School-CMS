@@ -12,6 +12,9 @@ const SingleContent = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
+        // Simulate delay for 2 seconds
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         const contentsRes = await fetchData(`contents/${id}`);
         setContent(contentsRes.object);
 
@@ -35,15 +38,16 @@ const SingleContent = () => {
 
   return (
     <div className="bg-green-100">
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12">
-        <div className="bg-white shadow-xl drop-shadow-lg rounded-sm overflow-hidden"></div>
-        <div className="lg:w-3/4 mx-auto font-khmermont">
-          <h2 className="text-3xl mt-10 font-bold mb-10 cursor-pointer break-words">
+      <div className="max-w-[1640px] mx-auto px-6 flex flex-col md:flex-row gap-12">
+        <div className="lg:w-9/12 mx-auto font-khmermont">
+          <h2 className="text-3xl mt-10 font-bold mb-1 tracking-wider break-words">
             {content.title}
           </h2>
-
+          <div className="text-3xl  font-bold mb-10 tracking-widest break-words">
+            <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
+          </div>
           <div className="text-xl">
-            <p className="ml-10 font-khmermont break-words">
+            <p className=" font-khmermont break-words">
               <span dangerouslySetInnerHTML={{ __html: content.description }} />
             </p>
             <h2 className="text-xl mt-10 font-bold mb-10  text-gray-500 break-words">
@@ -53,7 +57,7 @@ const SingleContent = () => {
             <div className="my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {Array.isArray(content.albumList) &&
               content.albumList.length > 0 ? (
-                content.albumList.map((media) => (
+                content.albumList.map((album) => (
                   <div key={album.id}>
                     <div>
                       <img
