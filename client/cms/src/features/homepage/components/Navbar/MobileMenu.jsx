@@ -5,7 +5,15 @@ const MobileMenu = ({ menuItems, onClose }) => {
   const [expandedItem, setExpandedItem] = useState(null);
 
   const handleToggle = (key) => {
-    setExpandedItem((prev) => (prev === key ? null : key));
+    const menuItem = menuItems.find((item) => item.key === key);
+    if (menuItem?.children) {
+      setExpandedItem((prev) => (prev === key ? null : key));
+    } else {
+      onClose();
+      if (!menuItem.children && menuItem.key) {
+        window.location.href = menuItem.key;
+      }
+    }
   };
 
   return (

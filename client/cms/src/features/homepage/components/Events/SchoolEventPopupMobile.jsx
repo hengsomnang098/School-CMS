@@ -44,11 +44,11 @@ const SchoolEventPopupMobile = ({ content, onClose }) => {
             UPCOMING EVENT
           </p>
           <Link to={`/event/${content.id}`}>
-            <div className="relative overflow-hidden">
+            <div className="relative bg-green-50 overflow-hidden">
               <img
-                className="w-full h- object-cover"
+                className="w-full h-full object-cover"
                 src={thumbnail}
-                alt={title}
+                alt={`Error Image`}
               />
             </div>
           </Link>

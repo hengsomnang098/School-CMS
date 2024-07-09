@@ -20,7 +20,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        khmermont: ['"Roboto"', '"Khmer OS Battambang"', "serif"],
+        khmermont: ["Khmer OS Battambang", "serif", "Roboto"],
       },
 
       backgroundImage: {

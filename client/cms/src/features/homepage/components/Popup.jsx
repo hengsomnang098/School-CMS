@@ -4,18 +4,16 @@ import SchoolEventPopupMobile from "./Events/SchoolEventPopupMobile";
 import { fetchContentsByArtName } from "../api/Api";
 
 const Popup = () => {
-  const [showPopup, setShowPopup] = useState(true); // Initially true to show popup
-  const [newestEvent, setNewestEvent] = useState(null); // State to store the newest event
-  const [isMobile, setIsMobile] = useState(false); // State to track if the screen is mobile
+  const [showPopup, setShowPopup] = useState(true);
+  const [newestEvent, setNewestEvent] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Function to check if the screen width is mobile
     const checkIfMobile = () => {
       const screenWidth = window.innerWidth;
-      setIsMobile(screenWidth < 768); // Adjust the breakpoint as per your design
+      setIsMobile(screenWidth < 768);
     };
 
-    // Call the function initially and on resize
     checkIfMobile();
     window.addEventListener("resize", checkIfMobile);
 
@@ -30,7 +28,6 @@ const Popup = () => {
         const response = await fetchContentsByArtName("School Events");
 
         if (response && response.object && response.object.length > 0) {
-          // Sort events by id in descending order to get the newest event first
           const sortedEvents = response.object.sort((a, b) => b.id - a.id);
           const newestEvent = sortedEvents[0];
           setNewestEvent(newestEvent);

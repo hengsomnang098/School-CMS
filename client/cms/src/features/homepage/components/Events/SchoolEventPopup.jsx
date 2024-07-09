@@ -12,7 +12,7 @@ const SchoolEventPopup = ({ content, onClose }) => {
       ? title.substring(0, maxLengthTitle) + "..."
       : title;
 
-  const [timer, setTimer] = useState(10); // Initial timer value in seconds
+  const [timer, setTimer] = useState(10);
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -51,7 +51,7 @@ const SchoolEventPopup = ({ content, onClose }) => {
                 <img
                   className="h-full w-full object-cover"
                   src={thumbnail}
-                  alt={title}
+                  alt={`Error Image`}
                 />
               </div>
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity duration-300">

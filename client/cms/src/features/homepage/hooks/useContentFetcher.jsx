@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import react, { useState, useEffect } from "react";
 import { fetchContentsByArtName } from "../api/Api";
 import { debounce } from "lodash";
 
@@ -15,7 +15,7 @@ const useContentFetcher = (articleName) => {
       }
     };
 
-    const debouncedFetchData = debounce(fetchData, 300); // Adjust debounce delay as needed
+    const debouncedFetchData = debounce(fetchData, 300);
     debouncedFetchData();
 
     return () => {

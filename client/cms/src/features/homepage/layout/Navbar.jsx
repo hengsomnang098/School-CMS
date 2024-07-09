@@ -10,6 +10,7 @@ const Navbar = () => {
   const ourProgramsContents = useContentFetcher("Our Programs");
   const admissionContents = useContentFetcher("Admissions");
   const activitiesContents = useContentFetcher("Activities");
+
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navbarBackground, setNavbarBackground] = useState("bg-transparent");
@@ -18,22 +19,11 @@ const Navbar = () => {
   const reduceContent = (contents) => {
     const columns = [[], [], []];
     contents.forEach((content, index) => {
-      if (index < 6) {
-        columns[0].push({
-          key: `/content/${content.id}`,
-          label: content.title,
-        });
-      } else if (index < 12) {
-        columns[1].push({
-          key: `/content/${content.id}`,
-          label: content.title,
-        });
-      } else if (index < 18) {
-        columns[2].push({
-          key: `/content/${content.id}`,
-          label: content.title,
-        });
-      }
+      const columnIndex = Math.floor(index / 6);
+      columns[columnIndex].push({
+        key: `/content/${content.id}`,
+        label: content.title,
+      });
     });
     return columns;
   };
@@ -83,6 +73,13 @@ const Navbar = () => {
   }, []);
 
   const handleClick = (key) => {
+    if (
+      hoveredMenu === key &&
+      menuItems.find((item) => item.key === key)?.children
+    ) {
+      // If hovered and has dropdown, do nothing (cannot click)
+      return;
+    }
     navigate(key);
   };
 
@@ -97,7 +94,7 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`shadow-md drop-shadow-lg h-[90px] ${navbarBackground} fixed top-0 w-full z-50 transition-all duration-500 ${
+        className={`shadow-md  h-[90px] ${navbarBackground} fixed top-0 w-full z-50 transition-all duration-500 ${
           navbarShadow ? "shadow-md" : "shadow-none"
         }`}
       >
@@ -114,54 +111,62 @@ const Navbar = () => {
               className="block lg:hidden h-16"
             />
           </Link>
-          <nav className="flex items-center">
+          <p className="block lg:hidden text-2xl ml-8 text-green-700 text-center font-bold font-serif">
+            SIS
+          </p>
+          <nav className="flex items-center ">
             <ul className="hidden md:flex text-md font-khmermont font-bold drop-shadow-lg space-x-6">
               {menuItems.map((item) => (
                 <li
                   key={item.key}
-                  className="relative group"
+                  className="relative group "
                   onMouseEnter={() => handleMouseEnter(item.key)}
                   onMouseLeave={handleMouseLeave}
                 >
                   <button
-                    className="py-2 text-lg px-4 tracking-wider rounded-md transition-colors duration-300 relative overflow-hidden group-hover:text-green-500"
+                    className={`py-2 text-lg px-4 tracking-widest transition-colors duration-300 relative overflow-hidden group-hover:text-green-500 ${
+                      item.children ? "cursor-default" : "cursor-pointer"
+                    }`}
                     onClick={() => handleClick(item.key)}
                   >
                     {item.label}
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-green-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-green-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-115"></span>
                   </button>
                   {item.children && hoveredMenu === item.key && (
                     <ul
-                      className={`absolute left-0 top-full max-h-64 bg-white text-gray-800 rounded-md shadow-lg opacity-100 transition-opacity duration-300 z-10 grid gap-x-4`}
+                      className="absolute left-0 top-full max-h-64 bg-green-50 text-gray-800 shadow-lg opacity-100 transition-opacity duration-300 z-10 grid gap-x-4 w-72"
                       style={{
                         gridTemplateColumns: `repeat(${
                           item.children.filter((col) => col.length > 0).length
                         }, auto)`,
                       }}
                     >
-                      {item.children.map(
-                        (subItems, index) =>
-                          subItems.length > 0 && (
-                            <li
-                              key={index}
-                              className={`${
-                                index < item.children.length - 1
-                                  ? "border-r border-gray-300"
-                                  : ""
-                              }`}
+                      {item.children.map((subItems, index) => (
+                        <li
+                          key={`${item.key}-${index}`}
+                          className={`${
+                            index < item.children.length - 1
+                              ? "border-r border-gray-300"
+                              : ""
+                          }`}
+                        >
+                          {subItems.map((subItem) => (
+                            <div
+                              className="hover:bg-green-400"
+                              key={subItem.key}
                             >
-                              {subItems.map((subItem) => (
-                                <button
-                                  key={subItem.key}
-                                  className={`block w-full text-left px-4 py-2 hover:bg-green-400 hover:text-white`}
-                                  onClick={() => handleClick(subItem.key)}
-                                >
+                              <button
+                                className="block w-full text-left pl-6 pr-8 py-2 hover:translate-x-2  hover:text-white"
+                                onClick={() => handleClick(subItem.key)}
+                              >
+                                <p className="font-khmermont tracking-wider text-md">
                                   {subItem.label}
-                                </button>
-                              ))}
-                            </li>
-                          )
-                      )}
+                                </p>
+                              </button>
+                            </div>
+                          ))}
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </li>

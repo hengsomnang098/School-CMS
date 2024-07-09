@@ -12,9 +12,6 @@ const SingleContent = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        // Simulate delay for 2 seconds
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
         const contentsRes = await fetchData(`contents/${id}`);
         setContent(contentsRes.object);
 
@@ -38,40 +35,40 @@ const SingleContent = () => {
 
   return (
     <div className="bg-green-100">
-      <div className="max-w-[1640px] mx-auto px-6 flex flex-col md:flex-row gap-12">
-        <div className="lg:w-9/12 mx-auto font-khmermont">
-          <h2 className="text-3xl mt-10 font-bold mb-1 tracking-wider break-words">
+      <div className="max-w-full mx-auto px-6 flex flex-col gap-6 md:max-w-[1200px]">
+        <div className="font-khmermont">
+          <h2 className="text-2xl mt-6 font-bold mb-2 tracking-wider break-words">
             {content.title}
           </h2>
-          <div className="text-3xl  font-bold mb-10 tracking-widest break-words">
-            <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
+          <div className="text-2xl font-bold mb-6 tracking-widest break-words">
+            <div className="flex-grow border-t-[4px] mr-4 border-black"></div>
           </div>
-          <div className="text-xl">
-            <p className=" font-khmermont break-words">
+          <div className="text-lg">
+            <p className="font-khmermont break-words">
               <span dangerouslySetInnerHTML={{ __html: content.description }} />
             </p>
-            <h2 className="text-xl mt-10 font-bold mb-10  text-gray-500 break-words">
+            <h2 className="text-lg mt-6 font-bold mb-6 text-gray-500 break-words">
               Published Date: {content.createdAt}
             </h2>
-            <h1 className="text-2xl font-khmermont pt-10">Album</h1>
-            <div className="my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Array.isArray(content.albumList) &&
-              content.albumList.length > 0 ? (
-                content.albumList.map((album) => (
-                  <div key={album.id}>
-                    <div>
+            {content.albumList && content.albumList.length > 0 && (
+              <>
+                <h1 className="text-xl font-khmermont pb-6">Album</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {content.albumList.map((album) => (
+                    <div
+                      key={album.id}
+                      className="bg-white rounded-lg overflow-hidden shadow-lg"
+                    >
                       <img
                         src={album.mediaUrl}
                         alt={`Media for ${content.title}`}
-                        className="w-[250px] h-[180px]"
+                        className="w-full h-auto object-cover"
                       />
                     </div>
-                  </div>
-                ))
-              ) : (
-                <p>No photos available</p>
-              )}
-            </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

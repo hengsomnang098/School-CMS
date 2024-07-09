@@ -75,7 +75,7 @@ const GetContentsByNews = () => {
 
       <div className="flex justify-center mt-4">
         <Link to="/schoolnews">
-          <button className="bg-green-400 hover:bg-green-600 text-white py-2 mt-8 px-4 rounded">
+          <button className="bg-green-400 shadow-sm transform  duration-300 hover:scale-x-105 shadow-gray-400  text-white hover:translate-y-[-4px] hover:shadow-md hover:shadow-green-600 hover:bg-green-600 focus:outline-none py-2 mt-8 px-4 rounded-sm">
             See All News
           </button>
         </Link>

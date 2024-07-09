@@ -3,7 +3,6 @@ import { fetchContentsByArtName } from "../../api/Api";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import ContentCardE from "./ContentCardEventHome";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner";
 
@@ -70,9 +69,9 @@ const GetContentsByEvents = () => {
   };
 
   return (
-    <div className="max-h-screen  px-4">
+    <div className="max-h-screen px-4">
       {loading ? (
-        <div className="text-center mt-4">
+        <div className="text-center mt-2">
           <Spinner />
         </div>
       ) : contents.length > 0 ? (
@@ -80,7 +79,7 @@ const GetContentsByEvents = () => {
           <Suspense fallback={<Spinner />}>
             <Slider {...settings}>
               {contents.map((content) => (
-                <div key={content.id} className="px-2">
+                <div key={content.id} className="mx-8 h-[510px]">
                   <ContentCardE content={content} />
                 </div>
               ))}
@@ -94,7 +93,7 @@ const GetContentsByEvents = () => {
       )}
       <div className="flex justify-center mt-14">
         <Link to="/schoolevents">
-          <button className="bg-green-400 hover:bg-green-600 text-white py-3 px-4 rounded">
+          <button className="bg-green-400 shadow-sm transform  duration-300 hover:scale-x-105 shadow-gray-400  text-white hover:translate-y-[-4px] hover:shadow-md hover:shadow-green-600 hover:bg-green-600 focus:outline-none py-2  px-4 rounded-sm">
             See All Events
           </button>
         </Link>

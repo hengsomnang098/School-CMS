@@ -23,7 +23,7 @@ const TeamCard = ({ member }) => {
         <div className="font-bold text-xl mb-2">{name}</div>
         <p className="text-gray-700 text-base mb-2">{truncatedDescription}</p>
         <Link to={`/teams/${member.id}`}>
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-green-500 shadow-sm transform  duration-300 hover:scale-x-105 shadow-gray-400  text-white hover:translate-y-[-4px] hover:shadow-md hover:shadow-green-600 hover:bg-green-600 focus:outline-none py-2 mt-2 px-4 rounded-sm font-bold ">
             View Details
           </button>
         </Link>

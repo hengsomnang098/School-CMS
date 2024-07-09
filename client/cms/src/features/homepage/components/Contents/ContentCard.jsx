@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ContentCard = ({ content }) => {
   const title = content?.title || "";
@@ -30,7 +30,7 @@ const ContentCard = ({ content }) => {
         <img
           className="h-[250px] w-[250px] mb-5"
           src={thumbnail}
-          alt="No no "
+          alt="No Image "
         />
       </div>
       <Link to={`/content/${content.id}`}>

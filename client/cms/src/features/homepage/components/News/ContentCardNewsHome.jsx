@@ -24,13 +24,13 @@ const ContentCardNewsHome = ({ content, isMain }) => {
     <div
       className={`flex ${
         isMain ? "flex-col" : ""
-      } border rounded-sm overflow-hidden slice-in-from-right`}
+      } border rounded-sm slice-in-from-right`}
       style={{ maxWidth: "100%" }}
     >
       <div
         className={`${
           isMain ? "w-full " : "w-2/5"
-        } hover:scale-110 transition-transform duration-300 drop-shadow-lg cursor-pointer`}
+        } hover:scale-105 transition-transform duration-300 drop-shadow-lg cursor-pointer`}
       >
         <Link to={`/content/${content.id}`}>
           <img
@@ -44,7 +44,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
       <div
         className={`${
           isMain ? "" : "w-3/5 pl-4 pr-4"
-        } pt-4 break-words pb-2 bg-green-100`}
+        } pt-4 break-words pb-2 bg-white`}
       >
         <h3 className="text-xl font-semibold mb-2 break-words h-[35px]">
           {truncatedTitle}
@@ -55,15 +55,16 @@ const ContentCardNewsHome = ({ content, isMain }) => {
         <p className="text-sm text-gray-500">
           Published Date: {content.createdAt}
         </p>
-
-        <div className="text-right">
-          <Link
-            to={`/content/${content.id}`}
-            className="text-green-600 underline"
-          >
+      </div>
+      <div className="relative ">
+        <Link
+          to={`/new/${content.id}`}
+          className="absolute w-24 mr-5 mb-3 bottom-0 end-0 text-green-600 drop-shadow-lg underline"
+        >
+          <p className="text-right  hover:translate-y-[-6px] hover:scale-x-100  ">
             View Detail
-          </Link>
-        </div>
+          </p>
+        </Link>
       </div>
     </div>
   );
