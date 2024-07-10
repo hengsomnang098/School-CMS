@@ -133,13 +133,13 @@ const ContentTable = () => {
               <Space>
                 <Button
                   icon={
-                    item.status == "DRAFT" ? <EditOutlined /> : <EyeOutlined />
+                    item.status == "DRAFT" ? <EyeOutlined /> : <EditOutlined />
                   }
                   className="bg-cyan-300 text-white"
                   loading={loading}
                   onClick={() => handleStatus(item)}
                 >
-                  {item.status == "DRAFT" ? "DRAFT" : "PUBLISHED"}
+                  {item.status == "DRAFT" ? "PUBLISHED" : "DRAFT"}
                 </Button>
               </Space>
             ),
