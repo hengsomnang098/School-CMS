@@ -156,29 +156,22 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between pt-5  border-t border-gray-500 sm:flex-row">
-          <p></p>
+        {/* <div className="flex flex-col justify-center pt-5  border-t border-gray-500 sm:flex-row">
           <div className="flex items-center mt-4 space-x-4 sm:mt-0 text-white">
             <a
-              href=""
-              className=" transition-all duration-300 hover:text-teal-400"
+              href="https://web.facebook.com/EducationSHV"
+              className=" transition-all duration-300 hover:text-cyan-500"
             >
-              <FaTwitter className="h-6 w-6" />
+              <FaTwitter className="h-8 w-8" />
             </a>
             <a
-              href=""
+              href="https://web.facebook.com/EducationSHV"
               className=" transition-all duration-300 hover:text-blue-600"
             >
-              <FaFacebook className="h-6 w-6" />
-            </a>
-            <a
-              href=""
-              className=" transition-all duration-300 hover:text-pink-400"
-            >
-              <FaInstagram className="h-6 w-6" />
+              <FaFacebook className="h-8 w-8" />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchData } from "../api/Api";
 import {
   FaFacebookF,
   FaTwitter,
@@ -13,18 +14,47 @@ const Contact = () => {
     message: "",
   });
 
+  const [contact, setContact] = useState({});
+
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const response = await fetchData("contents/39");
+        const data = response.object;
+        setContact(data);
+      } catch (error) {
+        console.error("Error fetching contact information:", error);
+      }
+    };
+
+    fetchContactInfo();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add your form submission logic, e.g., sending the data to an API
-    console.log("Form data submitted:", formData);
-    // Clear the form
-    setFormData({ name: "", email: "", message: "" });
+
+    const { name, email, message } = formData;
+    const subject = `Message from Me ,${email}`;
+    const body = `${name}\n\nMessage: ${message}`;
+    const recipientEmail = "southwest@gmail.com";
+    const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      recipientEmail
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailURL, "_blank");
   };
+  const description = contact?.description || "";
+
+  const maxLengthDesc = 280;
+
+  const truncatedDescription =
+    description.length > maxLengthDesc
+      ? description.substring(0, maxLengthDesc) + ""
+      : description;
 
   return (
     <div className="bg-yellow-100 py-12">
@@ -89,38 +119,51 @@ const Contact = () => {
                 </button>
               </form>
             </div>
-            <div className="p-6 bg-green-500 text-white">
+            <div className="p-6 bg-green-400 text-white">
               <h2 className="text-3xl text-center font-semibold mb-6">
                 Contact Information
               </h2>
-              <p className="mb-4 font-bold font-mono text-xl">
-                SouthWest International School
+              <p className="mb-4 break-words">
+                <span
+                  className="w-full"
+                  dangerouslySetInnerHTML={{ __html: truncatedDescription }}
+                />
               </p>
-              <p className="mb-4">
-                <strong>Address :</strong> Songkat 4, Sihanouk Provinces
-              </p>
-              <p className="mb-4">
-                <strong>Phone :</strong> +855 97 7777 555
-              </p>
-              <p className="mb-4">
-                <strong>Email:</strong> Southwestinternationalschool.com
-              </p>
-              <div className="mt-6">
-                <h3 className="text-xl font-semibold mb-2">Follow Us</h3>
-                <div className="flex space-x-4">
+              <div className="mt-6 flex flex-col">
+                <h3 className="text-2xl font-serif flex justify-center font-semibold mb-2">
+                  Follow Us!
+                </h3>
+                <div className="flex justify-center mt-2 space-x-4">
                   <a
                     href="https://web.facebook.com/EducationSHV"
                     className="text-white hover:text-blue-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <FaFacebookF className="text-2xl" />
                   </a>
-                  <a href="#" className="text-white hover:text-blue-400 ">
+                  <a
+                    href="https://web.facebook.com/EducationSHV"
+                    className="text-white hover:text-blue-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaTwitter className="text-2xl" />
                   </a>
-                  <a href="#" className="text-white hover:text-pink-400">
+                  <a
+                    href="https://web.facebook.com/EducationSHV"
+                    className="text-white hover:text-blue-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaInstagram className="text-2xl" />
                   </a>
-                  <a href="#" className="text-white hover:text-blue-700">
+                  <a
+                    href="https://web.facebook.com/EducationSHV"
+                    className="text-white hover:text-blue-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaLinkedinIn className="text-2xl" />
                   </a>
                 </div>
