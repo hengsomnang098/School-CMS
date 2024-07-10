@@ -19,7 +19,6 @@ import RequireAuth from "../../features/admin-dashboard/components/page/RequireA
 import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage";
 
 // homepage import --------------
-import NotFound from "../../features/homepage/pages/NotFound";
 import Home from "../../features/homepage/pages/Home";
 import About from "../../features/homepage/pages/About";
 import Contact from "../../features/homepage/pages/Contact";
@@ -28,10 +27,8 @@ import Layout from "../../features/homepage/layout/Layout";
 import Admission from "../../features/homepage/pages/Admission";
 import ActivitiesPage from "../../features/homepage/pages/ActivitiesPage";
 import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPage";
-import EventsPage from "../../features/homepage/pages/EventsPages";
 import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
 import SingleContent from "../../features/homepage/components/Contents/SingleContent";
-import SchoolNewsPage from "../../features/homepage/pages/SchoolNewsPage";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
@@ -69,7 +66,6 @@ function App() {
         <Route path="/dashboard/manage-banners" element={<SlidePage />} />
         <Route path="/dashboard/student" element={<StudentPage />} />
         <Route path="/dashboard/staff" element={<StaffPage />} />
-
         {/* Protected Route  */}
         <Route
           element={
@@ -78,13 +74,7 @@ function App() {
         >
           <Route path="/dashboard/users" element={<UserPage />} />
         </Route>
-        {/* <Route element={<RequireAuth allowedRoles={["SUPER-ADMIN", "IT"]} />}>
-          <Route path="/dashboard/roles" element={<RolePage />} />
-        </Route> */}
-
         {/* Protected Route  */}
-
-        <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route path="/server-error" element={<ServerErrorPage />} />
       {/*   homepage route */}
@@ -100,18 +90,13 @@ function App() {
         <Route path="/schoolnews" element={<ListAllContentNews />} />
         <Route path="/schoolevents" element={<ListAllContentEvents />} />
 
-        <Route path="*" element={<NotFound />} />
         {/* contents */}
         <Route path="/event/:id" element={<SingleContent />} />
         <Route path="/new/:id" element={<SingleContent />} />
         <Route path="/content/:id" element={<SingleContent />} />
-        <Route path="*" element={<NotFound />} />
         {/* Teams*/}
         <Route path="/teams/:id" element={<SingleMember />} />
       </Route>
-
-      <Route path="*" element={<NotFound />} />
-
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>
