@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Config, logout, setAccessToken, setRefreshToken } from "./helper";
+import { message } from "antd";
 const BASE_URL = Config.base_url;
 export const request = async (
   url = "",
@@ -58,6 +59,8 @@ export const request = async (
         break;
       case 403:
         console.error("Forbidden: " + error.message);
+        message.error("Forbidden Denied: " + error.message);
+        logout();
         break;
       case 404:
         console.error("Not Found: " + error.message);
@@ -67,6 +70,7 @@ export const request = async (
         break;
       case 500:
         window.location.href = "/server-error";
+        logout();
         console.error("Internal Server Error: " + error.message);
         break;
       default:
