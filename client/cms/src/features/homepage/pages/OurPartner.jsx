@@ -4,7 +4,6 @@ import OurPartnerImage from "../images/OurPartner.png";
 const OurPartner = () => {
   return (
     <div>
-      {" "}
       <div className="  flex flex-col items-center ">
         <img
           className="w-[100%] h-[130px] "

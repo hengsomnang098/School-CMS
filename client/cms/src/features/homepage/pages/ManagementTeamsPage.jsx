@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import useFetchTeams from "../hooks/useFetchTeams";
-import TeamCard from "../components/ManagementTeams/TeamsCard";
+import TeamCard from "../components/ManagementTeams/TeamsCardPage";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
 
 const ManagementTeamsPage = () => {
-  const pageSize = 12; // Number of items per page
-  const [page, setPage] = useState(1); // Current page number
+  const pageSize = 12;
+  const [page, setPage] = useState(1);
   const { teamMembers, loading, error, fetchTeams } = useFetchTeams();
 
   useEffect(() => {
     fetchTeams(page, pageSize);
   }, [page, pageSize, fetchTeams]);
 
-  // Function to fetch data for the next page
   const nextPage = () => {
     setPage(page + 1);
   };
 
-  // Function to fetch data for the previous page
   const prevPage = () => {
     if (page > 1) {
       setPage(page - 1);
@@ -41,7 +39,6 @@ const ManagementTeamsPage = () => {
     );
   }
 
-  // Calculate total pages (assumes you have a way to get total items)
   const totalPages = Math.ceil(teamMembers.length / pageSize);
 
   return (

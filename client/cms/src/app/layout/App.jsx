@@ -20,12 +20,9 @@ import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage
 
 // homepage import --------------
 import Home from "../../features/homepage/pages/Home";
-import About from "../../features/homepage/pages/About";
+import AboutPage from "../../features/homepage/pages/AboutPage";
 import Contact from "../../features/homepage/pages/Contact";
-import OurProgramsPage from "../../features/homepage/pages/OurProgramsPage";
 import Layout from "../../features/homepage/layout/Layout";
-import Admission from "../../features/homepage/pages/Admission";
-import ActivitiesPage from "../../features/homepage/pages/ActivitiesPage";
 import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPage";
 import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
 import SingleContent from "../../features/homepage/components/Contents/SingleContent";
@@ -81,12 +78,11 @@ function App() {
       <Route element={<Layout />}>
         {/* pages*/}
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/ourprograms" element={<OurProgramsPage />} />
+
         <Route path="/managementteams" element={<ManagementTeamsPage />} />
-        <Route path="/activities" element={<ActivitiesPage />} />
-        <Route path="/admission" element={<Admission />} />
+
         <Route path="/schoolnews" element={<ListAllContentNews />} />
         <Route path="/schoolevents" element={<ListAllContentEvents />} />
 

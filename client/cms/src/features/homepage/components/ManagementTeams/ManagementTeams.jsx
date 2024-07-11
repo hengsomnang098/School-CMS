@@ -34,7 +34,9 @@ const ManagementTeams = () => {
       {" "}
       <div className="flex items-center mb-5">
         <div className="flex-grow  border-t-[6px] ml-8 border-black"></div>
-        <h2 className="text-4xl font-bold mx-8">MANAGEMENT TEAMS</h2>
+        <h2 className="font-bold mx-4 text-2xl md:text-4xl md:mx-8">
+          MANAGEMENT TEAMS
+        </h2>
         <div className="flex-grow border-t-[6px] mr-8 border-black"></div>
       </div>
       <div className="bg-green-50 pt-16">

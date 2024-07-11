@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { FaWindowClose } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { CiLink } from "react-icons/ci";
 
 const SchoolEventPopupMobile = ({ content, onClose }) => {
-  const title = content?.title || "";
-  const thumbnail = content?.thumbnail || "";
-  const maxLengthTitle = 130;
-
-  const truncatedTitle =
-    title.length > maxLengthTitle
-      ? title.substring(0, maxLengthTitle) + "..."
-      : title;
-
-  const [timer, setTimer] = useState(10); // Initial timer value in seconds
+  const [timer, setTimer] = useState(10);
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -30,6 +20,11 @@ const SchoolEventPopupMobile = ({ content, onClose }) => {
     };
   }, [onClose]);
 
+  const truncatedTitle =
+    content?.title?.length > 130
+      ? `${content.title.substring(0, 130)}...`
+      : content?.title || "";
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-900 bg-opacity-70 z-50">
       <div className="shadow-md relative w-full max-w-md rounded-lg overflow-hidden">
@@ -39,7 +34,7 @@ const SchoolEventPopupMobile = ({ content, onClose }) => {
         >
           <FaWindowClose />
         </button>
-        <div className="">
+        <div>
           <p className="text-center bg-green-500 font-bold text-2xl py-2 break-words">
             UPCOMING EVENT
           </p>
@@ -47,8 +42,8 @@ const SchoolEventPopupMobile = ({ content, onClose }) => {
             <div className="relative bg-green-50 overflow-hidden">
               <img
                 className="w-full h-full object-cover"
-                src={thumbnail}
-                alt={`Error Image`}
+                src={content.thumbnail}
+                alt="Event Thumbnail"
               />
             </div>
           </Link>

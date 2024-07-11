@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SchoolEventPopup from "./Events/SchoolEventPopup";
-import SchoolEventPopupMobile from "./Events/SchoolEventPopupMobile";
+import SchoolEventPopup from "./Popup/SchoolEventPopup";
+import SchoolEventPopupMobile from "./Popup/SchoolEventPopupMobile";
 import { fetchContentsByArtName } from "../api/Api";
 
 const Popup = () => {
