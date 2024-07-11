@@ -6,16 +6,18 @@ import FooterContact from "../components/Footer/FooterContact";
 const Footer = () => {
   const SouthWestLink = [
     { href: "/", text: "Home" },
-    { href: "/", text: "Admissions" },
-    { href: "/", text: "Programs" },
-    { href: "/", text: "World" },
+    { href: "/", text: "About Us" },
+    { href: "/", text: "Contact Us" },
+    { href: "/", text: "School Events" },
+    { href: "/", text: "School News" },
   ];
 
   const resourceLinks = [
     { href: "/", text: "Home" },
-    { href: "/", text: "Admission" },
-    { href: "/", text: "Programs" },
-    { href: "/", text: "World" },
+    { href: "/about", text: "About Us" },
+    { href: "/contact", text: "Contact Us" },
+    { href: "/schoolevents", text: "School Events" },
+    { href: "/schoolnews", text: "School News" },
   ];
 
   return (

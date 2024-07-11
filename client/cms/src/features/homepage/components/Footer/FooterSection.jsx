@@ -10,9 +10,9 @@ const FooterSection = ({ title, links }) => (
         <li key={index}>
           <a
             href={link.href}
-            className="text-xl flex transition-colors duration-300 hover:text-yellow-300"
+            className="text-xl flex transition-colors duration-300 hover:text-yellow-200 hover:underline"
           >
-            <FaLink className="mr-2 h-7" />
+            <FaLink className="mr-4 h-7" />
             {link.text}
           </a>
         </li>
