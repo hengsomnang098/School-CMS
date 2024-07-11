@@ -25,14 +25,14 @@ const ContentCardMainNews = ({ content, isMain }) => {
     >
       <div
         className={`${
-          isMain ? "w-full h-[400px]" : "w-1/3"
+          isMain ? "w-full h-[420px]" : "w-1/3"
         } hover:scale-105 transition-transform duration-300 cursor-pointer`}
       >
         <Link to={`/new/${content.id}`}>
           <img
             src={thumbnail}
             alt={errorImage}
-            className="w-full h-[400px] drop-shadow-lg border-2 object-cover rounded-t-md bg-green-100"
+            className="w-full h-[420px] drop-shadow-lg border-2  rounded-t-md bg-green-100"
           />
         </Link>
       </div>
@@ -42,7 +42,7 @@ const ContentCardMainNews = ({ content, isMain }) => {
         } tracking-wider pt-4 px-4 break-words bg-white`}
       >
         <h3
-          className="text-xl font-semibold mb-2 h-[50px]"
+          className="text-xl font-semibold mb-2 h-[30px]"
           dangerouslySetInnerHTML={{ __html: truncatedTitle }}
         />
         <p

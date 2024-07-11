@@ -12,7 +12,7 @@ const Home = () => {
     <div className="bg-green-50">
       <Popup />
 
-      <div className="font-khmermont">
+      <div className="font-robot">
         <Events />
       </div>
 
@@ -20,7 +20,7 @@ const Home = () => {
         <News />
       </div>
 
-      <div className="mb-10 font-khmermont">
+      <div className="mb-10 font-robot">
         <ManagementTeams />
       </div>
 

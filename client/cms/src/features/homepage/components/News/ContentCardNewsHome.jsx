@@ -36,7 +36,7 @@ const ContentCardNewsHome = ({ content, isMain }) => {
           <img
             src={thumbnail}
             alt={errorImage}
-            className="w-full h-[200px] object-cover rounded-l-sm bg-green-100 drop-shadow-lg
+            className="w-full h-[200px] rounded-l-sm bg-green-100 drop-shadow-lg
           "
           />
         </Link>
