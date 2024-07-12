@@ -1,4 +1,4 @@
-import { Table, Space, Button, Input } from "antd";
+import { Table, Space, Button, Input, Select } from "antd";
 import { truncate } from "../../../../app/api/config/helper";
 import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 
+const { Option } = Select;
 const ContentTable = () => {
   const { contentStore } = useStore();
   const {
@@ -21,16 +22,25 @@ const ContentTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchText, setSearchText] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   const handleTableChange = (pagination) => {
     setCurrentPage(pagination.current);
     setPageSize(pagination.pageSize);
   };
+
+  const filteredData = sortContentById.filter((item) => {
+    return (
+      item.title.toLowerCase().includes(searchText.toLowerCase()) &&
+      (statusFilter ? item.status === statusFilter : true)
+    );
+  });
   return (
     <>
-      <Input.Search
+     <div className="flex flex-row gap-2 justify-start items-center text-center">
+     <Input.Search
         placeholder="Search Content..."
-        className="xl:w-96 my-5"
+        className="xl:w-56 my-5"
         onSearch={(value) => {
           setSearchText(value);
         }}
@@ -38,10 +48,22 @@ const ContentTable = () => {
           setSearchText(e.target.value);
         }}
       />
+       <Select
+          placeholder="Select Status"
+          className="xl:w-48"
+          onChange={(value) => {
+            setStatusFilter(value);
+          }}
+          allowClear
+        >
+          <Option value="DRAFT">DRAFT</Option>
+          <Option value="PUBLISHED">PUBLISHED</Option>
+        </Select>
+     </div>
       <Table
         width="100%"
         rowKey="id"
-        dataSource={sortContentById}
+        dataSource={filteredData}
         className=" overflow-auto justify-start"
         pagination={{
           current: currentPage,
@@ -56,6 +78,7 @@ const ContentTable = () => {
             title: "Id",
             dataIndex: "id",
             responsive: ["sm"],
+            sorter: (a,b) => a.id - b.id,
             align: "center",
           },
           {
@@ -63,6 +86,7 @@ const ContentTable = () => {
             title: "Name title",
             dataIndex: "title",
             align: "center",
+            sorter: (a, b) => a.title.localeCompare(b.title),
             filteredValue: [searchText],
             onFilter: (value, record) => {
               return record.title.toLowerCase().includes(value.toLowerCase());
@@ -75,6 +99,7 @@ const ContentTable = () => {
             key: "description",
             title: "Description",
             dataIndex: "description",
+            sorter: (a, b) => a.description.localeCompare(b.description),
             responsive: ["sm"],
             align: "center",
             render: (value) => {
@@ -89,6 +114,7 @@ const ContentTable = () => {
             dataIndex: "article",
             responsive: ["sm"],
             align: "center",
+            sorter: (a, b) => a.article.name.localeCompare(b.article.name),
             render: (value) => {
               return value.name;
             },
@@ -129,6 +155,7 @@ const ContentTable = () => {
             title: "Status",
             dataIndex: "status",
             align: "center",
+            sorter: (a, b) => a.status.localeCompare(b.status),
             render: (value, item) => (
               <Space>
                 <Button
