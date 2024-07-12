@@ -1,9 +1,10 @@
 import axios from "axios";
 
-// const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 // const BASE_URL = "http://localhost:8080/api/";
-const BASE_URL = "https://api.southwest-internationalschool.site/api/";
+// const BASE_URL = "https://api.southwest-internationalschool.site/api/";
 // const BASE_URL = "http://194.233.87.193:8080/api/";
+
 export const fetchData = async (endpoint) => {
   try {
     const response = await axios.get(`${BASE_URL}${endpoint}`);
@@ -65,46 +66,6 @@ export const fetchContentsByArticleName = async (articleName) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching contents by article name:", error);
-    throw error;
-  }
-};
-
-export const fetchContentsByArticlesId = async (id) => {
-  try {
-    const response = await axios.get(`${BASE_URL}articles/${id}/contents`);
-    return response.data.object;
-  } catch (error) {
-    console.error(`Error fetching contents for article ID ${id}:`, error);
-    throw error;
-  }
-};
-
-export const fetchMediaListByContentsId = async (id) => {
-  try {
-    const response = await fetch(`${BASE_URL}album/content/${id}`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const albumList = await response.json();
-    return albumList;
-  } catch (error) {
-    console.error("Error fetching media list:", error.message);
-    return [];
-  }
-};
-//get latest event on pop up screen
-export const fetchLatestEvent = async () => {
-  try {
-    const response = await fetch("your_api_endpoint_here");
-    if (!response.ok) {
-      throw new Error("Failed to fetch latest event");
-    }
-    const eventData = await response.json();
-    return eventData;
-  } catch (error) {
-    console.error("Error fetching latest event:", error);
     throw error;
   }
 };

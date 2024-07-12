@@ -4,7 +4,6 @@ import Spinner from "../components/Spinner";
 import HexagonSection from "../components/About/HexagonSection";
 import GetContentsByAbout from "../components/About/GetContentsByAbout";
 import AboutTitle from "../components/About/AboutTitle";
-import AboutDescription from "../components/About/AboutDescription";
 import AlbumSection from "../components/About/AlbumSection";
 
 const AboutPage = () => {
@@ -56,7 +55,7 @@ const AboutPage = () => {
         <AboutTitle />
         <div className="max-w-[1200px] mx-auto">
           <GetContentsByAbout />
-          <AboutDescription description={content.description} />
+          {/* <AboutDescription description={content.description} /> */}
         </div>
       </div>
       <div className="h-auto bg-green-200">
