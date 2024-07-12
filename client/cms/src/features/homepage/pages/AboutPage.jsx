@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchData } from "../api/Api";
 import Spinner from "../components/Spinner";
 import HexagonSection from "../components/About/HexagonSection";

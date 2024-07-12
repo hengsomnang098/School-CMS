@@ -43,13 +43,9 @@ export default defineConfig({
           ],
           // Split homepage pages into a separate chunk
           homepage: [
-            "./src/features/homepage/pages/NotFound",
             "./src/features/homepage/pages/Home",
-            "./src/features/homepage/pages/About",
+            "./src/features/homepage/pages/AboutPage",
             "./src/features/homepage/pages/Contact",
-            "./src/features/homepage/pages/OurProgramsPage",
-            "./src/features/homepage/pages/Admission",
-            "./src/features/homepage/pages/ActivitiesPage",
             "./src/features/homepage/pages/ManagementTeamsPage",
             "./src/features/homepage/pages/EventsPages.jsx",
             "./src/features/homepage/pages/SchoolNewsPage",
