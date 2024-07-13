@@ -15,25 +15,6 @@ export const fetchData = async (endpoint) => {
   }
 };
 
-export const fetchArticlesByCatName = async (categoryName) => {
-  try {
-    const allArticlesResponse = await fetchData("articles");
-
-    if (allArticlesResponse && Array.isArray(allArticlesResponse.object)) {
-      const filteredArticles = allArticlesResponse.object.filter(
-        (article) => article.category.nameEn === categoryName
-      );
-      return { object: filteredArticles };
-    } else {
-      console.error("Unexpected response format:", allArticlesResponse);
-      throw new Error("Unexpected response format");
-    }
-  } catch (error) {
-    console.error("Error fetching articles by category name:", error.message);
-    throw error;
-  }
-};
-
 export const fetchContentsByArtName = async (articleName) => {
   try {
     const allContentsResponse = await fetchData("contents/status");

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner";
-import ContentCardE from "./ContentCardEventHome"; // Assuming ContentCardE is exported properly
+import ContentCardE from "./ContentCardEventHome";
 
 const GetContentsByEvents = () => {
   const [contents, setContents] = useState([]);
@@ -19,7 +19,6 @@ const GetContentsByEvents = () => {
         const response = await fetchContentsByArtName(articleName);
 
         if (response && Array.isArray(response.object)) {
-          // Sort the contents by id in descending order and limit to 8
           const sortedContents = response.object
             .sort((a, b) => b.id - a.id)
             .slice(0, 8);
