@@ -1,16 +1,21 @@
 import React from "react";
+import { useInView } from "react-intersection-observer";
 
 const GetContentsByAbout = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <div className="mb-5">
-        {" "}
         <div>
           <p className="text-lg text-center leading-relaxed">
-            Welcome to Southwest International School At Southwest International
-            School, we are committed to nurturing the minds of tomorrow's
-            leaders through excellence in education and a supportive learning
-            environment. Our institution stands as a beacon of academic
+            Welcome to Southwest International School. At Southwest
+            International School, we are committed to nurturing the minds of
+            tomorrow's leaders through excellence in education and a supportive
+            learning environment. Our institution stands as a beacon of academic
             achievement, fostering a community where each student's potential is
             cultivated and celebrated. Mission Our mission at Southwest
             International School is to inspire a passion for learning, foster
@@ -18,9 +23,14 @@ const GetContentsByAbout = () => {
             citizens.
           </p>
         </div>
-      </div>{" "}
+      </div>
       <div className="flex flex-row max-w-screen-xl justify-between">
-        <div className="flex flex-col w-[550px] shadow-lg shadow-gray-900 p-4 hover:scale-105 hover:shadow-2xl hover:shadow-green-700  h-auto">
+        <div
+          ref={ref}
+          className={`flex flex-col w-[550px] shadow-lg shadow-gray-900 p-4 hover:scale-105 hover:shadow-2xl hover:shadow-green-700 h-auto transition-transform duration-500 ${
+            inView ? "slice-in-left" : "opacity-0"
+          }`}
+        >
           <h3 className="text-2xl font-bold">History and Legacy</h3>
           <p>
             Southwest International School was founded on the principles of
@@ -41,8 +51,13 @@ const GetContentsByAbout = () => {
             student on their educational journey.
           </p>
         </div>
-        <div className="flex flex-col w-[550px] shadow-lg shadow-gray-900 p-4 hover:scale-105 hover:shadow-2xl hover:shadow-green-700 h-auto">
-          <h3 className="text-2xl font-bold"> Envision</h3>
+        <div
+          ref={ref}
+          className={`flex flex-col w-[550px] shadow-lg shadow-gray-900 p-4 hover:scale-105 hover:shadow-2xl hover:shadow-green-700 h-auto transition-transform duration-500 ${
+            inView ? "slice-in-right" : "opacity-0"
+          }`}
+        >
+          <h3 className="text-2xl font-bold">Envision</h3>
           <p>
             We strive to provide a rigorous and comprehensive education that
             prepares students for success in a rapidly changing world. Vision

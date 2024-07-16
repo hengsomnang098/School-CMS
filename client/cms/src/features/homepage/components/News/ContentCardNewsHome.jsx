@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 const ContentCardNewsHome = ({ content, isMain }) => {
   const title = content?.title || "";
@@ -20,24 +21,29 @@ const ContentCardNewsHome = ({ content, isMain }) => {
       ? `${title.substring(0, maxLengthTitle)}...`
       : title;
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   return (
     <div
-      className={`flex ${
-        isMain ? "flex-col" : ""
-      } border rounded-sm slice-in-from-right`}
+      ref={ref}
+      className={`flex ${isMain ? "flex-col" : ""} border rounded-sm ${
+        inView ? "slice-in-right" : "opacity-0"
+      }`}
       style={{ maxWidth: "100%" }}
     >
       <div
         className={`${
-          isMain ? "w-full " : "w-2/5"
+          isMain ? "w-full" : "w-2/5"
         } hover:scale-105 transition-transform duration-300 drop-shadow-lg cursor-pointer`}
       >
         <Link to={`/content/${content.id}`}>
           <img
             src={thumbnail}
             alt={errorImage}
-            className="w-full h-[200px] rounded-l-sm bg-green-100 drop-shadow-lg
-          "
+            className="w-full h-[200px] rounded-l-sm bg-green-100 drop-shadow-lg"
           />
         </Link>
       </div>
@@ -56,12 +62,12 @@ const ContentCardNewsHome = ({ content, isMain }) => {
           Published Date: {content.createdAt}
         </p>
       </div>
-      <div className="relative ">
+      <div className="relative">
         <Link
           to={`/new/${content.id}`}
           className="absolute w-24 mr-5 mb-3 bottom-0 end-0 text-green-600 drop-shadow-lg underline"
         >
-          <p className="text-right  hover:translate-y-[-6px] hover:scale-x-100  ">
+          <p className="text-right hover:translate-y-[-6px] hover:scale-x-100">
             View Detail
           </p>
         </Link>

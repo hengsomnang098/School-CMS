@@ -19,6 +19,15 @@ export default {
       // => @media (min-width: 1536px) { ... }
     },
     extend: {
+      keyframes: {
+        slideDown: {
+          "0%": { maxHeight: "0", opacity: "1" },
+          "100%": { maxHeight: "auto", opacity: "1" },
+        },
+      },
+      animation: {
+        slideDown: "slideDown 0.8s ease-in-out forwards",
+      },
       fontFamily: {
         khmermont: ["Khmer OS Battambang", "serif", "Roboto"],
         robot: ["Roboto", "serif"],

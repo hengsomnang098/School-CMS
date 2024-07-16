@@ -42,7 +42,7 @@ const HexagonSection = () => {
   ];
 
   const toggleActive = (index) => {
-    setActiveIndex(activeIndex === index ? null : index); // Toggle active index
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   const closeActive = () => {
@@ -59,7 +59,7 @@ const HexagonSection = () => {
           <div key={index} className="relative">
             <div className="flex flex-col justify-centerjustify-center items-center ">
               <div
-                className="hexagon mx-4 cursor-pointer"
+                className="hexagon mx-4 cursor-pointer hover:scale-115"
                 onClick={() => toggleActive(index)}
               >
                 <img src={hexagon.image} alt={hexagon.title} />

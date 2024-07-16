@@ -3,6 +3,7 @@ import { fetchData } from "../api/Api";
 import ContactForm from "../components/Contact/ContactForm";
 import ContactInformation from "../components/Contact/ContactInformation";
 import TitleComponent from "../components/Contact/TitleComponent";
+import { useInView } from "react-intersection-observer";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,10 @@ const Contact = () => {
     message: "",
   });
   const [contact, setContact] = useState(null);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
 
   useEffect(() => {
     const fetchContactData = async () => {
@@ -39,7 +44,7 @@ const Contact = () => {
     };
 
     fetchContactData();
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,7 +77,12 @@ const Contact = () => {
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-yellow-200 shadow-md rounded-lg overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="p-6">
+            <div
+              ref={ref}
+              className={`p-6 transition-transform duration-2000 md:col-span-1 ${
+                inView ? "slice-in-left" : "opacity-0"
+              }`}
+            >
               <h2 className="text-3xl text-center font-semibold mb-6">
                 Any Comment
               </h2>
@@ -87,7 +97,10 @@ const Contact = () => {
                 handleSubmit={handleSubmit}
               />
             </div>
-            <ContactInformation truncatedDescription={truncatedDescription} />
+            <ContactInformation
+              truncatedDescription={truncatedDescription}
+              className="md:col-span-1"
+            />
           </div>
         </div>
       </div>

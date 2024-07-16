@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 const ContentCardMainNews = ({ content, isMain }) => {
   const { thumbnail, title, description } = content;
@@ -17,11 +18,17 @@ const ContentCardMainNews = ({ content, isMain }) => {
       ? `${title.substring(0, maxLengthTitle)}...`
       : title;
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   return (
     <div
-      className={`flex ${
-        isMain ? "flex-col" : "mb-4"
-      } rounded-lg slice-in-left`}
+      ref={ref}
+      className={`flex ${isMain ? "flex-col" : "mb-4"} rounded-lg ${
+        isMain && inView ? "slice-in-left" : "opacity-0"
+      }`}
     >
       <div
         className={`${
@@ -32,7 +39,7 @@ const ContentCardMainNews = ({ content, isMain }) => {
           <img
             src={thumbnail}
             alt={errorImage}
-            className="w-full h-[420px] drop-shadow-lg border-2  rounded-t-md bg-green-100"
+            className="w-full h-[420px] drop-shadow-lg border-2 rounded-t-md bg-green-100"
           />
         </Link>
       </div>
@@ -57,7 +64,7 @@ const ContentCardMainNews = ({ content, isMain }) => {
             to={`/content/${content.id}`}
             className="absolute mr-5 mb-3 bottom-0 end-0 text-green-600 drop-shadow-lg underline"
           >
-            <p className="text-right hover:translate-y-[-6px] hover:scale-x-100  ">
+            <p className="text-right hover:translate-y-[-6px] hover:scale-x-100">
               View Detail
             </p>
           </Link>

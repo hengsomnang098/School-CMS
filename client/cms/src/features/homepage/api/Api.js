@@ -1,17 +1,38 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
-// const BASE_URL = "http://localhost:8080/api/";
-// const BASE_URL = "https://api.southwest-internationalschool.site/api/";
-// const BASE_URL = "http://194.233.87.193:8080/api/";
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://api.southwest-internationalschool.site/api/";
+
+const GENERIC_ERROR_MESSAGE =
+  "An error occurred while fetching data. Please try again later.";
 
 export const fetchData = async (endpoint) => {
   try {
     const response = await axios.get(`${BASE_URL}${endpoint}`);
     return response.data;
   } catch (error) {
-    console.error(`Error fetching data from ${endpoint}:`, error);
-    throw error;
+    console.error(`Error fetching data from ${endpoint}:`, error.message);
+    throw new Error(GENERIC_ERROR_MESSAGE);
+  }
+};
+
+export const fetchArticlesByCatName = async (categoryName) => {
+  try {
+    const allArticlesResponse = await fetchData("articles");
+
+    if (allArticlesResponse && Array.isArray(allArticlesResponse.object)) {
+      const filteredArticles = allArticlesResponse.object.filter(
+        (article) => article.category.nameEn === categoryName
+      );
+      return { object: filteredArticles };
+    } else {
+      console.error("Unexpected response format");
+      throw new Error(GENERIC_ERROR_MESSAGE);
+    }
+  } catch (error) {
+    console.error("Error fetching articles by category name:", error.message);
+    throw new Error(GENERIC_ERROR_MESSAGE);
   }
 };
 
@@ -25,18 +46,23 @@ export const fetchContentsByArtName = async (articleName) => {
       );
       return { object: filteredContents };
     } else {
-      console.error("Unexpected response format:", allContentsResponse);
-      throw new Error("Unexpected response format");
+      console.error("Unexpected response format");
+      throw new Error(GENERIC_ERROR_MESSAGE);
     }
   } catch (error) {
     console.error("Error fetching contents by article name:", error.message);
-    throw error;
+    throw new Error(GENERIC_ERROR_MESSAGE);
   }
 };
 
 export const fetchTeams = async (page, pageSize) => {
   const endpoint = `teams?page=${page}&pageSize=${pageSize}`;
-  return fetchData(endpoint);
+  try {
+    return await fetchData(endpoint);
+  } catch (error) {
+    console.error("Error fetching teams:", error.message);
+    throw new Error(GENERIC_ERROR_MESSAGE);
+  }
 };
 
 export const fetchContentsByArticleName = async (articleName) => {
@@ -46,7 +72,7 @@ export const fetchContentsByArticleName = async (articleName) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching contents by article name:", error);
-    throw error;
+    console.error("Error fetching contents by article name:", error.message);
+    throw new Error(GENERIC_ERROR_MESSAGE);
   }
 };

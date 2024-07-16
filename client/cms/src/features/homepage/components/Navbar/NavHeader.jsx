@@ -11,7 +11,7 @@ const NavHeader = () => {
         <img
           src={logoLarge}
           alt="Southwest International School"
-          className="hidden lg:block h-12"
+          className="hidden lg:block h-14"
         />
         <img
           src={logoSmall}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchData } from "../api/Api";
 import Spinner from "../components/Spinner";
 import HexagonSection from "../components/About/HexagonSection";
@@ -55,10 +55,9 @@ const AboutPage = () => {
         <AboutTitle />
         <div className="max-w-[1200px] mx-auto">
           <GetContentsByAbout />
-          {/* <AboutDescription description={content.description} /> */}
         </div>
       </div>
-      <div className="h-auto bg-green-200">
+      <div className="h-auto bg-green-300">
         <HexagonSection />
       </div>
       {Array.isArray(content.albumList) && content.albumList.length > 0 && (

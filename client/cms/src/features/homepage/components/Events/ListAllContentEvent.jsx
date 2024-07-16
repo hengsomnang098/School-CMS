@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContentsByArtName } from "../../api/Api";
 import ContentCardE from "../Events/ContentCardE";
-import Pagination from "../Pagination"; // Adjust the path according to your file structure
+import Pagination from "../Pagination";
 import Spinner from "../Spinner";
 
 const ListAllContentEvents = () => {
@@ -58,7 +58,7 @@ const ListAllContentEvents = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-600">No articles found.</p>
+          <p className="text-center text-gray-600">No School Events found.</p>
         )}
         {totalPages > 1 && (
           <Pagination

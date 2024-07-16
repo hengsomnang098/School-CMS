@@ -1,9 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 const TeamCardHome = ({ member }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   return (
-    <div className="w-full sm:w-[250px]">
+    <div
+      ref={ref}
+      className={`${
+        inView ? "slice-in-right" : "opacity-0"
+      } w-full sm:w-[250px]`}
+    >
       <Link to={`/teams/${member.id}`}>
         <div className="bg-white shadow-xl rounded-sm overflow-hidden">
           <img

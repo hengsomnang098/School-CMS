@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
-import { fetchData } from "../api/Api"; // Assuming fetchData is a function to fetch data
+import React, { useState, useEffect } from "react";
+import { fetchData } from "../api/Api";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Spinner from "./Spinner";
+import { InView } from "react-intersection-observer";
+import Spinner from "../components/Spinner";
+import { MdNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
 
 const BannerCard = () => {
   const [slides, setSlides] = useState([]);
@@ -30,7 +33,7 @@ const BannerCard = () => {
 
   if (loading) {
     return (
-      <div className="h-24">
+      <div className="h-24 flex items-center justify-center">
         <Spinner />
       </div>
     );
@@ -58,11 +61,18 @@ const BannerCard = () => {
       >
         {slides.map((slide) => (
           <div key={slide.id}>
-            <img
-              src={slide.imageUrl}
-              alt={slide.name}
-              className="w-full h-[200px] md:h-[300px] lg:h-[500px] "
-            />
+            <InView triggerOnce={true} threshold={0.5}>
+              {({ inView, ref }) => (
+                <img
+                  ref={ref}
+                  src={slide.imageUrl}
+                  alt={slide.name}
+                  className={`w-full h-[200px] md:h-[300px] lg:h-[500px] ${
+                    inView ? "animate-fadeIn" : ""
+                  }`}
+                />
+              )}
+            </InView>
           </div>
         ))}
       </Carousel>

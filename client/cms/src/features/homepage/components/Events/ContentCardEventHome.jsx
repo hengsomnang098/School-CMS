@@ -48,10 +48,10 @@ const ContentCardE = ({ content }) => {
         </Link>
       </div>
       <div className="p-2 mt-4 w-full">
-        <p className=" font-bold text-lg ml-2 mb-1 h-[30px] break-words text-center">
+        <p className=" font-bold text-lg ml-2 mb-1 h-[30px] font-khmermont break-words text-center">
           {truncatedTitle}
         </p>
-        <p className="text-sm text-gray-700 mb-2 p-2 ml-1 h-[78px] break-words text-center">
+        <p className="text-sm text-gray-700 mb-2 p-2 font-khmermont ml-1 h-[78px] break-words text-center">
           <span dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
         </p>
         <Link to={`/event/${content.id}`} className="flex justify-center">

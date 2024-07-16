@@ -1,7 +1,6 @@
 // FooterSection.jsx
 import React from "react";
-import { FaLink } from "react-icons/fa";
-import LogoSmall from "../../../../assets/SISlogo2.png";
+import LogoSmall from "../../assets/SISlogo2.png";
 import { MdEmail } from "react-icons/md";
 import { MdLocationPin } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";

@@ -79,11 +79,12 @@ const SingleContent = () => {
             {content.albumList && content.albumList.length > 0 && (
               <>
                 <h1 className="text-xl font-khmermont pb-6">Album</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+                <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
                   {content.albumList.map((album) => (
                     <div
                       key={album.id}
-                      className="bg-white rounded-lg size-64 overflow-hidden shadow-lg"
+                      className="bg-white  rounded-lg size-84  lg:size-64 overflow-hidden shadow-lg"
                     >
                       <img
                         src={album.url}

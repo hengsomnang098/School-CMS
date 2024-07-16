@@ -14,7 +14,8 @@ const Footer = () => {
   ];
 
   return (
-    <div className="text-white py-5 bg-[#0C3B2E]">
+    // <div className="text-white py-5 bg-[#0C3B2E]  bottom-0 w-full">
+    <div className="text-white py-5 bg-gradient-to-br from-cyan-800 to-yellow-500 via-green-400 via-70% bottom-0 w-full">
       <div className="px-4 pt-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4">
         <div className="grid mb-8 lg:grid-cols-4 gap-5">
           <div className="grid grid-cols-2 gap-5 lg:col-span-2 md:grid-cols-2">

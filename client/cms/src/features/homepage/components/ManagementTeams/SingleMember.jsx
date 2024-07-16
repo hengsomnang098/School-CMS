@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../../api/Api";
 import Spinner from "../Spinner";
+import { useInView } from "react-intersection-observer";
 
 const SingleMember = () => {
   const { id } = useParams();
 
   const [member, setMember] = useState({});
   const [loading, setLoading] = useState(true);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
 
   useEffect(() => {
     const fetchMember = async () => {
@@ -33,17 +38,27 @@ const SingleMember = () => {
   }
 
   return (
-    <div className="bg-green-100 py-10">
+    <div className={`bg-green-100 py-10 `}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-12">
-          <div className="bg-white shadow-xl rounded-lg overflow-hidden w-full md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div
+            className={`bg-white shadow-xl rounded-lg overflow-hidden w-full md:w-1/3 transform transition duration-500 hover:scale-105 ${
+              inView ? "slice-in-left" : "opacity-0"
+            } `}
+            ref={ref}
+          >
             <img
               className="w-full h-auto object-cover"
               src={member.photoUrl}
               alt={member.name}
             />
           </div>
-          <div className="w-full md:w-2/3">
+          <div
+            className={`w-full md:w-2/3 ${
+              inView ? "slice-in-right" : "opacity-0"
+            } `}
+            ref={ref}
+          >
             <h2 className="text-4xl font-bold mt-4 mb-6 text-center md:text-left">
               {member.name}
             </h2>
