@@ -60,7 +60,7 @@ const SingleContent = () => {
                       className="bg-white rounded-lg overflow-hidden shadow-lg"
                     >
                       <img
-                        src={album.mediaUrl}
+                        src={album.url}
                         alt={`Media for ${content.title}`}
                         className="w-full h-auto object-cover"
                       />
