@@ -45,7 +45,9 @@ export default class UserStore {
         setRoles(res.object.roles);
         runInAction(() => {
           this.loading = false;
+          localStorage.setItem("selectedKey","/dashboard")
         });
+        
       }
     }
     runInAction(() => {

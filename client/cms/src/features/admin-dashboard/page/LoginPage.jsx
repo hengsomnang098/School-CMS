@@ -82,6 +82,7 @@ const LoginPage = () => {
 
             <Form.Item>
               <Button
+              loading={userStore.loading}
                 size="large"
                 icon={<LoginOutlined />}
                 type="primary"

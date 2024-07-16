@@ -23,9 +23,14 @@ function MenuList() {
   const onClickMenu = (event) => {
     if (event.key === "logout") {
       logout();
+      navigate("login");
     }
-    cardStore.selectKey(event.key); // Update the store with the selected key
-    navigate(event.key);
+    else
+    {
+      cardStore.selectKey(event.key); // Update the store with the selected key
+      navigate(event.key);
+    }
+    
   };
 
   function getItem(label, key, icon, children) {

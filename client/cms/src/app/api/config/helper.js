@@ -118,7 +118,9 @@ export const logout = () => {
   localStorage.setItem("token", "");
   localStorage.setItem("refresh_token", "");
   localStorage.setItem("roles", "");
-  window.location.href = "login";
+  localStorage.setItem("selectedKey", "");
+  localStorage.setItem("language", "");
+  // window.location.href = "./login";
 };
 
 export const isLogin = () => {
