@@ -10,12 +10,13 @@ import ImageModal from "./ImageModal";
 
 const ImagePage = () => {
   const { mediaStore } = useStore();
-  const { getList, loading } = mediaStore;
+  const { getList, loading,getAll } = mediaStore;
   const { contentId } = useParams();
 
   useEffect(() => {
-    getList(contentId);
-  }, [contentId, getList]);
+    contentId ? getList(contentId) : getAll() ;
+    
+  }, [contentId, getAll, getList]);
 
   return (
     <MainPage loading={loading}>

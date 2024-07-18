@@ -29,7 +29,12 @@ const ImageTable = () => {
             responsive: ["sm"],
             align: "center",
           },
-
+          {
+            key:"contentId",
+            title: "Content ID",
+            dataIndex: "contentId",
+            align: "center",
+          },
           {
             key: "url",
             title: "Image",

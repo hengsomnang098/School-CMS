@@ -14,12 +14,28 @@ export default class MediaStore {
     makeAutoObservable(this);
   }
 
+  getAll = async () => {
+    this.loading = true;
+    const res = await request("albums", "get");
+    if (res) {
+      runInAction(() => {
+        this.medias = res;
+        this.loading = false;
+      });
+    } else {
+      runInAction(() => {
+        this.medias = [];
+        this.loading = false;
+      });
+    }
+  }
+
   getList = async (contentId) => {
     var param = {
       contentId: contentId,
     };
     this.loading = true;
-    const res = await request(`albums`, "get", param);
+    const res = await request(`albums/all`, "get", param);
     if (res) {
       runInAction(() => {
         this.medias = res.object;
@@ -115,7 +131,7 @@ export default class MediaStore {
           runInAction(() => {
             this.loading = true;
             message.success("Delete Sucessful");
-            this.getList(item.contentId, "");
+            item.contentId ? this.getList(item.contentId, "") : this.getAll();
             this.loading = false;
           });
         }
@@ -145,7 +161,5 @@ export default class MediaStore {
       });
     }
   };
-  get countMedia() {
-    return this.medias.length;
-  }
+
 }

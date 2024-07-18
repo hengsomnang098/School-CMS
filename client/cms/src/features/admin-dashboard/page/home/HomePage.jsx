@@ -34,7 +34,7 @@ const HomePage = () => {
   useEffect(() => {
     slideStore.getList();
     categoryStore.getList();
-    mediaStore.getList("");
+    mediaStore.getAll();
     articleStore.articleList();
     contentStore.getList();
     managementTeamStore.getList();
@@ -184,9 +184,10 @@ const HomePage = () => {
           />
         ) : null}
         <HomeCard
-          // menukey={"/dashboard/users"}
+          menukey={"/dashboard/content"}
           title={"Total Albums"}
-          value={100}
+          to="content/albums"
+          value={mediaStore.medias ? mediaStore.medias.length :0}
           icon={
             <PictureTwoTone
               style={{

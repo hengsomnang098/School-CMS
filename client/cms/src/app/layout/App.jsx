@@ -59,7 +59,10 @@ function App() {
           path="/dashboard/content/albums/:contentId"
           element={<ImagePage />}
         />
-
+        <Route
+          path="/dashboard/content/albums"
+          element={<ImagePage />}
+        />
         <Route path="/dashboard/manage-banners" element={<SlidePage />} />
         <Route path="/dashboard/student" element={<StudentPage />} />
         <Route path="/dashboard/staff" element={<StaffPage />} />
