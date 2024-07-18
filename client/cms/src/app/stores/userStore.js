@@ -68,6 +68,10 @@ export default class UserStore {
     }
   };
 
+  get sortUserById (){
+    return this.user? this.user.slice().sort((a, b) => b.id-a.id):[]
+  }
+
   handleClearImage = () => {
     this.fileSelected = null;
     this.filePreview = null;

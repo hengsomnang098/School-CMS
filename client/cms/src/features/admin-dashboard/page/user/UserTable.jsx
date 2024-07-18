@@ -11,7 +11,7 @@ import {
 
 const UserTable = () => {
   const { userStore } = useStore();
-  const { user, handleEdit, handleStatus, loading } = userStore;
+  const { sortUserById, handleEdit, handleStatus, loading } = userStore;
   const { t } = useTranslation("global");
 
   return (
@@ -19,7 +19,7 @@ const UserTable = () => {
       <Table
         className="w-full h-full overflow-auto"
         rowKey="id"
-        dataSource={user}
+        dataSource={sortUserById}
         pagination={{
           pageSize: 10,
         }}

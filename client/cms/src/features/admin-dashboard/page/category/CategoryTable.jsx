@@ -7,13 +7,13 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const CategoryTable = () => {
   const { t } = useTranslation("global");
   const { categoryStore } = useStore();
-  const { handleClickEdit, categories, handleDelete } = categoryStore;
+  const { handleClickEdit, sortCategoryById, handleDelete } = categoryStore;
   return (
     <>
       <Table
         className=" overflow-auto p-0 m-0 h-full"
         rowKey="id"
-        dataSource={categories}
+        dataSource={sortCategoryById}
         pagination={{
           pageSize: 5,
         }}

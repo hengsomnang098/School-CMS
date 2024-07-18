@@ -5,14 +5,14 @@ import { useTranslation } from "react-i18next";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const ArticleTable = () => {
   const { articleStore } = useStore();
-  const { articles, handleClickEdit, handleDelete, loading } = articleStore;
+  const { sortByArticleId, handleClickEdit, handleDelete, loading } = articleStore;
   const { t } = useTranslation("global");
   return (
     <>
       <Table
         className="overflow-auto h-full w-full p-0 m-0"
         rowKey="id"
-        dataSource={articles}
+        dataSource={sortByArticleId}
         pagination={{
           pageSize: 5,
         }}

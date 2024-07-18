@@ -23,6 +23,14 @@ export default class StudentStore {
       });
     }
   };
+  
+  get sortstudenById(){
+    return this.students
+      ? this.students.slice().sort((a, b) => {
+          return b.id - a.id;
+        })
+      : [];
+  }
 
   handleClearValue = () => {
     this.formValues = {

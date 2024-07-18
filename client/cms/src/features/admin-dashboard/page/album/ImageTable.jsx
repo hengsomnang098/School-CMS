@@ -4,13 +4,25 @@ import { useStore } from "../../../../app/stores/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined } from "@ant-design/icons";
+import { useState } from "react";
+
 const ImageTable = () => {
   const { mediaStore } = useStore();
   const { medias, handleClickDelete, loading } = mediaStore;
   const { t } = useTranslation("global");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const handleTableChange = (pagination) => {
+    setCurrentPage(pagination.current);
+    setPageSize(pagination.pageSize);
+  };
+
   return (
     <div>
       <Table
+      
         rowKey="id"
         dataSource={medias}
         style={{
@@ -19,8 +31,12 @@ const ImageTable = () => {
           padding: 0,
         }}
         pagination={{
-          pageSize: 5,
+          current: currentPage,
+          pageSize: pageSize,
+          showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
+          showQuickJumper: true,
         }}
+        onChange={handleTableChange}
         columns={[
           {
             key: "id",
@@ -34,6 +50,7 @@ const ImageTable = () => {
             title: "Content ID",
             dataIndex: "contentId",
             align: "center",
+            sorter: (a, b) => a.contentId - b.contentId,
           },
           {
             key: "url",

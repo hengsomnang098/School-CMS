@@ -24,6 +24,14 @@ export default class SlideStore {
     });
   };
 
+  get sortSlideById() {
+    return this.slides
+    ? this.slides.sort((a, b) => {
+        return b.id - a.id;
+      })
+    : [];
+  }
+
   handleChangeFile = (e) => {
     runInAction(() => {
       var file = e.target.files[0];

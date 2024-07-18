@@ -8,13 +8,13 @@ import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 const SlideTable = () => {
   const { t } = useTranslation("global");
   const { slideStore } = useStore();
-  const { slides, handleEdit, handleDelete, loading } = slideStore;
+  const { sortSlideById, handleEdit, handleDelete, loading } = slideStore;
   return (
     <>
       <Table
         className="h-[80vh] overflow-auto p-0 m-0"
         rowKey="id"
-        dataSource={slides}
+        dataSource={sortSlideById}
         pagination={{
           pageSize: 5,
         }}
@@ -25,6 +25,7 @@ const SlideTable = () => {
             dataIndex: "id",
             responsive: ["sm"],
             align: "center",
+            sorter: (a, b) => a.id - b.id,
           },
           {
             key: "name",

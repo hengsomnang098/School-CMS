@@ -11,6 +11,7 @@ import {
 } from "../../../../app/api/config/helper";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
+import BreadCrumb from "./BreadCrumb";
 // import FooterPage from "./Footer";
 
 const { Header, Sider } = Layout;
@@ -84,6 +85,7 @@ function MainLayout() {
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuOutlined />}
             />
+            
             <div className="flex items-center mx-5 flex-row">
               <Radio.Group
                 onChange={(e) => handleChangeLanguage(e)}
@@ -120,15 +122,15 @@ function MainLayout() {
               </Typography.Title>
 
               <Avatar
-                size={{ xs: 50, sm: 50, md: 50, lg: 50, xl: 50, xxl: 60 }}
+              size={50}
                 src={<img src={profile} alt="avatar" />}
                 // icon={<UserOutlined />}
                 className="mr-4"
               />
             </div>
           </Header>
-
           <Layout className="overflow-auto bg-white ">
+          <BreadCrumb />
             <Outlet />
           </Layout>
           {/* <FooterPage /> */}

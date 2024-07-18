@@ -25,6 +25,11 @@ export default class ArticleStore {
     });
   };
 
+  get sortByArticleId()  {
+    return this.articles ?
+    this.articles.slice().sort((a, b) => b.id - a.id) :[]
+  }
+
   handleClickNew = () => {
     runInAction(() => {
       this.open = true;

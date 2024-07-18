@@ -21,6 +21,14 @@ export default class CategoryStore {
     });
   };
 
+  get sortCategoryById  ()  {
+    return this.categories
+      ? this.categories.slice().sort((a, b) => {
+          return b.id - a.id;
+        })
+      : [];
+  }
+
   handleClearValue = () => {
     this.formValues = {
       id: null,

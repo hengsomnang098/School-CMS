@@ -25,6 +25,14 @@ export default class ManagementTeamStore {
     });
   };
 
+  get sortTeamById() {
+    return this.managementTeam
+      ? this.managementTeam.slice().sort((a, b) => {
+          return b.id - a.id;
+        })
+      : [];
+  }
+
   handleClickNew = () => {
     runInAction(() => {
       this.open = true;

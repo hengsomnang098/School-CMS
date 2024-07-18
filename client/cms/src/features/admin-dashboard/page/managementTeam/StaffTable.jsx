@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const StaffTable = () => {
   const { managementTeamStore } = useStore();
-  const { managementTeam, loading, handleEdit, handleDelete } =
+  const {  loading, handleEdit, handleDelete,sortTeamById } =
     managementTeamStore;
   const { t } = useTranslation("global");
   return (
@@ -14,7 +14,7 @@ const StaffTable = () => {
       <Table
         sName=" h-[80vh] overflow-auto p-0 m-0"
         rowKey="id"
-        dataSource={managementTeam}
+        dataSource={sortTeamById}
         pagination={{
           pageSize: 5,
         }}
