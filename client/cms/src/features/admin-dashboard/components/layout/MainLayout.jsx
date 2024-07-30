@@ -85,7 +85,7 @@ function MainLayout() {
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuOutlined />}
             />
-            
+
             <div className="flex items-center mx-5 flex-row">
               <Radio.Group
                 onChange={(e) => handleChangeLanguage(e)}
@@ -122,7 +122,7 @@ function MainLayout() {
               </Typography.Title>
 
               <Avatar
-              size={50}
+                size={50}
                 src={<img src={profile} alt="avatar" />}
                 // icon={<UserOutlined />}
                 className="mr-4"
@@ -130,7 +130,7 @@ function MainLayout() {
             </div>
           </Header>
           <Layout className="overflow-auto bg-white ">
-          <BreadCrumb />
+            <BreadCrumb />
             <Outlet />
           </Layout>
           {/* <FooterPage /> */}

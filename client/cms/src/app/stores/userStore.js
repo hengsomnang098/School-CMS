@@ -24,35 +24,39 @@ export default class UserStore {
   handleLogin = async (item) => {
     this.loading = true;
     const { email, password } = item;
-
     if (!email || !password) {
       message.error("Please fill in email or password!");
       this.loading = false;
       return;
     }
 
-    const data = { email, password };
-    const res = await request("auth/login", "post", data);
-    if (res) {
-      if (res.error) {
-        message.error(res.error.message || "Login failed. Please try again.");
-        this.loading = false;
-      } else {
-        setProfile(res.object.profile);
-        setUser(res.object.email);
-        setAccessToken(res.object.access_token);
-        setRefreshToken(res.object.refresh_token);
-        setRoles(res.object.roles);
-        runInAction(() => {
+    try {
+      const data = { email, password };
+      const res = await request("auth/login", "post", data);
+      if (res) {
+        if (res.error) {
+          message.error(res.error.message || "Login failed. Please try again.");
           this.loading = false;
-          localStorage.setItem("selectedKey","/dashboard")
-        });
-        
+        } else {
+          setProfile(res.object.profile);
+          setUser(res.object.email);
+          setAccessToken(res.object.access_token);
+          setRefreshToken(res.object.refresh_token);
+          setRoles(res.object.roles);
+          localStorage.setItem("language", "en");
+          runInAction(() => {
+            this.loading = false;
+            localStorage.setItem("selectedKey", "/dashboard");
+          });
+        }
       }
-    }
-    runInAction(() => {
+      runInAction(() => {
+        this.loading = false;
+      });
+    } catch (error) {
+      message.error("Something went wrong. Please try again.");
       this.loading = false;
-    });
+    }
   };
 
   getList = async (firstname) => {
@@ -66,10 +70,13 @@ export default class UserStore {
         this.loading = false;
       });
     }
+    runInAction(() => {
+      this.loading = false;
+    });
   };
 
-  get sortUserById (){
-    return this.user? this.user.slice().sort((a, b) => b.id-a.id):[]
+  get sortUserById() {
+    return this.user ? this.user.slice().sort((a, b) => b.id - a.id) : [];
   }
 
   handleClearImage = () => {
