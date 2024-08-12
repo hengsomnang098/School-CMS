@@ -41,15 +41,6 @@ export default defineConfig({
             "./src/features/admin-dashboard/page/role/RolePage",
             "./src/features/admin-dashboard/page/album/ImagePage",
           ],
-          // Split homepage pages into a separate chunk
-          homepage: [
-            "./src/features/homepage/pages/Home",
-            "./src/features/homepage/pages/AboutPage",
-            "./src/features/homepage/pages/Contact",
-            "./src/features/homepage/pages/ManagementTeamsPage",
-            "./src/features/homepage/pages/EventsPages.jsx",
-            "./src/features/homepage/pages/SchoolNewsPage",
-          ],
         },
       },
     },

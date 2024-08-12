@@ -17,20 +17,7 @@ import CategoryPage from "../../features/admin-dashboard/page/category/CategoryP
 import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
 import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage";
-
-// homepage import --------------
-import Home from "../../features/homepage/pages/Home";
-import AboutPage from "../../features/homepage/pages/AboutPage";
-import Contact from "../../features/homepage/pages/Contact";
-import Layout from "../../features/homepage/layout/Layout";
-import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPage";
-import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
-import SingleContent from "../../features/homepage/components/Contents/SingleContent";
-import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
-import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
 import React from "react";
-
-// import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
 
 function App() {
   const LazyLoad = React.lazy(() =>
@@ -59,10 +46,7 @@ function App() {
           path="/dashboard/content/albums/:contentId"
           element={<ImagePage />}
         />
-        <Route
-          path="/dashboard/content/albums"
-          element={<ImagePage />}
-        />
+        <Route path="/dashboard/content/albums" element={<ImagePage />} />
         <Route path="/dashboard/manage-banners" element={<SlidePage />} />
         <Route path="/dashboard/student" element={<StudentPage />} />
         <Route path="/dashboard/staff" element={<StaffPage />} />
@@ -77,25 +61,7 @@ function App() {
         {/* Protected Route  */}
       </Route>
       <Route path="/server-error" element={<ServerErrorPage />} />
-      {/*   homepage route */}
-      <Route element={<Layout />}>
-        {/* pages*/}
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<Contact />} />
 
-        <Route path="/managementteams" element={<ManagementTeamsPage />} />
-
-        <Route path="/schoolnews" element={<ListAllContentNews />} />
-        <Route path="/schoolevents" element={<ListAllContentEvents />} />
-
-        {/* contents */}
-        <Route path="/event/:id" element={<SingleContent />} />
-        <Route path="/new/:id" element={<SingleContent />} />
-        <Route path="/content/:id" element={<SingleContent />} />
-        {/* Teams*/}
-        <Route path="/teams/:id" element={<SingleMember />} />
-      </Route>
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>
