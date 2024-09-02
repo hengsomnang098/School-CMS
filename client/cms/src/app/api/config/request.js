@@ -61,6 +61,7 @@ export const request = async (
         console.error("Forbidden: " + error.message);
         message.error("Forbidden Denied: " + error.message);
         logout();
+        window.location.href = "/login";
         break;
       case 404:
         console.error("Not Found: " + error.message);
@@ -69,18 +70,18 @@ export const request = async (
         console.error("Method Not Allowed: " + error.message);
         break;
       case 500:
-        window.location.href = "/server-error";
+        window.location.href = "/login";
         logout();
         console.error("Internal Server Error: " + error.message);
         break;
-      default:
-        if (!status) {
-          window.location.href = "/server-error";
-          console.error("An unexpected error occurred: " + error.message);
-        } else {
-          console.error("An unexpected error occurred: " + error.message);
-          window.location.href = "/server-error";
-        }
+      // default:
+      //   if (!status) {
+      //     window.location.href = "/";
+      //     console.error("An unexpected error occurred: " + error.message);
+      //   } else {
+      //     console.error("An unexpected error occurred: " + error.message);
+      //     window.location.href = "/";
+      //   }
     }
     return false;
   }

@@ -5,6 +5,7 @@ import { useStore } from "../../../../app/stores/store";
 
 import { useTranslation } from "react-i18next";
 import { PlusOutlined } from "@ant-design/icons";
+import { getRoles } from "../../../../app/api/config/helper";
 
 const UserHeader = () => {
   const { Title } = Typography;
@@ -16,8 +17,16 @@ const UserHeader = () => {
     // Update the current value of filterRef to the new search term
     filterRef.current.firstname = e.target.value;
 
+    const roles = getRoles();
+    if (roles.includes("ADMIN")) {
+      // Pass the current value of firstname to getList
+      getList(filterRef.current.firstname);
+    } else {
+      // Optionally, you can show a message or handle the case where the user doesn't have the required role
+      getList("");
+    }
+
     // Pass the current value of firstname to getList
-    getList(filterRef.current.firstname);
   };
 
   const filterRef = useRef({

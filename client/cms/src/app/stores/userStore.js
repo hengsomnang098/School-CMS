@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { request } from "../api/config/request";
 import {
+  getRoles,
   setAccessToken,
   setProfile,
   setRefreshToken,
@@ -62,13 +63,15 @@ export default class UserStore {
   getList = async (firstname) => {
     this.loading = true;
     const params = { firstname };
-
-    const res = await request("users", "get", params);
-    if (res) {
-      runInAction(() => {
-        this.user = res.object;
-        this.loading = false;
-      });
+    const roles = getRoles();
+    if (roles.includes("ADMIN")) {
+      const res = await request("users", "get", params);
+      if (res) {
+        runInAction(() => {
+          this.user = res.object;
+          this.loading = false;
+        });
+      }
     }
     runInAction(() => {
       this.loading = false;

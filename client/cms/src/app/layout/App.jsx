@@ -26,7 +26,7 @@ function App() {
   return (
     <Routes
       element={
-        <RequireAuth allowedRoles={["USERS", "SUPER-ADMIN", "ADMIN", "IT"]} />
+        <RequireAuth allowedRoles={["USER", "SUPER-ADMIN", "ADMIN", "IT"]} />
       }
     >
       {/* dashboard route */}
