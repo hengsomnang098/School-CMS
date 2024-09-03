@@ -158,7 +158,7 @@ export default class ContentStore {
       id: item.id,
     };
     var status = {
-      status: item.status === "DRAFT" ? "PUBLISHED" : "DRAFT",
+      status: item.status === "PENDING" ? "PUBLISHED" : "PENDING",
     };
     const res = await request(
       `contents/update/status/${item.id}?status=${status.status}`,
@@ -167,7 +167,7 @@ export default class ContentStore {
     );
     if (res) {
       runInAction(() => {
-        message.success("status  sucessfull");
+        message.success(`Status update to ${status.status}`);
         this.getList();
       });
     }

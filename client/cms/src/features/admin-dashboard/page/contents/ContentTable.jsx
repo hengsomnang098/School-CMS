@@ -37,18 +37,18 @@ const ContentTable = () => {
   });
   return (
     <>
-     <div className="flex flex-row gap-2 justify-start items-center text-center">
-     <Input.Search
-        placeholder="Search Content..."
-        className="xl:w-56 my-5"
-        onSearch={(value) => {
-          setSearchText(value);
-        }}
-        onChange={(e) => {
-          setSearchText(e.target.value);
-        }}
-      />
-       <Select
+      <div className="flex flex-row gap-2 justify-start items-center text-center">
+        <Input.Search
+          placeholder="Search Content..."
+          className="xl:w-56 my-5"
+          onSearch={(value) => {
+            setSearchText(value);
+          }}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <Select
           placeholder="Select Status"
           className="xl:w-48"
           onChange={(value) => {
@@ -56,10 +56,10 @@ const ContentTable = () => {
           }}
           allowClear
         >
-          <Option value="DRAFT">DRAFT</Option>
+          <Option value="PENDING">PENDING</Option>
           <Option value="PUBLISHED">PUBLISHED</Option>
         </Select>
-     </div>
+      </div>
       <Table
         width="100%"
         rowKey="id"
@@ -78,7 +78,7 @@ const ContentTable = () => {
             title: "Id",
             dataIndex: "id",
             responsive: ["sm"],
-            sorter: (a,b) => a.id - b.id,
+            sorter: (a, b) => a.id - b.id,
             align: "center",
           },
           {
@@ -160,13 +160,21 @@ const ContentTable = () => {
               <Space>
                 <Button
                   icon={
-                    item.status == "DRAFT" ? <EyeOutlined /> : <EditOutlined />
+                    item.status == "PUBLISHED" ? (
+                      <EyeOutlined />
+                    ) : (
+                      <EditOutlined />
+                    )
                   }
-                  className="bg-cyan-300 text-white"
+                  className={
+                    item.status === "PUBLISHED"
+                      ? "bg-green-500 text-white"
+                      : "bg-gray-500 text-white"
+                  }
                   loading={loading}
                   onClick={() => handleStatus(item)}
                 >
-                  {item.status == "DRAFT" ? "PUBLISHED" : "DRAFT"}
+                  {item.status == "PENDING" ? "PENDING" : "PUBLISHED"}
                 </Button>
               </Space>
             ),
