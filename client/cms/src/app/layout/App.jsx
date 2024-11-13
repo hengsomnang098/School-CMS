@@ -1,101 +1,163 @@
 import { Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import React from "react";
 
-// dashboard import-------------
-import UserPage from "../../features/admin-dashboard/page/user/UserPage";
-import ArticlesPage from "../../features/admin-dashboard/page/article/ArticlePage";
-// import ContentPage from "../../features/admin-dashboard/page/contents/ContentPage";
-import HomePage from "../../features/admin-dashboard/page/home/HomePage";
-import NotFoundPage from "../../features/admin-dashboard/page/NotFoundPage";
+// Import essential components directly
 import MainLayout from "../../features/admin-dashboard/components/layout/MainLayout";
-import LoginPage from "../../features/admin-dashboard/page/LoginPage";
-import SlidePage from "../../features/admin-dashboard/page/slide/SlidePage";
-import StudentPage from "../../features/admin-dashboard/page/student/StudentPage";
-import StaffPage from "../../features/admin-dashboard/page/managementTeam/StaffPage";
-import CategoryPage from "../../features/admin-dashboard/page/category/CategoryPage";
-// import RolePage from "../../features/admin-dashboard/page/role/RolePage";
-import ImagePage from "../../features/admin-dashboard/page/album/ImagePage";
 import RequireAuth from "../../features/admin-dashboard/components/page/RequireAuth";
+import LoginPage from "../../features/admin-dashboard/page/LoginPage";
 import ServerErrorPage from "../../features/admin-dashboard/page/ServerErrorPage";
-
-// homepage import --------------
+import NotFoundPage from "../../features/admin-dashboard/page/NotFoundPage";
+import Layout from "../../features/homepage/layout/Layout";
 import Home from "../../features/homepage/pages/Home";
 import AboutPage from "../../features/homepage/pages/AboutPage";
 import Contact from "../../features/homepage/pages/Contact";
-import Layout from "../../features/homepage/layout/Layout";
 import ManagementTeamsPage from "../../features/homepage/pages/ManagementTeamsPage";
-import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
-import SingleContent from "../../features/homepage/components/Contents/SingleContent";
 import ListAllContentNews from "../../features/homepage/components/News/ListAllContentNews";
 import ListAllContentEvents from "../../features/homepage/components/Events/ListAllContentEvent";
-import React from "react";
+import SingleMember from "../../features/homepage/components/ManagementTeams/SingleMember";
+import SingleContent from "../../features/homepage/components/Contents/SingleContent";
 
-// import ContentForm from "../../features/admin-dashboard/page/contents/ContentForm";
+// Use React.lazy for non-essential or heavier components
+const UserPage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/user/UserPage")
+);
+const ArticlesPage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/article/ArticlePage")
+);
+const HomePage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/home/HomePage")
+);
+const CategoryPage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/category/CategoryPage")
+);
+const ImagePage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/album/ImagePage")
+);
+const SlidePage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/slide/SlidePage")
+);
+const StudentPage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/student/StudentPage")
+);
+const StaffPage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/managementTeam/StaffPage")
+);
+const ContentPage = React.lazy(() =>
+  import("../../features/admin-dashboard/page/contents/ContentPage")
+);
 
 function App() {
-  const LazyLoad = React.lazy(() =>
-    import("../../features/admin-dashboard/page/contents/ContentPage")
-  );
   return (
-    <Routes
-      element={
-        <RequireAuth allowedRoles={["USERS", "SUPER-ADMIN", "ADMIN", "IT"]} />
-      }
-    >
-      {/* dashboard route */}
-      <Route element={<MainLayout />}>
-        <Route path="/dashboard" element={<HomePage />} />
-        <Route path="/dashboard/category" element={<CategoryPage />} />
-        <Route path="/dashboard/article" element={<ArticlesPage />} />
-        <Route
-          path="/dashboard/content"
-          element={
-            <React.Suspense>
-              <LazyLoad />
-            </React.Suspense>
-          }
-        />
-        <Route
-          path="/dashboard/content/albums/:contentId"
-          element={<ImagePage />}
-        />
-        <Route
-          path="/dashboard/content/albums"
-          element={<ImagePage />}
-        />
-        <Route path="/dashboard/manage-banners" element={<SlidePage />} />
-        <Route path="/dashboard/student" element={<StudentPage />} />
-        <Route path="/dashboard/staff" element={<StaffPage />} />
-        {/* Protected Route  */}
-        <Route
-          element={
-            <RequireAuth allowedRoles={["ADMIN", "IT", "SUPER-ADMIN"]} />
-          }
-        >
-          <Route path="/dashboard/users" element={<UserPage />} />
+    <Routes>
+      {/* Dashboard routes */}
+      <Route
+        element={
+          <RequireAuth allowedRoles={["USERS", "SUPER-ADMIN", "ADMIN", "IT"]} />
+        }
+      >
+        <Route element={<MainLayout />}>
+          <Route
+            path="/dashboard"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <HomePage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/category"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <CategoryPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/article"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <ArticlesPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/content"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <ContentPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/content/albums/:contentId"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <ImagePage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/manage-banners"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <SlidePage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/student"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <StudentPage />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/dashboard/staff"
+            element={
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <StaffPage />
+              </React.Suspense>
+            }
+          />
+
+          {/* Protected routes for admin */}
+          <Route
+            element={
+              <RequireAuth allowedRoles={["ADMIN", "IT", "SUPER-ADMIN"]} />
+            }
+          >
+            <Route
+              path="/dashboard/users"
+              element={
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <UserPage />
+                </React.Suspense>
+              }
+            />
+          </Route>
         </Route>
-        {/* Protected Route  */}
       </Route>
+
+      {/* Error page */}
       <Route path="/server-error" element={<ServerErrorPage />} />
-      {/*   homepage route */}
+
+      {/* Homepage routes */}
       <Route element={<Layout />}>
-        {/* pages*/}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<Contact />} />
-
         <Route path="/managementteams" element={<ManagementTeamsPage />} />
-
         <Route path="/schoolnews" element={<ListAllContentNews />} />
         <Route path="/schoolevents" element={<ListAllContentEvents />} />
-
-        {/* contents */}
         <Route path="/event/:id" element={<SingleContent />} />
         <Route path="/new/:id" element={<SingleContent />} />
         <Route path="/content/:id" element={<SingleContent />} />
-        {/* Teams*/}
         <Route path="/teams/:id" element={<SingleMember />} />
       </Route>
+
+      {/* Fallback route for 404 */}
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>

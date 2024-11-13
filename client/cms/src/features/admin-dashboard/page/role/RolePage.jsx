@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import MainPage from "../../components/page/MainPage";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -10,7 +10,7 @@ const RolePage = () => {
   const { roleStore } = useStore();
   const { roleList, loading } = roleStore;
 
-  useEffect(() => {
+  useMemo(() => {
     roleList();
   }, [roleList]);
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import MainPage from "../../components/page/MainPage";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../app/stores/store";
@@ -10,7 +10,7 @@ const StudentPage = () => {
   const { studentStore } = useStore();
   const { getList, loading } = studentStore;
 
-  useEffect(() => {
+  useMemo(() => {
     getList();
   }, [getList]);
 

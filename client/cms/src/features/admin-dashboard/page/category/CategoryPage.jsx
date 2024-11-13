@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 
 import MainPage from "../../components/page/MainPage";
 import { useStore } from "../../../../app/stores/store";
@@ -10,7 +10,7 @@ const CategoryPage = () => {
   const { categoryStore } = useStore();
   const { getList, loading } = categoryStore;
 
-  useEffect(() => {
+  useMemo(() => {
     getList();
   }, [getList]);
 

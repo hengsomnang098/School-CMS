@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import "react-quill/dist/quill.snow.css";
 import MainPage from "../../components/page/MainPage";
@@ -11,6 +11,10 @@ import ContentModal from "./ContentModal";
 const ContentPage = () => {
   const { contentStore } = useStore();
   const { getList, loading } = contentStore;
+
+  useCallback(() => {
+    getList();
+  }, [getList]);
 
   useEffect(() => {
     getList();

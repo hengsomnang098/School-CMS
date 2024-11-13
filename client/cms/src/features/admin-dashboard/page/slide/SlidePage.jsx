@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 
 import MainPage from "../../components/page/MainPage";
 
@@ -12,7 +12,7 @@ const SlidePage = () => {
   const { slideStore } = useStore();
   const { getList, loading } = slideStore;
 
-  useEffect(() => {
+  useMemo(() => {
     getList();
   }, [getList]);
 

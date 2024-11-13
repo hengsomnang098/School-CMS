@@ -14,7 +14,7 @@ import MainPage from "../../components/page/MainPage";
 import { useTranslation } from "react-i18next";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { getRoles } from "../../../../app/api/config/helper";
 
 const HomePage = () => {
@@ -31,7 +31,7 @@ const HomePage = () => {
     userStore,
   } = useStore();
 
-  useEffect(() => {
+  useMemo(() => {
     slideStore.getList();
     categoryStore.getList();
     mediaStore.getAll();
@@ -187,7 +187,7 @@ const HomePage = () => {
           menukey={"/dashboard/content"}
           title={"Total Albums"}
           to="content/albums"
-          value={mediaStore.medias ? mediaStore.medias.length :0}
+          value={mediaStore.medias ? mediaStore.medias.length : 0}
           icon={
             <PictureTwoTone
               style={{

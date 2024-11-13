@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Form } from "antd";
+import { useMemo } from "react";
+// import { Form } from "antd";
 import MainPage from "../../components/page/MainPage";
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -10,14 +10,14 @@ import UserModal from "./UserModal";
 
 const UserPage = () => {
   const { userStore, roleStore } = useStore();
-  const { getList, formValues, loading } = userStore;
+  const { getList, loading } = userStore;
 
-  const [formCat] = Form.useForm();
+  // const [formCat] = Form.useForm();
 
-  useEffect(() => {
+  useMemo(() => {
     roleStore.roleList();
     getList("");
-  }, [formCat, formValues, getList, roleStore]);
+  }, [getList, roleStore]);
 
   return (
     <MainPage loading={loading}>

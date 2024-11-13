@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 
 import MainPage from "../../components/page/MainPage";
 import { observer } from "mobx-react-lite";
@@ -11,7 +11,7 @@ const StaffPage = () => {
   const { managementTeamStore } = useStore();
   const { getList, loading } = managementTeamStore;
 
-  useEffect(() => {
+  useMemo(() => {
     getList();
   }, [getList]);
 

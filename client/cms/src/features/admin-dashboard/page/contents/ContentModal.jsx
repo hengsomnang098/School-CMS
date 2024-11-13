@@ -1,5 +1,5 @@
 import { Button, Modal, Input, Form, Select, Image } from "antd";
-import { useEffect, useRef } from "react";
+import { useRef, useMemo } from "react";
 
 import { useStore } from "../../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -32,7 +32,7 @@ const ContentModal = () => {
 
   const { t } = useTranslation("global");
 
-  useEffect(() => {
+  useMemo(() => {
     articleStore.articleList();
     categoryStore.getList();
     formCat.resetFields();

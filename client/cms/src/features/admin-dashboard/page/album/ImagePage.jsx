@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import MainPage from "../../components/page/MainPage";
 import { observer } from "mobx-react-lite";
@@ -10,12 +10,11 @@ import ImageModal from "./ImageModal";
 
 const ImagePage = () => {
   const { mediaStore } = useStore();
-  const { getList, loading,getAll } = mediaStore;
+  const { getList, loading, getAll } = mediaStore;
   const { contentId } = useParams();
 
-  useEffect(() => {
-    contentId ? getList(contentId) : getAll() ;
-    
+  useMemo(() => {
+    contentId ? getList(contentId) : getAll();
   }, [contentId, getAll, getList]);
 
   return (

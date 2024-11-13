@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  import.meta.env.VITE_API_URL ||
-  "https://api.southwest-internationalschool.site/api/";
+  import.meta.env.VITE_API_URL || "https://api.southwest-shv.com/api/";
 
 const GENERIC_ERROR_MESSAGE =
   "An error occurred while fetching data. Please try again later.";

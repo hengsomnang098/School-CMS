@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import MainPage from "../../components/page/MainPage";
 
 import { observer } from "mobx-react-lite";
@@ -11,7 +11,7 @@ const CategoryPage = () => {
   const { articleStore, categoryStore } = useStore();
   const { articleList, loading } = articleStore;
 
-  useEffect(() => {
+  useMemo(() => {
     articleList();
     categoryStore.getList();
   }, [categoryStore, articleList]);
